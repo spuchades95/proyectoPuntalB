@@ -13,6 +13,17 @@ return new class extends Migration
     {
         Schema::create('boats', function (Blueprint $table) {
             $table->id();
+            $table->string('Matricula');
+            $table->string('Manga');
+            $table->string('Eslora');
+            $table->string('Origen');
+            $table->string('Titular');
+            $table->string('Imagen');
+            $table->string('Numero_registro');
+            $table->string('Datos_Tecnicos');
+            $table->string('Modelo');
+            $table->string('Nombre');
+            $table->string('Tipo');
             $table->timestamps();
         });
     }

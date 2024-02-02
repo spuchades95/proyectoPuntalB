@@ -13,6 +13,11 @@ return new class extends Migration
     {
         Schema::create('facilities', function (Blueprint $table) {
             $table->id();
+            $table->string('Ubicacion');
+            $table->string('Dimensiones');
+            $table->string('Descripcion');
+            $table->string('Estado');
+            $table->date('FechaCreacion');
             $table->timestamps();
         });
     }
