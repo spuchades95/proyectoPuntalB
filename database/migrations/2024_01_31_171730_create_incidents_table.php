@@ -13,6 +13,13 @@ return new class extends Migration
     {
         Schema::create('incidents', function (Blueprint $table) {
             $table->id();
+            $table->string('Titulo');
+            $table->string('Imagen');
+            $table->string('Descripcion');
+            $table->unsignedBigInteger('Guardamuelle');
+            $table->unsignedBigInteger('Administrativo');
+            $table->foreign('Guardamuelle')->references('id')->on('dock_workers')->onDelete('cascade');
+            $table->foreign('Administrativo')->references('id')->on('administratives')->onDelete('cascade');
             $table->timestamps();
         });
     }
