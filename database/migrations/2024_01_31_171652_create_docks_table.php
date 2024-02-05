@@ -20,6 +20,7 @@ return new class extends Migration
             $table->date('FechaCreacion');
             $table->unsignedBigInteger('Instalacion');
             $table->foreign('Instalacion')->references('id')->on('facilities')->onDelete('cascade');
+            $table->softDeletes();
             $table->timestamps();
         });
     }

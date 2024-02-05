@@ -13,6 +13,9 @@ return new class extends Migration
     {
         Schema::create('administratives', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger('Usuario');
+            $table->foreign('Usuario')->references('id')->on('users')->onDelete('cascade');
+            $table->softDeletes();
             $table->timestamps();
         });
     }

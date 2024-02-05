@@ -13,6 +13,15 @@ return new class extends Migration
     {
         Schema::create('transits', function (Blueprint $table) {
             $table->id();
+            $table->string('Proposito');
+            $table->date('FechaEntrada');
+            $table->unsignedBigInteger('Guardamuelles');
+            $table->foreign('Guardamuelles')->references('')->on('')->onDelete('cascade');
+            $table->unsignedBigInteger('Administrativo');
+            $table->foreign('Administrativo')->references('')->on('')->onDelete('cascade');
+            $table->unsignedBigInteger('Amarre');
+            $table->foreign('Amarre')->references('id')->on('berths')->onDelete('cascade');
+            $table->softDeletes();
             $table->timestamps();
         });
     }

@@ -18,6 +18,7 @@ return new class extends Migration
             $table->date('Anio');
             $table->unsignedBigInteger('Pantalan');
             $table->foreign('Pantalan')->references('id')->on('docks')->onDelete('cascade');
+            $table->softDeletes();
             $table->timestamps();
         });
     }

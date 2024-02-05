@@ -20,6 +20,7 @@ return new class extends Migration
             $table->unsignedBigInteger('Administrativo');
             $table->foreign('Guardamuelle')->references('id')->on('dock_workers')->onDelete('cascade');
             $table->foreign('Administrativo')->references('id')->on('administratives')->onDelete('cascade');
+            $table->softDeletes();
             $table->timestamps();
         });
     }

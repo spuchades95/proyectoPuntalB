@@ -13,6 +13,7 @@ return new class extends Migration
     {
         Schema::create('concessionaire_roles', function (Blueprint $table) {
             $table->id();
+            $table->softDeletes();
             $table->timestamps();
         });
     }
