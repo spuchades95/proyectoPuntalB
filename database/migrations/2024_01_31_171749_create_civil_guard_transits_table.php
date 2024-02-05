@@ -13,6 +13,7 @@ return new class extends Migration
     {
         Schema::create('civil_guard_transits', function (Blueprint $table) {
             $table->id();
+            
             $table->softDeletes();
             $table->timestamps();
         });
