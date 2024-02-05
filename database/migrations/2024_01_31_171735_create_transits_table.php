@@ -16,9 +16,9 @@ return new class extends Migration
             $table->string('Proposito');
             $table->date('FechaEntrada');
             $table->unsignedBigInteger('Guardamuelles');
-            $table->foreign('Guardamuelles')->references('')->on('')->onDelete('cascade');
+            $table->foreign('Guardamuelles')->references('id')->on('users')->onDelete('cascade');
             $table->unsignedBigInteger('Administrativo');
-            $table->foreign('Administrativo')->references('')->on('')->onDelete('cascade');
+            $table->foreign('Administrativo')->references('id')->on('users')->onDelete('cascade');
             $table->unsignedBigInteger('Amarre');
             $table->foreign('Amarre')->references('id')->on('berths')->onDelete('cascade');
             $table->softDeletes();

@@ -12,7 +12,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('civil_guards', function (Blueprint $table) {
-            $table->id();
+          
             $table->unsignedBigInteger('Usuario');
             $table->foreign('Usuario')->references('id')->on('users')->onDelete('cascade');
             $table->softDeletes();
