@@ -23,6 +23,7 @@ return new class extends Migration
             $table->string('Telefono');
             $table->string('Direccion');
             $table->string('Imagen');
+            
             $table->string('Descripcion');
             $table->unsignedBigInteger('Instalacion');
             $table->foreign('Instalacion')->references('id')->on('facilities')->onDelete('cascade');

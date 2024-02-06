@@ -17,6 +17,7 @@ return new class extends Migration
             $table->string('Permisos');
             $table->string('Descripcion');
             $table->softDeletes();
+            
             $table->timestamps();
         });
     }

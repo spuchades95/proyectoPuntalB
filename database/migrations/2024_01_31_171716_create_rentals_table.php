@@ -16,6 +16,7 @@ return new class extends Migration
             $table->unsignedBigInteger('PlazaBase');
             $table->unsignedBigInteger('Embarcacion');
             $table->date('FechaInicio');
+            
             $table->date('FechoFinalizacion');
             $table->foreign('PlazaBase')->references('id')->on('base_berths')->onDelete('cascade');
             $table->foreign('Embarcacion')->references('id')->on('boats')->onDelete('cascade');

@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('Estado');
             $table->string('TipoPlaza');
+            
             $table->date('Anio');
             $table->unsignedBigInteger('Pantalan');
             $table->foreign('Pantalan')->references('id')->on('docks')->onDelete('cascade');

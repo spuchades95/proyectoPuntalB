@@ -17,6 +17,7 @@ return new class extends Migration
             $table->string('Nombre');
             $table->string('Sexo');
             $table->string('Nacionalidad');
+            
             $table->softDeletes();
             $table->timestamps();
         });

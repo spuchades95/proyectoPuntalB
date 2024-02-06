@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('Nombre');
             $table->string('Ubicacion');
+            
             $table->string('Descripcion');
             $table->integer('Capacidad');
             $table->date('FechaCreacion');
