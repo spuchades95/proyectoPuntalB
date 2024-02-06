@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('dock_workers', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('Usuario');
+            $table->integer('Usuario')->unsigned();
             $table->foreign('Usuario')->references('id')->on('users')->onDelete('cascade');
             $table->softDeletes();
             $table->timestamps();
