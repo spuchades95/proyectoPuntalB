@@ -12,10 +12,10 @@ return new class extends Migration
     public function up(): void
     {
         Schema::table('civil_guard_transits', function (Blueprint $table) {
-            $table->unsignedBigInteger('GuardaCivil');
-            $table->foreign('GuardaCivil')->references('Usuario')->on('civil_guards')->onDelete('cascade');
-            $table->unsignedBigInteger('Transito');
-            $table->foreign('Transito')->references('Amarre')->on('transits')->onDelete('cascade');
+            $table->unsignedBigInteger('GuardaCivil_id');
+            $table->foreign('GuardaCivil_id')->references('Usuario')->on('civil_guards')->onDelete('cascade');
+            $table->unsignedBigInteger('Transito_id');
+            $table->foreign('Transito_id')->references('Amarre')->on('transits')->onDelete('cascade');
         });
     }
 
@@ -25,8 +25,8 @@ return new class extends Migration
     public function down(): void
     {
         Schema::table('civil_guard_transits', function (Blueprint $table) {
-            $table->dropColumn('GuardaCivil');
-            $table->dropColumn('Transito');
+            $table->dropColumn('GuardaCivil_id');
+            $table->dropColumn('Transito_id');
         });
     }
 };

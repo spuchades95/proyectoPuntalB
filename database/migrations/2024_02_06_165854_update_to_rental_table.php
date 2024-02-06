@@ -12,11 +12,11 @@ return new class extends Migration
     public function up(): void
     {
         Schema::table('rentals', function (Blueprint $table) {
-            $table->unsignedBigInteger('PlazaBase');
-            $table->unsignedBigInteger('Embarcacion');
+            $table->unsignedBigInteger('PlazaBase_id');
+            $table->unsignedBigInteger('Embarcacion_id');
            
-            $table->foreign('PlazaBase')->references('id')->on('base_berths')->onDelete('cascade');
-            $table->foreign('Embarcacion')->references('id')->on('boats')->onDelete('cascade');
+            $table->foreign('PlazaBase_id')->references('id')->on('base_berths')->onDelete('cascade');
+            $table->foreign('Embarcacion_id')->references('id')->on('boats')->onDelete('cascade');
         });
     }
 
@@ -26,8 +26,8 @@ return new class extends Migration
     public function down(): void
     {
         Schema::table('rentals', function (Blueprint $table) {
-            $table->dropColumn('PlazaBase');
-            $table->dropColumn('Embarcacion');
+            $table->dropColumn('PlazaBase_id');
+            $table->dropColumn('Embarcacion_id');
         });
     }
 };

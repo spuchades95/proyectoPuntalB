@@ -12,12 +12,12 @@ return new class extends Migration
     public function up(): void
     {
         Schema::table('transits', function (Blueprint $table) {
-            $table->unsignedBigInteger('Guardamuelles');
-            $table->foreign('Guardamuelles')->references('id')->on('dock_workers')->onDelete('cascade');
-            $table->unsignedBigInteger('Administrativo');
-            $table->foreign('Administrativo')->references('id')->on('administratives')->onDelete('cascade');
-            $table->unsignedBigInteger('Amarre');
-            $table->foreign('Amarre')->references('id')->on('berths')->onDelete('cascade');
+            $table->unsignedBigInteger('Guardamuelles_id');
+            $table->foreign('Guardamuelles_id')->references('id')->on('dock_workers')->onDelete('cascade');
+            $table->unsignedBigInteger('Administrativo_id');
+            $table->foreign('Administrativo_id')->references('id')->on('administratives')->onDelete('cascade');
+            $table->unsignedBigInteger('Amarre_id');
+            $table->foreign('Amarre_id')->references('id')->on('berths')->onDelete('cascade');
         });
     }
 
@@ -27,9 +27,9 @@ return new class extends Migration
     public function down(): void
     {
         Schema::table('transits', function (Blueprint $table) {
-            $table->dropColumn('Guardamuelles');
-            $table->dropColumn('Administrativo');
-            $table->dropColumn('Amarre');
+            $table->dropColumn('Guardamuelles_id');
+            $table->dropColumn('Administrativo_id');
+            $table->dropColumn('Amarre_id');
         });
     }
 };
