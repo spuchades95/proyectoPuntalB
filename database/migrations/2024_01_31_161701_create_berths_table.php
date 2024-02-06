@@ -11,9 +11,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('administratives', function (Blueprint $table) {
-            $table->id();            
-          
+        Schema::create('berths', function (Blueprint $table) {
+            $table->id();
+            $table->string('Estado');
+            $table->string('TipoPlaza');
+            $table->date('Anio');
             $table->softDeletes();
             $table->timestamps();
         });
@@ -24,6 +26,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('administratives');
+        Schema::dropIfExists('berths');
     }
 };

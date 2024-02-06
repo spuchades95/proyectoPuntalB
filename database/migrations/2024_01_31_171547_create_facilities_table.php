@@ -18,7 +18,6 @@ return new class extends Migration
             $table->string('Descripcion');
             $table->string('Estado');
             $table->date('FechaCreacion');
-            
             $table->softDeletes();
             $table->timestamps();
         });

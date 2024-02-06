@@ -13,7 +13,10 @@ return new class extends Migration
     {
         Schema::create('base_berths', function (Blueprint $table) {
             $table->id();
-            
+            $table->string('DatosEstancia');
+            $table->date('FechaEntrada');
+            $table->date('FinContrato');
+          
             $table->softDeletes();
             $table->timestamps();
         });

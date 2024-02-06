@@ -13,7 +13,8 @@ return new class extends Migration
     {
         Schema::create('civil_guard_transits', function (Blueprint $table) {
             $table->id();
-            
+            $table->date('FechaVisualizacion');
+           
             $table->softDeletes();
             $table->timestamps();
         });

@@ -17,8 +17,7 @@ return new class extends Migration
             $table->string('Manga');
             $table->string('Eslora');
             $table->string('Origen');
-            $table->string('Titular');
-            
+            $table->string('Titular');            
             $table->string('Imagen');
             $table->string('Numero_registro');
             $table->string('Datos_Tecnicos');

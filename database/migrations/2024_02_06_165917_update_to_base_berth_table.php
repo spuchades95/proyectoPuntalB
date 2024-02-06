@@ -11,11 +11,9 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('administratives', function (Blueprint $table) {
-            $table->id();            
-          
-            $table->softDeletes();
-            $table->timestamps();
+        Schema::table('base_berths', function (Blueprint $table) {
+            $table->unsignedBigInteger('Amarre');
+            $table->foreign('Amarre')->references('id')->on('berths')->onDelete('cascade');
         });
     }
 
@@ -24,6 +22,8 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('administratives');
+        Schema::table('base_berths', function (Blueprint $table) {
+            $table->dropColumn('Amarre');
+        });
     }
 };

@@ -22,13 +22,8 @@ return new class extends Migration
             $table->string('DNI');
             $table->string('Telefono');
             $table->string('Direccion');
-            $table->string('Imagen');
-            
+            $table->string('Imagen');            
             $table->string('Descripcion');
-            $table->unsignedBigInteger('Instalacion');
-            $table->foreign('Instalacion')->references('id')->on('facilities')->onDelete('cascade');
-            $table->unsignedBigInteger('Rol');
-            $table->foreign('Rol')->references('id')->on('roles')->onDelete('cascade');
             $table->softDeletes();
             $table->rememberToken();
             $table->timestamps();

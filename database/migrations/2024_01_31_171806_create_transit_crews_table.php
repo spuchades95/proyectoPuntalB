@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('transit_crews', function (Blueprint $table) {
             $table->id();
-            
+          
             $table->softDeletes();
             $table->timestamps();
         });

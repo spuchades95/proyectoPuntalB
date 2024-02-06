@@ -13,9 +13,7 @@ return new class extends Migration
     {
         Schema::create('concessionaires', function (Blueprint $table) {
             $table->id();
-            $table->integer('Usuario')->unsigned();
-        
-            $table->foreign('Usuario')->references('id')->on('users')->onDelete('cascade');
+          
             $table->softDeletes();
             $table->timestamps();
         });

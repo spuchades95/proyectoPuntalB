@@ -14,13 +14,11 @@ return new class extends Migration
         Schema::create('docks', function (Blueprint $table) {
             $table->id();
             $table->string('Nombre');
-            $table->string('Ubicacion');
-            
+            $table->string('Ubicacion');            
             $table->string('Descripcion');
             $table->integer('Capacidad');
             $table->date('FechaCreacion');
-            $table->unsignedBigInteger('Instalacion');
-            $table->foreign('Instalacion')->references('id')->on('facilities')->onDelete('cascade');
+           
             $table->softDeletes();
             $table->timestamps();
         });
