@@ -13,18 +13,18 @@ return new class extends Migration
     {
         Schema::create('boats', function (Blueprint $table) {
             $table->id();
-            $table->string('Matricula');
-            $table->string('Manga');
-            $table->string('Eslora');
-            $table->string('Origen');
-            $table->string('Titular');            
-            $table->string('Imagen');
-            $table->string('Numero_registro');
-            $table->string('Datos_Tecnicos');
-            $table->string('Modelo');
-            $table->string('Nombre');
-            $table->string('Causa');
-            $table->string('Tipo');
+            $table->string('Matricula')->nullable();
+            $table->string('Manga')->nullable();
+            $table->string('Eslora')->nullable();
+            $table->string('Origen')->nullable();
+            $table->string('Titular')->nullable();            
+            $table->string('Imagen')->nullable();
+            $table->string('Numero_registro')->nullable();
+            $table->string('Datos_Tecnicos')->nullable();
+            $table->string('Modelo')->nullable();
+            $table->string('Nombre')->nullable();
+            $table->string('Causa')->nullable();
+            $table->string('Tipo')->nullable();
             $table->softDeletes();
             $table->timestamps();
         });

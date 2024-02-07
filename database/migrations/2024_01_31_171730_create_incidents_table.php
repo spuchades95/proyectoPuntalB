@@ -13,9 +13,9 @@ return new class extends Migration
     {
         Schema::create('incidents', function (Blueprint $table) {
             $table->id();
-            $table->string('Titulo');
+            $table->string('Titulo')->nullable();
             $table->string('Imagen');
-            $table->string('Descripcion');
+            $table->string('Descripcion')->nullable();
           
             $table->softDeletes();
             $table->timestamps();

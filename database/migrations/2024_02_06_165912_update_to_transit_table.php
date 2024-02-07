@@ -12,11 +12,11 @@ return new class extends Migration
     public function up(): void
     {
         Schema::table('transits', function (Blueprint $table) {
-            $table->unsignedBigInteger('Guardamuelles_id');
-            $table->foreign('Guardamuelles_id')->references('id')->on('dock_workers')->onDelete('cascade');
-            $table->unsignedBigInteger('Administrativo_id');
-            $table->foreign('Administrativo_id')->references('id')->on('administratives')->onDelete('cascade');
-            $table->unsignedBigInteger('Amarre_id');
+            $table->unsignedBigInteger('Guardamuelles_id')->after('FechaEntrada');
+            $table->foreign('Guardamuelles_id')->references('Usuario_id')->on('dock_workers')->onDelete('cascade')->onUpdate('cascade');
+            $table->unsignedBigInteger('Administrativo_id')->after('Causa');
+            $table->foreign('Administrativo_id')->references('Usuario_id')->on('administratives')->onDelete('cascade')->onUpdate('cascade');
+            $table->unsignedBigInteger('Amarre_id')->after('Autorizacion');
             $table->foreign('Amarre_id')->references('id')->on('berths')->onDelete('cascade');
         });
     }

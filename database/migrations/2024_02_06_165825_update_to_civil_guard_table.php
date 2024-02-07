@@ -12,8 +12,8 @@ return new class extends Migration
     public function up(): void
     {
         Schema::table('civil_guards', function (Blueprint $table) {
-            $table->unsignedBigInteger('Usuario_id')->primary();        
-            $table->foreign('Usuario_id')->references('id')->on('users')->onDelete('cascade'); 
+            $table->unsignedBigInteger('Usuario_id')->primary()->after('Causa');       
+            $table->foreign('Usuario_id')->references('id')->on('users')->onDelete('cascade')->onUpdate('cascade'); 
         });
     }
 

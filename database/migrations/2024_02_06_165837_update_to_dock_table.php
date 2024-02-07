@@ -12,8 +12,8 @@ return new class extends Migration
     public function up(): void
     {
         Schema::table('docks', function (Blueprint $table) {
-            $table->unsignedBigInteger('Instalacion_id');
-            $table->foreign('Instalacion_id')->references('id')->on('facilities')->onDelete('cascade');
+            $table->unsignedBigInteger('Instalacion_id')->after('Causa');
+            $table->foreign('Instalacion_id')->references('id')->on('facilities')->onDelete('cascade')->onUpdate('cascade');
         });
     }
 

@@ -13,9 +13,9 @@ return new class extends Migration
     {
         Schema::create('docks', function (Blueprint $table) {
             $table->id();
-            $table->string('Nombre');
-            $table->string('Ubicacion');            
-            $table->string('Descripcion');
+            $table->string('Nombre')->nullable();
+            $table->string('Ubicacion')->nullable();            
+            $table->string('Descripcion')->nullable();
             $table->integer('Capacidad');
             $table->date('FechaCreacion');
             $table->string('Causa');
