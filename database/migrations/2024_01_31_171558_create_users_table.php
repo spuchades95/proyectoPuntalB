@@ -16,7 +16,7 @@ return new class extends Migration
             $table->string('NombreCompleto')->nullable();
             $table->boolean('Habilitado')->nullable();
             $table->string('NombreUsuario')->nullable();
-            $table->string('DNI')->nullable()->unique();
+            $table->string('DNI')->nullable();
             $table->string('Telefono');
             $table->string('Direccion');
             $table->string('Imagen');            

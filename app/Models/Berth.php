@@ -10,6 +10,14 @@ class Berth extends Model
     use HasFactory;
     use SoftDeletes;
 
+    protected $fillable = [
+        'Estado',
+        'TipoPlaza',
+        'Anio',
+        'Causa',
+        'Pantalan_id',
+
+    ];
     public function plazabase()
     {
         return $this->hasOne(BaseBerth::class);

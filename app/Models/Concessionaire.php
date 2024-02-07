@@ -11,8 +11,18 @@ class Concessionaire extends User
     use SoftDeletes;
     protected $primaryKey = 'Usuario_id';
 
-    public function user()
+    protected $fillable = [
+        'Causa',
+        'Usuario_id',
+    ];
+    public function usuario()
     {
         return $this->belongsTo(User::class, 'Usuario_id');
     }
+    public function instalaciones()
+    {
+        return $this->belongsToMany(Facility::class, 'ConcessionaireFacility', 'Concesionario_id', 'Instalacion_id');
+    }
+
+   
 }

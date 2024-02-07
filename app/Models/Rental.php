@@ -9,4 +9,10 @@ class Rental extends Model
 {
     use HasFactory;
     use SoftDeletes;
+    protected $fillable = [
+        'FechaInicio',
+        'PlazaBase_id',
+        'FechoFinalizacion',
+        'Embarcacion_id ',
+    ];
 }

@@ -10,6 +10,10 @@ class DockWorker extends User
     use HasFactory;
     use SoftDeletes;
     protected $primaryKey = 'Usuario_id';
+    protected $fillable = [
+        'Causa',
+        'Usuario_id',
+    ];
 
     public function user()
     {

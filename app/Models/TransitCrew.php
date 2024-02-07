@@ -9,4 +9,8 @@ class TransitCrew extends Model
 {
     use HasFactory;
     use SoftDeletes;
+    protected $fillable = [
+        'Tripulante_id',
+        'Transito_id',
+    ];
 }

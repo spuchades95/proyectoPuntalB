@@ -9,4 +9,10 @@ class Role extends Model
 {
     use HasFactory;
     use SoftDeletes;
+    protected $fillable = [
+        'NombreRol',
+        'Permisos',
+        'Descripcion',
+        'Causa',
+    ];
 }

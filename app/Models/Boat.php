@@ -9,4 +9,18 @@ class Boat extends Model
 {
     use HasFactory;
     use SoftDeletes;
+    protected $fillable = [
+        'Matricula',
+        'Manga',
+        'Eslora',
+        'Origen',
+        'Titular',
+        'Imagen',
+        'Numero_registro',
+        'Datos_Tecnicos',
+        'Modelo',
+        'Nombre',
+        'Causa',
+        'Tipo',
+    ];
 }

@@ -9,4 +9,10 @@ class Crew extends Model
 {
     use HasFactory;
     use SoftDeletes;
+    protected $fillable = [
+        'NumeroDeDocumento',
+        'Nombre',
+        'Sexo',
+        'Nacionalidad',
+    ];
 }

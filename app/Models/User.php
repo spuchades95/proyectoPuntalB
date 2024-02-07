@@ -19,7 +19,17 @@ class User extends Authenticatable
      * @var array<int, string>
      */
     protected $fillable = [
-        'name',
+        'NombreCompleto',
+        'Habilitado',
+        'NombreUsuario',
+        'Instalacion_id',
+        'DNI',
+        'Telefono',
+        'Direccion',
+        'Imagen',
+        'Descripcion',
+        'Rol_id',
+        'Causa',
         'email',
         'password',
     ];
@@ -72,7 +82,7 @@ class User extends Authenticatable
 
     public function facility(){
 
-        return $this->belongsTo(Facility::class);;
+        return $this->belongsTo(Facility::class);
     }
 
     

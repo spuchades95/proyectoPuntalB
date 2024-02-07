@@ -9,4 +9,13 @@ class Dock extends Model
 {
     use HasFactory;
     use SoftDeletes;
+    protected $fillable = [
+        'Nombre',
+        'Ubicacion',
+        'Descripcion',
+        'Capacidad',
+        'FechaCreacion',
+        'Causa',
+        'Instalacion_id',
+    ];
 }

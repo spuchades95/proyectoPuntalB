@@ -9,4 +9,20 @@ class Facility extends Model
 {
     use HasFactory;
     use SoftDeletes;
+    protected $fillable = [
+        'Ubicacion',
+        'Dimensiones',
+        'Descripcion',
+        'Estado',
+        'FechaCreacion',
+        'Causa',
+    ];
+
+    public function concesionario()
+    {
+        return $this->belongsToMany(Concessionaire::class, 'ConcessionaireFacility', 'Instalacion_id', 'Concesionario_id');
+    }
+
+
+
 }

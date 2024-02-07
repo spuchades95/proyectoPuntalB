@@ -12,6 +12,12 @@ class Administrative extends User
     use SoftDeletes;
     protected $primaryKey = 'Usuario_id';
 
+    protected $fillable = [
+        'Causa',
+        'Usuario_id',
+    ];
+
+
     public function user()
     {
         return $this->belongsTo(User::class, 'Usuario_id');

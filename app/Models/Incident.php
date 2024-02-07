@@ -9,4 +9,12 @@ class Incident extends Model
 {
     use HasFactory;
     use SoftDeletes;
+    protected $fillable = [
+        'Titulo',
+        'Imagen',
+        'Guardamuelle_id',
+        'Descripcion',
+        'Administrativo_id',
+
+    ];
 }

@@ -9,4 +9,8 @@ class ConcessionaireRole extends Model
 {
     use HasFactory;
     use SoftDeletes;
+    protected $fillable = [
+        'Concesionario_id',
+        'Instalacion_id',
+    ];
 }

@@ -9,4 +9,9 @@ class CivilGuardTransit extends Model
 {
     use HasFactory;
     use SoftDeletes;
+    protected $fillable = [
+        'FechaVisualizacion',
+        'GuardaCivil_id',
+        'Transito_id',
+    ];
 }
