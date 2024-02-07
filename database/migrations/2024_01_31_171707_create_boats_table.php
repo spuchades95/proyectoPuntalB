@@ -23,6 +23,7 @@ return new class extends Migration
             $table->string('Datos_Tecnicos');
             $table->string('Modelo');
             $table->string('Nombre');
+            $table->string('Causa');
             $table->string('Tipo');
             $table->softDeletes();
             $table->timestamps();

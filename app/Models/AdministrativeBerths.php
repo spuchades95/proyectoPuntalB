@@ -8,4 +8,5 @@ use Illuminate\Database\Eloquent\softDeletes;
 class AdministrativeBerths extends Model
 {
     use HasFactory;
+    use SoftDeletes;
 }

@@ -18,7 +18,7 @@ return new class extends Migration
             $table->string('Descripcion');
             $table->integer('Capacidad');
             $table->date('FechaCreacion');
-           
+            $table->string('Causa');
             $table->softDeletes();
             $table->timestamps();
         });

@@ -16,6 +16,7 @@ return new class extends Migration
             $table->string('Estado');
             $table->string('TipoPlaza');
             $table->date('Anio');
+            $table->string('Causa');
             $table->softDeletes();
             $table->timestamps();
         });

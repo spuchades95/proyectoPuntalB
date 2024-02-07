@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->date('FechaInicio');            
             $table->date('FechoFinalizacion');
-           
+            
             $table->softDeletes();
             $table->timestamps();
         });

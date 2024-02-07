@@ -8,4 +8,5 @@ use Illuminate\Database\Eloquent\softDeletes;
 class Transit extends Berth
 {
     use HasFactory;
+    use SoftDeletes;
 }

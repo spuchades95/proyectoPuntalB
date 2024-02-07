@@ -8,4 +8,5 @@ use Illuminate\Database\Eloquent\softDeletes;
 class BaseBerth extends Berth 
 {
     use HasFactory;
+    use SoftDeletes;
 }

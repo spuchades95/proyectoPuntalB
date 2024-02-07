@@ -16,6 +16,7 @@ return new class extends Migration
             $table->string('NombreRol');
             $table->string('Permisos');
             $table->string('Descripcion');
+            $table->string('Causa');
             $table->softDeletes();
             $table->timestamps();
         });

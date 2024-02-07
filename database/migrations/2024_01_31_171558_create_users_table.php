@@ -24,6 +24,7 @@ return new class extends Migration
             $table->string('Direccion');
             $table->string('Imagen');            
             $table->string('Descripcion');
+            $table->string('Causa');
             $table->softDeletes();
             $table->rememberToken();
             $table->timestamps();

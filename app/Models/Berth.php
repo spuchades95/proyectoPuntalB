@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\softDeletes;
 class Berth extends Model
 {
     use HasFactory;
+    use SoftDeletes;
 
     public function plazabase()
     {

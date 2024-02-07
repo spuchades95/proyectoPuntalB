@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('Proposito');
             $table->date('FechaEntrada');
+            $table->string('Causa');
            
             $table->softDeletes();
             $table->timestamps();

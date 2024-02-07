@@ -18,6 +18,7 @@ return new class extends Migration
             $table->string('Descripcion');
             $table->string('Estado');
             $table->date('FechaCreacion');
+            $table->string('Causa');
             $table->softDeletes();
             $table->timestamps();
         });

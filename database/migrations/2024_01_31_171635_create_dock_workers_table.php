@@ -12,8 +12,8 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('dock_workers', function (Blueprint $table) {
-            $table->id();
-           
+         //  $table->id();
+            $table->string('Causa');
             $table->softDeletes();
             $table->timestamps();
         });

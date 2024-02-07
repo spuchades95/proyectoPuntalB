@@ -8,4 +8,5 @@ use Illuminate\Database\Eloquent\softDeletes;
 class TransitBoat extends Model
 {
     use HasFactory;
+    use SoftDeletes;
 }

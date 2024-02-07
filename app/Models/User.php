@@ -11,6 +11,7 @@ use Illuminate\Database\Eloquent\softDeletes;
 class User extends Authenticatable
 {
     use HasApiTokens, HasFactory, Notifiable;
+    use SoftDeletes;
 
     /**
      * The attributes that are mass assignable.
@@ -43,6 +44,26 @@ class User extends Authenticatable
         'password' => 'hashed',
     ];
 
+
+    public function concesionario()
+    {
+        return $this->hasOne(Concessionaire::class);
+    }
+    
+    public function guardiacivil()
+    {
+        return $this->hasOne(CivilGuard::class);
+    }
+    
+    public function administrativo()
+    {
+        return $this->hasOne(Administrative::class);
+    }
+    
+    public function guardamuelles()
+    {
+        return $this->hasOne(DockWorker::class);
+    }
 
     public function role()
     {
