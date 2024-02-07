@@ -18,11 +18,14 @@ class Facility extends Model
         'Causa',
     ];
 
-    public function concesionario()
+    public function concesionarios()
     {
         return $this->belongsToMany(Concessionaire::class, 'ConcessionaireFacility', 'Instalacion_id', 'Concesionario_id');
     }
-
+    public function pantalanes()
+    {
+        return $this->hasMany(Dock::class);
+    }
 
 
 }

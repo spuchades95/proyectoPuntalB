@@ -17,7 +17,6 @@ class Administrative extends User
         'Usuario_id',
     ];
 
-
     public function user()
     {
         return $this->belongsTo(User::class, 'Usuario_id');

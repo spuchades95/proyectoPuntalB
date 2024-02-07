@@ -18,4 +18,12 @@ class Dock extends Model
         'Causa',
         'Instalacion_id',
     ];
+
+    public function instalacion()
+    {
+        return $this->belongsTo(Facility::class);
+    }
+
+
+
 }
