@@ -15,4 +15,9 @@ class Crew extends Model
         'Sexo',
         'Nacionalidad',
     ];
+
+    public function transits()
+    {
+        return $this->belongsToMany(Transit::class, 'TransitCrew', 'Crew_id', 'Transit_id');
+    }
 }

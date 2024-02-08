@@ -19,4 +19,10 @@ class DockWorker extends User
     {
         return $this->belongsTo(User::class, 'Usuario_id');
     }
+
+
+    public function incidents()
+    {
+        return $this->belongsTo(Incident::class, 'Incidencia_id');
+    }
 }

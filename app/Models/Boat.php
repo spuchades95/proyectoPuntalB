@@ -23,4 +23,9 @@ class Boat extends Model
         'Causa',
         'Tipo',
     ];
+
+    public function transits()
+    {
+        return $this->belongsToMany(Transit::class, 'TransitBoat', 'Boat_id', 'Transit_id');
+    }
 }

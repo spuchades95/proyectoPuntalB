@@ -22,4 +22,19 @@ class Transit extends Berth
         'Autorizacion',
         'Amarre_id',
     ];
+
+    public function dockworker()
+    {
+        return $this->belongsTo(DockWorker::class);
+    }
+
+    public function crews()
+    {
+        return $this->belongsToMany(Crew::class, 'TransitCrew', 'Transit_id','Crew_id');
+    }
+
+    public function boats()
+    {
+        return $this->belongsToMany(Boat::class, 'TransitBoat', 'Transit_id','Boat_id');
+    }
 }
