@@ -26,6 +26,6 @@ class Boat extends Model
 
     public function transits()
     {
-        return $this->belongsToMany(Transit::class, 'TransitBoat', 'Boat_id', 'Transit_id');
+        return $this->belongsToMany(Transit::class, 'TransitBoat', 'Embarcacion_id', 'Transito_id');
     }
 }

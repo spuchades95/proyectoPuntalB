@@ -18,6 +18,6 @@ class Crew extends Model
 
     public function transits()
     {
-        return $this->belongsToMany(Transit::class, 'TransitCrew', 'Crew_id', 'Transit_id');
+        return $this->belongsToMany(Transit::class, 'TransitCrew', 'Tripulante_id', 'Transito_id');
     }
 }

@@ -13,7 +13,7 @@ class RoleController extends Controller
      */
     public function index()
     {
-        //
+        return Role::all();
     }
 
     /**
@@ -29,7 +29,7 @@ class RoleController extends Controller
      */
     public function show(Role $role)
     {
-        //
+        return $role;
     }
 
     /**

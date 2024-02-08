@@ -21,8 +21,8 @@ class DockWorker extends User
     }
 
 
-    public function incidents()
+    public function notificacion()
     {
-        return $this->belongsTo(Incident::class, 'Incidencia_id');
+        return $this->belongsTo(Incident::class);
     }
 }

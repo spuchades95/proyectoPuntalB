@@ -17,7 +17,13 @@ class FacilityFactory extends Factory
     public function definition(): array
     {
         return [
-            //
+            'Ubicacion' => fake()->name(),
+            'Dimensiones' => $this->faker->randomElement(['lectura', 'modificacion', 'eliminacion']),
+            'Descripcion' => fake()->sentence(),
+            'Estado' => fake()->sentence(),
+            'FechaCreacion' => fake()->sentence(),
+         
+
         ];
     }
 }
