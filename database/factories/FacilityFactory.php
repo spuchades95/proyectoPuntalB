@@ -18,10 +18,10 @@ class FacilityFactory extends Factory
     {
         return [
             'Ubicacion' => fake()->name(),
-            'Dimensiones' => $this->faker->randomElement(['lectura', 'modificacion', 'eliminacion']),
+            'Dimensiones' => fake()->numberBetween(1, 100),
             'Descripcion' => fake()->sentence(),
             'Estado' => fake()->sentence(),
-            'FechaCreacion' => fake()->sentence(),
+            'FechaCreacion' => fake()->date(),
          
 
         ];
