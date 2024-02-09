@@ -16,7 +16,7 @@ return new class extends Migration
             $table->string('Proposito');
             $table->date('FechaEntrada')->nullable();
             $table->date('FechaSalida')->nullable();
-            $table->string('Causa');
+    //        $table->string('Causa')->nullable();;
             $table->boolean('Autorizacion');
             $table->softDeletes();
             $table->timestamps();

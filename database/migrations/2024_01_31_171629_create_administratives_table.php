@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('administratives', function (Blueprint $table) {
            // $table->id();            
-            $table->string('Causa');
+          //  $table->string('Causa');
             $table->softDeletes();
             $table->timestamps();
         });

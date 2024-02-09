@@ -21,7 +21,7 @@ return new class extends Migration
             $table->string('Direccion');
             $table->string('Imagen');            
             $table->string('Descripcion');
-            $table->string('Causa');
+            $table->string('Causa')->nullable();;
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');

@@ -16,7 +16,7 @@ return new class extends Migration
             $table->string('DatosEstancia');
             $table->date('FechaEntrada')->nullable();
             $table->date('FinContrato');
-            $table->string('Causa');
+       //     $table->string('Causa');
             $table->softDeletes();
             $table->timestamps();
         });

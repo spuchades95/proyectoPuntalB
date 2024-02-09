@@ -16,7 +16,7 @@ return new class extends Migration
             $table->string('NombreRol');
             $table->enum('Permisos', ['lectura', 'modificacion', 'eliminacion'])->default('lectura');
             $table->string('Descripcion');
-            $table->string('Causa');
+            $table->string('Causa')->nullable();;
             $table->softDeletes();
             $table->timestamps();
         });

@@ -29,7 +29,7 @@ class UserFactory extends Factory
             'Habilitado' => fake()->boolean(),
             'NombreUsuario' => fake()->userName(),
             'Instalacion_id' => Facility::inRandomOrder()->value('id'),
-            'DNI' => fake()->bothify('??########'),
+            'DNI' => fake()->bothify('########?'),
             'Telefono' => fake()->phoneNumber(),
             'Direccion' => fake()->address(),
             'Imagen' => fake()->imageUrl(),

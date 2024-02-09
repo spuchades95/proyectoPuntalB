@@ -18,7 +18,7 @@ return new class extends Migration
             $table->string('Descripcion')->nullable();
             $table->string('Estado');
             $table->date('FechaCreacion');
-            $table->string('Causa');
+            $table->string('Causa')->nullable();
             $table->softDeletes();
             $table->timestamps();
         });
