@@ -18,5 +18,5 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::apiResource('v1/user', App\Http\Controllers\Api\V1\UserController::class);
-Route::apiResource('v1/role', App\Http\Controllers\Api\V1\RoleController::class);
+Route::apiResource('v1/usuario', App\Http\Controllers\Api\V1\UserController::class);
+Route::apiResource('v1/rol', App\Http\Controllers\Api\V1\RoleController::class);
