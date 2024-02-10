@@ -13,7 +13,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::table('roles', function (Blueprint $table) {
-            $table->string('Permisos')->nullable()->default('lectura')->change();
+            $table->string('Permisos')->default('lectura')->change();
         });
         
     
@@ -25,7 +25,7 @@ return new class extends Migration
     public function down(): void
     {
         Schema::table('roles', function (Blueprint $table) {
-            $table->dropColumn('Permisos')->change();
+            $table->dropColumn('Permisos');
         });
     }
 };
