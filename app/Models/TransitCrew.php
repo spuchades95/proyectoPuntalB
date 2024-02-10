@@ -14,6 +14,8 @@ class TransitCrew extends Model
         'Transito_id',
     ];
 
+    protected $table = 'transit_crews';
+
     public function Tripulante()
     {
         return $this->belongsTo(Crew::class);

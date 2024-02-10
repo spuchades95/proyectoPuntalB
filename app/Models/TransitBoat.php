@@ -14,6 +14,8 @@ class TransitBoat extends Model
         'Transito_id',
     ];
 
+    protected $table = 'transit_boats';
+    
     public function Embarcacion()
     {
         return $this->belongsTo(Boat::class);

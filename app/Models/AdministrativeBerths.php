@@ -17,6 +17,8 @@ class AdministrativeBerths extends Model
 
     ];
 
+    protected $table = 'administrative_berths';
+
     public function Administrativo()
     {
         return $this->belongsTo(Administrative::class);

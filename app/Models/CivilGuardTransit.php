@@ -15,6 +15,8 @@ class CivilGuardTransit extends Model
         'Transito_id',
     ];
 
+    protected $table = 'civil_guard_transits';
+
     public function GuardiaCivil()
     {
         return $this->belongsTo(CivilGuard::class);

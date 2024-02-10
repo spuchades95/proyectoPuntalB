@@ -14,6 +14,8 @@ class ConcessionaireRole extends Model
         'Instalacion_id',
     ];
 
+    protected $table = 'concessionaire_roles';
+    
     public function Concesionario()
     {
         return $this->belongsTo(Concessionaire::class);
