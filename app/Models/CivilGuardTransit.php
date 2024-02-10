@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\softDeletes;
-class CivilGuardTransit extends Model
+class CivilGuardTransit extends Pivot
 {
     use HasFactory;
     use SoftDeletes;

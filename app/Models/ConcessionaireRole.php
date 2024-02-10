@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\softDeletes;
-class ConcessionaireRole extends Model
+class ConcessionaireRole extends Pivot
 {
     use HasFactory;
     use SoftDeletes;

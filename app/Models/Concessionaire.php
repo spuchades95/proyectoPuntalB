@@ -10,7 +10,7 @@ class Concessionaire extends User
     use HasFactory;
     use SoftDeletes;
     protected $primaryKey = 'Usuario_id';
-
+    protected $with = ['concessionaireFacilities', 'concessionaireRoles'];
     protected $fillable = [
         'Causa',
         'Usuario_id',

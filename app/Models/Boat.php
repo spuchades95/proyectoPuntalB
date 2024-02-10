@@ -23,7 +23,7 @@ class Boat extends Model
         'Causa',
         'Tipo',
     ];
-
+    protected $with = ['transitBoats'];
     public function transits()
     {
         return $this->belongsToMany(Transit::class, 'TransitBoat', 'Embarcacion_id', 'Transito_id');
