@@ -16,4 +16,14 @@ class AdministrativeBerths extends Model
         'Amarre_id',
 
     ];
+
+    public function Administrativo()
+    {
+        return $this->belongsTo(Administrative::class);
+    }
+
+    public function Amarre()
+    {
+        return $this->belongsTo(Berth::class);
+    }
 }

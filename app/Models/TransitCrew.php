@@ -13,4 +13,14 @@ class TransitCrew extends Model
         'Tripulante_id',
         'Transito_id',
     ];
+
+    public function Tripulante()
+    {
+        return $this->belongsTo(Crew::class);
+    }
+
+    public function Transito()
+    {
+        return $this->belongsTo(Transit::class);
+    }
 }

@@ -13,4 +13,14 @@ class ConcessionaireRole extends Model
         'Concesionario_id',
         'Instalacion_id',
     ];
+
+    public function Concesionario()
+    {
+        return $this->belongsTo(Concessionaire::class);
+    }
+
+    public function Instalación()
+    {
+        return $this->belongsTo(Facility::class);
+    }
 }

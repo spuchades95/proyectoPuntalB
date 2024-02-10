@@ -13,4 +13,14 @@ class TransitBoat extends Model
         'Embarcacion_id',
         'Transito_id',
     ];
+
+    public function Embarcacion()
+    {
+        return $this->belongsTo(Boat::class);
+    }
+
+    public function Transito()
+    {
+        return $this->belongsTo(Transit::class);
+    }
 }
