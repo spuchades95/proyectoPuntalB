@@ -16,13 +16,13 @@ class ConcessionaireRole extends Model
 
     protected $table = 'concessionaire_roles';
     
-    public function Concesionario()
+    public function concesionario()
     {
-        return $this->belongsTo(Concessionaire::class);
+        return $this->belongsTo(Concessionaire::class, 'Concesionario_id');
     }
 
-    public function Instalación()
+    public function instalación()
     {
-        return $this->belongsTo(Facility::class);
+        return $this->belongsTo(Facility::class, 'Instalacion_id');
     }
 }

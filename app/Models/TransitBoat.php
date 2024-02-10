@@ -16,13 +16,13 @@ class TransitBoat extends Model
 
     protected $table = 'transit_boats';
     
-    public function Embarcacion()
+    public function embarcacion()
     {
-        return $this->belongsTo(Boat::class);
+        return $this->belongsTo(Boat::class, 'Embarcacion_id');
     }
 
-    public function Transito()
+    public function transito()
     {
-        return $this->belongsTo(Transit::class);
+        return $this->belongsTo(Transit::class, 'Transito_id');
     }
 }

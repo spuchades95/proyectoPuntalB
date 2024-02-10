@@ -17,14 +17,14 @@ class CivilGuardTransit extends Model
 
     protected $table = 'civil_guard_transits';
 
-    public function GuardiaCivil()
+    public function guardiaCivil()
     {
-        return $this->belongsTo(CivilGuard::class);
+        return $this->belongsTo(CivilGuard::class, 'GuardaCivil_id');
     }
 
-    public function Transito()
+    public function transito()
     {
-        return $this->belongsTo(Transit::class);
+        return $this->belongsTo(Transit::class, 'Transito_id');
     }
 
 

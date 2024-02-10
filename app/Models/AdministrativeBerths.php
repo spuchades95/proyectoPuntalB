@@ -19,13 +19,13 @@ class AdministrativeBerths extends Model
 
     protected $table = 'administrative_berths';
 
-    public function Administrativo()
+    public function administrativo()
     {
-        return $this->belongsTo(Administrative::class);
+        return $this->belongsTo(Administrative::class, 'Administrativo_id');
     }
 
-    public function Amarre()
+    public function amarre()
     {
-        return $this->belongsTo(Berth::class);
+        return $this->belongsTo(Berth::class, 'Amarre_id');
     }
 }

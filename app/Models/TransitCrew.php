@@ -16,13 +16,13 @@ class TransitCrew extends Model
 
     protected $table = 'transit_crews';
 
-    public function Tripulante()
+    public function tripulante()
     {
-        return $this->belongsTo(Crew::class);
+        return $this->belongsTo(Crew::class, 'Tripulante_id');
     }
 
     public function Transito()
     {
-        return $this->belongsTo(Transit::class);
+        return $this->belongsTo(Transit::class, 'Transito_id');
     }
 }
