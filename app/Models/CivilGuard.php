@@ -15,6 +15,7 @@ class CivilGuard extends User
         'Causa',
         'Usuario_id',
     ];
+    protected $with = ['civilGuardTransits'];
     public function user()
     {
         return $this->belongsTo(User::class, 'Usuario_id');

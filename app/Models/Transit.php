@@ -11,6 +11,8 @@ class Transit extends Berth
     use SoftDeletes;
 
     protected $primaryKey = 'Amarre_id';
+
+    protected $with = ['transitBoats', 'transitCrews', 'civilGuardTransits'];
     
     protected $fillable = [
         'Proposito',
