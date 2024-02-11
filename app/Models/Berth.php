@@ -9,7 +9,7 @@ class Berth extends Model
 {
     use HasFactory;
     use SoftDeletes;
-    protected $with = ['administrativeBerths'];
+    protected $with = ['administrativoamare'];
     protected $fillable = [
         'Estado',
         'TipoPlaza',
@@ -29,5 +29,8 @@ class Berth extends Model
     
     }
 
-
+    public function administrativoamare()
+    {
+        return $this->belongsToMany(Administrative::class, 'administrative_berths', 'Amarre_id', 'Administrativo_id');
+    }
 }

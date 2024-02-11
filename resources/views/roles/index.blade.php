@@ -49,6 +49,41 @@
     });
 </script>
 
+<style>
 
+  
+    table {
+  box-shadow: 10px 5px 10px rgba(0, 0, 0, 0.5);
+}
+
+th {
+  background-color: var(--wedgewood600);
+  color: var(--wedgewood50);
+  font-family: "Questrial", sans-serif;
+
+}
+    th {
+  background-color: var(--wedgewood300);
+  color: black;
+  font-weight: bold;
+}
+   .table-striped > tbody > tr:nth-child(odd) > td {
+  background-color: var(--wedgewood200);
+}
+td {
+  font-family: "Inter", sans-serif;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: normal;
+  line-height: normal;
+  text-decoration: none;
+  color: #000000;
+}
+
+
+
+
+
+</style>
 
 @endsection

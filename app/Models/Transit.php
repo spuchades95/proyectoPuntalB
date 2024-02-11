@@ -25,7 +25,7 @@ class Transit extends Berth
         'Amarre_id',
     ];
 
-    public function dockworker()
+    public function Guardamuelle()
     {
         return $this->belongsTo(DockWorker::class);
     }
