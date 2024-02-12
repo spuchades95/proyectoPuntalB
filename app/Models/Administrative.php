@@ -26,6 +26,12 @@ class Administrative extends User
     {
         return $this->belongsToMany(Berth::class, 'administrative_berths', 'Amarre_id', 'Administrativo_id');
     }
+    
+    public function incidencia()
+    {
+        return $this->hasMany(Incident::class);
+    }
+    
 
 
 

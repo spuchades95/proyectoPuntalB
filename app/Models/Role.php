@@ -17,3 +17,12 @@ class Role extends Model
         'Causa',
     ];
 }
+public function concesionario()
+{
+    return $this->belongsToMany(Concessionaire::class);
+}
+public function usuario()
+{
+    return$this->hasMany(User::class);
+}
+

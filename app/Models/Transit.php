@@ -30,7 +30,7 @@ class Transit extends Berth
         return $this->belongsTo(DockWorker::class);
     }
 
-    public function tiupulantes()
+    public function tripulantes()
     {
         return $this->belongsToMany(Crew::class, 'TransitCrew', 'Transito_id','Tipulante_id');
     }
