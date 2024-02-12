@@ -27,5 +27,11 @@ class Facility extends Model
         return $this->hasMany(Dock::class);
     }
 
+    public function usuarios()
+    {
+       
+        return $this->hasMany(User::class);
+    }
+
 
 }
