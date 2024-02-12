@@ -12,7 +12,7 @@ class RoleController extends Controller
      */
     public function index()
     {
-        //
+        return view('roles.index', ['roles'=> Role::all()]);
     }
 
     /**
@@ -34,9 +34,10 @@ class RoleController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Role $role)
+    public function show(string $id)
     {
-        //
+        $roles = Role::find($id);
+        return view('roles.show', compact('rol'));
     }
 
     /**

@@ -12,7 +12,9 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('administrative_berths', function (Blueprint $table) {
-            $table->id();
+         //   $table->id();
+         
+            $table->softDeletes();
             $table->timestamps();
         });
     }

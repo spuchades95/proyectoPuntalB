@@ -7,10 +7,11 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
-
+use Illuminate\Database\Eloquent\softDeletes;
 class User extends Authenticatable
 {
     use HasApiTokens, HasFactory, Notifiable;
+    use SoftDeletes;
 
     /**
      * The attributes that are mass assignable.
@@ -18,7 +19,17 @@ class User extends Authenticatable
      * @var array<int, string>
      */
     protected $fillable = [
-        'name',
+        'NombreCompleto',
+        'Habilitado',
+        'NombreUsuario',
+        'Instalacion_id',
+        'DNI',
+        'Telefono',
+        'Direccion',
+        'Imagen',
+        'Descripcion',
+        'Rol_id',
+        'Causa',
         'email',
         'password',
     ];
@@ -44,6 +55,26 @@ class User extends Authenticatable
     ];
 
 
+    public function concesionario()
+    {
+        return $this->hasOne(Concessionaire::class);
+    }
+    
+    public function guardiacivil()
+    {
+        return $this->hasOne(CivilGuard::class);
+    }
+    
+    public function administrativo()
+    {
+        return $this->hasOne(Administrative::class);
+    }
+    
+    public function guardamuelles()
+    {
+        return $this->hasOne(DockWorker::class);
+    }
+
     public function role()
     {
         return $this->belongsTo(Role::class);
@@ -51,7 +82,7 @@ class User extends Authenticatable
 
     public function facility(){
 
-        return $this->belongsTo(Facility::class);;
+        return $this->belongsTo(Facility::class);
     }
 
     

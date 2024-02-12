@@ -13,6 +13,11 @@ return new class extends Migration
     {
         Schema::create('crews', function (Blueprint $table) {
             $table->id();
+            $table->string('NumeroDeDocumento')->nullable();
+            $table->string('Nombre')->nullable();
+            $table->string('Sexo');
+            $table->string('Nacionalidad')->nullable();            
+            $table->softDeletes();
             $table->timestamps();
         });
     }
