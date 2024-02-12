@@ -20,4 +20,8 @@ class CivilGuard extends User
     {
         return $this->belongsTo(User::class, 'Usuario_id');
     }
+    public function transitos()
+    {
+        return $this->belongsToMany(Transit::class, 'Transito_id');
+    }
 }

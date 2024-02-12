@@ -39,4 +39,9 @@ class Transit extends Berth
     {
         return $this->belongsToMany(Boat::class, 'TransitBoat', 'Transito_id','Embarcacion_id');
     }
+
+    public function guardiasciviles()
+    {
+        return $this->belongsToMany(CivilGuard::class, 'Usuario_id');
+    }
 }
