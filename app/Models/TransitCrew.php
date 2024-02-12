@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\softDeletes;
 use Illuminate\Database\Eloquent\Relations\Pivot;
 
-class TransitCrew extends pivot
+class TransitCrew extends Model
 {
     use HasFactory;
     use SoftDeletes;
@@ -18,13 +18,5 @@ class TransitCrew extends pivot
 
     protected $table = 'transit_crews';
 
-    public function tripulante()
-    {
-        return $this->belongsTo(Crew::class, 'Tripulante_id');
-    }
-
-    public function Transito()
-    {
-        return $this->belongsTo(Transit::class, 'Transito_id');
-    }
+  
 }

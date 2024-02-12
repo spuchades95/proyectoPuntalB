@@ -11,7 +11,7 @@ class Administrative extends User
     use HasFactory;
     use SoftDeletes;
     protected $primaryKey = 'Usuario_id';
-    protected $with = ['administrativoamare'];
+  
     protected $fillable = [
         'Causa',
         'Usuario_id',
@@ -22,9 +22,9 @@ class Administrative extends User
         return $this->belongsTo(User::class, 'Usuario_id');
     }
 
-    public function administrativoamare()
+    public function amarres()
     {
-        return $this->belongsToMany(Berth::class, 'administrative_berths', 'Amarre_id', 'Administrativo_id');
+        return $this->belongsToMany(Berth::class, 'administrative_berths', 'Admnistrativo_id', 'Amarre_id');
     }
 
 

@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\softDeletes;
 use Illuminate\Database\Eloquent\Relations\Pivot;
 
 
-class AdministrativeBerths extends Pivot
+class AdministrativeBerths extends Model
 {
     use HasFactory;
     use SoftDeletes;
@@ -21,13 +21,5 @@ class AdministrativeBerths extends Pivot
 
     protected $table = 'administrative_berths';
 
-    public function administrativo()
-    {
-        return $this->belongsTo(Administrative::class, 'Administrativo_id');
-    }
-
-    public function amarre()
-    {
-        return $this->belongsTo(Berth::class, 'Amarre_id');
-    }
+ 
 }

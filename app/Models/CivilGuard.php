@@ -15,13 +15,13 @@ class CivilGuard extends User
         'Causa',
         'Usuario_id',
     ];
-    protected $with = ['civilGuardTransits'];
+   
     public function user()
     {
         return $this->belongsTo(User::class, 'Usuario_id');
     }
     public function transitos()
     {
-        return $this->belongsToMany(Transit::class, 'Transito_id');
+        return $this->belongsToMany(Transit::class, 'civil_guard_transits', 'GuardaCivil_id', 'Transito_id');
     }
 }
