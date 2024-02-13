@@ -20,7 +20,9 @@ class RoleController extends Controller
      */
     public function create()
     {
-        //
+        $roles = Role::all();
+    
+        return view('roles.create');
     }
 
     /**
