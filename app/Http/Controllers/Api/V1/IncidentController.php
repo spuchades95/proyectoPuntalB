@@ -29,20 +29,15 @@ class IncidentController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Incident $incident)
+    public function show($id)
     {
-        $incident = Incident::find($incident);
+        $incident = Incident::find($id);
 
-        if ($incident == null) {
-            return response()->json([
-                'message' => 'No se encuentra el incidente',
-                'code' => 404
-            ], 404);
+        if ($incident) {
+            return response()->json($incident, 200);
+        } else {
+            return response()->json('Incidente no encontrado', 404);
         }
-        return response()->json([
-            'data' => $incident,
-            'code' => 200
-        ], 200);
     }
 
     /**

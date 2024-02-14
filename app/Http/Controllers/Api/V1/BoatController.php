@@ -30,27 +30,18 @@ class BoatController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Boat $boat)
+
+    public function show($id)
     {
-        $boat = Boat::find($boat);
+        $boat = Boat::find($id);
 
-        // if ($boat) {
-        //     return response()->json($boat, 200);
-        // } else {
-        //     return response()->json('Boat not found', 404);
-        // }
-        if ($boat == null) {
-            return response()->json([
-                'message' => 'No se encuentra la embarcacion',
-                'code' => 404
-            ], 404);
+        if ($boat) {
+            return response()->json($boat, 200);
+        } else {
+            return response()->json('Boat not found', 404);
         }
-        return response()->json([
-            'data' => $boat,
-            'code' => 200
-        ], 200);
+   
     }
-
     /**
      * Update the specified resource in storage.
      */
@@ -81,11 +72,7 @@ class BoatController extends Controller
             } else {
                 return response()->json(['error' => 'Error al actualizar la embarcación'], 500);
             }
-        } catch (QueryException $e) {
-            // Manejo de errores específicos de consulta SQL
-           
-            return response()->json(['error' => 'Error interno del servidor'], 500);
-        } catch (\Exception $e) {
+        }  catch (\Exception $e) {
             // Manejo de otros errores
             
             return response()->json(['error' => 'Error interno del servidor'], 500);
@@ -105,9 +92,6 @@ class BoatController extends Controller
             } else {
                 return response()->json(['error' => 'Embarcación no encontrada'], 404);
             }
-        } catch (QueryException $e) {
-            // Manejo de errores específicos de consulta SQL
-            return response()->json(['error' => 'Error interno del servidor'], 500);
         } catch (\Exception $e) {
             // Manejo de otros errores
             return response()->json(['error' => 'Error interno del servidor'], 500);

@@ -29,20 +29,15 @@ class BerthController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Berth $berth)
+    public function show($id)
     {
-        $berth = Berth::find($berth);
+        $berth = Berth::find($id);
 
-        if ($berth == null) {
-            return response()->json([
-                'message' => 'No se encuentra el amarre',
-                'code' => 404
-            ], 404);
+        if ($berth) {
+            return response()->json($berth, 200);
+        } else {
+            return response()->json('Amarre no encontrado', 404);
         }
-        return response()->json([
-            'data' => $berth,
-            'code' => 200
-        ], 200);
     }
 
     /**
