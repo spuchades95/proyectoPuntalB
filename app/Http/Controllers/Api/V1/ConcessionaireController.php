@@ -29,20 +29,15 @@ class ConcessionaireController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Concessionaire $concessionaire)
+    public function show($id)
     {
-        $concessionaire = Concessionaire::find($concessionaire);
+        $concessionaire = Concessionaire::find($id);
 
-        if ($concessionaire == null) {
-            return response()->json([
-                'message' => 'No se encuentra el concesionario',
-                'code' => 404
-            ], 404);
+        if ($concessionaire) {
+            return response()->json($concessionaire, 200);
+        } else {
+            return response()->json('Concesionario no encontrado', 404);
         }
-        return response()->json([
-            'data' => $concessionaire,
-            'code' => 200
-        ], 200);
     }
 
     /**

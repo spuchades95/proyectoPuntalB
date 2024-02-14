@@ -29,20 +29,15 @@ class DockController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Dock $dock)
+    public function show($id)
     {
-        $dock = Dock::find($dock);
+        $dock = Dock::find($id);
 
-        if ($dock == null) {
-            return response()->json([
-                'message' => 'No se encuentra el muelle',
-                'code' => 404
-            ], 404);
+        if ($dock) {
+            return response()->json($dock, 200);
+        } else {
+            return response()->json('Muelle no encontrado', 404);
         }
-        return response()->json([
-            'data' => $dock,
-            'code' => 200
-        ], 200);
     }
 
     /**

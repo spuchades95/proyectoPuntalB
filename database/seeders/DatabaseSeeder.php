@@ -22,5 +22,7 @@ class DatabaseSeeder extends Seeder
 \App\Models\Facility::factory(3)->create();
 \App\Models\Role::factory(3)->create();
 \App\Models\User::factory(3)->create();
+\App\Models\Dock::factory(3)->create();
+\App\Models\Boat::factory(3)->create();
     }
 }
