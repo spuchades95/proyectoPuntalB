@@ -29,20 +29,15 @@ class DockWorkerController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(DockWorker $dockWorker)
+    public function show($id)
     {
-        $dockWorker = DockWorker::find($dockWorker);
+        $dockWorker = DockWorker::find($id);
 
-        if ($dockWorker == null) {
-            return response()->json([
-                'message' => 'No se encuentra el trabajador de muelle',
-                'code' => 404
-            ], 404);
+        if ($dockWorker) {
+            return response()->json($dockWorker, 200);
+        } else {
+            return response()->json('Trabajador de muelle no encontrado', 404);
         }
-        return response()->json([
-            'data' => $dockWorker,
-            'code' => 200
-        ], 200);
     }
 
     /**

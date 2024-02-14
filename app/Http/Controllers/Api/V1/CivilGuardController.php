@@ -29,20 +29,15 @@ class CivilGuardController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(CivilGuard $civilGuard)
+    public function show($id)
     {
-        $civilGuard = CivilGuard::find($civilGuard);
+        $civilGuard = CivilGuard::find($id);
 
-        if ($civilGuard == null) {
-            return response()->json([
-                'message' => 'No se encuentra el guardia civil',
-                'code' => 404
-            ], 404);
+        if ($civilGuard) {
+            return response()->json($civilGuard, 200);
+        } else {
+            return response()->json('Guardia civil no encontrado', 404);
         }
-        return response()->json([
-            'data' => $civilGuard,
-            'code' => 200
-        ], 200);
     }
 
     /**

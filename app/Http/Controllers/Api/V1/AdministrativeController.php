@@ -29,20 +29,15 @@ class AdministrativeController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Administrative $administrative)
+    public function show($id)
     {
-        $administrative = Administrative::find($administrative);
+        $administrative = Administrative::find($id);
 
-        if ($administrative == null) {
-            return response()->json([
-                'message' => 'No se encuentra el administrativo',
-                'code' => 404
-            ], 404);
+        if ($administrative) {
+            return response()->json($administrative, 200);
+        } else {
+            return response()->json('Administrativo no encontrado', 404);
         }
-        return response()->json([
-            'data' => $administrative,
-            'code' => 200
-        ], 200);
     }
 
     /**
