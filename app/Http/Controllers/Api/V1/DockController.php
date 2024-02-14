@@ -13,7 +13,7 @@ class DockController extends Controller
      */
     public function index()
     {
-        //
+        return Dock::all();
     }
 
     /**

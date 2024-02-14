@@ -13,7 +13,7 @@ class DockWorkerController extends Controller
      */
     public function index()
     {
-        //
+        return DockWorker::all();
     }
 
     /**

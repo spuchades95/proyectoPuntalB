@@ -13,7 +13,7 @@ class BaseBerthController extends Controller
      */
     public function index()
     {
-        //
+        return BaseBerth::all();
     }
 
     /**

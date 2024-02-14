@@ -71,12 +71,12 @@ class BoatController extends Controller
             
 
            
-            $updateResult = Embarcacion::where('Matricula', $request->Matricula)->update($request->except(['Matricula', 'created_at', 'updated_at']));
+            $updateResult = Boat::where('Matricula', $request->Matricula)->update($request->except(['Matricula', 'created_at', 'updated_at']));
 
           
             if ($updateResult) {
                 // Obtiene los datos después de la actualización
-                $boat = Embarcacion::find($request->Matricula);
+                $boat = Boat::find($request->Matricula);
                 $newData = $boat->toArray();
              
 

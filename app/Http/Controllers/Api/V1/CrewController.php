@@ -13,7 +13,7 @@ class CrewController extends Controller
      */
     public function index()
     {
-        //
+        return Crew::all();
     }
 
     /**

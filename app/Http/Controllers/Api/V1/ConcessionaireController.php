@@ -13,7 +13,7 @@ class ConcessionaireController extends Controller
      */
     public function index()
     {
-        //
+        return Concessionaire::all();
     }
 
     /**

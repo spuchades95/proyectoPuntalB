@@ -13,7 +13,7 @@ class FacilityController extends Controller
      */
     public function index()
     {
-        //
+        return Facility::all();
     }
 
     /**

@@ -13,7 +13,7 @@ class AdministrativeController extends Controller
      */
     public function index()
     {
-        //
+        return Administrative::all();
     }
 
     /**
