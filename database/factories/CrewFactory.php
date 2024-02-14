@@ -17,7 +17,10 @@ class CrewFactory extends Factory
     public function definition(): array
     {
         return [
-            //
+            'NumeroDeDocumento' => fake()->numerify('#########'),
+            'Nombre' => fake()->name(),
+            'Sexo' => fake()->randomElement(['Masculino', 'Femenino']),
+            'Nacionalidad' => fake()->country(),
         ];
     }
 }

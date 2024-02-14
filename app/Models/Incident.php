@@ -17,7 +17,7 @@ class Incident extends Model
         'Administrativo_id',
 
     ];
-}
+
 public function administrativo()
 {
     return $this->hasOne(Administrative::class);
@@ -26,5 +26,5 @@ public function guardamuelles()
 {
     return $this->hasOne(DockWorker::class);
 }
-
+}
 

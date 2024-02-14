@@ -3,7 +3,7 @@
 namespace Database\Factories;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
-
+use App\Models\Berth;
 /**
  * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\BaseBerth>
  */
@@ -17,7 +17,10 @@ class BaseBerthFactory extends Factory
     public function definition(): array
     {
         return [
-            //
+            'Amarre_Id' =>Berth::inRandomOrder()->value('id'),
+            'DatosEstancia' => fake()->sentence(),
+            'FechaEntrada' => fake()->dateTimeBetween('-1 year', '+1 year'),
+            'FinContrato' => fake()->dateTimeBetween('FechaEntrada', '+1 year'),
         ];
     }
 }

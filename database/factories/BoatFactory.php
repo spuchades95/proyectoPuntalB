@@ -17,7 +17,17 @@ class BoatFactory extends Factory
     public function definition(): array
     {
         return [
-            //
+            'Matricula' => fake()->lexify('??') . '-' . fake()->numerify('######'),
+            'Manga' => fake()->numberBetween(3,10),
+            'Eslora' => fake()->numberBetween(10,40),
+            'Origen' => fake()->country(),
+            'Titular' => fake()->name(),
+            'Imagen' =>fake()->imageUrl(),
+            'Datos_Tecnicos' => fake()->sentence(),
+            'Modelo' => fake()->word(),
+            'Nombre' => fake()->name(),
+            'Tipo' => fake()->randomElement(['Velero', 'Yate','Catamarán','Lancha']),
+
         ];
     }
 }
