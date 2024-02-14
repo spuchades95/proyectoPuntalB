@@ -10,7 +10,7 @@ class Concessionaire extends User
     use HasFactory;
     use SoftDeletes;
     protected $primaryKey = 'Usuario_id';
-    protected $with = ['concessionaireFacilities', 'concessionaireRoles'];
+  
     protected $fillable = [
         'Causa',
         'Usuario_id',
@@ -21,7 +21,12 @@ class Concessionaire extends User
     }
     public function instalaciones()
     {
-        return $this->belongsToMany(Facility::class, 'ConcessionaireFacility', 'Concesionario_id', 'Instalacion_id');
+        return $this->belongsToMany(Facility::class, 'concessionaire_facilities', 'Concesionario_id', 'Instalacion_id');
+    }
+
+    public function roles()
+    {
+        return $this->belongsToMany(Role::class, 'concessionaire_roles', 'Concesionario_id', 'Rol_id');
     }
 
    
