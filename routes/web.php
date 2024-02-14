@@ -14,6 +14,7 @@ use App\Http\Controllers\RoleController;
 |
 */
 Route::resource('roles',RoleController::class);
+
 Route::get('/', function () {
     return view('welcome');
 });
