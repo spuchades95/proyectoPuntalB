@@ -30,6 +30,7 @@ Route::apiResource('v1/plaza', App\Http\Controllers\Api\V1\DockController::class
 Route::apiResource('v1/guardamuelles', App\Http\Controllers\Api\V1\DockWorkerController::class);
 Route::apiResource('v1/instalacion', App\Http\Controllers\Api\V1\FacilityController::class);
 Route::apiResource('v1/incidencia', App\Http\Controllers\Api\V1\IncidentController::class);
+Route::apiResource('v1/embarcacion', App\Http\Controllers\Api\V1\BoatController::class);
 
 
 

@@ -5,7 +5,7 @@ namespace App\Http\Resources\V1;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 
-class DockResource extends JsonResource
+class BoatResource extends JsonResource
 {
     /**
      * Transform the resource into an array.
@@ -14,14 +14,19 @@ class DockResource extends JsonResource
      */
     public function toArray(Request $request): array
     {
+        $matricula = $this->Matricula;
+        $origen = $this->Origen;
         $nombre = $this->Nombre;
-        $ubicacion = $this->Ubicacion;
-        $capacidad = $this->Capacidad;
+        $titular = $this->Titular;
+        $registro = $this->Numero_registro;
 
         return [
+            'Matricula' => $matricula,
+            'Origen' => $origen,
             'Nombre' => $nombre,
-            'Ubicacion' => $ubicacion,
-            'Capacidad' => $capacidad,
+            'Titular' => $titular,
+            'Numero_registro' => $registro,
         ];
+        // return parent::toArray($request);
     }
 }
