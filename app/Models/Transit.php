@@ -12,7 +12,7 @@ class Transit extends Berth
 
     protected $primaryKey = 'Amarre_id';
 
-    protected $with = ['transitBoats', 'transitCrews', 'civilGuardTransits'];
+ 
     
     protected $fillable = [
         'Proposito',
@@ -37,11 +37,11 @@ class Transit extends Berth
 
     public function embarcaciones()
     {
-        return $this->belongsToMany(Boat::class, 'TransitBoat', 'Transito_id','Embarcacion_id');
+        return $this->belongsToMany(Boat::class, 'transit_boats', 'Transito_id','Embarcacion_id');
     }
 
     public function guardiasciviles()
     {
-        return $this->belongsToMany(CivilGuard::class, 'Usuario_id');
+        return $this->belongsToMany(CivilGuard::class, 'civil_guard_transits', 'Usuario_id', 'Transito_id');
     }
 }

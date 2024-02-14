@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\softDeletes;
 use Illuminate\Database\Eloquent\Relations\Pivot;
 
-class ConcessionaireFacility extends Pivot
+class ConcessionaireFacility extends Model
 {
     use HasFactory;
     use SoftDeletes;
@@ -18,13 +18,4 @@ class ConcessionaireFacility extends Pivot
 
     protected $table = 'concessionaire_facilities';
 
-    public function concesionario()
-    {
-        return $this->belongsTo(Concessionaire::class, 'Concesionario_id');
-    }
-
-    public function rol()
-    {
-        return $this->belongsTo(Role::class, 'Rol_id');
-    }
 }

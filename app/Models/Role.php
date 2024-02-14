@@ -9,11 +9,16 @@ class Role extends Model
 {
     use HasFactory;
     use SoftDeletes;
-   // protected $with = ['concessionaireRoles'];
+   
     protected $fillable = [
         'NombreRol',
         'Permisos',
         'Descripcion',
         'Causa',
     ];
+
+    public function concesionarios()
+    {
+        return $this->belongsToMany(Concessionaire::class, 'concessionaire_roles', 'Concesionario_id', 'Rol_id');
+    }
 }
