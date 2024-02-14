@@ -13,7 +13,7 @@ class TransitController extends Controller
      */
     public function index()
     {
-        return Transit::all()
+        return Transit::all();
     }
 
     /**
