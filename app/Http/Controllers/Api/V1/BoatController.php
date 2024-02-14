@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api\V1;
 use App\Http\Controllers\Controller;
 use App\Models\Boat;
 use Illuminate\Http\Request;
+ 
 
 class BoatController extends Controller
 {
@@ -67,10 +68,6 @@ class BoatController extends Controller
             // Obtiene los datos actuales antes de la actualización
             $oldData = $boat->toArray();
        
-
-            
-
-           
             $updateResult = Boat::where('Matricula', $request->Matricula)->update($request->except(['Matricula', 'created_at', 'updated_at']));
 
           
