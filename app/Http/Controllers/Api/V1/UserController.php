@@ -14,7 +14,7 @@ class UserController extends Controller
      */
     public function index()
     {
-       return User::all();
+        return UserResource::collection(User::all());
     }
 
     /**
@@ -30,15 +30,17 @@ class UserController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show($id)
+    public function show(User $user)
     {
-        $user = User::find($id);
+       /* $user = User::find($id);
 
         if ($user) {
             return response()->json($user, 200);
         } else {
             return response()->json('Usuario no encontrado', 404);
-        }
+        }*/
+
+        return new UserResource($user);
     }
 
     /**
