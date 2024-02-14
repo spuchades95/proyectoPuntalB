@@ -20,11 +20,17 @@ class Facility extends Model
 
     public function concesionarios()
     {
-        return $this->belongsToMany(Concessionaire::class, 'ConcessionaireFacility', 'Instalacion_id', 'Concesionario_id');
+        return $this->belongsToMany(Concessionaire::class, 'concessionaire_facilities', 'Instalacion_id', 'Concesionario_id');
     }
     public function pantalanes()
     {
         return $this->hasMany(Dock::class);
+    }
+
+    public function usuarios()
+    {
+       
+        return $this->hasMany(User::class);
     }
 
 
