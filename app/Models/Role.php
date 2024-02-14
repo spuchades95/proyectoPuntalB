@@ -21,7 +21,7 @@ class Role extends Model
     {
         return $this->belongsToMany(Concessionaire::class, 'concessionaire_roles', 'Concesionario_id', 'Rol_id');
     }
-}
+
 public function concesionario()
 {
     return $this->belongsToMany(Concessionaire::class);
@@ -31,3 +31,4 @@ public function usuario()
     return$this->hasMany(User::class);
 }
 
+}
