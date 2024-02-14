@@ -13,7 +13,7 @@ class BerthController extends Controller
      */
     public function index()
     {
-        //
+        return Berth::all();
     }
 
     /**
@@ -21,7 +21,9 @@ class BerthController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $berth = Berth::create($request->all());
+        $berth->save();
+        return response()->json($berth, 201);
     }
 
     /**
@@ -29,7 +31,18 @@ class BerthController extends Controller
      */
     public function show(Berth $berth)
     {
-        //
+        $berth = Berth::find($berth);
+
+        if ($berth == null) {
+            return response()->json([
+                'message' => 'No se encuentra el amarre',
+                'code' => 404
+            ], 404);
+        }
+        return response()->json([
+            'data' => $berth,
+            'code' => 200
+        ], 200);
     }
 
     /**
@@ -37,14 +50,41 @@ class BerthController extends Controller
      */
     public function update(Request $request, Berth $berth)
     {
-        //
+        try {
+            // Verifica si el amarre existe
+            $berth = Berth::find($berth);
+            if ($berth == null) {
+                return response()->json([
+                    'message' => 'No se encuentra el amarre',
+                    'code' => 404
+                ], 404);
+            }
+            $berth->update($request->all());
+            return response()->json($berth, 200);
+        } catch (\Exception $e) {
+            return response()->json([
+                'message' => 'Error al actualizar el amarre',
+                'code' => 500
+            ], 500);
+        }
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Berth $berth)
+    public function destroy($id)
     {
-        //
+        $berth = Berth::find($id);
+        if ($berth == null) {
+            return response()->json([
+                'message' => 'No se encuentra el amarre',
+                'code' => 404
+            ], 404);
+        }
+        $berth->delete();
+        return response()->json([
+            'message' => 'Amarre eliminado',
+            'code' => 200
+        ], 200);
     }
 }
