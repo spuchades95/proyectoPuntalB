@@ -4,7 +4,7 @@ namespace App\Http\Resources\V1;
 
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
-
+use app\Models\DockWorker;
 class DockWorkerResource extends JsonResource
 {
     /**
@@ -14,6 +14,8 @@ class DockWorkerResource extends JsonResource
      */
     public function toArray(Request $request): array
     {
-        return parent::toArray($request);
+        return[
+            'id'=>$this->Usuario_id,
+           ];
     }
 }
