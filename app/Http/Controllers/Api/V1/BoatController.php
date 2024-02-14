@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api\V1;
 
 use App\Http\Controllers\Controller;
+use App\Http\Resources\V1\BoatResource;
 use App\Models\Boat;
 use Illuminate\Http\Request;
  
@@ -36,7 +37,8 @@ class BoatController extends Controller
         $boat = Boat::find($id);
 
         if ($boat) {
-            return response()->json($boat, 200);
+            // return response()->json($boat, 200);
+            return new BoatResource($boat);
         } else {
             return response()->json('Boat not found', 404);
         }
