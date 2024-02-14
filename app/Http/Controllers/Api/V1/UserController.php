@@ -33,6 +33,7 @@ class UserController extends Controller
     public function show(User $user)
     {
        /* $user = User::find($id);
+      $user = User::find($id);
 
         if ($user) {
             return response()->json($user, 200);
@@ -41,6 +42,7 @@ class UserController extends Controller
         }*/
 
         return new UserResource($user);
+        
     }
 
     /**
