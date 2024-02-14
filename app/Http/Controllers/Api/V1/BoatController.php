@@ -59,12 +59,12 @@ class BoatController extends Controller
             // Obtiene los datos actuales antes de la actualización
             $oldData = $boat->toArray();
        
-            $updateResult = Boat::where('Matricula', $request->Matricula)->update($request->except(['Matricula', 'created_at', 'updated_at']));
+            $updateResult = Boat::where('id', $request->id)->update($request->except(['id', 'created_at', 'updated_at']));
 
           
             if ($updateResult) {
                 // Obtiene los datos después de la actualización
-                $boat = Boat::find($request->Matricula);
+                $boat = Boat::find($request->id);
                 $newData = $boat->toArray();
              
 
@@ -82,10 +82,10 @@ class BoatController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy($matricula)
+    public function destroy($id)
     {
         try {
-            $boat = Boat::find($matricula);
+            $boat = Boat::find($id);
             if ($boat) {
                 $boat->delete();
                 return response()->json(['message' => 'Embarcación eliminada'], 200);
