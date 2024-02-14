@@ -13,7 +13,7 @@ class CrewController extends Controller
      */
     public function index()
     {
-        //
+        return Crew::all();
     }
 
     /**
@@ -21,7 +21,9 @@ class CrewController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $crew = Crew::create($request->all());
+        $crew->save();
+        return response()->json($crew, 201);
     }
 
     /**
@@ -29,7 +31,18 @@ class CrewController extends Controller
      */
     public function show(Crew $crew)
     {
-        //
+        $crew = Crew::find($crew);
+
+        if ($crew == null) {
+            return response()->json([
+                'message' => 'No se encuentra la tripulación',
+                'code' => 404
+            ], 404);
+        }
+        return response()->json([
+            'data' => $crew,
+            'code' => 200
+        ], 200);
     }
 
     /**
@@ -37,14 +50,41 @@ class CrewController extends Controller
      */
     public function update(Request $request, Crew $crew)
     {
-        //
+        try {
+            // Verifica si la tripulación existe
+            $crew = Crew::find($crew);
+            if ($crew == null) {
+                return response()->json([
+                    'message' => 'No se encuentra la tripulación',
+                    'code' => 404
+                ], 404);
+            }
+            $crew->update($request->all());
+            return response()->json($crew, 200);
+        } catch (\Exception $e) {
+            return response()->json([
+                'message' => 'Error al actualizar la tripulación',
+                'code' => 500
+            ], 500);
+        }
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Crew $crew)
+    public function destroy($id)
     {
-        //
+        $crew = Crew::find($id);
+        if ($crew == null) {
+            return response()->json([
+                'message' => 'No se encuentra la tripulación',
+                'code' => 404
+            ], 404);
+        }
+        $crew->delete();
+        return response()->json([
+            'message' => 'Tripulación eliminada',
+            'code' => 200
+        ], 200);
     }
 }

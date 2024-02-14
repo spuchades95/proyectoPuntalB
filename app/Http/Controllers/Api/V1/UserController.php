@@ -21,7 +21,9 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $user = User::create($request->all());
+        $user->save();
+        return response()->json($user, 201);
     }
 
     /**
@@ -29,7 +31,18 @@ class UserController extends Controller
      */
     public function show(User $user)
     {
-        //
+        $user = User::find($user);
+
+        if ($user == null) {
+            return response()->json([
+                'message' => 'No se encuentra el usuario',
+                'code' => 404
+            ], 404);
+        }
+        return response()->json([
+            'data' => $user,
+            'code' => 200
+        ], 200);
     }
 
     /**
@@ -37,14 +50,44 @@ class UserController extends Controller
      */
     public function update(Request $request, User $user)
     {
-        //
+        try {
+            // Verifica si el usuario existe
+            $user = User::find($user);
+            if ($user == null) {
+                return response()->json([
+                    'message' => 'No se encuentra el usuario',
+                    'code' => 404
+                ], 404);
+            }
+            $user->update($request->all());
+            return response()->json([
+                'data' => $user,
+                'code' => 200
+            ], 200);
+        } catch (\Exception $e) {
+            return response()->json([
+                'message' => 'Error al actualizar el usuario',
+                'code' => 500
+            ], 500);
+        }
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(User $user)
+    public function destroy($id)
     {
-        //
+        $user = User::find($id);
+        if ($user == null) {
+            return response()->json([
+                'message' => 'No se encuentra el usuario',
+                'code' => 404
+            ], 404);
+        }
+        $user->delete();
+        return response()->json([
+            'message' => 'Usuario eliminado',
+            'code' => 200
+        ], 200);
     }
 }

@@ -13,7 +13,7 @@ class DockWorkerController extends Controller
      */
     public function index()
     {
-        //
+        return DockWorker::all();
     }
 
     /**
@@ -21,7 +21,9 @@ class DockWorkerController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $dockWorker = DockWorker::create($request->all());
+        $dockWorker->save();
+        return response()->json($dockWorker, 201);
     }
 
     /**
@@ -29,7 +31,18 @@ class DockWorkerController extends Controller
      */
     public function show(DockWorker $dockWorker)
     {
-        //
+        $dockWorker = DockWorker::find($dockWorker);
+
+        if ($dockWorker == null) {
+            return response()->json([
+                'message' => 'No se encuentra el trabajador de muelle',
+                'code' => 404
+            ], 404);
+        }
+        return response()->json([
+            'data' => $dockWorker,
+            'code' => 200
+        ], 200);
     }
 
     /**
@@ -37,14 +50,44 @@ class DockWorkerController extends Controller
      */
     public function update(Request $request, DockWorker $dockWorker)
     {
-        //
+        try {
+            // Verifica si el trabajador de muelle existe
+            $dockWorker = DockWorker::find($dockWorker);
+            if ($dockWorker == null) {
+                return response()->json([
+                    'message' => 'No se encuentra el trabajador de muelle',
+                    'code' => 404
+                ], 404);
+            }
+            $dockWorker->update($request->all());
+            return response()->json([
+                'data' => $dockWorker,
+                'code' => 200
+            ], 200);
+        } catch (\Exception $e) {
+            return response()->json([
+                'message' => 'Error al actualizar el trabajador de muelle',
+                'code' => 500
+            ], 500);
+        }
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(DockWorker $dockWorker)
+    public function destroy($id)
     {
-        //
+        $dockWorker = DockWorker::find($id);
+        if ($dockWorker == null) {
+            return response()->json([
+                'message' => 'No se encuentra el trabajador de muelle',
+                'code' => 404
+            ], 404);
+        }
+        $dockWorker->delete();
+        return response()->json([
+            'message' => 'Trabajador de muelle eliminado',
+            'code' => 200
+        ], 200);
     }
 }
