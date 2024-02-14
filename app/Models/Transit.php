@@ -32,7 +32,7 @@ class Transit extends Berth
 
     public function tripulantes()
     {
-        return $this->belongsToMany(Crew::class, 'transit_crews', 'Transito_id','Tripulante_id');
+        return $this->belongsToMany(Crew::class, 'TransitCrew', 'Transito_id','Tripulante_id');
     }
 
     public function embarcaciones()
