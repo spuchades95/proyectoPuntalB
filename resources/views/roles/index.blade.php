@@ -17,28 +17,17 @@
             <tr class="cabeceraDatos">
                 <th>Título</th>
                 <th>Autor</th>
-                <th></th>
+                
                 <th></th>
             </tr>
         </thead>
         <tbody>
 
             @foreach ($roles as $rol)
-            <tr>
+            <tr data-id="{{ $rol->id }}">
                 <td>{{ $rol->NombreRol }}</td>
                 <td>{{ $rol->Permisos }}</td>
-                <td>
-                    <a href="{{ route('roles.show',['role' => $rol->id]) }}">Ver</a> |
-
-                </td>
-                <td>
-
-                    <form action="{{ route('roles.destroy',['role' => $rol->id])}}" method='post'>
-                        @csrf
-                        @method('DELETE')
-                        <input type='submit' value='Eliminar' onclick='return confirm("¿Desea eliminarlo?")' class='btn btn-secondary btn-sm'>
-                    </form>
-
+                <td>{{ $rol->Descripcion }}</td>
                 </td>
             </tr>
             @endforeach
@@ -48,6 +37,13 @@
 
 <script type="text/javascript">
     $(document).ready(function() {
+        $('#example tbody').on('click', 'tr', function() {
+               var roleId = $(this).data('id');
+          
+            window.location.href = "{{ route('roles.show', ['role' => ':id']) }}".replace(':id', roleId);
+        });
+
+
         new DataTable('#example');
     });
 </script>

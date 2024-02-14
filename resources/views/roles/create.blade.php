@@ -1,29 +1,24 @@
 @extends('layouts.plantilla')
 
 @section('content')
-
-<div class="tablaRoles">
-     <table id="example" class="table table-hover table-custom-hover rounded-3 overflow-hidden table-striped" style="width:100%">
-        <thead>
-            <tr>
-                     </tr>
-            <tr class="cabeceraDatos">
-                <th>Título</th>
-                <th>Autor</th>
-                <th></th>
-                <th></th>
-            </tr>
-        </thead>
-        <tbody>
-
-      
-        </tbody>
-    </table>
+<div class="formularioRoles">
+  <div class="formHeader">
+    <h5>ALTA EMBARCACIÓN</h5>
+  </div>
+    
 </div>
 
-
 <style>
-    .tablaRoles {
+
+.formHeader {
+    padding: 6px;
+    font-weight: bold;
+    font-family: 'Questrial', sans-serif;
+    color: #ffffff;
+    background-color:#1d2834;
+    border-radius: 5px 5px 0px 0px;
+}
+    .formularioRoles {
         padding: 50px;
     }
     table {
