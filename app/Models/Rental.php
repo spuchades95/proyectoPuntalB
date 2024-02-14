@@ -18,4 +18,12 @@ class Rental extends Model
         'FechoFinalizacion',
         'Embarcacion_id ',
     ];
+    public function embarcacion()
+    {
+        return $this->belongsTo(Boat::class,'Embarcacion_id');
+    }
+    public function plazaBase()
+    {
+        return $this->belongsTo(BaseBerth::class,'PlazaBaseId');
+    }
 }

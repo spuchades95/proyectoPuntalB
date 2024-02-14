@@ -18,3 +18,13 @@ class Incident extends Model
 
     ];
 }
+public function administrativo()
+{
+    return $this->hasOne(Administrative::class);
+}
+public function guardamuelles()
+{
+    return $this->hasOne(DockWorker::class);
+}
+
+
