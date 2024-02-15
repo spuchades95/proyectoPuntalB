@@ -26,5 +26,5 @@ public function guardamuelles()
 {
     return $this->hasOne(DockWorker::class);
 }
-
 }
+

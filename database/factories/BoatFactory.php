@@ -17,17 +17,16 @@ class BoatFactory extends Factory
     public function definition(): array
     {
         return [
-            'Matricula' => $this->faker->unique()->regexify('[A-Z]{2}[0-9]{4}'),
-            'Manga' => $this->faker->randomFloat(2, 1, 10),
-            'Eslora' => $this->faker->randomFloat(2, 1, 10),
-            'Origen' => $this->faker->randomElement(['Nacional', 'Extranjero']),
-            'Titular' => $this->faker->name,
-            'Imagen' => $this->faker->imageUrl(),
-            'Numero_registro' => $this->faker->unique()->randomNumber(8),
-            'Datos_tecnicos' => $this->faker->text,
-            'Modelo' => $this->faker->word,
-            'Nombre' => $this->faker->word,
-            'Tipo' => $this->faker->randomElement(['Vela', 'Motor', 'Pesca', 'Deportivo', 'Yate', 'Lancha', 'Velero']),
+            'Matricula' => fake()->lexify('??') . '-' . fake()->numerify('######'),
+            'Manga' => fake()->numberBetween(3,10),
+            'Eslora' => fake()->numberBetween(10,40),
+            'Origen' => fake()->country(),
+            'Titular' => fake()->name(),
+            'Imagen' =>fake()->imageUrl(),
+            'Datos_Tecnicos' => fake()->sentence(),
+            'Modelo' => fake()->word(),
+            'Nombre' => fake()->name(),
+            'Tipo' => fake()->randomElement(['Velero', 'Yate','Catamarán','Lancha']),
 
         ];
     }
