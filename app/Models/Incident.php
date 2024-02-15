@@ -25,7 +25,8 @@ class Incident extends Model
     {
         return $this->hasOne(DockWorker::class);
     }
-}
 
+
+}
 
 

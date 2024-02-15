@@ -3,6 +3,7 @@
 namespace Database\Factories;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
+use App\Models\User;
 
 /**
  * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Administrative>
@@ -17,7 +18,12 @@ class AdministrativeFactory extends Factory
     public function definition(): array
     {
         return [
-            //
+
+             'Usuario_id'=>User::inRandomOrder()->value('id'),
+            
+
+
+            
         ];
     }
 }
