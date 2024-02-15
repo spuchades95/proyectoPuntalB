@@ -12,7 +12,9 @@ class IncidentController extends Controller
      */
     public function index()
     {
-        //
+        $incidentes = Incident::all();
+
+        return view('incidentes.index', compact('incidentes'));
     }
 
     /**
@@ -20,7 +22,7 @@ class IncidentController extends Controller
      */
     public function create()
     {
-        //
+        return view('incidentes.create');
     }
 
     /**
@@ -28,7 +30,29 @@ class IncidentController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'Titulo' => 'required',
+            'Imagen' => 'nullable|image',
+            'Leido' => 'required',
+            'Guardamuelle_id' => 'required',
+            'Descripcion' => 'required',
+            'Administrativo_id' => 'required',
+          
+        ]);
+
+        $incidentes = new Incident();
+        $incidentes->Titulo = $request->Titulo;
+        $incidentes->Imagen = $request->Imagen;
+        $incidentes->Leido = $request->Leido;
+        $incidentes->Guardamuelle_id = $request->Guardamuelle_id;
+        $incidentes->Descripcion = $request->Descripcion;
+        $incidentes->Administrativo_id = $request->Administrativo_id;
+
+
+        $incidentes->save();
+
+        return redirect()->route('incidentes.index')
+            ->with('success', 'Incident created successfully.');
     }
 
     /**
@@ -36,7 +60,7 @@ class IncidentController extends Controller
      */
     public function show(Incident $incident)
     {
-        //
+        return view('incidentes.show', compact('incident'));
     }
 
     /**
@@ -44,7 +68,7 @@ class IncidentController extends Controller
      */
     public function edit(Incident $incident)
     {
-        //
+        return view('incidentes.edit', compact('incident'));
     }
 
     /**
@@ -52,7 +76,19 @@ class IncidentController extends Controller
      */
     public function update(Request $request, Incident $incident)
     {
-        //
+        $request->validate([
+            'Titulo' => 'required',
+            'Imagen' => 'nullable|image',
+            'Leido' => 'required',
+            'Guardamuelle_id' => 'required',
+            'Descripcion' => 'required',
+            'Administrativo_id' => 'required',
+        ]);
+
+        $incident->update($request->all());
+
+        return redirect()->route('incidentes.index')
+            ->with('success', 'Incident updated successfully');
     }
 
     /**
@@ -60,6 +96,9 @@ class IncidentController extends Controller
      */
     public function destroy(Incident $incident)
     {
-        //
+        $incident->delete();
+
+        return redirect()->route('incidentes.index')
+            ->with('success', 'Incident deleted successfully');
     }
 }

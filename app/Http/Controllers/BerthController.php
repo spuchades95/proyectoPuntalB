@@ -12,7 +12,8 @@ class BerthController extends Controller
      */
     public function index()
     {
-        //
+        $amarre = Berth::all();
+        return view('amarres.index', compact('amarre'));
     }
 
     /**
@@ -20,7 +21,7 @@ class BerthController extends Controller
      */
     public function create()
     {
-        //
+        return view('amarres.create');
     }
 
     /**
@@ -28,7 +29,23 @@ class BerthController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'Estado' => 'required',
+            'TipoPlaza' => 'required',
+            'Anio' => 'required',
+            'Causa' => 'nullable|string|max:255',
+            'Pantalan_id' => 'required',
+        ]);
+        $amarre = new Berth();
+        $amarre->Estado = $request->Estado;
+        $amarre->TipoPlaza = $request->TipoPlaza;
+        $amarre->Anio = $request->Anio;
+        $amarre->Causa = $request->Causa;
+        $amarre->Pantalan_id = $request->Pantalan_id;
+
+        $amarre->save();
+        return redirect()->route('amarres.index')
+            ->with('success', 'Amarre creado correctamente.');
     }
 
     /**
@@ -36,7 +53,7 @@ class BerthController extends Controller
      */
     public function show(Berth $berth)
     {
-        //
+        return view('amarres.show', compact('berth'));
     }
 
     /**
@@ -44,7 +61,7 @@ class BerthController extends Controller
      */
     public function edit(Berth $berth)
     {
-        //
+        return view('amarres.edit', compact('berth'));
     }
 
     /**
@@ -52,7 +69,16 @@ class BerthController extends Controller
      */
     public function update(Request $request, Berth $berth)
     {
-        //
+        $request->validate([
+            'Estado' => 'required',
+            'TipoPlaza' => 'required',
+            'Anio' => 'required',
+            'Causa' => 'nullable|string|max:255',
+            'Pantalan_id' => 'required',
+        ]);
+        $berth->update($request->all());
+        return redirect()->route('amarres.index')
+            ->with('success', 'Amarre actualizado correctamente.');
     }
 
     /**
@@ -60,6 +86,8 @@ class BerthController extends Controller
      */
     public function destroy(Berth $berth)
     {
-        //
+        $berth->delete();
+        return redirect()->route('amarres.index')
+            ->with('success', 'Amarre eliminado correctamente.');
     }
 }

@@ -12,7 +12,8 @@ class DockController extends Controller
      */
     public function index()
     {
-        //
+        $muelle = Dock::all();
+        return view('muelles.index', compact('muelle'));
     }
 
     /**
@@ -20,7 +21,7 @@ class DockController extends Controller
      */
     public function create()
     {
-        //
+        return view('muelles.create');
     }
 
     /**
@@ -28,7 +29,28 @@ class DockController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'Nombre' => 'required',
+            'Ubicacion' => 'required',
+            'Descripcion' => 'required',
+            'Capacidad' => 'required',
+            'FechaCreacion' => 'required',
+            'Causa' => 'nullable|string|max:255',
+            'Instalacion_id' => 'required',
+        ]);
+        $muelle = new Dock();
+        $muelle->Nombre = $request->Nombre;
+        $muelle->Ubicacion = $request->Ubicacion;
+        $muelle->Descripcion = $request->Descripcion;
+        $muelle->Capacidad = $request->Capacidad;
+        $muelle->FechaCreacion = $request->FechaCreacion;
+        $muelle->Causa = $request->Causa;
+        $muelle->Instalacion_id = $request->Instalacion_id;
+       
+
+        $muelle->save();
+        return redirect()->route('muelles.index')
+            ->with('success', 'Muelle creado correctamente.');
     }
 
     /**
@@ -36,7 +58,7 @@ class DockController extends Controller
      */
     public function show(Dock $dock)
     {
-        //
+        return view('muelles.show', compact('dock'));
     }
 
     /**
@@ -44,7 +66,7 @@ class DockController extends Controller
      */
     public function edit(Dock $dock)
     {
-        //
+        return view('muelles.edit', compact('dock'));
     }
 
     /**
@@ -52,7 +74,28 @@ class DockController extends Controller
      */
     public function update(Request $request, Dock $dock)
     {
-        //
+        $request->validate([
+            'Nombre' => 'required',
+            'Ubicacion' => 'required',
+            'Descripcion' => 'required',
+            'Capacidad' => 'required',
+            'FechaCreacion' => 'required',
+            'Causa' => 'nullable|string|max:255',
+            'Instalacion_id' => 'required',
+        ]);
+        $muelle = new Dock();
+        $muelle->Nombre = $request->Nombre;
+        $muelle->Ubicacion = $request->Ubicacion;
+        $muelle->Descripcion = $request->Descripcion;
+        $muelle->Capacidad = $request->Capacidad;
+        $muelle->FechaCreacion = $request->FechaCreacion;
+        $muelle->Causa = $request->Causa;
+        $muelle->Instalacion_id = $request->Instalacion_id;
+       
+
+        $muelle->save();
+        return redirect()->route('muelles.index')
+            ->with('success', 'Muelle actualizado correctamente.');
     }
 
     /**
@@ -60,6 +103,8 @@ class DockController extends Controller
      */
     public function destroy(Dock $dock)
     {
-        //
+        $dock->delete();
+        return redirect()->route('muelles.index')
+            ->with('success', 'Muelle eliminado correctamente.');
     }
 }

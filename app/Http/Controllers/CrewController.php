@@ -12,7 +12,8 @@ class CrewController extends Controller
      */
     public function index()
     {
-        //
+        $tripulantes = Crew::all();
+        return view('tripulantes.index', compact('tripulantes'));
     }
 
     /**
@@ -20,7 +21,7 @@ class CrewController extends Controller
      */
     public function create()
     {
-        //
+        return view('tripulacion.create');
     }
 
     /**
@@ -28,7 +29,25 @@ class CrewController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'NumeroDeDocumento' => 'required',
+            'Nombre' => 'required',
+            'Sexo' => 'required',
+            'Nacionalidad' => 'required',
+        
+        ]);
+        $tripulante = new Crew();
+
+        $tripulante->NumeroDeDocumento = $request->NumeroDeDocumento;
+        $tripulante->Nombre = $request->Nombre;
+        $tripulante->Sexo = $request->Sexo;
+        $tripulante->Nacionalidad = $request->Nacionalidad;
+
+
+        $tripulante->save();
+        return redirect()->route('tripulacion.index')
+            ->with('success', 'Tripulante creado correctamente.');
+
     }
 
     /**
@@ -36,7 +55,7 @@ class CrewController extends Controller
      */
     public function show(Crew $crew)
     {
-        //
+        return view('tripulantes.show', compact('crew'));
     }
 
     /**
@@ -44,7 +63,7 @@ class CrewController extends Controller
      */
     public function edit(Crew $crew)
     {
-        //
+        return view('tripulantes.edit', compact('crew'));
     }
 
     /**
@@ -52,7 +71,19 @@ class CrewController extends Controller
      */
     public function update(Request $request, Crew $crew)
     {
-        //
+        $request->validate([
+            'NumeroDeDocumento' => 'required',
+            'Nombre' => 'required',
+            'Sexo' => 'required',
+            'Nacionalidad' => 'required',
+        
+        ]);
+        $tripulante = new Crew();
+
+        $tripulante->NumeroDeDocumento = $request->NumeroDeDocumento;
+        $tripulante->Nombre = $request->Nombre;
+        $tripulante->Sexo = $request->Sexo;
+        $tripulante->Nacionalidad = $request->Nacionalidad;
     }
 
     /**
@@ -60,6 +91,8 @@ class CrewController extends Controller
      */
     public function destroy(Crew $crew)
     {
-        //
+        $crew->delete(); 
+        return redirect()->route('tripulacion.index')
+            ->with('success', 'Tripulante eliminado correctamente.');           
     }
 }
