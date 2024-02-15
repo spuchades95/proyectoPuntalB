@@ -36,7 +36,14 @@ class CivilGuardTransitController extends Controller
      */
     public function show(CivilGuardTransit $civilGuardTransit)
     {
-        //
+      
+        $participationDate = $civilGuardTransit->created_at;
+
+       
+        $civilGuardDetails = $civilGuardTransit->civilGuard;
+        $transitDetails = $civilGuardTransit->transit;
+
+        return view('civil_guard_transits.show', compact('civilGuardTransit', 'participationDate', 'civilGuardDetails', 'transitDetails'));
     }
 
     /**

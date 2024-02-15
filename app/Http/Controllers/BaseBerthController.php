@@ -12,7 +12,9 @@ class BaseBerthController extends Controller
      */
     public function index()
     {
-        //
+        $plazabase = BaseBerth::all();
+        return view('plazasbase.index', compact('plazabase'));
+
     }
 
     /**
@@ -20,7 +22,7 @@ class BaseBerthController extends Controller
      */
     public function create()
     {
-        //
+        return view('plazasbase.create');
     }
 
     /**
@@ -28,7 +30,25 @@ class BaseBerthController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'DatosEstancia' => 'nullable|string|max:255 ',
+            'FechaEntrada' => 'required',
+            'FinContrato' => 'required',
+            'Amarre_id' => 'required',
+        ]);
+        $plazabase = new BaseBerth();
+        $plazabase->DatosEstancia = $request->DatosEstancia;
+        $plazabase->FechaEntrada = $request->FechaEntrada;
+        $plazabase->FinContrato = $request->FinContrato;
+        $plazabase->Amarre_id = $request->Amarre_id;
+        $plazabase->save();
+        return redirect()->route('plazasbase.index')
+            ->with('success', 'Plaza base creada correctamente.');
+        // BaseBerth::create($request->all());
+
+        // return redirect()->route('plazasbase.index')
+        //     ->with('success', 'Plaza base creada correctamente.');
+
     }
 
     /**
@@ -36,7 +56,7 @@ class BaseBerthController extends Controller
      */
     public function show(BaseBerth $baseBerth)
     {
-        //
+        return view('plazasbase.show', compact('baseBerth'));
     }
 
     /**
@@ -44,7 +64,7 @@ class BaseBerthController extends Controller
      */
     public function edit(BaseBerth $baseBerth)
     {
-        //
+        return view('plazasbase.edit', compact('baseBerth'));
     }
 
     /**
@@ -52,7 +72,15 @@ class BaseBerthController extends Controller
      */
     public function update(Request $request, BaseBerth $baseBerth)
     {
-        //
+        $request->validate([
+            'DatosEstancia' => 'nullable|string|max:255 ',
+            'FechaEntrada' => 'required',
+            'FinContrato' => 'required',
+            'Amarre_id' => 'required',
+        ]);
+        $baseBerth->update($request->all());
+        return redirect()->route('plazasbase.index')
+            ->with('success', 'Plaza base actualizada correctamente.');
     }
 
     /**
@@ -60,6 +88,8 @@ class BaseBerthController extends Controller
      */
     public function destroy(BaseBerth $baseBerth)
     {
-        //
+        $baseBerth->delete();
+        return redirect()->route('plazasbase.index')
+            ->with('success', 'Plaza base eliminada correctamente.');
     }
 }

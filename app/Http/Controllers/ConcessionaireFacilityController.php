@@ -36,7 +36,15 @@ class ConcessionaireFacilityController extends Controller
      */
     public function show(ConcessionaireFacility $concessionaireFacility)
     {
-        //
+        
+        $assignmentDate = $concessionaireFacility->created_at;
+
+       
+        $facilityDetails = $concessionaireFacility->facility;
+        $concessionaireDetails = $concessionaireFacility->concessionaire;
+
+      
+        return view('concessionaire_facilities.show', compact('concessionaireFacility', 'assignmentDate', 'facilityDetails', 'concessionaireDetails'));
     }
 
     /**

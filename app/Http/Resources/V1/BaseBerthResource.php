@@ -14,6 +14,13 @@ class BaseBerthResource extends JsonResource
      */
     public function toArray(Request $request): array
     {
-        return parent::toArray($request);
+        return [
+            // 'id' => $this->id,
+            'Datos estancia' => $this->DatosEstancia,
+            'Fecha entrada' => $this->FechaEntrada,
+            'Fin contrato' => $this->FinContrato,
+            'Fecha de creacion' => $this->FechaCreacion,
+            
+        ];
     }
 }

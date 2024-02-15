@@ -30,7 +30,19 @@ class RoleController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'NombreRol' => 'required',
+            'Permisos' => 'required',
+        ]);
+
+        $role = new Role();
+        $role->NombreRol = $request->NombreRol;
+        $role->Permisos = $request->Permisos;
+
+        $role->save();
+
+        return redirect()->route('roles.index')
+            ->with('success', 'Role created successfully.');
     }
 
     /**
@@ -47,7 +59,7 @@ class RoleController extends Controller
      */
     public function edit(Role $role)
     {
-        //
+        return view('roles.edit', compact('role'));
     }
 
     /**
@@ -55,7 +67,18 @@ class RoleController extends Controller
      */
     public function update(Request $request, Role $role)
     {
-        //
+        $request->validate([
+            'NombreRol' => 'required',
+            'Permisos' => 'required',
+        ]);
+
+        $role->NombreRol = $request->NombreRol;
+        $role->Permisos = $request->Permisos;
+
+        $role->save();
+
+        return redirect()->route('roles.index')
+            ->with('success', 'Role updated successfully');
     }
 
     /**
@@ -63,6 +86,9 @@ class RoleController extends Controller
      */
     public function destroy(Role $role)
     {
-        //
+        $role->delete();
+
+        return redirect()->route('roles.index')
+            ->with('success', 'Role deleted successfully');
     }
 }

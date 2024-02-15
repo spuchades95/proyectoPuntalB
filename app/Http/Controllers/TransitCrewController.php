@@ -36,7 +36,15 @@ class TransitCrewController extends Controller
      */
     public function show(TransitCrew $transitCrew)
     {
-        //
+     
+        $crewName = $transitCrew->crew->Nombre;
+        $crewNationality = $transitCrew->crew->Nacionalidad;
+
+       
+        $transitDetails = $transitCrew->transit;
+
+        
+        return view('transit_crews.show', compact('transitCrew', 'crewName', 'crewNationality', 'transitDetails'));
     }
 
     /**
