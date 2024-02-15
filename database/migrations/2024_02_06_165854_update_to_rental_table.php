@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::table('rentals', function (Blueprint $table) {
             $table->unsignedBigInteger('PlazaBase_id')->after('FechaInicio');
-            $table->unsignedBigInteger('Embarcacion_id')->after('FechoFinalizacion');
+            $table->unsignedBigInteger('Embarcacion_id')->after('FechaFinalizacion');
            
             $table->foreign('PlazaBase_id')->references('Amarre_id')->on('base_berths')->onDelete('cascade')->onUpdate('cascade');
             $table->foreign('Embarcacion_id')->references('id')->on('boats')->onDelete('cascade')->onUpdate('cascade');

@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::table('rentals', function (Blueprint $table) {
             $table->dateTime('FechaInicio')->change();
-            $table->dateTime('FechoFinalizacion')->change();
+            $table->dateTime('FechaFinalizacion')->change();
         });
     }
 
