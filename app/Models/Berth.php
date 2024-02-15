@@ -9,7 +9,7 @@ class Berth extends Model
 {
     use HasFactory;
     use SoftDeletes;
-    protected $with = ['administrativoamare'];
+  
     protected $fillable = [
         'Estado',
         'TipoPlaza',
