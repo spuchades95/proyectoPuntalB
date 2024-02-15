@@ -36,7 +36,15 @@ class AdministrativeBerthsController extends Controller
      */
     public function show(AdministrativeBerths $administrativeBerths)
     {
-        //
+    
+        $assignmentDate = $administrativeBerths->created_at;
+
+        
+        $berthDetails = $administrativeBerths->berth;
+        $administrativeDetails = $administrativeBerths->administrative;
+
+        
+        return view('administrative_berths.show', compact('administrativeBerths', 'assignmentDate', 'berthDetails', 'administrativeDetails'));
     }
 
     /**
