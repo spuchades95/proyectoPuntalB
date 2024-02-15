@@ -12,7 +12,9 @@ class ConcessionaireController extends Controller
      */
     public function index()
     {
-        //
+        $concesionarios = Concessionaire::with('usuario')->get();
+
+        return view('concesionarios.index', compact('concesionarios'));
     }
 
     /**
@@ -36,7 +38,10 @@ class ConcessionaireController extends Controller
      */
     public function show(Concessionaire $concessionaire)
     {
-        //
+        $concessionaire->load('usuario');
+
+        return view('concesionarios.show', compact('concessionaire'));
+
     }
 
     /**

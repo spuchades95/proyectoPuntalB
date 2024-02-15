@@ -38,14 +38,14 @@ class RentalController extends Controller
            
         ]);
 
-        $alquileres = new Rental();
-        $alquileres->FechaInicio = $request->FechaInicio;
-        $alquileres->FechaFin = $request->FechaFin;
-        $alquileres->Precio = $request->Precio;
-        $alquileres->Embarcacion_id = $request->Embarcacion_id;
-        $alquileres->Cliente_id = $request->Cliente_id;
+        $alquiler = new Rental();
+        $alquiler->FechaInicio = $request->FechaInicio;
+        $alquiler->FechaFin = $request->FechaFin;
+        $alquiler->Precio = $request->Precio;
+        $alquiler->Embarcacion_id = $request->Embarcacion_id;
+        $alquiler->Cliente_id = $request->Cliente_id;
 
-        $alquileres->save();
+        $alquiler->save();
 
         return redirect()->route('alquileres.index')
             ->with('success', 'Rental created successfully.');

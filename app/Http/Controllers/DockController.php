@@ -12,8 +12,8 @@ class DockController extends Controller
      */
     public function index()
     {
-        $muelle = Dock::all();
-        return view('muelles.index', compact('muelle'));
+        $plazas = Dock::all();
+        return view('plazas.index', compact('plazas'));
     }
 
     /**
@@ -21,7 +21,7 @@ class DockController extends Controller
      */
     public function create()
     {
-        return view('muelles.create');
+        return view('plazas.create');
     }
 
     /**
@@ -38,19 +38,19 @@ class DockController extends Controller
             'Causa' => 'nullable|string|max:255',
             'Instalacion_id' => 'required',
         ]);
-        $muelle = new Dock();
-        $muelle->Nombre = $request->Nombre;
-        $muelle->Ubicacion = $request->Ubicacion;
-        $muelle->Descripcion = $request->Descripcion;
-        $muelle->Capacidad = $request->Capacidad;
-        $muelle->FechaCreacion = $request->FechaCreacion;
-        $muelle->Causa = $request->Causa;
-        $muelle->Instalacion_id = $request->Instalacion_id;
+        $plaza = new Dock();
+        $plaza->Nombre = $request->Nombre;
+        $plaza->Ubicacion = $request->Ubicacion;
+        $plaza->Descripcion = $request->Descripcion;
+        $plaza->Capacidad = $request->Capacidad;
+        $plaza->FechaCreacion = $request->FechaCreacion;
+        $plaza->Causa = $request->Causa;
+        $plaza->Instalacion_id = $request->Instalacion_id;
        
 
-        $muelle->save();
-        return redirect()->route('muelles.index')
-            ->with('success', 'Muelle creado correctamente.');
+        $plaza->save();
+        return redirect()->route('plazas.index')
+            ->with('success', 'plaza creado correctamente.');
     }
 
     /**
@@ -58,7 +58,7 @@ class DockController extends Controller
      */
     public function show(Dock $dock)
     {
-        return view('muelles.show', compact('dock'));
+        return view('plazas.show', compact('dock'));
     }
 
     /**
@@ -66,7 +66,7 @@ class DockController extends Controller
      */
     public function edit(Dock $dock)
     {
-        return view('muelles.edit', compact('dock'));
+        return view('plazas.edit', compact('dock'));
     }
 
     /**
@@ -83,19 +83,19 @@ class DockController extends Controller
             'Causa' => 'nullable|string|max:255',
             'Instalacion_id' => 'required',
         ]);
-        $muelle = new Dock();
-        $muelle->Nombre = $request->Nombre;
-        $muelle->Ubicacion = $request->Ubicacion;
-        $muelle->Descripcion = $request->Descripcion;
-        $muelle->Capacidad = $request->Capacidad;
-        $muelle->FechaCreacion = $request->FechaCreacion;
-        $muelle->Causa = $request->Causa;
-        $muelle->Instalacion_id = $request->Instalacion_id;
+        $plaza = new Dock();
+        $plaza->Nombre = $request->Nombre;
+        $plaza->Ubicacion = $request->Ubicacion;
+        $plaza->Descripcion = $request->Descripcion;
+        $plaza->Capacidad = $request->Capacidad;
+        $plaza->FechaCreacion = $request->FechaCreacion;
+        $plaza->Causa = $request->Causa;
+        $plaza->Instalacion_id = $request->Instalacion_id;
        
 
-        $muelle->save();
-        return redirect()->route('muelles.index')
-            ->with('success', 'Muelle actualizado correctamente.');
+        $plaza->save();
+        return redirect()->route('plazas.index')
+            ->with('success', 'plaza actualizado correctamente.');
     }
 
     /**
@@ -104,7 +104,7 @@ class DockController extends Controller
     public function destroy(Dock $dock)
     {
         $dock->delete();
-        return redirect()->route('muelles.index')
-            ->with('success', 'Muelle eliminado correctamente.');
+        return redirect()->route('plazas.index')
+            ->with('success', 'plaza eliminado correctamente.');
     }
 }

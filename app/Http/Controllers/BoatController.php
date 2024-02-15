@@ -12,8 +12,8 @@ class BoatController extends Controller
      */
     public function index()
     {
-        $barcos = Boat::all();
-        return view('barcos.index', compact('barcos'));
+        $embarcaciones = Boat::all();
+        return view('embarcaciones.index', compact('embarcaciones'));
     }
 
     /**
@@ -21,7 +21,7 @@ class BoatController extends Controller
      */
     public function create()
     {
-        return view('barcos.create');
+        return view('embarcaciones.create');
     }
 
     /**
@@ -43,25 +43,25 @@ class BoatController extends Controller
             'Causa' => 'nullable|string|max:255',
             'Tipo' => 'required',
         ]);
-        $barco = new Boat();
-        $barco->Matricula = $request->Matricula;
-        $barco->Manga = $request->Manga;
-        $barco->Eslora = $request->Eslora;
-        $barco->Origen = $request->Origen;
-        $barco->Titular = $request->Titular;
+        $embarcacion = new Boat();
+        $embarcacion->Matricula = $request->Matricula;
+        $embarcacion->Manga = $request->Manga;
+        $embarcacion->Eslora = $request->Eslora;
+        $embarcacion->Origen = $request->Origen;
+        $embarcacion->Titular = $request->Titular;
         if ($request->hasFile('Imagen')) {
-            $barco->Imagen = $request->file('Imagen')->store('public');
+            $embarcacion->Imagen = $request->file('Imagen')->store('public');
         }
-        $barco->Numero_Registro = $request->Numero_Registro;
-        $barco->Datos_tecnicos = $request->Datos_tecnicos;
-        $barco->Modelo = $request->Modelo;
-        $barco->Nombre = $request->Nombre;
-        $barco->Causa = $request->Causa;
-        $barco->Tipo = $request->Tipo;
+        $embarcacion->Numero_Registro = $request->Numero_Registro;
+        $embarcacion->Datos_tecnicos = $request->Datos_tecnicos;
+        $embarcacion->Modelo = $request->Modelo;
+        $embarcacion->Nombre = $request->Nombre;
+        $embarcacion->Causa = $request->Causa;
+        $embarcacion->Tipo = $request->Tipo;
 
 
-        $barco->save();
-        return redirect()->route('barcos.index')
+        $embarcacion->save();
+        return redirect()->route('embarcaciones.index')
             ->with('success', 'Barco creado correctamente.');
     }
 
@@ -70,7 +70,7 @@ class BoatController extends Controller
      */
     public function show(Boat $boat)
     {
-        return view('barcos.show', compact('boat'));
+        return view('embarcaciones.show', compact('boat'));
     }
 
     /**
@@ -78,7 +78,7 @@ class BoatController extends Controller
      */
     public function edit(Boat $boat)
     {
-        return view('barcos.edit', compact('boat'));
+        return view('embarcaciones.edit', compact('boat'));
     }
 
     /**
@@ -101,7 +101,7 @@ class BoatController extends Controller
             'Tipo' => 'required',
         ]);
         $boat->update($request->all());
-        return redirect()->route('barcos.index')
+        return redirect()->route('embarcaciones.index')
             ->with('success', 'Barco actualizado correctamente.');
     }
 
@@ -111,7 +111,7 @@ class BoatController extends Controller
     public function destroy(Boat $boat)
     {
         $boat->delete();
-        return redirect()->route('barcos.index')
+        return redirect()->route('embarcaciones.index')
             ->with('success', 'Barco eliminado correctamente.');
     }
 }

@@ -12,9 +12,9 @@ class IncidentController extends Controller
      */
     public function index()
     {
-        $incidentes = Incident::all();
+        $incidencias = Incident::all();
 
-        return view('incidentes.index', compact('incidentes'));
+        return view('incidencias.index', compact('incidencias'));
     }
 
     /**
@@ -22,7 +22,7 @@ class IncidentController extends Controller
      */
     public function create()
     {
-        return view('incidentes.create');
+        return view('incidencias.create');
     }
 
     /**
@@ -40,18 +40,18 @@ class IncidentController extends Controller
           
         ]);
 
-        $incidentes = new Incident();
-        $incidentes->Titulo = $request->Titulo;
-        $incidentes->Imagen = $request->Imagen;
-        $incidentes->Leido = $request->Leido;
-        $incidentes->Guardamuelle_id = $request->Guardamuelle_id;
-        $incidentes->Descripcion = $request->Descripcion;
-        $incidentes->Administrativo_id = $request->Administrativo_id;
+        $incidencia = new Incident();
+        $incidencia->Titulo = $request->Titulo;
+        $incidencia->Imagen = $request->Imagen;
+        $incidencia->Leido = $request->Leido;
+        $incidencia->Guardamuelle_id = $request->Guardamuelle_id;
+        $incidencia->Descripcion = $request->Descripcion;
+        $incidencia->Administrativo_id = $request->Administrativo_id;
 
 
-        $incidentes->save();
+        $incidencia->save();
 
-        return redirect()->route('incidentes.index')
+        return redirect()->route('incidencias.index')
             ->with('success', 'Incident created successfully.');
     }
 
@@ -60,7 +60,7 @@ class IncidentController extends Controller
      */
     public function show(Incident $incident)
     {
-        return view('incidentes.show', compact('incident'));
+        return view('incidencias.show', compact('incident'));
     }
 
     /**
@@ -68,7 +68,7 @@ class IncidentController extends Controller
      */
     public function edit(Incident $incident)
     {
-        return view('incidentes.edit', compact('incident'));
+        return view('incidencias.edit', compact('incident'));
     }
 
     /**
@@ -87,7 +87,7 @@ class IncidentController extends Controller
 
         $incident->update($request->all());
 
-        return redirect()->route('incidentes.index')
+        return redirect()->route('incidencias.index')
             ->with('success', 'Incident updated successfully');
     }
 
@@ -98,7 +98,7 @@ class IncidentController extends Controller
     {
         $incident->delete();
 
-        return redirect()->route('incidentes.index')
+        return redirect()->route('incidencias.index')
             ->with('success', 'Incident deleted successfully');
     }
 }
