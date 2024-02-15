@@ -11,9 +11,8 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::table('rentals', function (Blueprint $table) {
-            $table->dateTime('FechaInicio')->change();
-            $table->dateTime('FechaFinalizacion')->change();
+        Schema::table('berths', function (Blueprint $table) {
+            $table->integer('Numero')->after('id');
         });
     }
 
@@ -22,9 +21,8 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::table('rentals', function (Blueprint $table) {
-            $table->dateTime('FechaInicio')->change();
-            $table->dateTime('FechoFinalizacion')->change();
+        Schema::table('berths', function (Blueprint $table) {
+            $table->dropColumn('Numero');
         });
     }
 };
