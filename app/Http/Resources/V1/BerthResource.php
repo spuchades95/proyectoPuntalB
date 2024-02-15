@@ -4,6 +4,7 @@ namespace App\Http\Resources\V1;
 
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
+use App\Models\Dock;
 
 class BerthResource extends JsonResource
 {
@@ -14,6 +15,15 @@ class BerthResource extends JsonResource
      */
     public function toArray(Request $request): array
     {
-        return parent::toArray($request);
+          $pantalan = Dock::find($this->Pantalan_id);
+        return [
+            'Estado' => $this->Estado,
+            'Tipo Plaza' => $this->TipoPlaza ,
+            'Anio' => $this->Anio,
+            'Pantalan' => $pantalan->Nombre, 
+            
+           
+           
+        ];
     }
 }

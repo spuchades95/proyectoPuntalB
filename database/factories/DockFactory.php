@@ -24,7 +24,6 @@ class DockFactory extends Factory
             'Capacidad' => fake()->numberBetween(0,10),
             'FechaCreacion' => fake()->dateTimeBetween('-2 year','+2 year'),
             'Instalacion_id' => Facility::inRandomOrder()->value('id'),
-            'Causa'=>fake()->sentence(),
            
 
         ];

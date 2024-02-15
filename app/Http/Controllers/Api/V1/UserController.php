@@ -14,7 +14,7 @@ class UserController extends Controller
      */
     public function index()
     {
-       return User::all();
+        return UserResource::collection(User::all());
     }
 
     /**
@@ -32,21 +32,17 @@ class UserController extends Controller
      */
     public function show(User $user)
     {
-       /* $user = User::find($user);
+       /* $user = User::find($id);
+      $user = User::find($id);
 
-        if ($user == null) {
-            return response()->json([
-                'message' => 'No se encuentra el usuario',
-                'code' => 404
-            ], 404);
-        }
-        return response()->json([
-            'data' => $user,
-            'code' => 200
-        ], 200);*/
-
+        if ($user) {
+            return response()->json($user, 200);
+        } else {
+            return response()->json('Usuario no encontrado', 404);
+        }*/
 
         return new UserResource($user);
+        
     }
 
     /**
