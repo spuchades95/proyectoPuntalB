@@ -11,13 +11,8 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('rentals', function (Blueprint $table) {
-            $table->id();
-            $table->date('FechaInicio')->nullable();            
-            $table->date('FechaFinalizacion')->nullable();
-            
-            $table->softDeletes();
-            $table->timestamps();
+        Schema::table('berths', function (Blueprint $table) {
+            $table->integer('Numero')->after('id');
         });
     }
 
@@ -26,6 +21,8 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('rentals');
+        Schema::table('berths', function (Blueprint $table) {
+            $table->dropColumn('Numero');
+        });
     }
 };
