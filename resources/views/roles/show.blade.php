@@ -8,7 +8,25 @@
 <script type="text/javascript" language="javascript" src="https://cdn.datatables.net/1.13.7/js/dataTables.bootstrap5.min.js"></script>
 
 <div class="tablaRoles">
-    cositas
+    <table>
+        <thead>
+            <tr>
+                <th class="cabeceraTabla" colspan="2">Roles</th>
+            </tr>
+            <tr class="cabeceraDatos">
+                <th>Nombre</th>
+                <th>Descripción</th>
+            </tr>
+        </thead>
+        <tbody>
+           
+            <tr>
+                <td>{{$rol->NombreRol}}</td>
+                <td>{{$rol->Descripcion}}</td>
+            </tr>
+          
+        </tbody>
+    </table>
     
 </div>
 

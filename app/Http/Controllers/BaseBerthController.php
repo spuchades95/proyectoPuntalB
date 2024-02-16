@@ -44,51 +44,51 @@ class BaseBerthController extends Controller
         $plazabase->save();
         return redirect()->route('plazasbase.index')
             ->with('success', 'Plaza base creada correctamente.');
-        // BaseBerth::create($request->all());
 
-        // return redirect()->route('plazasbase.index')
-        //     ->with('success', 'Plaza base creada correctamente.');
 
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(BaseBerth $baseBerth)
+    public function show(string $id)
     {
-        return view('plazasbase.show', compact('baseBerth'));
+        $plazabase = BaseBerth::find($id);
+        return view('plazasbase.show', compact('plazabase'));
+
+       
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(BaseBerth $baseBerth)
+    public function edit(string $id)
     {
-        return view('plazasbase.edit', compact('baseBerth'));
+        $plazabase = BaseBerth::find($id);
+        return view('plazasbase.edit', compact('plazabase'));
+        
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, BaseBerth $baseBerth)
+    public function update(Request $request, string $id)
     {
-        $request->validate([
-            'DatosEstancia' => 'nullable|string|max:255 ',
-            'FechaEntrada' => 'required',
-            'FinContrato' => 'required',
-            'Amarre_id' => 'required',
-        ]);
-        $baseBerth->update($request->all());
+        $plazabase = BaseBerth::findOrFail($id);
+        $plazabase->update($request->all());
+        $plazabase->save();
         return redirect()->route('plazasbase.index')
             ->with('success', 'Plaza base actualizada correctamente.');
+     
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(BaseBerth $baseBerth)
+    public function destroy(string $id)
     {
-        $baseBerth->delete();
+        $plazabase = BaseBerth::find($id);
+        $plazabase->delete();
         return redirect()->route('plazasbase.index')
             ->with('success', 'Plaza base eliminada correctamente.');
     }

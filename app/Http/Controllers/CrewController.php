@@ -53,45 +53,41 @@ class CrewController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Crew $crew)
+    public function show(string $id)
     {
-        return view('tripulantes.show', compact('crew'));
+        $tripulante = Crew::find($id);
+        return view('tripulantes.show', compact('tripulante'));
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Crew $crew)
+    public function edit(string $id)
     {
-        return view('tripulantes.edit', compact('crew'));
+        $tripulante = Crew::find($id);
+        return view('tripulantes.edit', compact('tripulante'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Crew $crew)
+    public function update(Request $request, string $id)
     {
-        $request->validate([
-            'NumeroDeDocumento' => 'required',
-            'Nombre' => 'required',
-            'Sexo' => 'required',
-            'Nacionalidad' => 'required',
-        
-        ]);
-        $tripulante = new Crew();
+        $tripulante = Crew::findOrFail($id);
+        $tripulante->update($request->all());
+        $tripulante->save();
+        return redirect()->route('tripulacion.index')
+            ->with('success', 'Tripulante actualizado correctamente.');
 
-        $tripulante->NumeroDeDocumento = $request->NumeroDeDocumento;
-        $tripulante->Nombre = $request->Nombre;
-        $tripulante->Sexo = $request->Sexo;
-        $tripulante->Nacionalidad = $request->Nacionalidad;
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Crew $crew)
+    public function destroy(string $id)
     {
-        $crew->delete(); 
+        $tripulante = Crew::find($id);
+        $tripulante->delete(); 
         return redirect()->route('tripulacion.index')
             ->with('success', 'Tripulante eliminado correctamente.');           
     }

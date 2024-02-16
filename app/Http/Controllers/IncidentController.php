@@ -58,35 +58,31 @@ class IncidentController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Incident $incident)
+    public function show(string $id)
     {
-        return view('incidencias.show', compact('incident'));
+        $incidencia = Incident::find($id);
+        return view('incidencias.show', compact('incidencia'));
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Incident $incident)
+    public function edit(string $id)
     {
-        return view('incidencias.edit', compact('incident'));
+        $incidencia = Incident::find($id);
+        return view('incidencias.edit', compact('incidencia'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Incident $incident)
+    public function update(Request $request, string $id)
     {
-        $request->validate([
-            'Titulo' => 'required',
-            'Imagen' => 'nullable|image',
-            'Leido' => 'required',
-            'Guardamuelle_id' => 'required',
-            'Descripcion' => 'required',
-            'Administrativo_id' => 'required',
-        ]);
+    
+        $incidencia = Incident::findorFail($id);
 
-        $incident->update($request->all());
-
+        $incidencia->update($request->all());
+        $incidencia->save();
         return redirect()->route('incidencias.index')
             ->with('success', 'Incident updated successfully');
     }
@@ -94,9 +90,10 @@ class IncidentController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Incident $incident)
+    public function destroy(string $id)
     {
-        $incident->delete();
+        $incidencia = Incident::find($id);
+        $incidencia->delete();
 
         return redirect()->route('incidencias.index')
             ->with('success', 'Incident deleted successfully');

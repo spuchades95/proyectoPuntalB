@@ -36,11 +36,11 @@ class CivilGuardController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(CivilGuard $civilGuard)
+    public function show(string $id)
     {
-        $civilGuard->load('usuario');
+        $guardiaCivil = CivilGuard::with('usuario')->find($id);
 
-        return view('guardiasciviles.show', compact('civilGuard'));
+        return view('guardiasciviles.show', compact('guardiaCivil'));
     }
 
     /**

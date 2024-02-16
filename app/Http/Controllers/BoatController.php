@@ -73,7 +73,7 @@ class BoatController extends Controller
     {
         $embarcacion = Boat::find($id);
         return view('embarcaciones.show', compact('embarcacion'));
-        // return view('embarcaciones.show', compact('embarcacion'));
+       
     }
 
     /**
@@ -100,38 +100,6 @@ class BoatController extends Controller
             ->with('success', 'Barco actualizado correctamente.');
 
 
-        // $request->validate([
-        //     'Matricula' => 'required',
-        //     'Manga' => 'required',
-        //     'Eslora' => 'required',
-        //     'Origen' => 'required',
-        //     'Titular' => 'required',
-        //     'Imagen' => 'nullable|image',
-        //     'Numero_Registro' => 'required',
-        //     'Datos_tecnicos' => 'required',
-        //     'Modelo' => 'required',
-        //     'Nombre' => 'required',
-        //     'Causa' => 'nullable|string|max:255',
-        //     'Tipo' => 'required',
-        // ]);
-        // $embarcacion = Boat::find($id);
-        // $embarcacion->Matricula = $request->Matricula;
-        // $embarcacion->Manga = $request->Manga;
-        // $embarcacion->Eslora = $request->Eslora;
-        // $embarcacion->Origen = $request->Origen;
-        // $embarcacion->Titular = $request->Titular;
-        // if ($request->hasFile('Imagen')) {
-        //     $embarcacion->Imagen = $request->file('Imagen')->store('public');
-        // }
-        // $embarcacion->Numero_Registro = $request->Numero_Registro;
-        // $embarcacion->Datos_tecnicos = $request->Datos_tecnicos;
-        // $embarcacion->Modelo = $request->Modelo;
-        // $embarcacion->Nombre = $request->Nombre;
-        // $embarcacion->Causa = $request->Causa;
-        // $embarcacion->Tipo = $request->Tipo;
-        // $embarcacion->save();
-        // return redirect()->route('embarcaciones.index')
-        //     ->with('success', 'Barco actualizado correctamente.');
     }
 
     /**
@@ -143,8 +111,6 @@ class BoatController extends Controller
         $embarcacion->delete();
         return redirect()->route('embarcaciones.index')
             ->with('success', 'Barco eliminado correctamente.');
-        // $boat->delete();
-        // return redirect()->route('embarcaciones.index')
-        //     ->with('success', 'Barco eliminado correctamente.');
+
     }
 }
