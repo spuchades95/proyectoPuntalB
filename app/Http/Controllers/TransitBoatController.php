@@ -36,7 +36,14 @@ class TransitBoatController extends Controller
      */
     public function show(TransitBoat $transitBoat)
     {
-        //
+        
+        $transitDate = $transitBoat->created_at;
+
+       
+        $transitDetails = $transitBoat->transit;
+        $boatDetails = $transitBoat->boat;
+
+        return view('transit_boats.show', compact('transitBoat', 'transitDate', 'transitDetails', 'boatDetails'));
     }
 
     /**

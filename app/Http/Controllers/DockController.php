@@ -12,7 +12,8 @@ class DockController extends Controller
      */
     public function index()
     {
-        //
+        $plazas = Dock::all();
+        return view('plazas.index', compact('plazas'));
     }
 
     /**
@@ -20,7 +21,7 @@ class DockController extends Controller
      */
     public function create()
     {
-        //
+        return view('plazas.create');
     }
 
     /**
@@ -28,7 +29,28 @@ class DockController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'Nombre' => 'required',
+            'Ubicacion' => 'required',
+            'Descripcion' => 'required',
+            'Capacidad' => 'required',
+            'FechaCreacion' => 'required',
+            'Causa' => 'nullable|string|max:255',
+            'Instalacion_id' => 'required',
+        ]);
+        $plaza = new Dock();
+        $plaza->Nombre = $request->Nombre;
+        $plaza->Ubicacion = $request->Ubicacion;
+        $plaza->Descripcion = $request->Descripcion;
+        $plaza->Capacidad = $request->Capacidad;
+        $plaza->FechaCreacion = $request->FechaCreacion;
+        $plaza->Causa = $request->Causa;
+        $plaza->Instalacion_id = $request->Instalacion_id;
+       
+
+        $plaza->save();
+        return redirect()->route('plazas.index')
+            ->with('success', 'plaza creado correctamente.');
     }
 
     /**
@@ -36,7 +58,7 @@ class DockController extends Controller
      */
     public function show(Dock $dock)
     {
-        //
+        return view('plazas.show', compact('dock'));
     }
 
     /**
@@ -44,7 +66,7 @@ class DockController extends Controller
      */
     public function edit(Dock $dock)
     {
-        //
+        return view('plazas.edit', compact('dock'));
     }
 
     /**
@@ -52,7 +74,28 @@ class DockController extends Controller
      */
     public function update(Request $request, Dock $dock)
     {
-        //
+        $request->validate([
+            'Nombre' => 'required',
+            'Ubicacion' => 'required',
+            'Descripcion' => 'required',
+            'Capacidad' => 'required',
+            'FechaCreacion' => 'required',
+            'Causa' => 'nullable|string|max:255',
+            'Instalacion_id' => 'required',
+        ]);
+        $plaza = new Dock();
+        $plaza->Nombre = $request->Nombre;
+        $plaza->Ubicacion = $request->Ubicacion;
+        $plaza->Descripcion = $request->Descripcion;
+        $plaza->Capacidad = $request->Capacidad;
+        $plaza->FechaCreacion = $request->FechaCreacion;
+        $plaza->Causa = $request->Causa;
+        $plaza->Instalacion_id = $request->Instalacion_id;
+       
+
+        $plaza->save();
+        return redirect()->route('plazas.index')
+            ->with('success', 'plaza actualizado correctamente.');
     }
 
     /**
@@ -60,6 +103,8 @@ class DockController extends Controller
      */
     public function destroy(Dock $dock)
     {
-        //
+        $dock->delete();
+        return redirect()->route('plazas.index')
+            ->with('success', 'plaza eliminado correctamente.');
     }
 }

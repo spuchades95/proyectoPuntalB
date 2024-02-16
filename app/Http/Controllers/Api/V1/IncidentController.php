@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api\V1;
 use App\Http\Controllers\Controller;
 use App\Models\Incident;
 use Illuminate\Http\Request;
+use App\Http\Resources\V1\IncidentsResource;
 
 class IncidentController extends Controller
 {
@@ -34,7 +35,8 @@ class IncidentController extends Controller
         $incident = Incident::find($id);
 
         if ($incident) {
-            return response()->json($incident, 200);
+            return new IncidentController($incident);
+            // return response()->json($incident, 200);
         } else {
             return response()->json('Incidente no encontrado', 404);
         }

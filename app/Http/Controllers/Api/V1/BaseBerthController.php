@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api\V1;
 use App\Http\Controllers\Controller;
 use App\Models\BaseBerth;
 use Illuminate\Http\Request;
+use App\Http\Resources\V1\BaseBerthResource;
 
 class BaseBerthController extends Controller
 {
@@ -34,7 +35,8 @@ class BaseBerthController extends Controller
         $baseBerth = BaseBerth::find($id);
 
         if ($baseBerth) {
-            return response()->json($baseBerth, 200);
+            return new BaseBerthResource($baseBerth);
+            // return response()->json($baseBerth, 200);
         } else {
             return response()->json('Amarre base no encontrado', 404);
         }
