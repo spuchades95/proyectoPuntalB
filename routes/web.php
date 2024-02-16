@@ -2,6 +2,20 @@
 
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\AdministrativeController;
+use App\Http\Controllers\BoatController;
+use App\Http\Controllers\CivilGuardController;
+use App\Http\Controllers\ConcessionaireController;
+use App\Http\Controllers\CrewController;
+use App\Http\Controllers\DockController;
+use App\Http\Controllers\FacilityController;
+use App\Http\Controllers\IncidentController;
+use App\Http\Controllers\RentalController;
+use App\Http\Controllers\TransitController;
+use App\Http\Controllers\UserController;
+use App\Http\Controllers\BaseController;
+use App\Http\Controllers\BaseBerthController;
+use App\Http\Controllers\BerthController;
 use App\Http\Controllers\RoleController;
 /*
 |--------------------------------------------------------------------------
