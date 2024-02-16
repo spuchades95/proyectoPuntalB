@@ -39,11 +39,15 @@ class AdministrativeController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Administrative $administrative)
+    public function show(string $id)
     {
+        $administrative = Administrative::find($id);
         $administrative->load('usuario');
 
         return view('administrativos.show', compact('administrative'));
+        // $administrative->load('usuario');
+
+        // return view('administrativos.show', compact('administrative'));
     }
 
     /**
