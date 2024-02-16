@@ -51,32 +51,30 @@ class BerthController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Berth $berth)
+    public function show(string $id)
     {
-        return view('amarres.show', compact('berth'));
+        $amarre = Berth::find($id);
+        return view('amarres.show', compact('amarre'));
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Berth $berth)
+    public function edit(string $id)
     {
-        return view('amarres.edit', compact('berth'));
+        $amarre = Berth::find($id);
+        return view('amarres.edit', compact('amarre'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Berth $berth)
+    public function update(Request $request, string $id)
     {
-        $request->validate([
-            'Estado' => 'required',
-            'TipoPlaza' => 'required',
-            'Anio' => 'required',
-            'Causa' => 'nullable|string|max:255',
-            'Pantalan_id' => 'required',
-        ]);
-        $berth->update($request->all());
+        $amarre = Berth::find($id);
+        $amarre->update($request->all());
+        $amarre->save();
+ 
         return redirect()->route('amarres.index')
             ->with('success', 'Amarre actualizado correctamente.');
     }
@@ -84,9 +82,10 @@ class BerthController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Berth $berth)
+    public function destroy(string $id)
     {
-        $berth->delete();
+        $amarre = Berth::find($id);
+        $amarre->delete();
         return redirect()->route('amarres.index')
             ->with('success', 'Amarre eliminado correctamente.');
     }

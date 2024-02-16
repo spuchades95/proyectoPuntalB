@@ -54,33 +54,32 @@ class RentalController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Rental $rental)
+    public function show(string $id)
     {
-        return view('alquileres.show', compact('rental'));
+        $alquiler = Rental::find($id);
+        return view('alquileres.show', compact('alquiler'));
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Rental $rental)
+    public function edit(string $id)
     {
-        return view('alquileres.edit', compact('rental'));
+        $alquiler = Rental::find($id);
+        return view('alquileres.edit', compact('alquiler'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Rental $rental)
+    public function update(Request $request, string $id)
     {
-        $request->validate([
-            'FechaInicio' => 'required',
-            'PlazaBase_id' => 'required',
-            'FechaFinalizacion' => 'required',
-            'Embarcacion_id' => 'required',
-           
-        ]);
+    
+        $alquiler = Rental::find($id);
 
-        $rental->update($request->all());
+        $alquiler->update($request->all());
+
+        $alquiler->save();
 
         return redirect()->route('alquileres.index')
             ->with('success', 'Rental updated successfully');

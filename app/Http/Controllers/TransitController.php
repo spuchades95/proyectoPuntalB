@@ -57,35 +57,32 @@ class TransitController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Transit $transit)
+    public function show(string $id)
     {
-        return view('transitos.show', compact('transit'));
+        $transito = Transit::find($id);
+        return view('transitos.show', compact('transito'));
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Transit $transit)
+    public function edit(string $id)
     {
-        return view('transitos.edit', compact('transit'));
+        $transito = Transit::find($id);
+        return view('transitos.edit', compact('transito'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Transit $transit)
+    public function update(Request $request, string $id)
     {
-        $request->validate([
-            'Proposito' => 'nullable|string|max:255',
-            'FechaEntrada' => 'required',
-            'Guardamuelles_id' => 'required',
-            'FechaSalida' => 'required',
-            'Autorizacion' => 'required',
-            'Amarre_id' => 'required',
-            'Administrativo_id' => 'required',
-        ]);
+      
+        $transito = Transit::findOrFail($id);
 
-        $transit->update($request->all());
+        $transito->update($request->all());
+
+        $transito->save();
 
         return redirect()->route('transitos.index')
             ->with('success', 'Transit updated successfully');
@@ -94,9 +91,10 @@ class TransitController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Transit $transit)
+    public function destroy(string $id)
     {
-        $transit->delete();
+        $transito = Transit::find($id);
+        $transito->delete();
 
         return redirect()->route('transitos.index')
             ->with('success', 'Transit deleted successfully');

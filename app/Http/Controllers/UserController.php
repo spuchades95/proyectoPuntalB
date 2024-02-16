@@ -83,32 +83,32 @@ class UserController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        $request->validate([
-            'NombreCompleto' => 'required',
-            'Habilitado' => 'required',
-            'NombreUsuario' => 'required',
-            'Instalacion_id' => 'required',
-            'DNI' => 'required',
-            'Telefono' => 'required',
-            'Direccion' => 'required',
-            'Imagen' => 'nullable|image',
-            'Descripcion' => 'nullable|string|max:255',
-            'Rol_id' => 'required',
-            'Causa' => 'nullable|string|max:255',
-            'email' => 'required|email|unique:users',
-            'password' => 'required',
-        ]);
+        // $request->validate([
+        //     'NombreCompleto' => 'required',
+        //     'Habilitado' => 'required',
+        //     'NombreUsuario' => 'required',
+        //     'Instalacion_id' => 'required',
+        //     'DNI' => 'required',
+        //     'Telefono' => 'required',
+        //     'Direccion' => 'required',
+        //     'Imagen' => 'nullable|image',
+        //     'Descripcion' => 'nullable|string|max:255',
+        //     'Rol_id' => 'required',
+        //     'Causa' => 'nullable|string|max:255',
+        //     'email' => 'required|email|unique:users',
+        //     'password' => 'required',
+        // ]);
         $usuario = User::find($id);
-        $usuario->Nombre = $request->Nombre;
-        $usuario->Apellidos = $request->Apellidos;
-        $usuario->Email = $request->Email;
-        $usuario->Password = $request->Password;
-        $usuario->Telefono = $request->Telefono;
-        $usuario->DNI = $request->DNI;
-        $usuario->Direccion = $request->Direccion;
-        $usuario->FechaNacimiento = $request->FechaNacimiento;
-        $usuario->Rol_id = $request->Rol_id;
-
+        // $usuario->Nombre = $request->Nombre;
+        // $usuario->Apellidos = $request->Apellidos;
+        // $usuario->Email = $request->Email;
+        // $usuario->Password = $request->Password;
+        // $usuario->Telefono = $request->Telefono;
+        // $usuario->DNI = $request->DNI;
+        // $usuario->Direccion = $request->Direccion;
+        // $usuario->FechaNacimiento = $request->FechaNacimiento;
+        // $usuario->Rol_id = $request->Rol_id;
+        $usuario->update($request->all());
         $usuario->save();
         return redirect()->route('usuarios.index')
             ->with('success', 'Usuario actualizado correctamente.');
