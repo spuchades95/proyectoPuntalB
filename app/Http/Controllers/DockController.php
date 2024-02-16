@@ -12,7 +12,7 @@ class DockController extends Controller
      */
     public function index()
     {
-        $pantalane = Dock::all();
+        $pantalanes = Dock::all();
         return view('pantalanes.index', compact('pantalanes'));
     }
 
@@ -81,7 +81,7 @@ class DockController extends Controller
         $pantalan->update($request->all());
 
         $pantalan->save();
-        return redirect()->route('pantalane.index')
+        return redirect()->route('pantalanes.index')
             ->with('success', 'pantalán actualizado correctamente.');
     }
 

@@ -12,8 +12,8 @@ class BerthController extends Controller
      */
     public function index()
     {
-        $amarre = Berth::all();
-        return view('amarres.index', compact('amarre'));
+        $amarres = Berth::all();
+        return view('amarres.index', compact('amarres'));
     }
 
     /**
@@ -30,6 +30,7 @@ class BerthController extends Controller
     public function store(Request $request)
     {
         $request->validate([
+            'Numero' => 'required|numeric|unique:berths,Numero',
             'Estado' => 'required',
             'TipoPlaza' => 'required',
             'Anio' => 'required',
@@ -37,6 +38,7 @@ class BerthController extends Controller
             'Pantalan_id' => 'required',
         ]);
         $amarre = new Berth();
+        $amarre->Numero = $request->Numero;
         $amarre->Estado = $request->Estado;
         $amarre->TipoPlaza = $request->TipoPlaza;
         $amarre->Anio = $request->Anio;
