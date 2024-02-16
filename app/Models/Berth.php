@@ -29,7 +29,7 @@ class Berth extends Model
     
     }
 
-    public function administrativos()
+    public function administrativoamare()
     {
         return $this->belongsToMany(Administrative::class, 'administrative_berths', 'Amarre_id', 'Administrativo_id');
     }

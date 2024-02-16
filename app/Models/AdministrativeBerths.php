@@ -19,7 +19,7 @@ class AdministrativeBerths extends Model
 
     ];
 
-    protected $table = 'administrative_berths';
+    
 
  
 }

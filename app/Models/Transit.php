@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\softDeletes;
+
 class Transit extends Berth
 {
     use HasFactory;
@@ -43,5 +44,9 @@ class Transit extends Berth
     public function guardiasciviles()
     {
         return $this->belongsToMany(CivilGuard::class, 'civil_guard_transits', 'Usuario_id', 'Transito_id');
+    }
+    public function administrativos()
+    {
+        return $this->belongsToMany(Administrative::class, 'administrative_berths', 'Admnistrativo_id', 'Amarre_id');
     }
 }
