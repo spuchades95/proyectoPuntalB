@@ -13,7 +13,30 @@ use App\Http\Controllers\RoleController;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
+
+Route::resource('administrativos',AdministrativeController::class);
+Route::resource('alquileres',RentalController::class);
+Route::resource('amarres',BerthController::class);
+Route::resource('concesionarios',ConcessionaireController::class);
+Route::resource('embarcaciones',BoatController::class); 
+Route::resource('guardiasciviles',CivilGuardController::class);
+Route::resource('incidencias',IncidentController::class);
+Route::resource('instalaciones',FacilityController::class);
+Route::resource('pantalanes',DockController::class);
+Route::resource('plazas',BaseController::class);
+Route::resource('plazasbase',BaseBerthController::class);
 Route::resource('roles',RoleController::class);
+Route::resource('transitos',TransitController::class);
+Route::resource('tripulantes',CrewController::class);
+Route::resource('usuarios',UserController::class);
+
+
+
+
+
+
+
+  
 
 Route::get('/', function () {
     return view('welcome');
