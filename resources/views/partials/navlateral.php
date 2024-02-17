@@ -1,8 +1,8 @@
 <div class="azul500 col-md-2 d-flex flex-column">
     <img alt="Bootstrap Image Preview" src="/image/Group.svg" class="logo" />
-    <button type="button" class="btn mt-5 botonNavA rol">GESTIÓN ROLES</button>
-    <button type="button" class="btn mt-5 botonNavA user">GESTIÓN USUARIOS</button>
-    <button type="button" class="btn mt-5 botonNavB ins">GESTIÓN INSTALACIONES</button>
+    <a class="btn mt-5 botonNavA rol">GESTIÓN ROLES</a>
+    <a class="btn mt-5 botonNavA user">GESTIÓN USUARIOS</a>
+    <a class="btn mt-5 botonNavB ins">GESTIÓN INSTALACIONES</a>
 </div>
 <style>
     :root {
