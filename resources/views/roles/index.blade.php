@@ -15,10 +15,9 @@
                 <th class="cabeceraTabla" colspan="4"> ROLES</th>
             </tr>
             <tr class="cabeceraDatos">
-                <th>Título</th>
-                <th>Autor</th>
-                
-                <th></th>
+                <th>Nombre del Rol</th>
+                <th>Permisos</th>
+                <th>Descripcion del rol</th>
             </tr>
         </thead>
         <tbody>
@@ -102,7 +101,7 @@
         text-align: center;
         font-family: "Inter", sans-serif;
         border-radius: 5px;
-        background-image: url(/assets/img/add_solid.svg);
+        background-image: url(/Image/add_solid.svg);
         background-size: 30px;
         background-repeat: no-repeat;
         background-position: left 10px center;
@@ -118,5 +117,6 @@
         color: #000000;
     }
 </style>
+<link rel="stylesheet" type="text/css" href="{{ asset('css/styles.css') }}">
 
 @endsection

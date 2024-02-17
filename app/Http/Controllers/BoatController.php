@@ -68,50 +68,49 @@ class BoatController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Boat $boat)
+    public function show(string $id)
+    
     {
-        return view('embarcaciones.show', compact('boat'));
+        $embarcacion = Boat::find($id);
+        return view('embarcaciones.show', compact('embarcacion'));
+       
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Boat $boat)
+    public function edit(string $id)
     {
-        return view('embarcaciones.edit', compact('boat'));
+        $embarcacion = Boat::find($id);
+        return view('embarcaciones.edit', compact('embarcacion'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Boat $boat)
+    public function update(Request $request, string $id)
     {
-        $request->validate([
-            'Matricula' => 'required',
-            'Manga' => 'required',
-            'Eslora' => 'required',
-            'Origen' => 'required',
-            'Titular' => 'required',
-            'Imagen' => 'nullable|image',
-            'Numero_Registro' => 'required',
-            'Datos_tecnicos' => 'required',
-            'Modelo' => 'required',
-            'Nombre' => 'required',
-            'Causa' => 'nullable|string|max:255',
-            'Tipo' => 'required',
-        ]);
-        $boat->update($request->all());
+        $embarcacion = Boat::findOrFail($id);
+        $embarcacion->update($request->all());
+        if ($request->hasFile('Imagen')) {
+            $embarcacion->Imagen = $request->file('Imagen')->store('public');
+        }
+        $embarcacion->save();
         return redirect()->route('embarcaciones.index')
             ->with('success', 'Barco actualizado correctamente.');
+
+
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Boat $boat)
+    public function destroy(string $id)
     {
-        $boat->delete();
+        $embarcacion = Boat::find($id);
+        $embarcacion->delete();
         return redirect()->route('embarcaciones.index')
             ->with('success', 'Barco eliminado correctamente.');
+
     }
 }

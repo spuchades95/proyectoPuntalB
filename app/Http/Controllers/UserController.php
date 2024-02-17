@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\User;
+use Illuminate\Support\Facades\Log;
+
 
 class UserController extends Controller
 {
@@ -29,6 +31,7 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
+        // dd($request->all());
         $request->validate([
             'NombreCompleto' => 'required',
             'Habilitado' => 'required',
@@ -45,15 +48,23 @@ class UserController extends Controller
             'password' => 'required',
         ]);
         $usuario = new User();
-        $usuario->Nombre = $request->Nombre;
-        $usuario->Apellidos = $request->Apellidos;
-        $usuario->Email = $request->Email;
-        $usuario->Password = $request->Password;
-        $usuario->Telefono = $request->Telefono;
+        $usuario->NombreCompleto = $request->NombreCompleto;
+        $usuario->Habilitado = $request->Habilitado;
+        $usuario->NombreUsuario = $request->NombreUsuario;
+        $usuario->Instalacion_id = $request->Instalacion_id;
         $usuario->DNI = $request->DNI;
+        $usuario->Telefono = $request->Telefono;
         $usuario->Direccion = $request->Direccion;
-        $usuario->FechaNacimiento = $request->FechaNacimiento;
+        if ($request->hasFile('Imagen')) {
+            $usuario->Imagen = $request->file('Imagen')->store('public');
+        }
+        $usuario->Descripcion = $request->Descripcion;
         $usuario->Rol_id = $request->Rol_id;
+        $usuario->Causa = $request->Causa;
+        $usuario->email = $request->email;
+        $usuario->password = $request->password;
+
+
 
         $usuario->save();
         return redirect()->route('usuarios.index')
@@ -83,32 +94,32 @@ class UserController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        $request->validate([
-            'NombreCompleto' => 'required',
-            'Habilitado' => 'required',
-            'NombreUsuario' => 'required',
-            'Instalacion_id' => 'required',
-            'DNI' => 'required',
-            'Telefono' => 'required',
-            'Direccion' => 'required',
-            'Imagen' => 'nullable|image',
-            'Descripcion' => 'nullable|string|max:255',
-            'Rol_id' => 'required',
-            'Causa' => 'nullable|string|max:255',
-            'email' => 'required|email|unique:users',
-            'password' => 'required',
-        ]);
+        // $request->validate([
+        //     'NombreCompleto' => 'required',
+        //     'Habilitado' => 'required',
+        //     'NombreUsuario' => 'required',
+        //     'Instalacion_id' => 'required',
+        //     'DNI' => 'required',
+        //     'Telefono' => 'required',
+        //     'Direccion' => 'required',
+        //     'Imagen' => 'nullable|image',
+        //     'Descripcion' => 'nullable|string|max:255',
+        //     'Rol_id' => 'required',
+        //     'Causa' => 'nullable|string|max:255',
+        //     'email' => 'required|email|unique:users',
+        //     'password' => 'required',
+        // ]);
         $usuario = User::find($id);
-        $usuario->Nombre = $request->Nombre;
-        $usuario->Apellidos = $request->Apellidos;
-        $usuario->Email = $request->Email;
-        $usuario->Password = $request->Password;
-        $usuario->Telefono = $request->Telefono;
-        $usuario->DNI = $request->DNI;
-        $usuario->Direccion = $request->Direccion;
-        $usuario->FechaNacimiento = $request->FechaNacimiento;
-        $usuario->Rol_id = $request->Rol_id;
-
+        // $usuario->Nombre = $request->Nombre;
+        // $usuario->Apellidos = $request->Apellidos;
+        // $usuario->Email = $request->Email;
+        // $usuario->Password = $request->Password;
+        // $usuario->Telefono = $request->Telefono;
+        // $usuario->DNI = $request->DNI;
+        // $usuario->Direccion = $request->Direccion;
+        // $usuario->FechaNacimiento = $request->FechaNacimiento;
+        // $usuario->Rol_id = $request->Rol_id;
+        $usuario->update($request->all());
         $usuario->save();
         return redirect()->route('usuarios.index')
             ->with('success', 'Usuario actualizado correctamente.');
