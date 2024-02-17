@@ -29,20 +29,15 @@ class CrewController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Crew $crew)
+    public function show($id)
     {
-        $crew = Crew::find($crew);
+        $crew = Crew::find($id);
 
-        if ($crew == null) {
-            return response()->json([
-                'message' => 'No se encuentra la tripulación',
-                'code' => 404
-            ], 404);
+        if ($crew) {
+            return response()->json($crew, 200);
+        } else {
+            return response()->json('Tripulación no encontrada', 404);
         }
-        return response()->json([
-            'data' => $crew,
-            'code' => 200
-        ], 200);
     }
 
     /**

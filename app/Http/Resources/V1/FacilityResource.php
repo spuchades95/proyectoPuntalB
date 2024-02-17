@@ -14,6 +14,13 @@ class FacilityResource extends JsonResource
      */
     public function toArray(Request $request): array
     {
-        return parent::toArray($request);
+        return [
+            // 'id' => $this->id,
+            'Ubicacion' => $this->Nombre,
+            'Dimensiones' => $this->Descripcion,
+            'Estado' => $this->Estado,
+            'Fecha de creacion' => $this->FechaCreacion,
+            
+        ];
     }
 }

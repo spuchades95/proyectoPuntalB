@@ -2,6 +2,20 @@
 
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\AdministrativeController;
+use App\Http\Controllers\BoatController;
+use App\Http\Controllers\CivilGuardController;
+use App\Http\Controllers\ConcessionaireController;
+use App\Http\Controllers\CrewController;
+use App\Http\Controllers\DockController;
+use App\Http\Controllers\FacilityController;
+use App\Http\Controllers\IncidentController;
+use App\Http\Controllers\RentalController;
+use App\Http\Controllers\TransitController;
+use App\Http\Controllers\UserController;
+use App\Http\Controllers\BaseController;
+use App\Http\Controllers\BaseBerthController;
+use App\Http\Controllers\BerthController;
 use App\Http\Controllers\RoleController;
 /*
 |--------------------------------------------------------------------------
@@ -13,7 +27,31 @@ use App\Http\Controllers\RoleController;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
+
+Route::resource('administrativos',AdministrativeController::class);
+Route::resource('alquileres',RentalController::class);
+Route::resource('amarres',BerthController::class);
+Route::resource('concesionarios',ConcessionaireController::class);
+Route::resource('embarcaciones',BoatController::class); 
+Route::resource('guardiasciviles',CivilGuardController::class);
+Route::resource('incidencias',IncidentController::class);
+Route::resource('instalaciones',FacilityController::class);
+Route::resource('pantalanes',DockController::class);
+Route::resource('plazas',BaseController::class);
+Route::resource('plazasbase',BaseBerthController::class);
 Route::resource('roles',RoleController::class);
+Route::resource('transitos',TransitController::class);
+Route::resource('tripulantes',CrewController::class);
+Route::resource('usuarios',UserController::class);
+
+
+
+
+
+
+
+  
+
 Route::get('/', function () {
     return view('welcome');
 });

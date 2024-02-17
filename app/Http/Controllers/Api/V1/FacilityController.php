@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api\V1;
 
 use App\Http\Controllers\Controller;
+use App\Http\Resources\V1\FacilityResource;
 use App\Models\Facility;
 use Illuminate\Http\Request;
 
@@ -29,20 +30,16 @@ class FacilityController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Facility $facility)
+    public function show($id)
     {
-        $facility = Facility::find($facility);
+        $facility = Facility::find($id);
 
-        if ($facility == null) {
-            return response()->json([
-                'message' => 'No se encuentra la instalación',
-                'code' => 404
-            ], 404);
+        if ($facility) {
+            return new FacilityResource($facility);
+            // return response()->json($facility, 200);
+        } else {
+            return response()->json('Instalación no encontrada', 404);
         }
-        return response()->json([
-            'data' => $facility,
-            'code' => 200
-        ], 200);
     }
 
     /**

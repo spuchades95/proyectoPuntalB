@@ -36,7 +36,15 @@ class ConcessionaireRoleController extends Controller
      */
     public function show(ConcessionaireRole $concessionaireRole)
     {
-        //
+       
+        $assignmentDate = $concessionaireRole->created_at;
+
+        
+        $roleDetails = $concessionaireRole->role;
+        $concessionaireDetails = $concessionaireRole->concessionaire;
+
+      
+        return view('concessionaire_roles.show', compact('concessionaireRole', 'assignmentDate', 'roleDetails', 'concessionaireDetails'));
     }
 
     /**

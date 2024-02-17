@@ -12,7 +12,12 @@ class AdministrativeController extends Controller
      */
     public function index()
     {
-        //
+        // return view('administrativos.index', [
+        //     'administrativos' => Administrative::all()
+        // ]);
+        $administrativos = Administrative::with('usuario')->get();
+
+        return view('administrativos.index', compact('administrativos'));
     }
 
     /**
@@ -20,7 +25,7 @@ class AdministrativeController extends Controller
      */
     public function create()
     {
-        //
+        
     }
 
     /**
@@ -36,7 +41,9 @@ class AdministrativeController extends Controller
      */
     public function show(Administrative $administrative)
     {
-        //
+        $administrative->load('usuario');
+
+        return view('administrativos.show', compact('administrative'));
     }
 
     /**
@@ -44,7 +51,7 @@ class AdministrativeController extends Controller
      */
     public function edit(Administrative $administrative)
     {
-        //
+       
     }
 
     /**

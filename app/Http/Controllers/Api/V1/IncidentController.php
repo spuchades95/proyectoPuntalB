@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api\V1;
 use App\Http\Controllers\Controller;
 use App\Models\Incident;
 use Illuminate\Http\Request;
+use App\Http\Resources\V1\IncidentsResource;
 
 class IncidentController extends Controller
 {
@@ -29,20 +30,16 @@ class IncidentController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Incident $incident)
+    public function show($id)
     {
-        $incident = Incident::find($incident);
+        $incident = Incident::find($id);
 
-        if ($incident == null) {
-            return response()->json([
-                'message' => 'No se encuentra el incidente',
-                'code' => 404
-            ], 404);
+        if ($incident) {
+            return new IncidentController($incident);
+            // return response()->json($incident, 200);
+        } else {
+            return response()->json('Incidente no encontrado', 404);
         }
-        return response()->json([
-            'data' => $incident,
-            'code' => 200
-        ], 200);
     }
 
     /**

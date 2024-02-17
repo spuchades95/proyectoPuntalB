@@ -14,6 +14,14 @@ class DockResource extends JsonResource
      */
     public function toArray(Request $request): array
     {
-        return parent::toArray($request);
+        $nombre = $this->Nombre;
+        $ubicacion = $this->Ubicacion;
+        $capacidad = $this->Capacidad;
+
+        return [
+            'Nombre' => $nombre,
+            'Ubicacion' => $ubicacion,
+            'Capacidad' => $capacidad,
+        ];
     }
 }

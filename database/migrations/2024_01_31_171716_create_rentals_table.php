@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('rentals', function (Blueprint $table) {
             $table->id();
             $table->date('FechaInicio')->nullable();            
-            $table->date('FechoFinalizacion')->nullable();
+            $table->date('FechaFinalizacion')->nullable();
             
             $table->softDeletes();
             $table->timestamps();

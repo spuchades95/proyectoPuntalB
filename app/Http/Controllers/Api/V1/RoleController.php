@@ -29,20 +29,15 @@ class RoleController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Role $role)
+    public function show($id)
     {
-        $role = Role::find($role);
+        $role = Role::find($id);
 
-        if ($role == null) {
-            return response()->json([
-                'message' => 'No se encuentra el rol',
-                'code' => 404
-            ], 404);
+        if ($role) {
+            return response()->json($role, 200);
+        } else {
+            return response()->json('Rol no encontrado', 404);
         }
-        return response()->json([
-            'data' => $role,
-            'code' => 200
-        ], 200);
     }
 
     /**
