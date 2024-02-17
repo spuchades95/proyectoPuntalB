@@ -1,8 +1,14 @@
 <div class="azul500 col-md-2 d-flex flex-column">
     <img alt="Bootstrap Image Preview" src="/image/Group.svg" class="logo" />
+<<<<<<< HEAD
     <a href="/roles" class="btn mt-5 boton rol">GESTIÓN ROLES</a>
     <a href="/usuarios" class="btn mt-5 boton user">GESTIÓN USUARIOS</a>
     <a href="/instalaciones" class="btn mt-5 boton ins">GESTIÓN INSTALACIONES</a>
+=======
+    <a class="btn mt-5 boton rol">GESTIÓN DE ROLES</a>
+    <a href="{{ route('usuarios.index') }}" class="btn mt-5 boton user">GESTIÓN DE USUARIOS</a>
+    <a class=" mt-5 boton ins">GESTIÓN DE INSTALACIONES</a>
+>>>>>>> 854e7edf9ec172bb3c5f2b3466d688177f9eecd0
 </div>
 <style>
     :root {
@@ -45,29 +51,6 @@
         margin-top: 5vh;
 
     }
-
-    /* .btn {
-        color: var(--wedgewood700) !important;
-        background: var(--wedgewood50) !important;
-        width: 160px !important;
-        height: 40px !important;
-        flex-shrink: 0 !important;
-        border-radius: 2px !important;
-        border: 1px solid var(--wedgewood700) !important;
-        font-family: Questrial;
-        font-size: 10px !important;
-        font-style: normal;
-        font-weight: 400;
-        line-height: normal;
-        font-family: 'Questrial', sans-serif;
-        text-align: center;
-        margin-left: 10px;
-        background-repeat: no-repeat;
-        background-size: 24px 24px;
-        background-position: 5px center;
-        padding-left: 30px;
-    } */
-
     .boton {
         /* estilo de la caja*/
         border-radius: 2px;
@@ -84,7 +67,7 @@
         /* texto del boton*/
         color: var(--wedgewood700) !important;
         -webkit-text-stroke: 1.5px var(--wedgewood700) !important;
-        font-family: Questrial;
+        font-family: "Questrial", sans-serif;
         font-size: 13px !important;
         font-style: normal !important;
         font-weight: 400 !important;
@@ -100,7 +83,12 @@
     .boton:hover,
     .boton:focus,
     .boton:active {
-
+        border-radius: 2px;
+        width: 160px;
+  height: 40px;
+  display: flex;
+  text-align: left;
+  margin-top: 40px;
         border: 1px solid var(--wedgewood700) !important;
         background: var(--wedgewood700) !important;
         background-color: #36536e !important;
