@@ -1,7 +1,7 @@
 <div class="azul500 col-md-2 d-flex flex-column">
     <img alt="Bootstrap Image Preview" src="/image/Group.svg" class="logo" />
     <a class="btn mt-5 botonNavA rol">GESTIÓN ROLES</a>
-    <a class="btn mt-5 botonNavA user">GESTIÓN USUARIOS</a>
+    <a href="{{ route('usuarios.index') }}" class="btn mt-5 botonNavA user">GESTIÓN USUARIOS</a>
     <a class="btn mt-5 botonNavB ins">GESTIÓN INSTALACIONES</a>
 </div>
 <style>
