@@ -123,7 +123,57 @@ line-height: normal;
 }
 
 
+.formHeader {
+        padding: 6px;
+        font-weight: bold;
+        font-family: 'Questrial', sans-serif;
+        color: #ffffff;
+        background-color: #1d2834;
+        border-radius: 5px 5px 0px 0px;
+    }
 
+    .formularioRoles {
+        padding: 50px;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+
+    }
+
+    form {
+        background-color: #FFFFFF;
+        padding: 15px;
+        border-radius: 0px 0px 5px 5px;
+        box-shadow: 10px 5px 10px rgba(0, 0, 0, 0.5);
+    }
+
+    .chec div {
+        margin-bottom: 5px;
+    }
+
+    input[type="text"],
+    textarea,
+    input[type="checkbox"] {
+        box-sizing: border-box;
+        border: 1px solid #ccc;
+        padding: 3px;
+        font-size: 14px;
+        line-height: 1.5;
+        height: 28px;
+        width: calc(100% - 75px);
+    }
+
+    .label-checkbox {
+        font-weight: bold;
+        display: inline-block;
+        width: 200px;
+        margin-right: 10px;
+    }
+
+    label {
+        width: 200px;
+        font-weight: bold;
+    }
 
 
     .modal-content {
