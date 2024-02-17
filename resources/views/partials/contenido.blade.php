@@ -1,10 +1,11 @@
-<div class="contenido col-md-12">
-    @yield('content')
-</div>
-<style >
+    <link href="{{ asset('css/plantilla.css') }}" rel="stylesheet">
+    <div class="contenido col-md-12">
+      @yield('content')
+    </div>
+    <style >
 
-.contenido {
-    height: 100vh;
+ .contenido {
+    height: 93vh;
     background-color: #eaeff4;
     flex: 1;
     display: flex;
@@ -12,5 +13,5 @@
     display: flex;
   }
 
-
-</style>
+/* main */
+</style> 

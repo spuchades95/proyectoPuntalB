@@ -13,7 +13,6 @@ use App\Http\Controllers\IncidentController;
 use App\Http\Controllers\RentalController;
 use App\Http\Controllers\TransitController;
 use App\Http\Controllers\UserController;
-use App\Http\Controllers\BaseController;
 use App\Http\Controllers\BaseBerthController;
 use App\Http\Controllers\BerthController;
 use App\Http\Controllers\RoleController;
@@ -27,6 +26,7 @@ use App\Http\Controllers\RoleController;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
+// Route::put('/roles/{role}', 'RoleController@update')->name('roles.update');
 
 Route::resource('administrativos',AdministrativeController::class);
 Route::resource('alquileres',RentalController::class);
@@ -37,7 +37,6 @@ Route::resource('guardiasciviles',CivilGuardController::class);
 Route::resource('incidencias',IncidentController::class);
 Route::resource('instalaciones',FacilityController::class);
 Route::resource('pantalanes',DockController::class);
-Route::resource('plazas',BaseController::class);
 Route::resource('plazasbase',BaseBerthController::class);
 Route::resource('roles',RoleController::class);
 Route::resource('transitos',TransitController::class);

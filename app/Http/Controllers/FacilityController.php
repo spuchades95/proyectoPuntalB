@@ -59,35 +59,32 @@ class FacilityController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Facility $facility)
+    public function show(string $id)
     {
-        return view('instalaciones.show', compact('facility'));
+        $instalacion = Facility::find($id);
+        return view('instalaciones.show', compact('instalacion'));
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Facility $facility)
+    public function edit(string $id)
     {
-        return view('instalaciones.edit', compact('facility'));
+        $instalacion = Facility::find($id);
+        return view('instalaciones.edit', compact('instalacion'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Facility $facility)
+    public function update(Request $request, string $id)
     {
-        $request->validate([
-            'Ubicacion' => 'required',
-            'Dimensiones' => 'required',
-            'Descripcion' => 'required',
-            'Estado' => 'required',
-            'FechaCreacion' => 'required',
-            'Causa' => 'nullable|string|max:255',
-        ]);
+   
+        $instalacion = Facility::findOrFail($id);
 
-        $facility->update($request->all());
+        $instalacion->update($request->all());
 
+        $instalacion->save();
         return redirect()->route('instalaciones.index')
             ->with('success', 'Facility updated successfully'); 
     }
@@ -95,9 +92,10 @@ class FacilityController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Facility $facility)
+    public function destroy(string $id)
     {
-        $facility->delete();
+        $instalacion = Facility::find($id);
+        $instalacion->delete();
 
         return redirect()->route('instalaciones.index')
             ->with('success', 'Facility deleted successfully');
