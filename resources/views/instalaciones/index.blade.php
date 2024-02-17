@@ -6,10 +6,12 @@
 <script type="text/javascript" language="javascript" src="https://code.jquery.com/jquery-3.7.0.js"></script>
 <script type="text/javascript" language="javascript" src="https://cdn.datatables.net/1.13.7/js/jquery.dataTables.min.js"></script>
 <script type="text/javascript" language="javascript" src="https://cdn.datatables.net/1.13.7/js/dataTables.bootstrap5.min.js"></script>
+<div class="d-flex flex-row-reverse mb-2 mt-3"><a href="{{ route('instalaciones.create') }}" class="enlaceCreateEmb">INSTALACIONES</a></div>
+
 
 @foreach ($instalaciones as $instalacion)
+<h2>{{ $instalacion->Ubicacion }}</h2>
 <div class="container">
-    <h2>{{ $instalacion->Ubicacion }}</h2>
     @foreach ($instalacion->pantalanes as $pantalan)
     <table class="table table-hover table-custom-hover rounded-3 overflow-hidden table-striped" style="width:100%">
         <thead>
@@ -63,12 +65,17 @@
     .cabeceraTabla {
         font-size: 30px;
         font-weight: lighter;
+        background-image: url(/Image/add_solid.svg);
+        background-size: 30px;
+        background-repeat: no-repeat;
+        background-position: right 10px center;
     }
 
     .cabeceraDatos>th {
         background-color: #a6bed3!important;
         color: black!important;
         font-weight: bold;
+        
     }
 
     th {
@@ -115,5 +122,26 @@
         text-decoration: none;
         color: #000000;
     }
+
+    h2 {
+
+        background-color: #426787!important;
+        color: #f5f7fa!important;
+        font-family: "Questrial", sans-serif;
+
+        border-top-left-radius: 5px;
+        border-top-right-radius: 5px;
+        margin-top: 10px;
+        background-image: url(/Image/add_solid.svg);
+        background-size: 30px;
+        background-repeat: no-repeat;
+        background-position: right 10px center;
+    }
+
+    .container {
+        background-color: #f5f7fa!important;
+        margin-top: 0px;
+    }
+
 </style>
 <link rel="stylesheet" type="text/css" href="{{ asset('css/styles.css') }}">
