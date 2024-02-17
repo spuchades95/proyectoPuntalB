@@ -10,10 +10,16 @@ class FacilityController extends Controller
     /**
      * Display a listing of the resource.
      */
+    // public function index()
+    // {
+    //     $instalaciones = Facility::all();
+
+    //     return view('instalaciones.index', compact('instalaciones'));
+    // }
+
     public function index()
     {
-        $instalaciones = Facility::all();
-
+        $instalaciones = Facility::with('pantalanes.plazas')->get();
         return view('instalaciones.index', compact('instalaciones'));
     }
 

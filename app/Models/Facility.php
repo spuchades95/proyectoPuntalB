@@ -24,7 +24,7 @@ class Facility extends Model
     }
     public function pantalanes()
     {
-        return $this->hasMany(Dock::class);
+        return $this->hasMany(Dock::class, 'Instalacion_id');
     }
 
     public function usuarios()
