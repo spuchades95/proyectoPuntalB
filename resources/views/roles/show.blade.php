@@ -1,6 +1,12 @@
 @extends('layouts.plantilla')
 
 @section('content')
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<link rel="stylesheet" type="text/css" href="{{ asset('styles.css') }}">
 <div class="formularioRoles">
     <div class="formHeader">
         <h5>VISTA ROL {{ $rol->NombreRol }} </h5>
@@ -38,7 +44,7 @@
     </form>
 </div>
 @endsection
-<link rel="stylesheet" type="text/css" href="{{ asset('styles.css') }}">
+
 
 
 <script type="text/javascript">
