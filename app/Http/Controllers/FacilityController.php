@@ -43,7 +43,7 @@ class FacilityController extends Controller
             'Descripcion' => 'required',
             'Estado' => 'required',
             'FechaCreacion' => 'required',
-            'Causa' => 'nullable|string|max:255',
+          
         ]);
 
         $instalaciones = new Facility();
@@ -52,7 +52,7 @@ class FacilityController extends Controller
         $instalaciones->Descripcion = $request->Descripcion;
         $instalaciones->Estado = $request->Estado;
         $instalaciones->FechaCreacion = $request->FechaCreacion;
-        $instalaciones->Causa = $request->Causa;
+      
 
         $instalaciones->save();
 
