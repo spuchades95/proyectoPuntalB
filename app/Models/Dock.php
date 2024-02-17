@@ -21,9 +21,13 @@ class Dock extends Model
 
     public function instalacion()
     {
-        return $this->belongsTo(Facility::class);
+        return $this->belongsTo(Facility::class, 'Instalacion_id');
     }
-    
+
+    public function plazas()
+    {
+        return $this->hasMany(Berth::class, 'Pantalan_id');
+    }
 
 
 
