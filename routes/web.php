@@ -27,6 +27,7 @@ use App\Http\Controllers\RoleController;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
+Route::put('/roles/{role}', 'RolesController@update')->name('roles.update');
 
 Route::resource('administrativos',AdministrativeController::class);
 Route::resource('alquileres',RentalController::class);
@@ -37,7 +38,6 @@ Route::resource('guardiasciviles',CivilGuardController::class);
 Route::resource('incidencias',IncidentController::class);
 Route::resource('instalaciones',FacilityController::class);
 Route::resource('pantalanes',DockController::class);
-Route::resource('plazas',BaseController::class);
 Route::resource('plazasbase',BaseBerthController::class);
 Route::resource('roles',RoleController::class);
 Route::resource('transitos',TransitController::class);
