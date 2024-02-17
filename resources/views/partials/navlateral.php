@@ -1,8 +1,8 @@
 <div class="azul500 col-md-2 d-flex flex-column">
     <img alt="Bootstrap Image Preview" src="/image/Group.svg" class="logo" />
-    <a class="btn mt-5 botonNavA rol">GESTIÓN ROLES</a>
-    <a href="{{ route('usuarios.index') }}" class="btn mt-5 botonNavA user">GESTIÓN USUARIOS</a>
-    <a class="btn mt-5 botonNavB ins">GESTIÓN INSTALACIONES</a>
+    <a href="/roles" class="btn mt-5 boton rol">GESTIÓN ROLES</a>
+    <a href="/usuarios" class="btn mt-5 boton user">GESTIÓN USUARIOS</a>
+    <a href="/instalaciones" class="btn mt-5 boton ins">GESTIÓN INSTALACIONES</a>
 </div>
 <style>
     :root {
@@ -68,7 +68,7 @@
         padding-left: 30px;
     } */
 
-    .btn {
+    .boton {
         /* estilo de la caja*/
         border-radius: 2px;
         border: 1px solid var(--wedgewood50) !important;
@@ -97,9 +97,9 @@
         padding-left: 30px !important;
     }
 
-    .btn:hover,
-    .btn:focus,
-    .btn:active {
+    .boton:hover,
+    .boton:focus,
+    .boton:active {
 
         border: 1px solid var(--wedgewood700) !important;
         background: var(--wedgewood700) !important;
