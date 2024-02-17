@@ -1,14 +1,8 @@
 <div class="azul500 col-md-2 d-flex flex-column">
     <img alt="Bootstrap Image Preview" src="/image/Group.svg" class="logo" />
-<<<<<<< HEAD
     <a href="/roles" class="btn mt-5 boton rol">GESTIÓN ROLES</a>
     <a href="/usuarios" class="btn mt-5 boton user">GESTIÓN USUARIOS</a>
     <a href="/instalaciones" class="btn mt-5 boton ins">GESTIÓN INSTALACIONES</a>
-=======
-    <a class="btn mt-5 boton rol">GESTIÓN DE ROLES</a>
-    <a href="{{ route('usuarios.index') }}" class="btn mt-5 boton user">GESTIÓN DE USUARIOS</a>
-    <a class=" mt-5 boton ins">GESTIÓN DE INSTALACIONES</a>
->>>>>>> 854e7edf9ec172bb3c5f2b3466d688177f9eecd0
 </div>
 <style>
     :root {
