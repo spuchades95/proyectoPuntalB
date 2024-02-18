@@ -8,40 +8,34 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 <div class="formularioRoles">
     <div class="formHeader">
-        <h5>ALTA ROL</h5>
+        <h5>ALTA AMARRE</h5>
     </div>
     <form class="form-container" method="POST" action="{{ route('roles.store') }}">
         @csrf
-        <div class="mb-3 d-flex">
-            <label for="NombreRol" class="form-label">Nombre del rol:</label>
-            <input name="NombreRol" type="text" class="form-control mt-4" placeholder="Nombre del rol "required />
-        </div>
-        <div class="mb-3 d-flex">
-            <label for="Descripcion" class="form-label">Descipcion:</label>
-            <textarea name="Descripcion" class="form-control mt-4" placeholder="Descipcion"required> </textarea>
-        </div>
-        <div class="mb-3">
-            <label for="Permisos" class="form-label">Permisos:</label>
-            <div>
-                <label class="label-checkbox" for="lectura">Lectura</label><br>
-                <input type="checkbox" id="lectura" name="Permisos[]" value="lectura" required>
-
-            </div>
-            <div>
-                <label class="label-checkbox" for="modificacion">Modificación</label><br>
-                <input type="checkbox" id="modificacion" name="Permisos[]" value="modificacion">
-
-            </div>
-            <div>
-                <label class="label-checkbox" for="eliminacion">Eliminación</label><br>
-                <input type="checkbox" id="eliminacion" name="Permisos[]" value="eliminacion">
-
-            </div>
-            <div style='text-align:right' class='mt-4'>
-                <button class="btn btnCancelar"> CANCELAR </button>
-                <button type="submit" class="btn btnAdd">AÑADIR</button>
-            </div>
-        </div>
+        <div class="form-group">
+        <label for="Numero">Número</label>
+        <input type="number" name="Numero" id="Numero" class="form-control" required>
+    </div>
+    <div class="form-group">
+        <label for="Estado">Estado</label>
+        <input type="text" name="Estado" id="Estado" class="form-control" required>
+    </div>
+    <div class="form-group">
+        <label for="TipoPlaza">Tipo de plaza</label>
+        <input type="text" name="TipoPlaza" id="TipoPlaza" class="form-control" required>
+    </div>
+    <div class="form-group">
+        <label for="Anio">Año</label>
+        <input type="datetime-local" name="Anio" id="Anio" class="form-control" required>
+    </div>
+    <div class="form-group">
+        <label for="Causa">Causa</label>
+        <input type="text" name="Causa" id="Causa" class="form-control">
+    </div>
+    <div class="form-group">
+        <label for="Pantalan_id">Pantalán</label>
+        <input type="text" name="Pantalan_id" id="Pantalan_id" class="form-control" required>
+    </div>
     </form>
 </div>
     @endsection

@@ -10,13 +10,17 @@
 
 
 @foreach ($instalaciones as $instalacion)
-<h2>{{ $instalacion->Ubicacion }}</h2>
-<div class="container">
+<h2 > <a href="{{ route('pantalanes.create') }}" class="cabecera-tabla-link">
+        <img src="/Image/add_solid.svg" alt="Icon">
+      </a>{{ $instalacion->Ubicacion }}</h2>
+<div class="container" >
     @foreach ($instalacion->pantalanes as $pantalan)
-    <table class="table table-hover table-custom-hover rounded-3 overflow-hidden table-striped" style="width:100%">
+    <table class="table table-hover table-custom-hover rounded-3 overflow-hidden table-striped" style="width:100%" > 
         <thead>
             <tr>
-                <th class="cabeceraTabla" colspan="4">{{ $pantalan->Nombre }}</th>
+                <th class="cabeceraTabla" colspan="4">{{ $pantalan->Nombre }}  <a href="{{ route('amarres.create') }}" class="cabecera-tabla-link">
+        <img src="/Image/add_solid.svg" alt="Icon">
+      </a></th>
             </tr>
             <tr class="cabeceraDatos">
                 <th>Numero de amarre</th>
@@ -65,10 +69,11 @@
     .cabeceraTabla {
         font-size: 30px;
         font-weight: lighter;
-        background-image: url(/Image/add_solid.svg);
+      /* background-image: url(/Image/add_solid.svg);*/
         background-size: 30px;
         background-repeat: no-repeat;
         background-position: right 10px center;
+        
     }
 
     .cabeceraDatos>th {
@@ -77,10 +82,18 @@
         font-weight: bold;
         
     }
+    .cabecera-tabla-link {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
 
+.cabecera-tabla-link img {
+  margin-left: auto;
+}
     th {
         background-color: #a6bed3;
-        ;
+        
         color: black;
         font-weight: bold;
     }
@@ -132,7 +145,7 @@
         border-top-left-radius: 5px;
         border-top-right-radius: 5px;
         margin-top: 10px;
-        background-image: url(/Image/add_solid.svg);
+      /*background-image: url(/Image/add_solid.svg);*/
         background-size: 30px;
         background-repeat: no-repeat;
         background-position: right 10px center;
