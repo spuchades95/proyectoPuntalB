@@ -1,0 +1,117 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;700&family=Questrial&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter&family=Questrial&display=swap');
+:root {
+    --wedgewood50: #f5f7fa;
+    --wedgewood100: #eaeff4;
+    --wedgewood200: #d0dce7;
+    --wedgewood300: #a6bed3;
+    --wedgewood500: #4f7796;
+    --wedgewood600: #426787;
+    --wedgewood700: #36536e;
+    --wedgewood950: #1d2834;
+    --regentStBlue300: #add8e6;
+    --regentStBlue950: #162f3b;
+    --gold500: #ffd700;
+    --gold950: #442604;
+    --goldenTainoi300: #ffc745;
+    --goldenTainoi900: #7a2e0d;
+    --titanWhite50: #f5f6fd;
+    --titanWhite900: #3f2d85;
+}
+html, body { height: 100%; }
+
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+
+.contenido {
+    height: 100vh;
+    background-color: #eaeff4;
+    display: flex;
+    flex-direction: column;
+}
+
+.arriba {
+    width: 100%;
+    height: 7vh;
+    background-color: #f5f7fa;
+}
+
+.azul500 {
+    width: 200px;
+    height: 100vh;
+    flex-shrink: 0;
+    background-color: var(--Wedgewood-500, #4f7796);
+    filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+}
+
+.logo {
+    width: 90%;
+    height: 95.909px;
+    flex-shrink: 0;
+    margin: 1vh;
+    margin-top: 5vh;
+}
+
+.tablaRoles {
+    padding: 50px;
+}
+
+table {
+    box-shadow: 10px 5px 10px rgba(0, 0, 0, 0.5);
+}
+
+th {
+    background-color: #426787!important;
+    color: #f5f7fa!important;
+    font-family: "Questrial", sans-serif;
+    font-weight: bold;
+}
+
+.cabeceraTabla {
+    font-size: 30px;
+    font-weight: lighter;
+}
+
+.cabeceraDatos>th {
+    background-color: #a6bed3!important;
+    color: black!important;
+    font-weight: bold;
+}
+
+.table-striped>tbody>tr:nth-child(odd)>td {
+    background-color: #d0dce7;
+}
+
+.enlaceCreateEmb {
+    display: flex;
+    width: 202px;
+    height: 48px;
+    flex-direction: column;
+    justify-content: center;
+    flex-shrink: 0;
+    color: #fff;
+    font-family: "Inter", sans-serif;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+    text-decoration: none;
+    background-color: #426787;
+    text-align: center;
+    font-family: "Inter", sans-serif;
+    border-radius: 5px;
+    background-image: url(/assets/img/add_solid.svg);
+    background-size: 30px;
+    background-repeat: no-repeat;
+    background-position: left 10px center;
+}
+
+td {
+    font-family: "Inter", sans-serif;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: normal;
+    line-height: normal;
+    text-decoration: none;
+    color: #000000;
+}

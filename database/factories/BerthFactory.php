@@ -19,6 +19,7 @@ class BerthFactory extends Factory
     public function definition(): array
     {
         return [
+            'Numero' => fake()->unique()->numberBetween(1, 100),
             'Estado' => fake()->randomElement(['Operativo', 'No operativo']),
             'TipoPlaza' => fake()->randomElement(['Transito', 'Plaza Base']),
             'Anio' => fake()->dateTimeBetween('-1 year', '+1 year'),
