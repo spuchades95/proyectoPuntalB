@@ -23,7 +23,7 @@ class Dock extends Model
     {
         return $this->belongsTo(Facility::class, 'Instalacion_id');
     }
-
+    
     public function plazas()
     {
         return $this->hasMany(Berth::class, 'Pantalan_id');
