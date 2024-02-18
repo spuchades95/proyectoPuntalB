@@ -18,7 +18,7 @@
     <table class="table table-hover table-custom-hover rounded-3 overflow-hidden table-striped" style="width:100%" > 
         <thead>
             <tr>
-                <th class="cabeceraTabla" colspan="4">{{ $pantalan->Nombre }}  <a href="{{ route('amarres.create') }}" class="cabecera-tabla-link">
+                <th class="cabeceraTabla" colspan="4" data-id="{{ $pantalan->id }}">{{ $pantalan->Nombre }}  <a href="{{ route('amarres.create', ['dock' => $pantalan->id]) }}" class="cabecera-tabla-link">
         <img src="/Image/add_solid.svg" alt="Icon">
       </a></th>
             </tr>
