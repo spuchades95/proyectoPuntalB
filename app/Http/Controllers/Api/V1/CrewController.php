@@ -22,6 +22,7 @@ class CrewController extends Controller
     public function store(Request $request)
     {
         $crew = Crew::create($request->all());
+        
         $crew->save();
         return response()->json($crew, 201);
     }
@@ -30,8 +31,15 @@ class CrewController extends Controller
      * Display the specified resource.
      */
     public function show($id)
-    {
-        $crew = Crew::find($id);
+    { 
+        //hace falta controlador intermedio transito crew para sacar 
+        $crews = Crew::whereHas('transitCrew', function ($query) use ($id) {
+            $query->whereHas('transit', function ($query) use ($id) {
+                $query->where('Amarre_id', $id);
+            });
+        })->get();
+    
+        return response()->json($crews);
 
         if ($crew) {
             return response()->json($crew, 200);
