@@ -121,22 +121,16 @@ class BerthController extends Controller
 
 
 
-
-
-
-
-
-
-
-
-
     /**
      * Display the specified resource.
      */
     public function show(string $id)
     {
         $amarre = Berth::find($id);
-        return view('amarres.show', compact('amarre'));
+        $Pantalan_id = $amarre->Pantalan_id;
+        $pantalanNombre = Dock::find($Pantalan_id)->Nombre;
+        
+        return view('amarres.show', compact('amarre','pantalanNombre'));
     }
 
     /**
@@ -145,7 +139,9 @@ class BerthController extends Controller
     public function edit(string $id)
     {
         $amarre = Berth::find($id);
-        return view('amarres.edit', compact('amarre'));
+        $Pantalan_id = $amarre->Pantalan_id;
+        $pantalanNombre = Dock::find($Pantalan_id)->Nombre;
+        return view('amarres.edit', compact('amarre','pantalanNombre'));
     }
 
     /**
@@ -153,11 +149,23 @@ class BerthController extends Controller
      */
     public function update(Request $request, string $id)
     {
+        $request->validate([
+            'Estado' => 'required',
+            'TipoPlaza' => 'required',
+        ]);
         $amarre = Berth::find($id);
-        $amarre->update($request->all());
-        $amarre->save();
 
-        return redirect()->route('amarres.index')
+
+
+
+
+        $amarre->update([
+            'Estado' => $request->Estado,
+            'TipoPlaza' => $request->TipoPlaza,
+        ]);
+    
+
+        return redirect()->route('instalaciones.index')
             ->with('success', 'Amarre actualizado correctamente.');
     }
 
@@ -168,7 +176,7 @@ class BerthController extends Controller
     {
         $amarre = Berth::find($id);
         $amarre->delete();
-        return redirect()->route('amarres.index')
+        return redirect()->route('instalaciones.index')
             ->with('success', 'Amarre eliminado correctamente.');
     }
 }

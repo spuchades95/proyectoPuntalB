@@ -10,17 +10,17 @@
 
 
 @foreach ($instalaciones as $instalacion)
-<h2 > <a href="{{ route('pantalanes.create') }}" class="cabecera-tabla-link">
+<h2 data-id="{{ $instalacion->id }}"> <a href="{{ route('pantalanes.create') }}" class="cabecera-tabla-link">
         <img src="/Image/add_solid.svg" alt="Icon">
-      </a>{{ $instalacion->Ubicacion }}</h2>
-<div class="container" >
+    </a>{{ $instalacion->Ubicacion }}</h2>
+<div class="container">
     @foreach ($instalacion->pantalanes as $pantalan)
-    <table class="table table-hover table-custom-hover rounded-3 overflow-hidden table-striped" style="width:100%" > 
+    <table class="table table-hover table-custom-hover rounded-3 overflow-hidden table-striped" style="width:100%">
         <thead>
             <tr>
-                <th class="cabeceraTabla" colspan="4" data-id="{{ $pantalan->id }}">{{ $pantalan->Nombre }}  <a href="{{ route('amarres.create', ['dock' => $pantalan->id]) }}" class="cabecera-tabla-link">
-        <img src="/Image/add_solid.svg" alt="Icon">
-      </a></th>
+                <th class="cabeceraTabla" colspan="4" data-id="{{ $pantalan->id }}">{{ $pantalan->Nombre }} <a href="{{ route('amarres.create', ['dock' => $pantalan->id]) }}" class="cabecera-tabla-link">
+                        <img src="/Image/add_solid.svg" alt="Icon">
+                    </a></th>
             </tr>
             <tr class="cabeceraDatos">
                 <th>Numero de amarre</th>
@@ -31,11 +31,11 @@
         </thead>
         <tbody>
             @foreach ($pantalan->plazas as $plaza)
-            <tr>
+            <tr data-id="{{ $plaza->id }}">
                 <td>{{ $plaza->Numero }}</td>
                 <td>{{ $plaza->Estado }}</td>
                 <td>{{ $plaza->TipoPlaza }}</td>
-                <td>{{ $plaza->Anio }}</td>
+                <td>{{ date('Y', strtotime($plaza->Anio))}}</td>
             </tr>
             @endforeach
         </tbody>
@@ -46,7 +46,13 @@
 
 <script type="text/javascript">
     $(document).ready(function() {
+        $('tbody').on('click', 'tr', function() {
+            var Amarre_id = $(this).data('id');
+            window.location.href = "{{ route('amarres.show', ['amarre' => ':id']) }}".replace(':id', Amarre_id);
+        });
         new DataTable('.table');
+
+
     });
 </script>
 
@@ -56,44 +62,48 @@
     .tablaRoles {
         padding: 50px;
     }
+
     table {
         box-shadow: 10px 5px 10px rgba(0, 0, 0, 0.5);
     }
-    
+
     th {
-        background-color: #426787!important;
-        color: #f5f7fa!important;
+        background-color: #426787 !important;
+        color: #f5f7fa !important;
         font-family: "Questrial", sans-serif;
 
     }
+
     .cabeceraTabla {
         font-size: 30px;
         font-weight: lighter;
-      /* background-image: url(/Image/add_solid.svg);*/
+        /* background-image: url(/Image/add_solid.svg);*/
         background-size: 30px;
         background-repeat: no-repeat;
         background-position: right 10px center;
-        
+
     }
 
     .cabeceraDatos>th {
-        background-color: #a6bed3!important;
-        color: black!important;
+        background-color: #a6bed3 !important;
+        color: black !important;
         font-weight: bold;
-        
-    }
-    .cabecera-tabla-link {
-  display: flex;
-  align-items: center;
-  justify-content: flex-end;
-}
 
-.cabecera-tabla-link img {
-  margin-left: auto;
-}
+    }
+
+    .cabecera-tabla-link {
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+    }
+
+    .cabecera-tabla-link img {
+        margin-left: auto;
+    }
+
     th {
         background-color: #a6bed3;
-        
+
         color: black;
         font-weight: bold;
     }
@@ -138,23 +148,22 @@
 
     h2 {
 
-        background-color: #426787!important;
-        color: #f5f7fa!important;
+        background-color: #426787 !important;
+        color: #f5f7fa !important;
         font-family: "Questrial", sans-serif;
 
         border-top-left-radius: 5px;
         border-top-right-radius: 5px;
         margin-top: 10px;
-      /*background-image: url(/Image/add_solid.svg);*/
+        /*background-image: url(/Image/add_solid.svg);*/
         background-size: 30px;
         background-repeat: no-repeat;
         background-position: right 10px center;
     }
 
     .container {
-        background-color: #f5f7fa!important;
+        background-color: #f5f7fa !important;
         margin-top: 0px;
     }
-
 </style>
 <link rel="stylesheet" type="text/css" href="{{ asset('css/styles.css') }}">
