@@ -2,46 +2,21 @@
 
 @section('content')
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 <div class="formularioRoles">
     <div class="formHeader">
         <h5>ALTA AMARRE</h5>
     </div>
-    <form class="form-container" method="POST" action="{{ route('amarres.store') }}">
+    <form class="form-container" method="POST" action="{{ route('amarres.storedos', ['dock' => $pantalan->id])) }}">
         @csrf
-        <div class="form-group">
-            <label for="Estado">Estado</label>
-            <select name="Estado" id="Estado" class="form-control" required>
-                <option value="">Selecciona un estado</option>
-                <option value="Disponible">Disponible</option>
-                <option value="Mantenimiento">En mantenimiento</option>
-                <option value="Ocupada">Ocupada</option>
-            </select>
-        </div>
-        <div class="form-group">
-            <label for="TipoPlaza">Tipo de plaza</label>
-            <select name="TipoPlaza" id="TipoPlaza" class="form-control" required>
-                <option value="">Selecciona un estado</option>
-                <option value="Transito">Tránsito</option>
-                <option value="Plaza Base">Plaza Base</option>
-                <option value="Undefined">Sin definir</option>
-            </select>
+        <label for="cantidad_amarres">Cantidad de amarres a crear:</label>
+    <input type="number" id="cantidad_amarres" name="cantidad_amarres" required min="1">
 
-        </div>
-        <div class="form-group">
-            <label for="Anio">Año</label>
-            <input type="datetime" value="{{ now()->format('Y-m-d') }} "name="Anio" id="Anio" class="form-control" required>
-        </div>
-        <div class="form-group">
-            <label for="Pantalan_id/nombre">Pantalán</label>
-            <input type="hidden" name="Pantalan_id" value="{{ $Pantalan_id }}" required>
-            <input type="text" value="{{ $pantalan_nombre }}"" class="form-control" readonly >
-        </div>
-        <div style='text-align:right' class='mt-4'>
-                <button class="btn btnCancelar"> CANCELAR </button>
-                <button type="submit" class="btn btnAdd">AÑADIR</button>
-            </div>
+    <button type="submit">Crear Amarres</button>
+      
     </form>
 </div>
 @endsection
