@@ -12,7 +12,8 @@ class DockController extends Controller
      */
     public function index()
     {
-        //
+        $pantalanes = Dock::all();
+        return view('pantalanes.index', compact('pantalanes'));
     }
 
     /**
@@ -20,7 +21,7 @@ class DockController extends Controller
      */
     public function create()
     {
-        //
+        return view('pantalanes.create');
     }
 
     /**
@@ -28,38 +29,70 @@ class DockController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'Nombre' => 'required',
+            'Ubicacion' => 'required',
+            'Descripcion' => 'required',
+            'Capacidad' => 'required',
+            'FechaCreacion' => 'required',
+            'Causa' => 'nullable|string|max:255',
+            'Instalacion_id' => 'required',
+        ]);
+        $plaza = new Dock();
+        $plaza->Nombre = $request->Nombre;
+        $plaza->Ubicacion = $request->Ubicacion;
+        $plaza->Descripcion = $request->Descripcion;
+        $plaza->Capacidad = $request->Capacidad;
+        $plaza->FechaCreacion = $request->FechaCreacion;
+        $plaza->Causa = $request->Causa;
+        $plaza->Instalacion_id = $request->Instalacion_id;
+       
+
+        $plaza->save();
+        return redirect()->route('pantalanes.index')
+            ->with('success', 'pantalán creado correctamente.');
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(Dock $dock)
+    public function show(string $id)
     {
-        //
+        $pantalan = Dock::find($id);
+        return view('pantalanes.show', compact('pantalan'));
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Dock $dock)
+    public function edit(string $id)
     {
-        //
+       $pantalan = Dock::find($id);
+        return view('pantalanes.edit', compact('pantalan'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Dock $dock)
+    public function update(Request $request, string $id)
     {
-        //
+  
+       $pantalan = Dock::findOrFail($id);
+        $pantalan->update($request->all());
+
+        $pantalan->save();
+        return redirect()->route('pantalanes.index')
+            ->with('success', 'pantalán actualizado correctamente.');
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Dock $dock)
+    public function destroy(string $id)
     {
-        //
+        $pantalan = Dock::find($id);
+        $pantalan->delete();
+        return redirect()->route('pantalanes.index')
+            ->with('success', 'pantalán eliminado correctamente.');
     }
 }

@@ -17,13 +17,12 @@ class AdministrativeFactory extends Factory
      */
     public function definition(): array
     {
+        $userId = User::where('Rol_id', 1)->inRandomOrder()->value('id');
+
         return [
-
-             'Usuario_id'=>User::inRandomOrder()->value('id'),
-            
-
-
-            
+            // Define tus atributos aquí
+            'Usuario_id' => $userId,
+            // Otros atributos si los tienes
         ];
     }
 }

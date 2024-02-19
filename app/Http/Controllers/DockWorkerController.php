@@ -12,7 +12,9 @@ class DockWorkerController extends Controller
      */
     public function index()
     {
-        //
+        $guardamuelles = DockWorker::with('usuario')->get();
+
+        return view('guardamuelles.index', compact('guardamuelles'));
     }
 
     /**
@@ -36,7 +38,9 @@ class DockWorkerController extends Controller
      */
     public function show(DockWorker $dockWorker)
     {
-        //
+        $dockWorker->load('usuario');
+
+        return view('guardamuelles.show', compact('dockWorker'));
     }
 
     /**

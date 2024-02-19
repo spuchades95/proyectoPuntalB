@@ -12,7 +12,8 @@ class TransitController extends Controller
      */
     public function index()
     {
-        //
+        $transitos = Transit::all();
+        return view('transitos.index', compact('transitos'));
     }
 
     /**
@@ -20,7 +21,7 @@ class TransitController extends Controller
      */
     public function create()
     {
-        //
+        return view('transitos.create');
     }
 
     /**
@@ -28,38 +29,74 @@ class TransitController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'Proposito' => 'nullable|string|max:255',
+            'FechaEntrada' => 'required',
+            'Guardamuelles_id' => 'required',
+            'FechaSalida' => 'required',
+            'Autorizacion' => 'required',
+            'Amarre_id' => 'required',
+            'Administrativo_id' => 'required',
+        ]);
+
+        $transito = new Transit();
+        $transito->Proposito = $request->Proposito;
+        $transito->FechaEntrada = $request->FechaEntrada;
+        $transito->Guardamuelles_id = $request->Guardamuelles_id;
+        $transito->FechaSalida = $request->FechaSalida;
+        $transito->Autorizacion = $request->Autorizacion;
+        $transito->Amarre_id = $request->Amarre_id;
+        $transito->Administrativo_id = $request->Administrativo_id;
+
+        $transito->save();
+
+        return redirect()->route('transitos.index')
+            ->with('success', 'Transit created successfully.');
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(Transit $transit)
+    public function show(string $id)
     {
-        //
+        $transito = Transit::find($id);
+        return view('transitos.show', compact('transito'));
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Transit $transit)
+    public function edit(string $id)
     {
-        //
+        $transito = Transit::find($id);
+        return view('transitos.edit', compact('transito'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Transit $transit)
+    public function update(Request $request, string $id)
     {
-        //
+      
+        $transito = Transit::findOrFail($id);
+
+        $transito->update($request->all());
+
+        $transito->save();
+
+        return redirect()->route('transitos.index')
+            ->with('success', 'Transit updated successfully');
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Transit $transit)
+    public function destroy(string $id)
     {
-        //
+        $transito = Transit::find($id);
+        $transito->delete();
+
+        return redirect()->route('transitos.index')
+            ->with('success', 'Transit deleted successfully');
     }
 }

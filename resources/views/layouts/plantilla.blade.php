@@ -7,6 +7,7 @@
     <title>@yield('title')</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <!-- Estilos adicionales -->
+
 </head>
 
 <body>
@@ -18,10 +19,10 @@
 
             <!-- El navheader -->
             <div class="col-md-10 ">
-            
+
 
                 <div class="row">
-                @include('partials.navheader')
+                    @include('partials.navheader')
                     @include('partials.contenido')
                 </div>
 

@@ -12,7 +12,9 @@ class CivilGuardController extends Controller
      */
     public function index()
     {
-        //
+        $guardiasCiviles = CivilGuard::with('usuario')->get();
+
+        return view('guardiasciviles.index', compact('guardiasCiviles'));
     }
 
     /**
@@ -34,9 +36,11 @@ class CivilGuardController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(CivilGuard $civilGuard)
+    public function show(string $id)
     {
-        //
+        $guardiaCivil = CivilGuard::with('usuario')->find($id);
+
+        return view('guardiasciviles.show', compact('guardiaCivil'));
     }
 
     /**
