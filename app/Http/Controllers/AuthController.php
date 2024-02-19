@@ -102,8 +102,8 @@ class AuthController extends Controller
             'token_type' => 'bearer',
             'expires_in' => JWTAuth::factory()->getTTL() * 60,
             // 'expires_in' => auth()->factory()->getTTL() * 60,
-            'user' => auth()->user()
-            // 'user' => JWTAuth::user()
+            // 'user' => auth()->user()
+            'user' => JWTAuth::user()
         ]);
     }
     // protected function createNewToken($token)
