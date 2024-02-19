@@ -106,4 +106,15 @@ class AuthController extends Controller
             // 'user' => JWTAuth::user()
         ]);
     }
+    // protected function createNewToken($token)
+    // {
+    //     return response()->json([
+    //         'access_token' => $token,
+    //         'token_type' => 'bearer',
+    //         'expires_in' => JWTAuth::factory()->getTTL() * 60,
+    //         'user' => auth()->user(),
+    //         'token' => $token,  // Asegúrate de incluir el token directamente en la respuesta
+    //     ]);
+    // }
+
 }
