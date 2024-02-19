@@ -29,12 +29,14 @@
         </div>
         <div class="mb-3 d-flex">
             <label for="FechaCreacion" class="form-label">Fecha de creación:</label>
-            <input name="FechaCreacion" type="date" class="form-control mt-4" required />
+            <input name="FechaCreacion" type="datetime" value="{{ now()->format('Y-m-d') }} " class="form-control mt-4" required />
         </div>
-        <!-- <div class="mb-3 d-flex"> -->
+        <div class="mb-3 d-flex">
     
-            <!-- <input name="Instalacion_id" type="hidden" class="form-control mt-4" placeholder="Instalación" required value = "1"/>
-        </div> -->
+            <label for="Instalacion_id/ubicacion">Instalación</label>
+            <input type="hidden" name="Instalacion_id" value="{{ $Instalacion_id }}" required>
+            <input type="text" value="{{ $instalacion_ubicacion }}" class="form-control" readonly >
+        </div>
         <div style='text-align:right' class='mt-4'>
             <button class="btn btnCancelar">CANCELAR</button>
             <button type="submit" class="btn btnAdd">CREAR</button>
