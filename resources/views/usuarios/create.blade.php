@@ -10,12 +10,12 @@
     <div class="formHeader">
         <h5>ALTA USUARIO</h5>
     </div>
-    <form class="form-container" method="POST" >
+    <form class="form-container" method="POST"  action="{{ route('usuarios.store') }}" >
         <div class="form-left" >
         @csrf
         <div class="mb-3 d-flex">
             <label for="Usuario" class="form-label">Usuario:</label>
-            <input name="Usuario" type="text" class="form-control mt-4" placeholder="Nombre Usuario "required />
+            <input name="NombreUsuario" type="text" class="form-control mt-4" placeholder="Nombre Usuario "required />
         </div>
         <div class="mb-3 d-flex">
             <label for="NombreCompleto" class="form-label">Nombre Completo:</label>
@@ -24,46 +24,58 @@
         
         <div class="mb-3 d-flex">
             <label for="Dni" class="form-label">Dni:</label>
-            <input name="Dni" type="text"  class="form-control mt-4" placeholder="Dni"required> </input>
+            <input name="DNI" type="text"  class="form-control mt-4" placeholder="Dni"required> </input>
         </div>
         <div class="mb-3 d-flex">
             <label for="telefono" class="form-label">Teléfono:</label>
-            <input name="telefono" type="text"  class="form-control mt-4" placeholder="telefono"required> </input>
+            <input name="Telefono" type="text"  class="form-control mt-4" placeholder="Telefono"required> </input>
         </div>
         <div class="mb-3 d-flex">
             <label for="email" class="form-label">Email:</label>
-            <input name="email" type="text"  class="form-control mt-4" placeholder="email"required> </input>
+            <input name="email" type="text"  class="form-control mt-4" placeholder="Email"required> </input>
         </div>
         <div class="mb-3 d-flex">
             <label for="direccion" class="form-label">Dirección:</label>
-            <input name="direccion" type="text"  class="form-control mt-4" placeholder="direccion"required> </input>
+            <input name="Direccion" type="text"  class="form-control mt-4" placeholder="Direccion"required> </input>
         </div>
         <div class="mb-3 d-flex">
             <label for="contraseña" class="form-label">Contraseña:</label>
-            <input name="contraseña" type="text"  class="form-control mt-4" placeholder="contraseña"required> </input>
+            <input name="password" type="text"  class="form-control mt-4" placeholder="Contraseña"required> </input>
         </div>
         <div class="mb-3 d-flex">
             <label for="confirmarContraseña" class="form-label">Confirmar contraseña:</label>
-            <input name="confirmarContraseña" type="text"  class="form-control mt-4" placeholder="confirmar contraseña"required> </input>
+            <input name="confirmarContraseña" type="text"  class="form-control mt-4" placeholder="Confirmar contraseña"required> </input>
         </div>
         </div>
        
    <div class=form-right >
         <div class="mb-3 d-flex">
             <label for="descripcion" class="form-label">Descripción:</label>
-            <input name="descripcion" type="text"  class="form-control mt-4" placeholder="descripcion"required> </input>
+            <input name="Descripcion" type="text"  class="form-control mt-4" placeholder="Descripcion"required> </input>
         </div>
+
         <div class="mb-3 d-flex">
             <label for="perfil" class="form-label">Perfil:</label>
-            <input name="perfil" type="text"  class="form-control mt-4" placeholder="perfil"required> </input>
-        </div>
+            <select name="Rol_id" class="form-control mt-4" required>
+        @foreach($rolesId as $roles)
+            <option value="{{ $roles }}">{{ $roles }}</option>
+        @endforeach  
+        </select>      
+    </div>
+    
+
+
         <div class="mb-3 d-flex">
             <label for="instalacion" class="form-label">Instalaciones:</label>
-            <input name="instalacion" type="text"  class="form-control mt-4" placeholder="instalacion"required> </input>
+            <select name="Instalacion_id" class="form-control mt-4" required>
+        @foreach($InstalacionId as $instalacion)
+            <option value="{{ $instalacion }}">{{ $instalacion }}</option>
+        @endforeach
+    </select>
         </div>
         
             <div style='text-align:right' class=' botones mt-4'>
-                <button class="btn btnCancelar"> CANCELAR </button>
+                <button class="btn btnCancelar" action="{{ route('usuarios.index') }}"> CANCELAR  </button>
                 <button type="submit" class="btn btnAdd">AÑADIR</button>
             </div>
        
@@ -80,8 +92,8 @@
         text-align: right;
         position: relative;   
         
-        left:200px;
-        top:200px;
+        right:100px;
+        top:300px;
      }
     .form-container
     {
@@ -145,7 +157,7 @@ line-height: normal;
         }
 
         .formularioRoles {
-            padding: 50px;
+            
             flex-direction: column;
             align-items: center;
             justify-content: center;

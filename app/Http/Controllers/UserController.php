@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\User;
 use Illuminate\Support\Facades\Log;
+use App\Models\Facility;
+use App\Models\Role;
 
 
 class UserController extends Controller
@@ -23,7 +25,9 @@ class UserController extends Controller
      */
     public function create()
     {
-        return view('usuarios.create');
+        $rolesId = Role::pluck('id');
+        $InstalacionId = Facility::pluck('id');
+        return view('usuarios.create', compact('InstalacionId','rolesId'));
     }
 
     /**
@@ -31,10 +35,10 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
+
         // dd($request->all());
         $request->validate([
             'NombreCompleto' => 'required',
-            'Habilitado' => 'required',
             'NombreUsuario' => 'required',
             'Instalacion_id' => 'required',
             'DNI' => 'required',
@@ -43,13 +47,11 @@ class UserController extends Controller
             'Imagen' => 'nullable|image',
             'Descripcion' => 'nullable|string|max:255',
             'Rol_id' => 'required',
-            'Causa' => 'nullable|string|max:255',
             'email' => 'required|email|unique:users',
             'password' => 'required',
         ]);
         $usuario = new User();
         $usuario->NombreCompleto = $request->NombreCompleto;
-        $usuario->Habilitado = $request->Habilitado;
         $usuario->NombreUsuario = $request->NombreUsuario;
         $usuario->Instalacion_id = $request->Instalacion_id;
         $usuario->DNI = $request->DNI;
@@ -60,7 +62,6 @@ class UserController extends Controller
         }
         $usuario->Descripcion = $request->Descripcion;
         $usuario->Rol_id = $request->Rol_id;
-        $usuario->Causa = $request->Causa;
         $usuario->email = $request->email;
         $usuario->password = $request->password;
 
