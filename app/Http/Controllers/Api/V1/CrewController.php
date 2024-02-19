@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Api\V1;
 
 use App\Http\Controllers\Controller;
 use App\Models\Crew;
+use App\Models\TransitCrew;
+use App\Models\Transit;
 use Illuminate\Http\Request;
 
 class CrewController extends Controller
@@ -32,12 +34,10 @@ class CrewController extends Controller
      */
     public function show($id)
     { 
-        //hace falta controlador intermedio transito crew para sacar 
-        $crews = Crew::whereHas('transitCrew', function ($query) use ($id) {
-            $query->whereHas('transit', function ($query) use ($id) {
-                $query->where('Amarre_id', $id);
-            });
+        $crews = Crew::whereHas('transitos', function ($query) use ($id) {
+            $query->where('Amarre_id', $id);
         })->get();
+    
     
         return response()->json($crews);
 
