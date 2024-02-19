@@ -2,7 +2,11 @@
 
 namespace App\Http\Controllers;
 
+
+
+
 use App\Models\Dock;
+use App\Models\Facility;
 use Illuminate\Http\Request;
 
 class DockController extends Controller
@@ -23,7 +27,7 @@ class DockController extends Controller
     {
 
         $Instalacion_id = $request->input('facility');
-        $InstalacionUbicacion = Dock::find($Instalacion_id)->Ubicacion;
+        $InstalacionUbicacion = Facility::find($Instalacion_id)->Ubicacion;
         return view('pantalanes.create', [
             'Instalacion_id' => $Instalacion_id,
             'instalacion_ubicacion' => $InstalacionUbicacion
