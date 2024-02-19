@@ -12,12 +12,12 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('transits', function (Blueprint $table) {
-          //  $table->id();
-            $table->string('Proposito');
+            $table->id();
+            
             $table->date('FechaEntrada')->nullable();
             $table->date('FechaSalida')->nullable();
     //        $table->string('Causa')->nullable();;
-            $table->boolean('Autorizacion');
+          
             $table->softDeletes();
             $table->timestamps();
         });

@@ -10,7 +10,7 @@ class BaseBerth extends Berth
 {
     use HasFactory;
     use SoftDeletes;
-    protected $primaryKey = 'Amarre_id';
+   // protected $primaryKey = 'Amarre_id';
 
     protected $fillable = [
         'DatosEstancia',

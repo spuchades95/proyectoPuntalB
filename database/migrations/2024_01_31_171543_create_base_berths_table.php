@@ -12,10 +12,9 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('base_berths', function (Blueprint $table) {
-        //    $table->id();
-            $table->string('DatosEstancia');
+            $table->id();
             $table->date('FechaEntrada')->nullable();
-            $table->date('FinContrato');
+            $table->date('FinContrato')->nullable();
        //     $table->string('Causa');
             $table->softDeletes();
             $table->timestamps();

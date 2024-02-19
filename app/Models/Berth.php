@@ -11,6 +11,7 @@ class Berth extends Model
     use SoftDeletes;
     protected $with = ['administrativoamarre'];
     protected $fillable = [
+        'Numero',
         'Estado',
         'TipoPlaza',
         'Anio',

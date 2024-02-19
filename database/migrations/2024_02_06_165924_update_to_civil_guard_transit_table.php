@@ -15,7 +15,7 @@ return new class extends Migration
             $table->unsignedBigInteger('GuardaCivil_id')->after('FechaVisualizacion');
             $table->foreign('GuardaCivil_id')->references('Usuario_id')->on('civil_guards')->onDelete('cascade')->onUpdate('cascade');
             $table->unsignedBigInteger('Transito_id');
-            $table->foreign('Transito_id')->references('Amarre_id')->on('transits')->onDelete('cascade')->onUpdate('cascade');
+            $table->foreign('Transito_id')->references('id')->on('transits')->onDelete('cascade')->onUpdate('cascade');
             $table->primary(['GuardaCivil_id', 'Transito_id']);
        
        
