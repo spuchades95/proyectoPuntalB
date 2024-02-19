@@ -52,8 +52,7 @@ class FacilityController extends Controller
         $instalaciones->Descripcion = $request->Descripcion;
         $instalaciones->Estado = $request->Estado;
         $instalaciones->FechaCreacion = $request->FechaCreacion;
-      
-
+        
         $instalaciones->save();
 
         // Facility::create($request->all()); // Posible opción para crear el registro

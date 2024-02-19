@@ -10,7 +10,7 @@
 
 
 @foreach ($instalaciones as $instalacion)
-<h2 data-id="{{ $instalacion->id }}"> <a href="{{ route('pantalanes.create') }}" class="cabecera-tabla-link">
+<h2 data-id="{{ $instalacion->id }}"> <a href="{{ route('pantalanes.create', ['facility' => $instalacion->id])  }}" class="cabecera-tabla-link">
         <img src="/Image/add_solid.svg" alt="Icon">
     </a>{{ $instalacion->Ubicacion }}</h2>
 <div class="container">
