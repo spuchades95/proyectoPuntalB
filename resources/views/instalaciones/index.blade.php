@@ -46,14 +46,24 @@
 
 <script type="text/javascript">
     $(document).ready(function() {
+       
+        $('h2').on('click', function() {
+            var Instalacion_id = $(this).data('id');
+            window.location.href = "{{ route('instalacion.show', ['instalacion' => ':id']) }}".replace(':id', Instalacion_id);
+        });
+
         $('tbody').on('click', 'tr', function() {
             var Amarre_id = $(this).data('id');
             window.location.href = "{{ route('amarres.show', ['amarre' => ':id']) }}".replace(':id', Amarre_id);
         });
+
+
         new DataTable('.table');
 
 
     });
+
+
 </script>
 
 @endsection
