@@ -109,7 +109,7 @@ class BerthController extends Controller
 
     private function generarNumeroAmarre($pantalanId)
     {
-        Log::info('Llamada a generarNumeroAmarre con $pantalanId:', [$pantalanId]);
+      //  Log::info('Llamada a generarNumeroAmarre con $pantalanId:', [$pantalanId]);
         // Obtener el último número de amarre para el pantalán dado
         $ultimoAmarre = Berth::where('Pantalan_id', $pantalanId)->orderByDesc('Numero')->first();
 
@@ -154,16 +154,25 @@ class BerthController extends Controller
             'TipoPlaza' => 'required',
         ]);
         $amarre = Berth::find($id);
-
-
-
-
-
         $amarre->update([
             'Estado' => $request->Estado,
             'TipoPlaza' => $request->TipoPlaza,
         ]);
-    
+        if ($request->TipoPlaza === 'Transito') {
+            $transit = Transit::where('Amarre_id', $id)->first();
+            if (!$transit) {
+                $transit = new Transit();
+                $transit->id = $amarre->id;
+            }
+            $transit->save();
+        } elseif ($request->TipoPlaza === 'Plaza Base') {
+            $baseBerth = BaseBerth::where('Amarre_id', $id)->first();
+            if (!$baseBerth) {
+                $baseBerth = new BaseBerth();
+                $baseBerth->id = $amarre->id;
+            }
+            $baseBerth->save();
+        }
 
         return redirect()->route('instalaciones.index')
             ->with('success', 'Amarre actualizado correctamente.');
