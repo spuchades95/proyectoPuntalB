@@ -28,6 +28,9 @@ use App\Http\Controllers\RoleController;
 */
 // Route::put('/roles/{role}', 'RoleController@update')->name('roles.update');
 // Route::put('/amarres/{amarre}', 'BerthController@update')->name('amarres.update');
+Route::get('amarres/createdos', [BerthController::class, 'createdos'])->name('amarres.createdos');
+Route::post('amarres/createdos', [BerthController::class, 'storedos'])->name('amarres.storedos');
+
 Route::resource('administrativos',AdministrativeController::class);
 Route::resource('alquileres',RentalController::class);
 Route::resource('amarres',BerthController::class);

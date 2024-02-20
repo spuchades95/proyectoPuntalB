@@ -51,7 +51,7 @@
             </button>
             <button type="submit" class="btn btnAdd">EDITAR</button>
         </div>
-    </form>
+   
 
     <div class="modal" id="myModal">
         <div class="modal-dialog">
@@ -66,7 +66,7 @@
                     </div>
                     <div class="mb-3 d-flex">
                         <label for="Causa" class="form-label">Causa de la baja:</label>
-                        <textarea name="Causa" class="form-control mt-4"> </textarea>
+                        <textarea id="Causa" name="Causa" class="form-control mt-4"> </textarea>
                     </div>
                 </div>
                 <div class="modal-footer">
@@ -80,16 +80,13 @@
             </div>
         </div>
     </div>
+    </form>
 </div>
 <style>
     .btnAdd {
         background-color: #3f2d85 !important;
         color: #f5f6fd !important;
         margin-left: 10px;
-
-
-
-
 
     }
 
@@ -194,6 +191,7 @@
         text-align: left;
     }
 </style>
+
 <link rel="stylesheet" type="text/css" href="{{ asset('styles.css') }}">
 
 @endsection

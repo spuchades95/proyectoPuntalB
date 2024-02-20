@@ -43,7 +43,7 @@
             </button>
             <button type="submit" class="btn btnAdd">EDITAR</button>
         </div>
-    </form>
+   
 
     <div class="modal" id="myModal">
         <div class="modal-dialog">
@@ -72,6 +72,7 @@
             </div>
         </div>
     </div>
+    </form>
 </div>
 <style>
 

@@ -33,9 +33,14 @@ class BerthController extends Controller
             'pantalan_nombre' => $pantalanNombre
         ]);
     }
-    public function createdos()
+    public function createdos(Request $request)
     {
-        return view('amarres.createdos', compact('', ''));
+        $Pantalan_id = $request->input('dock');
+        $pantalanNombre = Dock::find($Pantalan_id)->Nombre;
+        return view('amarres.createdos', [
+            'Pantalan_id' => $Pantalan_id,
+            'pantalan_nombre' => $pantalanNombre
+        ]);
     }
 
     /**
@@ -43,17 +48,17 @@ class BerthController extends Controller
      */
     public function store(Request $request)
     {
-        
+
         $request->validate([
-            
+
             'Estado' => 'required',
             'TipoPlaza' => 'required',
             'Anio' => 'required',
             'Pantalan_id' => 'required',
         ]);
-        
+
         $numeroAmarre = $this->generarNumeroAmarre($request->Pantalan_id);
-      
+
         $amarre = new Berth();
         $amarre->Numero = $numeroAmarre;
         $amarre->Estado = $request->Estado;
@@ -64,18 +69,18 @@ class BerthController extends Controller
 
 
         if ($request->TipoPlaza === 'Transito') {
-           
+
             $transit = new Transit();
-            $transit->Amarre_id = $amarre->id; 
+            $transit->Amarre_id = $amarre->id;
             $transit->save();
         } elseif ($request->TipoPlaza === 'Plaza Base') {
-           
+
             $baseBerth = new BaseBerth();
-            $baseBerth->Amarre_id = $amarre->id; 
+            $baseBerth->Amarre_id = $amarre->id;
             $baseBerth->save();
         }
 
-          return redirect()->route('instalaciones.index')
+        return redirect()->route('instalaciones.index')
             ->with('success', 'Amarre creado correctamente.');
     }
     public function storedos(Request $request)
@@ -83,33 +88,38 @@ class BerthController extends Controller
         $request->validate([
             'cantidad' => 'required|integer|min:1',
         ]);
+        $cantidad = $request->cantidad;
+       
 
+        for ($i = 0; $i < $cantidad; $i++) {
 
+            $numeroAmarre = $this->generarNumeroAmarre($request->Pantalan_id);
+            $amarre = new Berth();
+            $amarre->Numero = $numeroAmarre;
+            $amarre->Pantalan_id = $request->Pantalan_id;
+            $amarre->Estado = "Disponible";
+            $amarre->TipoPlaza = "Undefined";
+            $amarre->Anio= now();
+            $amarre->save();
+        }
 
+        /*
+          $amarre = new Berth();
+          $amarre->Numero = $request->Numero;
+          $amarre->Estado = $request->Estado;
+          $amarre->TipoPlaza = $request->TipoPlaza;
+          $amarre->Anio = $request->Anio;
+       
+          $amarre->Pantalan_id = $request->Pantalan_id;*/
 
-        /* $request->validate([
-            'Numero' => 'required|numeric|unique:berths,Numero',
-            'Estado' => 'required',
-            'TipoPlaza' => 'required',
-            'Anio' => 'required',
-            'Pantalan_id' => 'required',
-        ]);
-        $amarre = new Berth();
-        $amarre->Numero = $request->Numero;
-        $amarre->Estado = $request->Estado;
-        $amarre->TipoPlaza = $request->TipoPlaza;
-        $amarre->Anio = $request->Anio;
-     
-        $amarre->Pantalan_id = $request->Pantalan_id;*/
-
-        //   $amarre->save();
-        return redirect()->route('amarres.index')
+         
+        return redirect()->route('instalaciones.index')
             ->with('success', 'Amarre creado correctamente.');
     }
 
     private function generarNumeroAmarre($pantalanId)
     {
-      //  Log::info('Llamada a generarNumeroAmarre con $pantalanId:', [$pantalanId]);
+        //  Log::info('Llamada a generarNumeroAmarre con $pantalanId:', [$pantalanId]);
         // Obtener el último número de amarre para el pantalán dado
         $ultimoAmarre = Berth::where('Pantalan_id', $pantalanId)->orderByDesc('Numero')->first();
 
@@ -129,8 +139,8 @@ class BerthController extends Controller
         $amarre = Berth::find($id);
         $Pantalan_id = $amarre->Pantalan_id;
         $pantalanNombre = Dock::find($Pantalan_id)->Nombre;
-        
-        return view('amarres.show', compact('amarre','pantalanNombre'));
+
+        return view('amarres.show', compact('amarre', 'pantalanNombre'));
     }
 
     /**
@@ -141,7 +151,7 @@ class BerthController extends Controller
         $amarre = Berth::find($id);
         $Pantalan_id = $amarre->Pantalan_id;
         $pantalanNombre = Dock::find($Pantalan_id)->Nombre;
-        return view('amarres.edit', compact('amarre','pantalanNombre'));
+        return view('amarres.edit', compact('amarre', 'pantalanNombre'));
     }
 
     /**
@@ -161,15 +171,21 @@ class BerthController extends Controller
         if ($request->TipoPlaza === 'Transito') {
             $transit = Transit::where('Amarre_id', $id)->first();
             if (!$transit) {
+                $baseBerth = BaseBerth::where('Amarre_id', $id)->first();
+                $baseBerth->delete();
                 $transit = new Transit();
-                $transit->id = $amarre->id;
+                $transit->Amarre_id = $amarre->id;
+
             }
             $transit->save();
         } elseif ($request->TipoPlaza === 'Plaza Base') {
             $baseBerth = BaseBerth::where('Amarre_id', $id)->first();
             if (!$baseBerth) {
+                $transit = Transit::where('Amarre_id', $id)->first();
+                $transit->delete();
                 $baseBerth = new BaseBerth();
-                $baseBerth->id = $amarre->id;
+                $baseBerth->Amarre_id = $amarre->id;
+
             }
             $baseBerth->save();
         }
@@ -181,9 +197,13 @@ class BerthController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(Request $request, string $id)
     {
         $amarre = Berth::find($id);
+        $amarre->Causa = $request->input('Causa');
+        Log::info('Llamada a en destroycon $amarre:', [$amarre]);
+        Log::info('Llamada a causa:', [$amarre->Causa = $request->input('Causa')]);
+        $amarre->save();
         $amarre->delete();
         return redirect()->route('instalaciones.index')
             ->with('success', 'Amarre eliminado correctamente.');
