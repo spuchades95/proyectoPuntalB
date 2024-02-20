@@ -87,11 +87,6 @@ class User extends Authenticatable implements JWTSubject
         return $this->belongsTo(Facility::class);
     }
 
-<<<<<<< HEAD
-    public function getJWTIdentifier() {
-        return $this->getKey();
-    }
-=======
 
     //obtencion del JWT
 
@@ -104,15 +99,6 @@ class User extends Authenticatable implements JWTSubject
     {
         return [];
     }
-
-    
-
->>>>>>> b4f2b267c3659f5f0c361842d4028e9447c0ede7
-
-
-    public function getJWTCustomClaims() {
-        return [];
-    }  
 
 
 }

@@ -39,7 +39,7 @@
         </div>
         <div style='text-align:right' class='mt-4'>
             <button type="button" class="btn btnCancelar" data-toggle="modal" data-target="#myModal">
-               ELIMINAR
+                ELIMINAR
             </button>
             <button type="submit" class="btn btnAdd">EDITAR</button>
         </div>
@@ -52,6 +52,7 @@
                     <h4 class="modal-title">BAJA DE ROL </h4>
                 </div>
                 <div class="modal-body">
+                <form id="delete-form" action="{{ route('roles.destroy', ['role' => $rol->id]) }}" method="POST">
                     <div class="mb-3 d-flex">
                         <label for="NombreRol">Nombre del rol:</label>
                         <input name="NombreRol" type="text" class="form-control mt-4" placeholder="Nombre del rol " value="{{ $rol->NombreRol }}" readonly />
@@ -63,7 +64,7 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btnCancelar" data-dismiss="modal">CANCELAR</button>
-                    <form id="delete-form" action="{{ route('roles.destroy', ['role' => $rol->id]) }}" method="POST">
+       
                         @csrf
                         @method('DELETE')
                         <button type="submit" class="btn btnAdd">ELIMINAR</button>
@@ -75,38 +76,37 @@
     </form>
 </div>
 <style>
-
-.btnAdd {
-    background-color: #3f2d85!important;
-    color: #f5f6fd!important;
-    margin-left: 10px;
-
+    .btnAdd {
+        background-color: #3f2d85 !important;
+        color: #f5f6fd !important;
+        margin-left: 10px;
 
 
 
 
-}
 
-.btn{
+    }
 
-    text-align: center;
-    -webkit-text-stroke: 1.5px ;
-font-family: Questrial;
-font-size: 16px;
-font-style: normal;
-font-weight: 400;
-line-height: normal;
+    .btn {
 
-}
+        text-align: center;
+        -webkit-text-stroke: 1.5px;
+        font-family: Questrial;
+        font-size: 16px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: normal;
 
-.btnCancelar {
-    text-decoration: none;
-    background-color:#ffc745!important;
-    color: #7a2e0d!important;
-}
+    }
+
+    .btnCancelar {
+        text-decoration: none;
+        background-color: #ffc745 !important;
+        color: #7a2e0d !important;
+    }
 
 
-.formHeader {
+    .formHeader {
         padding: 6px;
         font-weight: bold;
         font-family: 'Questrial', sans-serif;

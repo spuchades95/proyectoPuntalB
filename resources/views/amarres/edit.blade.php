@@ -51,7 +51,7 @@
             </button>
             <button type="submit" class="btn btnAdd">EDITAR</button>
         </div>
-   
+        </form>
 
     <div class="modal" id="myModal">
         <div class="modal-dialog">
@@ -59,6 +59,7 @@
                 <div class="modal-header">
                     <h4 class="modal-title">BAJA DE AMARRE </h4>
                 </div>
+                <form id="delete-form" action="{{ route('amarres.destroy', ['amarre' => $amarre->id]) }}" method="POST">
                 <div class="modal-body">
                     <div class="mb-3 d-flex">
                         <label for="Numero"> Numero del amarre:</label>
@@ -71,7 +72,7 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btnCancelar" data-dismiss="modal">CANCELAR</button>
-                    <form id="delete-form" action="{{ route('amarres.destroy', ['amarre' => $amarre->id]) }}" method="POST">
+                   
                         @csrf
                         @method('DELETE')
                         <button type="submit" class="btn btnAdd">ELIMINAR</button>
@@ -80,7 +81,7 @@
             </div>
         </div>
     </div>
-    </form>
+    
 </div>
 <style>
     .btnAdd {

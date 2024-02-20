@@ -57,7 +57,7 @@ class FacilityController extends Controller
 
         // Facility::create($request->all()); // Posible opción para crear el registro
 
-        return redirect()->route('instalaciones.index')
+        return redirect()->route('pantalanes.create')
             ->with('success', 'Facility created successfully.');
     }
 
