@@ -10,9 +10,9 @@
 
 
 @foreach ($instalaciones as $instalacion)
-<h2 data-id="{{ $instalacion->id }}"> <a href="{{ route('pantalanes.create') }}" class="cabecera-tabla-link">
+<h2 data-id="{{ $instalacion->id }}">{{ $instalacion->Ubicacion }} <a href="{{ route('pantalanes.create', ['facility' => $instalacion->id])  }}" class="cabecera-tabla-link">
         <img src="/Image/add_solid.svg" alt="Icon">
-    </a>{{ $instalacion->Ubicacion }}</h2>
+    </a></h2>
 <div class="container">
     @foreach ($instalacion->pantalanes as $pantalan)
     <table class="table table-hover table-custom-hover rounded-3 overflow-hidden table-striped" style="width:100%">
@@ -47,6 +47,17 @@
 <script type="text/javascript">
     $(document).ready(function() {
         $('tbody').on('click', 'tr', function() {
+
+            $('h2').on('click', function() {
+            var Instalacion_id = $(this).data('id');
+            window.location.href = "{{ route('instalaciones.show', ['instalacione' => ':id']) }}".replace(':id', Instalacion_id);
+        });
+
+        $('thead').on('click', 'th', function() {
+            var Pantalan_id = $(this).data('id');
+            window.location.href = "{{ route('pantalanes.show', ['pantalane' => ':id']) }}".replace(':id', Pantalan_id);
+        });
+        
             var Amarre_id = $(this).data('id');
             window.location.href = "{{ route('amarres.show', ['amarre' => ':id']) }}".replace(':id', Amarre_id);
         });
@@ -103,7 +114,6 @@
 
     th {
         background-color: #a6bed3;
-
         color: black;
         font-weight: bold;
     }
@@ -164,6 +174,14 @@
     .container {
         background-color: #f5f7fa !important;
         margin-top: 0px;
+    }
+
+    a {
+  display: inline-block; 
+  width: 30px; 
+  height: 30px; 
+  float: right;
+  margin: 5px;
     }
 </style>
 <link rel="stylesheet" type="text/css" href="{{ asset('css/styles.css') }}">

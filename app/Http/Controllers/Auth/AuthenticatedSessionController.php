@@ -45,4 +45,15 @@ class AuthenticatedSessionController extends Controller
 
         return redirect('/');
     }
+
+    public function login(Request $request)
+    {
+        $credentials = $request->only('email', 'password');
+
+        if (!$token = Auth::guard('api')->attempt($credentials)) {
+            return response()->json(['error' => 'Unauthorized'], 401);
+        }
+
+        return response()->json(compact('token'));
+    }
 }
