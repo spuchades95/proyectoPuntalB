@@ -27,7 +27,7 @@ use App\Http\Controllers\RoleController;
 |
 */
 // Route::put('/roles/{role}', 'RoleController@update')->name('roles.update');
-Route::put('/amarres/{amarre}', 'BerthController@update')->name('amarres.update');
+// Route::put('/amarres/{amarre}', 'BerthController@update')->name('amarres.update');
 Route::resource('administrativos',AdministrativeController::class);
 Route::resource('alquileres',RentalController::class);
 Route::resource('amarres',BerthController::class);
