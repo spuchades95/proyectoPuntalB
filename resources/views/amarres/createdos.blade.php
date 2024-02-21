@@ -30,11 +30,6 @@
         background-color: #3f2d85 !important;
         color: #f5f6fd !important;
         margin-left: 10px;
-
-
-
-
-
     }
 
     .btn {
