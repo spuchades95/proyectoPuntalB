@@ -42,7 +42,7 @@ Route::resource('roles',RoleController::class);
 Route::resource('transitos',TransitController::class);
 Route::resource('tripulantes',CrewController::class);
 Route::resource('usuarios',UserController::class);
-
+// Route::get('/panel', PanelController::class)->name('panel');
 
 
 
