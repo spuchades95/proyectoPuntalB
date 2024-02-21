@@ -26,7 +26,6 @@ class User extends Authenticatable
         'DNI',
         'Telefono',
         'Direccion',
-        'Imagen',
         'Descripcion',
         'Rol_id',
         'Causa',

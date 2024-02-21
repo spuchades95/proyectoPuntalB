@@ -57,26 +57,35 @@
         <div class="mb-3 d-flex">
             <label for="perfil" class="form-label">Perfil:</label>
             <select name="Rol_id" class="form-control mt-4" required>
-        @foreach($rolesId as $roles)
-            <option value="{{ $roles }}">{{ $roles }}</option>
+        @foreach($Roles as $roles)
+            <option value="{{ $roles->id }}">{{ $roles->NombreRol }}</option>
         @endforeach  
         </select>      
     </div>
+    <div class="mb-3 d-flex">
+            <label for="habilitado" class="form-label">Habilitado:</label>
+            <select name="Habilitado" class="form-control mt-4" required>
+            <option value="1">Habilitado</option>
+            <option value="0">Deshabilitado</option>
+          
+        </select>      
+
+        </div>
     
 
 
         <div class="mb-3 d-flex">
             <label for="instalacion" class="form-label">Instalaciones:</label>
             <select name="Instalacion_id" class="form-control mt-4" required>
-        @foreach($InstalacionId as $instalacion)
-            <option value="{{ $instalacion }}">{{ $instalacion }}</option>
+        @foreach($Instalacion as $instalacion)
+            <option value="{{ $instalacion->id }}">{{ $instalacion->Ubicacion }}</option>
         @endforeach
     </select>
         </div>
         
             <div style='text-align:right' class=' botones mt-4'>
-                <button class="btn btnCancelar" action="{{ route('usuarios.index') }}"> CANCELAR  </button>
-                <button type="submit" class="btn btnAdd">AÑADIR</button>
+            <a href="{{ route('usuarios.index') }}" class="btn btnCancelar">CANCELAR</a>
+        <button type="submit" class="btn btnAdd">AÑADIR</button>
             </div>
        
     </div>
@@ -93,7 +102,7 @@
         position: relative;   
         
         right:100px;
-        top:300px;
+        top:200px;
      }
     .form-container
     {

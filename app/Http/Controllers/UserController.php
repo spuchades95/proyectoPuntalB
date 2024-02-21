@@ -16,8 +16,30 @@ class UserController extends Controller
      */
     public function index()
     {
+
+
         $usuarios = User::all();
-        return view('usuarios.index', compact('usuarios'));
+        $Roles = [];
+        $Instalacion = [];
+        $rol;
+        $instalacion;
+    
+        // Iterar sobre cada usuario para obtener el rol y la instalación
+        foreach ($usuarios as $usuario) {
+            // Obtener el rol del usuario y almacenarlo en el array $roles
+            $rol = Role::find($usuario->Rol_id);
+            $Roles[$usuario->id] = $rol;
+            // Obtener la instalación del usuario y almacenarla en el array $instalaciones
+            $instalacion = Facility::find($usuario->Instalacion_id);
+            $Instalacion[$usuario->id] = $instalacion;
+        }
+
+        Log::info('Llamada a generarNumeroAmarre con $pantalanId:', [$Instalacion,$Roles,]);
+        
+
+        return view('usuarios.index', compact('usuarios', 'Roles', 'Instalacion'));
+
+
     }
 
     /**
@@ -25,9 +47,12 @@ class UserController extends Controller
      */
     public function create()
     {
-        $rolesId = Role::pluck('id');
-        $InstalacionId = Facility::pluck('id');
-        return view('usuarios.create', compact('InstalacionId','rolesId'));
+       
+
+        $Roles = Role::all();
+        $Instalacion = Facility::all();
+        $usuario = User::all();
+        return view('usuarios.create', compact('usuario','Roles','Instalacion'));
     }
 
     /**
@@ -36,15 +61,14 @@ class UserController extends Controller
     public function store(Request $request)
     {
 
-        // dd($request->all());
         $request->validate([
             'NombreCompleto' => 'required',
             'NombreUsuario' => 'required',
             'Instalacion_id' => 'required',
+            'Habilitado' =>'required',
             'DNI' => 'required',
             'Telefono' => 'required',
             'Direccion' => 'required',
-            'Imagen' => 'nullable|image',
             'Descripcion' => 'nullable|string|max:255',
             'Rol_id' => 'required',
             'email' => 'required|email|unique:users',
@@ -57,9 +81,7 @@ class UserController extends Controller
         $usuario->DNI = $request->DNI;
         $usuario->Telefono = $request->Telefono;
         $usuario->Direccion = $request->Direccion;
-        if ($request->hasFile('Imagen')) {
-            $usuario->Imagen = $request->file('Imagen')->store('public');
-        }
+        $usuario->Habilitado = $request->Habilitado;
         $usuario->Descripcion = $request->Descripcion;
         $usuario->Rol_id = $request->Rol_id;
         $usuario->email = $request->email;
@@ -77,10 +99,12 @@ class UserController extends Controller
      */
     public function show(string $id)
     {
+        $usuario = User::find($id);
+        $Roles = Role::find($usuario->Rol_id);
+        $Instalacion = Facility::find($usuario->Instalacion_id);
         
 
-        $usuario = User::find($id);
-        return view('usuarios.show', compact('usuario'));
+        return view('usuarios.show', compact('usuario','Roles','Instalacion'));
     }
 
     /**
@@ -88,8 +112,10 @@ class UserController extends Controller
      */
     public function edit(string $id)
     {
+        $Roles = Role::all();
+        $Instalacion = Facility::all();
         $usuario = User::find($id);
-        return view('usuarios.edit', compact('usuario'));
+        return view('usuarios.edit', compact('usuario','Roles','Instalacion'));
     }
 
     /**

@@ -42,10 +42,7 @@
             <label for="contraseña" class="form-label">Contraseña:</label>
             <input name="contraseña" type="text"  class="form-control mt-4" placeholder="Contraseña " value="{{ $usuario->password }}" readonly/>
         </div>
-        <div class="mb-3 d-flex">
-            <label for="confirmarContraseña" class="form-label">Confirmar contraseña:</label>
-            <input name="confirmarContraseña" type="text"  class="form-control mt-4" placeholder="confirmarContraseña " value="{{ $usuario->password }}" readonly/>
-        </div>
+        
         </div>
    <div class=form-right >
         <div class="mb-3 d-flex">
@@ -54,11 +51,16 @@
         </div>
         <div class="mb-3 d-flex">
             <label for="perfil" class="form-label">Perfil:</label>
-            <input name="perfil" type="text"  class="form-control mt-4" placeholder="Perfil " value="{{ $usuario->Rol_id }}" readonly/>
+            <input name="perfil" type="text"  class="form-control mt-4" placeholder="Perfil " value="{{ $Roles->NombreRol }}" readonly/>
         </div>
         <div class="mb-3 d-flex">
             <label for="instalacion" class="form-label">Instalaciones:</label>
-            <input name="instalacion" type="text"  class="form-control mt-4" placeholder="Instalaciones " value="{{ $usuario->Instalacion_id }}" readonly/>
+            <input name="instalacion" type="text"  class="form-control mt-4" placeholder="Instalaciones " value="{{ $Instalacion->Ubicacion }}" readonly/>
+        </div>
+
+        <div class="mb-3 d-flex">
+            <label for="habilitado" class="form-label">Habilitado:</label>
+            <input name="Habilitado" type="text"  class="form-control mt-4" placeholder="Habilitado "value="{{ $usuario->Habilitado == 1 ? 'Habilitado' : 'Deshabilitado' }}" readonly/>
         </div>
         </div>
         <div style='text-align:right' class=' botones mt-4'>
@@ -87,8 +89,8 @@
         text-align: right;
         position: relative;   
         
-        left:400px;
-        top:500px;
+        left:300px;
+        top:400px;
      }
     .form-container
     {

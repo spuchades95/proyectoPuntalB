@@ -26,19 +26,30 @@
             </tr>
         </thead>
         <tbody>
-
-            @foreach ($usuarios as $user)
-            <tr data-id="{{ $user->id }}">
-                <td>{{ $user->NombreUsuario}}</td>
-                <td>{{ $user->NombreCompleto }}</td>
-                <td>{{ $user->Instalacion_id }}</td>
-                <td>{{ $user->email }}</td>
-                <td>{{ $user->habilitado }}</td>
-                <td>{{ $user->Telefono }}</td>
-                <td>{{ $user->Direccion }}</td>
-                <td>{{ $user->Rol_id }}</td>
-            </tr>
-            @endforeach
+        @foreach ($usuarios as $user)
+    <tr data-id="{{ $user->id }}">
+        <td>{{ $user->NombreUsuario }}</td>
+        <td>{{ $user->NombreCompleto }}</td>
+        <td>
+            @if(isset($Instalacion[$user->id]))
+                {{ $Instalacion[$user->id]->Ubicacion }}
+            @else
+                No se encontró instalación
+            @endif
+        </td>
+        <td>{{ $user->email }}</td>
+        <td> {{ $user->Habilitado == 1 ? 'Habilitado' : 'Deshabilitado' }} </td>
+        <td>{{ $user->Telefono }}</td>
+        <td>{{ $user->Direccion }}</td>
+        <td>
+            @if(isset($Roles[$user->id]))
+                {{ $Roles[$user->id]->NombreRol }}
+            @else
+                No se encontró rol
+            @endif
+        </td>
+    </tr>
+    @endforeach
         </tbody>
     </table>
 </div>

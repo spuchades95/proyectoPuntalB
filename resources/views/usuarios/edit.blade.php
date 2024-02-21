@@ -7,92 +7,132 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-<div class="formularioRoles">
+
+<div class="formularioUsuario">
     <div class="formHeader">
-        <h5>VISTA ROL {{ $rol->NombreRol }} </h5>
+        <h5>EDITAR USUARIO</h5>
     </div>
-    <form class="form-container" method="POST" action="{{ route('roles.update', ['role' => $rol->id])}}">
+
+    <form class="form-container" method="POST" action="{{ route('usuarios.update', ['usuario' => $usuario->id]) }}">
         @csrf
         @method('PUT')
-        <div class="mb-3 d-flex">
-            <label for="NombreRol" class="form-label">Nombre del rol:</label>
-            <input name="NombreRol" type="text" class="form-control mt-4" placeholder="Nombre del rol " value="{{ $rol->NombreRol }}" />
-        </div>
-        <div class="mb-3 d-flex">
-            <label for="Descripcion" class="form-label">Descipcion:</label>
-            <textarea name="Descripcion" class="form-control mt-4"> {{ $rol->Descripcion }}</textarea>
-        </div>
-        <div class="mb-3">
-            <label for="Permisos" class="form-label">Permisos:</label>
-            <div>
-                <label class="label-checkbox" for="lectura">Lectura</label><br>
-                <input type="checkbox" id="lectura" name="Permisos[]" value="lectura" @if(in_array('lectura', $permisosSeleccionados)) checked @endif>
-            </div>
-            <div>
-                <label class="label-checkbox" for="modificacion">Modificación</label><br>
-                <input type="checkbox" id="modificacion" name="Permisos[]" value="modificacion" @if(in_array('modificacion', $permisosSeleccionados)) checked @endif>
-            </div>
-            <div>
-                <label class="label-checkbox" for="eliminacion">Eliminación</label><br>
-                <input type="checkbox" id="eliminacion" name="Permisos[]" value="eliminacion" @if(in_array('eliminacion', $permisosSeleccionados)) checked @endif>
-            </div>
-            <div style='text-align:right' class='mt-4'>
-                <button type="button" class="btn btnCancelar" data-toggle="modal" data-target="#myModal">
-                   ELIMINAR
-                </button>
-
-                <div class="modal" id="myModal">
-                    <div class="modal-dialog">
-                        <div class="modal-content">
-
-                            <!-- Cabecera del Modal -->
-                            <div class="modal-header">
-                                <h4 class="modal-title">BAJA DE ROL </h4>
-                            </div>
-
-                            <!-- Cuerpo del Modal -->
-                            <div class="modal-body">
-                                <div class="mb-3 d-flex">
-                                    <label for="NombreRol">Nombre del rol:</label>
-                                    <input name="NombreRol" type="text" class="form-control mt-4" placeholder="Nombre del rol " value="{{ $rol->NombreRol }} " readonly />
-
-
-                                </div>
-
-                                <div class="mb-3 d-flex">
-                                    <label for="Causa" class="form-label">Causa de la baja:</label>
-                                    <textarea name="Causa" class="form-control mt-4" > </textarea>
-                                </div>
-
-                            </div>
-
-                            <!-- Pie del Modal -->
-                            <div class="modal-footer">
-                        
-                            
-
-                            <button type="button" class="btn btnCancelar" data-dismiss="modal">CANCELAR</button>
-                <form id="delete-form" action="{{ route('roles.destroy', ['role' => $rol->id]) }}" method="POST">
-                    @csrf
-                    @method('DELETE')
-                    <button type="submit" class="btn btnAdd">ELIMINAR</button>
-                </form>
-                        
-                        
-                        
-                        
-                        </div>
-
-                        </div>
+        
+        <div class="row">
+            <!-- Formulario izquierdo -->
+            <div class="col-md-6">
+                <div class="form-left">
+                    <div class="mb-3 d-flex">
+                        <label for="Usuario" class="form-label">Nombre Usuario:</label>
+                        <input name="NombreUsuario" type="text" class="form-control mt-4" placeholder="Nombre Usuario" value="{{ $usuario->NombreUsuario }}" />
+                    </div>
+                    <div class="mb-3 d-flex">
+                        <label for="NombreCompleto" class="form-label">Descripción:</label>
+                        <input name="NombreCompleto" type="text" class="form-control mt-4" placeholder="Descripción" value="{{ $usuario->NombreCompleto }}" />
+                    </div>
+                    <div class="mb-3 d-flex">
+                        <label for="DNI" class="form-label">DNI:</label>
+                        <input name="DNI" type="text" class="form-control mt-4" placeholder="DNI" value="{{ $usuario->DNI }}" />
+                    </div>
+                    <div class="mb-3 d-flex">
+                        <label for="Telefono" class="form-label">Teléfono:</label>
+                        <input name="Telefono" type="text" class="form-control mt-4" placeholder="Teléfono" value="{{ $usuario->Telefono }}" />
                     </div>
                 </div>
-                <button type="submit" class="btn btnAdd">EDITAR</button>
             </div>
+            
+            <!-- Formulario derecho -->
+            <div class="col-md-6">
+                <div class="form-right">
+                    <div class="mb-3 d-flex">
+                        <label for="Email" class="form-label">Email:</label>
+                        <input name="email" type="text" class="form-control mt-4" placeholder="Email" value="{{ $usuario->email }}" />
+                    </div>
+                    <div class="mb-3 d-flex">
+                        <label for="Direccion" class="form-label">Dirección:</label>
+                        <input name="Direccion" type="text" class="form-control mt-4" placeholder="Dirección" value="{{ $usuario->Direccion }}" />
+                    </div>
+                    <div class="mb-3 d-flex">
+                        <label for="password" class="form-label">Contraseña:</label>
+                        <input name="password" type="text" class="form-control mt-4" placeholder="Contraseña" value="{{ $usuario->password }}" />
+                    </div>
+                    <div class="mb-3 d-flex">
+                        <label for="Descripcion" class="form-label">Descripción:</label>
+                        <input name="Descripcion" type="text" class="form-control mt-4" placeholder="Descripción" value="{{ $usuario->Descripcion }}" />
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Selector de perfil -->
+        <div class="mb-3 d-flex">
+            <label for="perfil" class="form-label">Perfil:</label>
+            <select name="Rol_id" class="form-control mt-4" required>
+                @foreach($Roles as $roles)
+                    <option value="{{ $roles->id }}">{{ $roles->NombreRol }}</option>
+                @endforeach  
+            </select>      
+        </div>
+        
+        <!-- Selector de instalaciones -->
+        <div class="mb-3 d-flex">
+            <label for="instalacion" class="form-label">Instalaciones:</label>
+            <select name="Instalacion_id" class="form-control mt-4" required>
+                @foreach($Instalacion as $instalacion)
+                    <option value="{{ $instalacion->id }}">{{ $instalacion->Ubicacion }}</option>
+                @endforeach
+            </select>
+        </div>
+        <div class="mb-3 d-flex">
+            <label for="habilitado" class="form-label">Habilitado:</label>
+            <select name="Habilitado" class="form-control mt-4" required>
+                
+            <option value="1" {{ $usuario->Habilitado == 1 ? 'selected' : '' }}>Habilitado</option>
+        <option value="0" {{ $usuario->Habilitado == 0 ? 'selected' : '' }}>Deshabilitado</option>
+                
+            </select>        </div>
+        
+        <!-- Botones -->
+        <div class="mt-3 d-flex">
+            <button type="button" class="btn btnCancelar" data-toggle="modal" data-target="#myModal">ELIMINAR</button>
+            <!-- Modal de eliminación -->
+            <div class="modal" id="myModal">
+                <!-- Contenido del modal -->
+            </div>
+            <button type="submit" class="btn btnAdd">EDITAR</button>
         </div>
     </form>
 </div>
-<style>
 
+<style>
+.botones
+    {
+        text-align: right;
+        position: absolute;   
+        
+        right:100px;
+        top:800px;
+     }
+    .form-container
+    {
+
+        width:100%;
+        height: 100%;
+    }
+  .form-left {
+    float: left;
+    margin-top:10px;
+   
+  
+    
+}
+
+.form-right {
+    float: right;
+    margin-right:150px;
+    margin-top:10px;
+   
+    
+}
 .btnAdd {
     background-color: #3f2d85!important;
     color: #f5f6fd!important;
@@ -123,88 +163,60 @@ line-height: normal;
 }
 
 
-.formHeader {
-        padding: 6px;
-        font-weight: bold;
-        font-family: 'Questrial', sans-serif;
-        color: #ffffff;
-        background-color: #1d2834;
-        border-radius: 5px 5px 0px 0px;
-    }
 
-    .formularioRoles {
-        padding: 50px;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
+        .formHeader {
+            padding: 6px;
+            font-weight: bold;
+            font-family: 'Questrial', sans-serif;
+            color: #ffffff;
+            background-color: #1d2834;
+            border-radius: 5px 5px 0px 0px;
+        }
 
-    }
+        .formularioRoles {
+            
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
 
-    form {
-        background-color: #FFFFFF;
-        padding: 15px;
-        border-radius: 0px 0px 5px 5px;
-        box-shadow: 10px 5px 10px rgba(0, 0, 0, 0.5);
-    }
+        }
 
-    .chec div {
-        margin-bottom: 5px;
-    }
+        form {
+            background-color: #FFFFFF;
+            padding: 15px;
+            border-radius: 0px 0px 5px 5px;
+            box-shadow: 10px 5px 10px rgba(0, 0, 0, 0.5);
+        }
 
-    input[type="text"],
-    textarea,
-    input[type="checkbox"] {
-        box-sizing: border-box;
-        border: 1px solid #ccc;
-        padding: 3px;
-        font-size: 14px;
-        line-height: 1.5;
-        height: 28px;
-        width: calc(100% - 75px);
-    }
+        .chec div {
+            margin-bottom: 5px;
+        }
 
-    .label-checkbox {
-        font-weight: bold;
-        display: inline-block;
-        width: 200px;
-        margin-right: 10px;
-    }
+        input[type="text"],
+        textarea,
+        input[type="checkbox"] {
+            box-sizing: border-box;
+            border: 1px solid #ccc;
+            padding: 3px;
+            font-size: 14px;
+            line-height: 1.5;
+            height: 28px;
+            width: calc(100% - 75px);
+        }
 
-    label {
-        width: 200px;
-        font-weight: bold;
-    }
+        .label-checkbox {
+            font-weight: bold;
+            display: inline-block;
+            width: 200px;
+            margin-right: 10px;
+        }
 
-
-    .modal-content {
-        background-color: #F7F7F7;
-        border: 1px solid #888;
-        border-radius: 10px;
-    }
-
-    .modal-header {
-        background-color: #1D2834;
-        color: #fff;
-        border-bottom: 1px solid #007bff;
-        border-top-left-radius: 10px;
-        border-top-right-radius: 10px;
-    }
-
-
-    .modal-footer {
-        border-top: none;
-    }
-
-    .modal-footer .btn {
-        border-radius: 5px;
-    }
-
-    label {
-        width: 200px;
-        font-weight: bold;
-        text-align: left;
-    }
+        label {
+            width: 200px;
+            font-weight: bold;
+        }
+    </style><link rel="stylesheet" type="text/css" href="{{ asset('styles.css') }}">
 </style>
-<link rel="stylesheet" type="text/css" href="{{ asset('styles.css') }}">
+
 
 @endsection
