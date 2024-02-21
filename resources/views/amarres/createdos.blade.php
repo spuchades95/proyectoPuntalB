@@ -10,26 +10,28 @@
     <div class="formHeader">
         <h5>ALTA AMARRE</h5>
     </div>
-    <form class="form-container" method="POST" action="{{ route('amarres.storedos', ['dock' => $pantalan->id])) }}">
-        @csrf
-        <label for="cantidad_amarres">Cantidad de amarres a crear:</label>
-    <input type="number" id="cantidad_amarres" name="cantidad_amarres" required min="1">
+    <form class="form-container" method="POST" action="{{ route('amarres.storedos') }}">
 
-    <button type="submit">Crear Amarres</button>
-      
+        @csrf
+        <label for="cantidad">Cantidad de amarres a crear:</label>
+        <input type="number" id="cantidad" name="cantidad" required min="1">
+        <div class="form-group">
+            <label for="Pantalan_id/nombre">Pantalán</label>
+            <input type="hidden" name="Pantalan_id" value="{{ $Pantalan_id }}" required>
+            <input type="text" value="{{ $pantalan_nombre }}"" class=" form-control" readonly>
+        </div>
+        <br>
+        <button type="submit" class="btn btnAdd">Crear Amarres</button>
+
     </form>
 </div>
 @endsection
 <style>
+
     .btnAdd {
         background-color: #3f2d85 !important;
         color: #f5f6fd !important;
         margin-left: 10px;
-
-
-
-
-
     }
 
     .btn {
@@ -49,8 +51,6 @@
         background-color: #ffc745 !important;
         color: #7a2e0d !important;
     }
-
-
 
     .formHeader {
         padding: 6px;

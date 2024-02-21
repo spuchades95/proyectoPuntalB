@@ -11,14 +11,8 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('berths', function (Blueprint $table) {
-            $table->id();
-            $table->string('Estado');
-            $table->string('TipoPlaza');
-            $table->date('Anio');
-            $table->string('Causa')->nullable();
-            $table->softDeletes();
-            $table->timestamps();
+        Schema::table('transits', function (Blueprint $table) {
+            $table->boolean('Leido')->default(0)->after('id');
         });
     }
 
@@ -27,6 +21,8 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('berths');
+        Schema::table('transits', function (Blueprint $table) {
+            $table->dropColumn('Leido');
+        });
     }
 };

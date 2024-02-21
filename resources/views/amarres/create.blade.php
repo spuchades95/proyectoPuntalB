@@ -30,7 +30,7 @@
 
         </div>
         <div class="form-group">
-            <label for="Anio">Año</label>
+            <label for="Anio">Año de creación</label>
             <input type="datetime" value="{{ now()->format('Y-m-d') }} "name="Anio" id="Anio" class="form-control" required>
         </div>
         <div class="form-group">
