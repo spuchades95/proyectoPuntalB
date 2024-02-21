@@ -1,6 +1,6 @@
 <div class="azul500 col-sm-2 d-flex flex-column align-items-center">
     <img alt="Bootstrap Image Preview" src="/image/Group.svg" class="logo" />
-    <a href="" class=" mt-5 boton dashboard">DASHBOARD</a>
+    <a href="" class=" mt-5 boton dashboard">PANEL DE CONTROL</a>
     <a href="{{ route('roles.index') }}" class=" mt-5 boton rol">GESTIÓN ROLES</a>
     <a href="{{ route('usuarios.index') }}" class=" mt-5 boton user">GESTIÓN USUARIOS</a>
     <a href="{{ route('instalaciones.index') }}" class=" mt-5 boton ins">GESTIÓN  INSTALACIONES</a>
