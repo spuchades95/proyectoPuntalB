@@ -19,8 +19,8 @@
             <input name="NombreRol" type="text" class="form-control mt-4" placeholder="Nombre del rol " value="{{ $rol->NombreRol }}" />
         </div>
         <div class="mb-3 d-flex">
-            <label for="Descripcion" class="form-label">Descipcion:</label>
-            <textarea name="Descripcion" class="form-control mt-4"> {{ $rol->Descripcion }}</textarea>
+            <label for="Descripcion" class="form-label">Descripción:</label>
+            <textarea name="Descripcion" class="form-control mt-4">{{ $rol->Descripcion }}</textarea>
         </div>
         <div class="mb-3">
             <label for="Permisos" class="form-label">Permisos:</label>
@@ -36,94 +36,75 @@
                 <label class="label-checkbox" for="eliminacion">Eliminación</label><br>
                 <input type="checkbox" id="eliminacion" name="Permisos[]" value="eliminacion" @if(in_array('eliminacion', $permisosSeleccionados)) checked @endif>
             </div>
-            <div style='text-align:right' class='mt-4'>
-                <button type="button" class="btn btnCancelar" data-toggle="modal" data-target="#myModal">
-                   ELIMINAR
-                </button>
-
+        </div>
+        <div style='text-align:right' class='mt-4'>
+            <button type="button" class="btn btnCancelar" data-toggle="modal" data-target="#myModal">
+                ELIMINAR
+            </button>
+            <button type="submit" class="btn btnAdd">EDITAR</button>
+        </div>
+   
                 <div class="modal" id="myModal">
-                    <div class="modal-dialog">
-                        <div class="modal-content">
-
-                            <!-- Cabecera del Modal -->
-                            <div class="modal-header">
-                                <h4 class="modal-title">BAJA DE ROL </h4>
-                            </div>
-
-                            <!-- Cuerpo del Modal -->
-                            <div class="modal-body">
-                                <div class="mb-3 d-flex">
-                                    <label for="NombreRol">Nombre del rol:</label>
-                                    <input name="NombreRol" type="text" class="form-control mt-4" placeholder="Nombre del rol " value="{{ $rol->NombreRol }} " readonly />
-
-
-                                </div>
-
-                                <div class="mb-3 d-flex">
-                                    <label for="Causa" class="form-label">Causa de la baja:</label>
-                                    <textarea name="Causa" class="form-control mt-4" > </textarea>
-                                </div>
-
-                            </div>
-
-                            <!-- Pie del Modal -->
-                            <div class="modal-footer">
-                        
-                            
-
-                            <button type="button" class="btn btnCancelar" data-dismiss="modal">CANCELAR</button>
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">BAJA DE ROL </h4>
+                </div>
+                <div class="modal-body">
                 <form id="delete-form" action="{{ route('roles.destroy', ['role' => $rol->id]) }}" method="POST">
-                    @csrf
-                    @method('DELETE')
-                    <button type="submit" class="btn btnAdd">ELIMINAR</button>
-                </form>
-                        
-                        
-                        
-                        
-                        </div>
-
-                        </div>
+                    <div class="mb-3 d-flex">
+                        <label for="NombreRol">Nombre del rol:</label>
+                        <input name="NombreRol" type="text" class="form-control mt-4" placeholder="Nombre del rol " value="{{ $rol->NombreRol }}" readonly />
+                    </div>
+                    <div class="mb-3 d-flex">
+                        <label for="Causa" class="form-label">Causa de la baja:</label>
+                        <textarea name="Causa" class="form-control mt-4"> </textarea>
                     </div>
                 </div>
-                <button type="submit" class="btn btnAdd">EDITAR</button>
+                <div class="modal-footer">
+                    <button type="button" class="btn btnCancelar" data-dismiss="modal">CANCELAR</button>
+       
+                        @csrf
+                        @method('DELETE')
+                        <button type="submit" class="btn btnAdd">ELIMINAR</button>
+                    </form>
+                </div>
             </div>
         </div>
+    </div>
     </form>
 </div>
 <style>
-
-.btnAdd {
-    background-color: #3f2d85!important;
-    color: #f5f6fd!important;
-    margin-left: 10px;
-
+    .btnAdd {
+        background-color: #3f2d85 !important;
+        color: #f5f6fd !important;
+        margin-left: 10px;
 
 
 
 
-}
+    }
 
-.btn{
+    .btn {
 
-    text-align: center;
-    -webkit-text-stroke: 1.5px ;
-font-family: Questrial;
-font-size: 16px;
-font-style: normal;
-font-weight: 400;
-line-height: normal;
+        text-align: center;
+        -webkit-text-stroke: 1.5px;
+        font-family: Questrial;
+        font-size: 16px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: normal;
 
-}
+    }
 
-.btnCancelar {
-    text-decoration: none;
-    background-color:#ffc745!important;
-    color: #7a2e0d!important;
-}
+    .btnCancelar {
+        text-decoration: none;
+        background-color: #ffc745 !important;
+        color: #7a2e0d !important;
+    }
 
 
-.formHeader {
+    .formHeader {
         padding: 6px;
         font-weight: bold;
         font-family: 'Questrial', sans-serif;
