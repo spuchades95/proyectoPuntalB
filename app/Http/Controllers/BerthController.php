@@ -175,10 +175,10 @@ class BerthController extends Controller
                 $baseBerth->delete();
                 $transit = new Transit();
                 $transit->Amarre_id = $amarre->id;
-
+                $transit->save();
             }
-            $transit->save();
-        } elseif ($request->TipoPlaza === 'Plaza Base') {
+    
+        } if ($request->TipoPlaza === 'Plaza Base') {
             $baseBerth = BaseBerth::where('Amarre_id', $id)->first();
             if (!$baseBerth) {
                 $transit = Transit::where('Amarre_id', $id)->first();

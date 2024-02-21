@@ -36,7 +36,7 @@
         <div class="form-group">
             <label for="Pantalan_id/nombre">Pantalán</label>
             <input type="hidden" name="Pantalan_id" value="{{ $Pantalan_id }}" required>
-            <input type="text" value="{{ $pantalan_nombre }}"" class="form-control" readonly >
+            <input type="text" value="{{ $pantalan_nombre }}" class="form-control" readonly >
         </div>
         <div style='text-align:right' class='mt-4'>
                 <button class="btn btnCancelar"> CANCELAR </button>

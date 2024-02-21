@@ -2,6 +2,9 @@
 
 namespace App\Http\Controllers;
 
+
+
+
 use App\Models\Dock;
 use App\Models\Facility;
 use Illuminate\Http\Request;
@@ -22,7 +25,6 @@ class DockController extends Controller
      */
     public function create(Request $request)
     {
-       
         $Instalacion_id = $request->input('facility');
         $InstalacionUbicacion = Facility::find($Instalacion_id)->Ubicacion;
         return view('pantalanes.create', [
@@ -68,7 +70,7 @@ class DockController extends Controller
         $pantalan = Dock::find($id);
         $Instalacion_id = $pantalan->Instalacion_id;
         $InstalacionUbicacion = Dock::find($Instalacion_id)->Ubicacion;
-        return view('pantalanes.show', compact('pantalan', 'InstalacionUbicacion'));;
+        return view('pantalanes.show', compact('pantalan', 'InstalacionUbicacion'));
     }
 
     /**
@@ -76,10 +78,10 @@ class DockController extends Controller
      */
     public function edit(string $id)
     {
-        $pantalan = Dock::find($id);
-        $Instalacion_id = $pantalan->Pantalan_id;
-         $InstalacionUbicacion = Dock::find($Instalacion_id)->Ubicacion;
-         return view('pantalanes.edit', compact('pantalan', 'InstalacionUbicacion'));
+       $pantalan = Dock::find($id);
+       $Instalacion_id = $pantalan->Pantalan_id;
+        $InstalacionUbicacion = Dock::find($Instalacion_id)->Ubicacion;
+        return view('pantalanes.edit', compact('pantalan', 'InstalacionUbicacion'));
     }
 
     /**

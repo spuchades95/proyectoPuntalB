@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Role;
 use Illuminate\Http\Request;
-
+use Illuminate\Support\Facades\Log;
 class RoleController extends Controller
 {
     /**
@@ -136,6 +136,8 @@ class RoleController extends Controller
     {
         $role = Role::findOrFail($id);
         $role->Causa = $request->input('Causa');
+        Log::info('Llamada a en destroycon $rol:', [$role]);
+        Log::info('Llamada a causa:', [$role->Causa = $request->input('Causa')]);
         $role->save();
         $role->delete();
 
