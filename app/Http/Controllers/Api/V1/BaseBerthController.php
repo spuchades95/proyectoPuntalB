@@ -4,8 +4,10 @@ namespace App\Http\Controllers\Api\V1;
 
 use App\Http\Controllers\Controller;
 use App\Models\BaseBerth;
+use App\Models\Berth;
 use Illuminate\Http\Request;
 use App\Http\Resources\V1\BaseBerthResource;
+use Illuminate\Support\Facades\Log;
 
 class BaseBerthController extends Controller
 {
@@ -14,7 +16,20 @@ class BaseBerthController extends Controller
      */
     public function index()
     {
-        return BaseBerth::all();
+
+
+        $cositas = BaseBerth::with(['plaza.pantalan.instalacion'])
+            ->whereHas('plaza', function ($query) {
+                $query->where('Estado', 'Disponible');
+            })
+            ->get();
+        $plazasBaseAll = [
+
+            'plazabasedetalles' => BaseBerthResource::collection($cositas)
+
+
+        ];
+        return response()->json($plazasBaseAll, 201);
     }
 
     /**
@@ -45,20 +60,18 @@ class BaseBerthController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, BaseBerth $baseBerth)
+    public function update(Request $request, String $id)
     {
         try {
-            // Verifica si el amarre base existe
-            $baseBerth = BaseBerth::find($baseBerth);
-            if ($baseBerth == null) {
-                return response()->json([
-                    'message' => 'No se encuentra el amarre base',
-                    'code' => 404
-                ], 404);
-            }
-            $baseBerth->update($request->all());
+
+            $baseBerth = BaseBerth::findOrFail($id);
+            $baseBerth->FechaEntrada = $request->FechaEntrada;
+            $baseBerth->FinContrato = $request->FinContrato;
+            $baseBerth->save();
+
             return response()->json($baseBerth, 200);
         } catch (\Exception $e) {
+
             return response()->json([
                 'message' => 'Error al actualizar el amarre base',
                 'code' => 500
@@ -69,19 +82,43 @@ class BaseBerthController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy($id)
+    protected function updateCausa(Request $request, string $id)
     {
-        $baseBerth = BaseBerth::find($id);
-        if ($baseBerth == null) {
-            return response()->json([
-                'message' => 'No se encuentra el amarre base',
-                'code' => 404
-            ], 404);
+        // Lógica para actualizar el campo Causa en Berth
+        // Por ejemplo:
+        $baseBerth = BaseBerth::findOrFail($id);
+        $berth = Berth::findOrFail($baseBerth->Amarre_id);
+        $berth->update([
+            'Causa' => $request->Causa,
+        ]);
+    }
+    public function destroy(Request $request, string $id)
+    {
+        try {
+            
+            // Buscar el registro de BaseBerth por su ID
+            $baseBerth = BaseBerth::findOrFail($id);
+
+            // Guardar el valor de la propiedad 'Causa' proporcionado en la solicitud
+            $berth = Berth::findOrFail($baseBerth->Amarre_id);
+            $this->updateCausa($request, $id);
+            Log::info('Amarre encontrado: ' . json_encode( $this->updateCausa($request, $id)));
+       
+       
+            Log::info('causa: ' . json_encode( $berth->Causa = $request->input('Causa')));
+            // Guardar los cambios antes de eliminar el registro
+            $berth->save();
+            Log::info('Amarre encontrado: ' . json_encode($berth));
+            // Eliminar el registro de BaseBerth
+           // $berth->delete();
+          //  $baseBerth->delete();
+
+            // Retornar una respuesta adecuada, por ejemplo, un JSON indicando el éxito de la operación
+            return response()->json(['message' => 'BaseBerth eliminado con éxito'], 200);
+        } catch (\Exception $e) {
+            Log::error('Error al eliminar el amarre base: ' . $e->getMessage());
+            // Manejar la excepción si ocurre un error
+            return response()->json(['message' => 'Error al eliminar el amarre base', 'code' => 500], 500);
         }
-        $baseBerth->delete();
-        return response()->json([
-            'message' => 'Amarre base eliminado',
-            'code' => 200
-        ], 200);
     }
 }

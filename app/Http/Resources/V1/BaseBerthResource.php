@@ -20,7 +20,9 @@ class BaseBerthResource extends JsonResource
             'Fecha entrada' => $this->FechaEntrada,
             'Fin contrato' => $this->FinContrato,
             'Fecha de creacion' => $this->FechaCreacion,
-            
+            'Amarre ' => $this->plaza->Numero,
+            'Nombre ' => $this->plaza->pantalan->Nombre,
+            'Ubicacion' => $this->plaza->pantalan->instalacion->Ubicacion,
         ];
     }
 }
