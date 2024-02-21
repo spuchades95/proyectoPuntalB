@@ -16,32 +16,33 @@ class TransitController extends Controller
     /**
      * Display a listing of the resource.
      */
-    $transits= Transit::all();
-    $details = DB::table('Docks As D')
-    ->join('Facilities AS F', 'D.instalacion_id', '=', 'F.id')
-    ->join('Berths AS B', 'D.id', '=', 'B.pantalan_id')
-    ->join('Transits AS T', 'B.id', '=', 'T.amarre_id')
-    ->join('Boats AS BT', 'BT.Embarcacion_id', '=', 'T.Transito_id')
-    ->select('D.nombre', 'F.ubicacion','B.Estado', 'B.Numero','BT.Embarcacion_id','BD.Matricula','BD.Tipo','BD.Titular','BD.Origen')
-    ->get();
-    
-    $transitsAll = [
-        'transits' => $transits,
-        'transit_details' => $details
-    ];
+  
     public function index()
     {
-        $transits= Transit::all();
-        $details = DB::table('Docks As D')
-        ->join('Facilities AS F', 'D.instalacion_id', '=', 'F.id')
-        ->join('Berths AS B', 'D.id', '=', 'B.pantalan_id')
-        ->join('Transits AS T', 'B.id', '=', 'T.amarre_id')
-        ->select('D.nombre', 'F.ubicacion', 'B.Numero')
-        ->get();
-        $transitsAll = [
-            'transits' => $transits,
-            'transit_details' => $details
-        ];
+         $transits= Transit::all();
+         $details = DB::table('Docks As D')
+         ->join('Facilities AS F', 'D.instalacion_id', '=', 'F.id')
+         ->join('Berths AS B', 'D.id', '=', 'B.pantalan_id')
+         ->join('Transits AS T', 'B.id', '=', 'T.amarre_id')
+         ->join('Boats AS BT', 'BT.id', '=', 'T.id')
+         ->select('D.nombre', 'F.ubicacion','B.Estado', 'B.Numero','BT.id','BT.Matricula','BT.Tipo','BT.Titular','BT.Origen')
+         ->get();
+        
+         $transitsAll = [
+             'transits' => $transits,
+             'transit_details' => $details
+         ];
+        // $transits= Transit::all();
+        // $details = DB::table('Docks As D')
+        // ->join('Facilities AS F', 'D.instalacion_id', '=', 'F.id')
+        // ->join('Berths AS B', 'D.id', '=', 'B.pantalan_id')
+        // ->join('Transits AS T', 'B.id', '=', 'T.amarre_id')
+        // ->select('D.nombre', 'F.ubicacion', 'B.Numero')
+        // ->get();
+        // $transitsAll = [
+        //     'transits' => $transits,
+        //     'transit_details' => $details
+        // ];
 
     return response()->json($transitsAll, 200);
     }
