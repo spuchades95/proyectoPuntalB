@@ -38,8 +38,9 @@
 
             </div>
             <div style='text-align:right' class='mt-4'>
-                <button class="btn btnCancelar"> CANCELAR </button>
-                <button type="submit" class="btn btnAdd">AÑADIR</button>
+            
+            <a href="{{ route('roles.index') }}" class="btn btnCancelar">CANCELAR</a>
+            <button type="submit" class="btn btnAdd">AÑADIR</button>
             </div>
         </div>
     </form>

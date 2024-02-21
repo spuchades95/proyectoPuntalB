@@ -23,8 +23,10 @@ class TransitController extends Controller
         ->join('Facilities AS F', 'D.instalacion_id', '=', 'F.id')
         ->join('Berths AS B', 'D.id', '=', 'B.pantalan_id')
         ->join('Transits AS T', 'B.id', '=', 'T.amarre_id')
-        ->select('D.nombre', 'F.ubicacion', 'B.Numero')
+        ->join('Boats AS BT', 'BT.Embarcacion_id', '=', 'T.Transito_id')
+        ->select('D.nombre', 'F.ubicacion','B.Estado', 'B.Numero','BT.Embarcacion_id','BD.Matricula','BD.Tipo','BD.Titular','BD.Origen')
         ->get();
+        
         $transitsAll = [
             'transits' => $transits,
             'transit_details' => $details
@@ -32,6 +34,7 @@ class TransitController extends Controller
 
     return response()->json($transitsAll, 200);
     }
+   
 
 
     /**

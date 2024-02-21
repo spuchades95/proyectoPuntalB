@@ -32,7 +32,7 @@
             <input name="FechaCreacion" type="date" class="form-control mt-4" required />
         </div>
         <div style='text-align:right' class='mt-4'>
-            <button class="btn btnCancelar">CANCELAR</button>
+        <a href="{{ route('instalaciones.index') }}" class="btn btnCancelar">CANCELAR</a>
             <button type="submit" class="btn btnAdd">CREAR</button>
         </div>
     </form>
