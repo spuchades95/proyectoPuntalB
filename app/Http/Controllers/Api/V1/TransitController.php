@@ -2,19 +2,50 @@
 
 namespace App\Http\Controllers\Api\V1;
 
+use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 use App\Models\Transit;
+use App\Models\Dock;
+use App\Models\Boat;
+use App\Models\Facility;
 use Illuminate\Http\Request;
+
 
 class TransitController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
+    $transits= Transit::all();
+    $details = DB::table('Docks As D')
+    ->join('Facilities AS F', 'D.instalacion_id', '=', 'F.id')
+    ->join('Berths AS B', 'D.id', '=', 'B.pantalan_id')
+    ->join('Transits AS T', 'B.id', '=', 'T.amarre_id')
+    ->join('Boats AS BT', 'BT.Embarcacion_id', '=', 'T.Transito_id')
+    ->select('D.nombre', 'F.ubicacion','B.Estado', 'B.Numero','BT.Embarcacion_id','BD.Matricula','BD.Tipo','BD.Titular','BD.Origen')
+    ->get();
+    
+    $transitsAll = [
+        'transits' => $transits,
+        'transit_details' => $details
+    ];
     public function index()
     {
-        return Transit::all();
+        $transits= Transit::all();
+        $details = DB::table('Docks As D')
+        ->join('Facilities AS F', 'D.instalacion_id', '=', 'F.id')
+        ->join('Berths AS B', 'D.id', '=', 'B.pantalan_id')
+        ->join('Transits AS T', 'B.id', '=', 'T.amarre_id')
+        ->select('D.nombre', 'F.ubicacion', 'B.Numero')
+        ->get();
+        $transitsAll = [
+            'transits' => $transits,
+            'transit_details' => $details
+        ];
+
+    return response()->json($transitsAll, 200);
     }
+
 
     /**
      * Store a newly created resource in storage.
@@ -26,6 +57,7 @@ class TransitController extends Controller
         return response()->json($transit, 201);
     }
 
+
     /**
      * Display the specified resource.
      */
@@ -33,12 +65,14 @@ class TransitController extends Controller
     {
         $transit = Transit::find($id);
 
+
         if ($transit) {
             return response()->json($transit, 200);
         } else {
             return response()->json('Tránsito no encontrado', 404);
         }
     }
+
 
     /**
      * Update the specified resource in storage.
@@ -67,12 +101,14 @@ class TransitController extends Controller
         }
     }
 
+
     /**
      * Remove the specified resource from storage.
      */
     public function destroy($id)
     {
         $transit = Transit::find($id);
+
 
         if ($transit) {
             $transit->delete();
