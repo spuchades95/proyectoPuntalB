@@ -3,7 +3,7 @@
 @section('content')
 <link rel="stylesheet" type="text/css" href="{{ asset('styles.css') }}">
 
-<div class="formularioRoles">
+<div class="formulario">
     <div class="formHeader">
         <h5>VISTA INSTALACIÓN {{ $instalacion->Ubicacion }} </h5>
     </div>
@@ -28,19 +28,10 @@
             <label for="FechaCreacion" class="form-label">Fecha de creación:</label>
             <input name="FechaCreacion" type="text" class="form-control mt-4" value="{{ $instalacion->FechaCreacion }}" readonly />
         </div>
-        <div class="mb-3 d-flex">
-            <label for="Causa" class="form-label">Causa:</label>
-            <input name="Causa" type="text" class="form-control mt-4" value="{{ $instalacion->Causa }}" readonly />
-        </div>
+
         <div class="mb-3">
             <div style='text-align:right' class='mt-4'>
-                <!-- <a href="{{ route('instalaciones.edit', $instalacion->id) }}" class="btn btnVista">Editar</a>
-                <form action="{{ route('instalaciones.destroy', $instalacion->id) }}" method="POST">
-                    @csrf
-                    @method('DELETE')
-                    <button type="submit" class="btn btnDelete">Eliminar</button>
-                </form> -->
-
+    
                 <a href="{{ route('instalaciones.index') }}" class="btn btnDelete">VOLVER</a>
 
                 <a href="{{ route('instalaciones.edit', $instalacion->id) }}" class="btn btnVista">EDITAR</a>
@@ -85,7 +76,7 @@ line-height: normal;
         border-radius: 5px 5px 0px 0px;
     }
 
-    .formularioRoles {
+    .formulario {
         padding: 50px;
         flex-direction: column;
         align-items: center;

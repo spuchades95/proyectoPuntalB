@@ -29,7 +29,7 @@
         </div>
         <div class="mb-3 d-flex">
             <label for="FechaCreacion" class="form-label">Fecha de creación:</label>
-            <input name="FechaCreacion" type="date" class="form-control mt-4" required />
+            <input name="FechaCreacion" type="date" class="form-control mt-4" value="{{ now()->format('Y-m-d') }}" required />
         </div>
         <div style='text-align:right' class='mt-4'>
             <button class="btn btnCancelar">CANCELAR</button>

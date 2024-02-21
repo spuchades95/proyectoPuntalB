@@ -33,12 +33,9 @@
         </div>
         <div class="mb-3 d-flex">
             <label for="FechaCreacion" class="form-label">Fecha de creación:</label>
-            <input name="FechaCreacion" type="date" class="form-control mt-4" value="{{ $instalacion->FechaCreacion }}" required />
+            <input name="FechaCreacion" type="datetime" class="form-control mt-4" value="{{ $instalacion->FechaCreacion }}" required />
         </div>
-        <div class="mb-3 d-flex" >
-            <label for="Causa" class="form-label">Causa:</label>
-            <input name="Causa" type="text" class="form-control mt-4" placeholder="Causa" value="{{ $instalacion->Causa }}">
-        </div>
+    
 <div style='text-align:right' class='mt-4'>
         <button type="button" class="btn btnCancelar" data-toggle="modal" data-target="#myModal">
     ELIMINAR

@@ -71,7 +71,7 @@ class DockController extends Controller
     {
         $pantalan = Dock::find($id);
         $Instalacion_id = $pantalan->Instalacion_id;
-        $InstalacionUbicacion = Dock::find($Instalacion_id)->Ubicacion;
+        $InstalacionUbicacion = Facility::find($Instalacion_id)->Ubicacion;
         return view('pantalanes.show', compact('pantalan', 'InstalacionUbicacion'));
     }
 
@@ -81,8 +81,8 @@ class DockController extends Controller
     public function edit(string $id)
     {
        $pantalan = Dock::find($id);
-       $Instalacion_id = $pantalan->Pantalan_id;
-        $InstalacionUbicacion = Dock::find($Pantalan_id)->Ubicacion;
+       $Instalacion_id = $pantalan->Instalacion_id;
+        $InstalacionUbicacion = Facility::find($Instalacion_id)->Ubicacion;
         return view('pantalanes.edit', compact('pantalan', 'InstalacionUbicacion'));
     }
 
