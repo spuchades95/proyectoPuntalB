@@ -6,7 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Resources\V1\BoatResource;
 use App\Models\Boat;
 use Illuminate\Http\Request;
- 
+use Illuminate\Support\Facades\Storage;
 
 class BoatController extends Controller
 {
@@ -23,7 +23,17 @@ class BoatController extends Controller
      */
     public function store(Request $request)
     {
+    
         $boat = Boat::create($request->all());
+        if ($request->hasFile('Imagen')) {
+            // $file = $request->file('Imagen');
+            // $name = time().$file->getClientOriginalName();
+            // $file->move(public_path().'/image/', $name);
+            // // $request->Imagen = $name;
+            $imagenPath = $request->file('Imagen')->store('public/image');
+            $boat->Imagen = str_replace('public', 'storage', $imagenPath);
+            // $boat->Imagen = Storage::url($imagenPath);
+        }
         $boat->save();
         return response()->json($boat, 201);
     }
