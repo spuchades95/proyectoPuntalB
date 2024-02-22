@@ -16,13 +16,37 @@ class BaseBerthController extends Controller
      * Display a listing of the resource.
      */
 
-     public function cantidadpb(){
-      
-        
-        $cantidad= BaseBerth::count();
-        return $cantidad;
-     }
+    public function cantidadpb()
+    {
 
+
+        $cantidad = BaseBerth::count();
+        return $cantidad;
+    }
+
+    public function estancia()
+    {
+
+
+        $cantidad = BaseBerth::query()
+            ->selectRaw('SUM(DATEDIFF(FinContrato, FechaEntrada)) AS estancia')
+            ->value('estancia');
+        $cantidadEstancias = BaseBerth::count();
+
+        if ($cantidadEstancias > 0) {
+            $duracionMedia = $cantidad / $cantidadEstancias;
+
+            $años = floor($duracionMedia / 365);
+            $meses = floor(($duracionMedia % 365) / 30);
+            $dias = $duracionMedia % 30;
+            return ['años' => $años, 'meses' => $meses, 'días' => $dias];
+        }
+    }
+public function paratabla(){
+
+
+    
+}
 
     public function index()
     {
@@ -31,7 +55,7 @@ class BaseBerthController extends Controller
         $cositas = BaseBerth::with(['plaza.pantalan.instalacion'])
             ->whereHas('plaza', function ($query) {
                 $query->where('Estado', 'Disponible');
-            })
+           })
             ->get();
         $plazasBaseAll = [
 
@@ -105,7 +129,6 @@ class BaseBerthController extends Controller
                 'code' => 500
             ], 500);
         }
-
     }
 
 
