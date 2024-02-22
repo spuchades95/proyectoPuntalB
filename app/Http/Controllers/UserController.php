@@ -4,6 +4,12 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\User;
+use App\Models\DockWorker;
+use App\Models\Administrative;
+use App\Models\CivilGuard;
+use App\Models\Concessionaire;
+
+
 use Illuminate\Support\Facades\Log;
 use App\Models\Facility;
 use App\Models\Role;
@@ -84,6 +90,33 @@ class UserController extends Controller
         $usuario->Habilitado = $request->Habilitado;
         $usuario->Descripcion = $request->Descripcion;
         $usuario->Rol_id = $request->Rol_id;
+        switch ($usuario->Rol_id) {
+            case "1":
+                $concessionaire = new Concessionaire();
+                $concessionaire->Usuario_id = $usuario->Rol_id;
+                $concessionaire->save();
+
+                break;
+            case "2":
+                $administrative = new Administrative();
+                $administrative->Usuario_id = $usuario->Rol_id;
+                $administrative->save();
+                break;
+            case "3":
+                $dockWorker = new DockWorker();
+                $dockWorker->Usuario_id = $usuario->Rol_id;
+                $dockWorker->save();
+
+                break;
+            case "4":
+                $civil = new CivilGuard();
+                $civil->Usuario_id = $usuario->Rol_id;
+                $civil->save();
+                break;
+            default:
+                
+                break;
+        }
         $usuario->email = $request->email;
         $usuario->password = $request->password;
 
@@ -131,7 +164,6 @@ class UserController extends Controller
         //     'DNI' => 'required',
         //     'Telefono' => 'required',
         //     'Direccion' => 'required',
-        //     'Imagen' => 'nullable|image',
         //     'Descripcion' => 'nullable|string|max:255',
         //     'Rol_id' => 'required',
         //     'Causa' => 'nullable|string|max:255',

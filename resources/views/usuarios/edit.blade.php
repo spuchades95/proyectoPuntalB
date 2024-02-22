@@ -62,16 +62,6 @@
                 </div>
             </div>
         </div>
-
-        <!-- Selector de perfil -->
-        <div class="mb-3 d-flex">
-            <label for="perfil" class="form-label">Perfil:</label>
-            <select name="Rol_id" class="form-control mt-4" required>
-                @foreach($Roles as $roles)
-                    <option value="{{ $roles->id }}">{{ $roles->NombreRol }}</option>
-                @endforeach  
-            </select>      
-        </div>
         
         <!-- Selector de instalaciones -->
         <div class="mb-3 d-flex">
