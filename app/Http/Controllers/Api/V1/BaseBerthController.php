@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api\V1;
 use App\Http\Controllers\Controller;
 use App\Models\BaseBerth;
 use App\Models\Berth;
+use App\Models\Administrative;
 use Illuminate\Http\Request;
 use App\Http\Resources\V1\BaseBerthResource;
 use Illuminate\Support\Facades\Log;
@@ -60,7 +61,7 @@ class BaseBerthController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, String $id)
+    public function update(Request $request, string $id)
     {
         try {
 
@@ -73,19 +74,39 @@ class BaseBerthController extends Controller
         } catch (\Exception $e) {
 
             return response()->json([
+                Log::info($e->getMessage()),
                 'message' => 'Error al actualizar el amarre base',
                 'code' => 500
             ], 500);
         }
     }
 
+    public function administrativoyAmarre(Request $request, string $id)
+    {
+        try {
+            $berth = Berth::findOrFail($id);
+            $administrative = Administrative::findOrFail($request->Administrativo_id);
+            $berth->administrativeamarre()->attach($administrative->id);
+
+            return response()->json(['message' => 'Administrativo asociado correctamente al amarre'], 200);
+        } catch (\Exception $e) {
+            return response()->json([
+                'message' => 'Error al asociar el administrativo al amarre',
+                'error' => $e->getMessage(),
+                'code' => 500
+            ], 500);
+        }
+
+    }
+
+
+
     /**
      * Remove the specified resource from storage.
      */
     protected function updateCausa(Request $request, string $id)
     {
-        // Lógica para actualizar el campo Causa en Berth
-        // Por ejemplo:
+
         $baseBerth = BaseBerth::findOrFail($id);
         $berth = Berth::findOrFail($baseBerth->Amarre_id);
         $berth->update([
@@ -95,23 +116,21 @@ class BaseBerthController extends Controller
     public function destroy(Request $request, string $id)
     {
         try {
-            
+
             // Buscar el registro de BaseBerth por su ID
             $baseBerth = BaseBerth::findOrFail($id);
 
-            // Guardar el valor de la propiedad 'Causa' proporcionado en la solicitud
+
             $berth = Berth::findOrFail($baseBerth->Amarre_id);
             $this->updateCausa($request, $id);
-            Log::info('Amarre encontrado: ' . json_encode( $this->updateCausa($request, $id)));
-       
-       
-            Log::info('causa: ' . json_encode( $berth->Causa = $request->input('Causa')));
+            Log::info('Amarre encontrado: ' . json_encode($this->updateCausa($request, $id)));
+
             // Guardar los cambios antes de eliminar el registro
             $berth->save();
             Log::info('Amarre encontrado: ' . json_encode($berth));
             // Eliminar el registro de BaseBerth
-           // $berth->delete();
-          //  $baseBerth->delete();
+            // $berth->delete();
+            //  $baseBerth->delete();
 
             // Retornar una respuesta adecuada, por ejemplo, un JSON indicando el éxito de la operación
             return response()->json(['message' => 'BaseBerth eliminado con éxito'], 200);

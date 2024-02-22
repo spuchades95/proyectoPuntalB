@@ -15,12 +15,12 @@ class BerthResource extends JsonResource
      */
     public function toArray(Request $request): array
     {
-          $pantalan = Dock::find($this->Pantalan_id);
+        //  $pantalan = Dock::find($this->Pantalan_id);
         return [
             'Estado' => $this->Estado,
             'Tipo Plaza' => $this->TipoPlaza ,
             'Anio' => $this->Anio,
-            'Pantalan' => $pantalan->Nombre, 
+            'Pantalan ' => $this->plaza->pantalan->Nombre,
             
            
            
