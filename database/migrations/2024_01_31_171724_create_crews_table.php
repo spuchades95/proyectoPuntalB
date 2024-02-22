@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('NumeroDeDocumento')->nullable();
             $table->string('Nombre')->nullable();
-            $table->string('Sexo');
+            $table->string('Sexo')->nullable();;
             $table->string('Nacionalidad')->nullable();            
             $table->softDeletes();
             $table->timestamps();

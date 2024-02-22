@@ -12,23 +12,21 @@
     <div class="formHeader">
         <h5>VISTA AMARRE {{ $amarre->Numero }} </h5>
     </div>
-    <form class="form-container" method="POST" action="{{ route('amarres.update', ['amarre' => $amarre->id])}}">
+    <form class="form-container" method="POST" action="{{ route('amarres.update', ['amarre' => $amarre->id]) }}">
         @csrf
         @method('PUT')
         <div class="mb-3 d-flex">
             <label for="Numero" class="form-label">Numero del amarre:</label>
-            <input name="Numero" type="text" class="form-control mt-4" " value=" {{ $amarre->Numero }}" readonly />
+            <input name="Numero" type="text" class="form-control mt-4" value="{{ $amarre->Numero }}" readonly />
         </div>
         <div class="mb-3 d-flex">
             <label for="Estado" class="form-label">Estado:</label>
-
             <select name="Estado" id="Estado" class="form-control" required>
                 <option value="">Selecciona un tipo de estado</option>
                 <option value="Disponible" @if($amarre->Estado === 'Disponible') selected @endif>Disponible</option>
                 <option value="Mantenimiento" @if($amarre->Estado === 'Mantenimiento') selected @endif>Mantenimiento</option>
                 <option value="Ocupada" @if($amarre->Estado === 'Ocupada') selected @endif>Ocupada</option>
             </select>
-
         </div>
         <div class="mb-3 d-flex">
             <label for="TipoPlaza">Tipo de plaza</label>
@@ -39,68 +37,52 @@
                 <option value="Undefined" @if($amarre->TipoPlaza === 'Undefined') selected @endif>Sin definir</option>
             </select>
         </div>
-
         <div class="mb-3">
             <label for="Anio" class="form-label">Año de creacion del amarre:</label>
-            <input name="Anio" type="text" class="form-control mt-4" " value=" {{ date('Y', strtotime($amarre->Anio)) }}" readonly />
+            <input name="Anio" type="text" class="form-control mt-4" value="{{ date('Y', strtotime($amarre->Anio)) }}" readonly />
         </div>
         <div class="form-group">
             <label for="Pantalan_id/nombre">Pantalán</label>
-            <input type="text" value="{{ $pantalanNombre }}"" class=" form-control" readonly>
+            <input type="text" value="{{ $pantalanNombre }}" class="form-control" readonly>
         </div>
+
         <div style='text-align:right' class='mt-4'>
             <button type="button" class="btn btnCancelar" data-toggle="modal" data-target="#myModal">
                 ELIMINAR
             </button>
-
-            <div class="modal" id="myModal">
-                <div class="modal-dialog">
-                    <div class="modal-content">
-
-                        <!-- Cabecera del Modal -->
-                        <div class="modal-header">
-                            <h4 class="modal-title">BAJA DE ROL </h4>
-                        </div>
-
-                        <!-- Cuerpo del Modal -->
-                        <div class="modal-body">
-                            <div class="mb-3 d-flex">
-                                <label for="Numero"> Numero del amarre:</label>
-                                <input name="Numero" type="text" class="form-control mt-4" placeholder="Numero del amarre " value="{{ $amarre->Numero }} " readonly />
-
-                            </div>
-
-                            <div class="mb-3 d-flex">
-                                <label for="Causa" class="form-label">Causa de la baja:</label>
-                                <textarea name="Causa" class="form-control mt-4"> </textarea>
-                            </div>
-
-                        </div>
-
-                        <!-- Pie del Modal -->
-                        <div class="modal-footer">
-
-
-
-                            <button type="button" class="btn btnCancelar" data-dismiss="modal">CANCELAR</button>
-                            <form id="delete-form" action="{{ route('amarres.destroy', ['amarre' => $amarre->id]) }}" method="POST">
-                                @csrf
-                                @method('DELETE')
-                                <button type="submit" class="btn btnAdd">ELIMINAR</button>
-                            </form>
-
-
-
-
-                        </div>
-
-                    </div>
-                </div>
-            </div>
             <button type="submit" class="btn btnAdd">EDITAR</button>
         </div>
-</div>
-</form>
+        </form>
+
+    <div class="modal" id="myModal">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">BAJA DE AMARRE </h4>
+                </div>
+                <form id="delete-form" action="{{ route('amarres.destroy', ['amarre' => $amarre->id]) }}" method="POST">
+                <div class="modal-body">
+                    <div class="mb-3 d-flex">
+                        <label for="Numero"> Numero del amarre:</label>
+                        <input name="Numero" type="text" class="form-control mt-4" placeholder="Numero del amarre " value="{{ $amarre->Numero }}" readonly />
+                    </div>
+                    <div class="mb-3 d-flex">
+                        <label for="Causa" class="form-label">Causa de la baja:</label>
+                        <textarea id="Causa" name="Causa" class="form-control mt-4"> </textarea>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btnCancelar" data-dismiss="modal">CANCELAR</button>
+                   
+                        @csrf
+                        @method('DELETE')
+                        <button type="submit" class="btn btnAdd">ELIMINAR</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    
 </div>
 <style>
     .btnAdd {

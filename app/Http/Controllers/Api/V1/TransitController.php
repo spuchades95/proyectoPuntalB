@@ -9,14 +9,34 @@ use App\Models\Dock;
 use App\Models\Boat;
 use App\Models\Facility;
 use Illuminate\Http\Request;
-
-
+use App\Http\Resources\V1\TransitResource;
 class TransitController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
-  
+
+public function index(){
+
+
+    
+$cositas = Transit::with(['plaza.pantalan.instalacion'])
+->whereHas('plaza', function($query) {
+    $query->where('Estado', 'Disponible');
+})
+->get();
+$plazasBaseAll=[
+
+    'plazabasedetalles' => TransitResource::collection($cositas)
+
+
+] ;
+        return response()->json($plazasBaseAll, 201);
+}
+
+
+
+     /*
     public function index()
     {
          $transits= Transit::all();
@@ -46,8 +66,7 @@ class TransitController extends Controller
 
     return response()->json($transitsAll, 200);
     }
-
-
+*/
     /**
      * Store a newly created resource in storage.
      */
