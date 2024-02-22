@@ -14,6 +14,9 @@ class BoatController extends Controller
      * Display a listing of the resource.
      */
 
+
+     
+
     public function cantidadem()
     {
 
