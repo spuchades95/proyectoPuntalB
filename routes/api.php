@@ -28,6 +28,13 @@ Route::group([
     Route::post('/refresh', [AuthController::class, 'refresh']);
     // Route::get('/user-profile', [AuthController::class, 'userProfile']);    
 });
+
+
+// Route::post('v1/plazaBase{id}/administrativoyAmarre', App\Http\Controllers\Api\V1\BaseBerthController::class);
+// Route::put('v1/plazaBase{id}/updateCausa',App\Http\Controllers\Api\V1\BaseBerthController::class);
+
+
+
 Route::apiResource('v1/usuario', App\Http\Controllers\Api\V1\UserController::class);
 Route::apiResource('v1/rol', App\Http\Controllers\Api\V1\RoleController::class);
 Route::apiResource('v1/transito', App\Http\Controllers\Api\V1\TransitController::class);
