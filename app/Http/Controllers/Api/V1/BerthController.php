@@ -11,6 +11,20 @@ class BerthController extends Controller
     /**
      * Display a listing of the resource.
      */
+
+    
+     public function porcentaje(){
+      
+        
+        $cantidad= Berth::count();
+
+        $ocupadas=Berth::where('Estado',' Ocupada')->count();
+        $porcentaje= ($ocupadas/$cantidad)*100;
+
+        return $porcentaje;
+     }
+
+
     public function index()
     {
         return Berth::all();

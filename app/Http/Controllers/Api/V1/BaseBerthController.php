@@ -15,6 +15,15 @@ class BaseBerthController extends Controller
     /**
      * Display a listing of the resource.
      */
+
+     public function cantidadpb(){
+      
+        
+        $cantidad= BaseBerth::count();
+        return $cantidad;
+     }
+
+
     public function index()
     {
 

@@ -12,6 +12,14 @@ class TransitController extends Controller
      * Display a listing of the resource.
      */
 
+
+     public function cantidadtr(){
+      
+        
+        $cantidad= Transit::count();
+        return $cantidad;
+     }
+
 public function index(){
 
 

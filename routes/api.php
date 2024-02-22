@@ -4,6 +4,19 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\Api\V1\BaseBerthController;
+use App\Http\Controllers\Api\V1\BoatController;
+use App\Http\Controllers\Api\V1\CrewController;
+use App\Http\Controllers\Api\V1\FacilityController;
+use App\Http\Controllers\Api\V1\IncidentController;
+use App\Http\Controllers\Api\V1\RoleController;
+use App\Http\Controllers\Api\V1\TransitController;
+use App\Http\Controllers\Api\V1\BerthController;
+
+
+
+
+
+
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -30,9 +43,13 @@ Route::group([
 });
 
 
-Route::post('v1/plazaBase/{id}/administrativoyAmarre', [BaseBerthController::class]);
+Route::post('v1/plazaBase/{id}/administrativoyAmarre', [BaseBerthController::class, 'administrativoyAmarre']);
 Route::put('v1/plazaBase/{id}/updateCausa',[BaseBerthController::class , 'updateCausa']);
-
+Route::get('v1/plazaBase/cantidad',[BaseBerthController::class , 'cantidadpb']);
+Route::get('v1/transito/cantidad',[TransitController::class , 'cantidadtr']);
+Route::get('v1/plaza/porcentaje',[BerthController::class , 'porcentaje']);
+Route::get('v1/embarcacion/cantidad',[BoatController::class , 'cantidadem']);
+Route::get('v1/embarcacion/pais',[BoatController::class , 'pais']);
 
 
 Route::apiResource('v1/usuario', App\Http\Controllers\Api\V1\UserController::class);

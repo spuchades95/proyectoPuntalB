@@ -6,13 +6,50 @@ use App\Http\Controllers\Controller;
 use App\Http\Resources\V1\BoatResource;
 use App\Models\Boat;
 use Illuminate\Http\Request;
- 
+
 
 class BoatController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
+
+    public function cantidadem()
+    {
+
+
+        $cantidad = Boat::count();
+        return $cantidad;
+    }
+
+    public function pais()
+    {
+
+        $barcoypais = Boat::select('Origen')
+            ->selectRaw('count(*) as total')
+            ->groupBy('Origen')
+            ->orderByDesc('total')
+            ->get();
+
+        $cantidad = $barcoypais->first();
+        return $cantidad;
+    }
+
+
+    
+    public function tipocomun()
+    {
+
+        $tipo = Boat::select('Tipo')
+            ->selectRaw('count(*) as total')
+            ->groupBy('Tipo')
+            ->orderByDesc('total')
+            ->get();
+
+        $cantidad = $tipo->first();
+        return $cantidad;
+    }
+
     public function index()
     {
         return Boat::all();
@@ -42,41 +79,40 @@ class BoatController extends Controller
         } else {
             return response()->json('Boat not found', 404);
         }
-   
     }
     /**
      * Update the specified resource in storage.
      */
     public function update(Request $request, Boat $boat)
     {
-        
+
         try {
             // Verifica si la embarcación existe
             if (!$boat) {
                 return response()->json(['error' => 'Embarcación no encontrada'], 404);
             }
 
-          
+
 
             // Obtiene los datos actuales antes de la actualización
             $oldData = $boat->toArray();
-       
+
             $updateResult = Boat::where('id', $request->id)->update($request->except(['id', 'created_at', 'updated_at']));
 
-          
+
             if ($updateResult) {
                 // Obtiene los datos después de la actualización
                 $boat = Boat::find($request->id);
                 $newData = $boat->toArray();
-             
+
 
                 return response()->json($boat, 200);
             } else {
                 return response()->json(['error' => 'Error al actualizar la embarcación'], 500);
             }
-        }  catch (\Exception $e) {
+        } catch (\Exception $e) {
             // Manejo de otros errores
-            
+
             return response()->json(['error' => 'Error interno del servidor'], 500);
         }
     }
