@@ -79,9 +79,21 @@ class BoatController extends Controller
 
             // Obtiene los datos actuales antes de la actualización
             $oldData = $boat->toArray();
-       
+            
             $updateResult = Boat::where('id', $request->id)->update($request->except(['id', 'created_at', 'updated_at']));
 
+            if ($request->hasFile('Imagen')) {
+                // Elimina la imagen anterior
+                Storage::delete(str_replace('storage', 'public', 'image', $oldData['Imagen']));
+                // Almacena la nueva imagen
+                $imagenPath = $request->file('Imagen')->store('public/image');
+                // Obtén la URL pública de la imagen almacenada
+                $url = Storage::url($imagenPath);
+                // Asigna la URL al atributo Imagen del modelo Boat
+                $boat->Imagen = $url;
+                $boat->save();
+            }
+            
           
             if ($updateResult) {
                 // Obtiene los datos después de la actualización
