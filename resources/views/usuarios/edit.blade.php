@@ -36,12 +36,11 @@
     </div>
     <div class="form-group">
         <label for="Descripcion">Descripción</label>
-        <input type="text" name="Descripcion" id="Descripcion" class="form-control" value="{{$usuario->Descripcion}}"
-            required>
+        <input type="text" name="Descripcion" id="Descripcion" class="form-control" value="{{$usuario->Descripcion}}" required>
     </div>
     <div class="form-group">
         <label for="Rol">Rol</label>
-        <input type="text" name="Rol" id="Rol" class="form-control" value="{{$usuario->Rol}}" required>
+        <input type="text" name="Rol" id="Rol" class="form-control" value="{{$usuario->Rol_id}}" required>
     </div>
     <div class="form-group">
         <label for="Causa">Causa</label>
@@ -49,11 +48,12 @@
     </div>
     <div class="form-group">
         <label for="Email">Email</label>
-        <input type="text" name="email" id="Email" class="form-control" value="{{$usuario->Email}}" required>
+        <input type="text" name="email" id="Email" class="form-control" value="{{$usuario->email}}" required>
     </div>
     <div class="form-group">
         <label for="Password">Password</label>
         <input type="password" name="password" id="Password" class="form-control" required>
+        <!-- <input type="password" name="password" id="Password" class="form-control" value="{{$usuario->password}}" required> //Viene --> 
     </div>
     <button type="submit" class="btn btn-primary">Actualizar</button>
 </form>

@@ -5,17 +5,39 @@ namespace App\Http\Controllers\Api\V1;
 use App\Http\Controllers\Controller;
 use App\Models\Transit;
 use Illuminate\Http\Request;
-
+use App\Http\Resources\V1\TransitResource;
 class TransitController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
+
+public function index(){
+
+
+    
+$cositas = Transit::with(['plaza.pantalan.instalacion'])
+->whereHas('plaza', function($query) {
+    $query->where('Estado', 'Disponible');
+})
+->get();
+$plazasBaseAll=[
+
+    'plazabasedetalles' => TransitResource::collection($cositas)
+
+
+] ;
+        return response()->json($plazasBaseAll, 201);
+}
+
+
+
+     /*
     public function index()
     {
         return Transit::all();
     }
-
+*/
     /**
      * Store a newly created resource in storage.
      */

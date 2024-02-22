@@ -33,9 +33,9 @@
             <td>{{ $usuario->Direccion }}</td>
             <td>{{ $usuario->Imagen }}</td>
             <td>{{ $usuario->Descripcion }}</td>
-            <td>{{ $usuario->Rol }}</td>
+            <td>{{ $usuario->Rol_id }}</td>
             <td>{{ $usuario->Causa }}</td>
-            <td>{{ $usuario->Email }}</td>
+            <td>{{ $usuario->email }}</td>
 
             <td><a href="{{ route('usuarios.show', $usuario->id) }}">Ver</a></td>
             <td><a href="{{ route('usuarios.edit', $usuario->id) }}">Editar</a></td>

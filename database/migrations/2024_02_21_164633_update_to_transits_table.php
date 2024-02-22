@@ -11,14 +11,9 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('incidents', function (Blueprint $table) {
-            $table->id();
-            $table->string('Titulo')->nullable();
-            $table->string('Imagen')->nullable();;
-            $table->string('Descripcion')->nullable();
-     
-            $table->softDeletes();
-            $table->timestamps();
+        Schema::table('transits', function (Blueprint $table) {
+            $table->boolean('Leido')->defaultFalse()->nullable()->after('Amarre_id');
+            $table->string('Estatus')->nullable();
         });
     }
 
@@ -27,6 +22,9 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('incidents');
+        Schema::table('transits', function (Blueprint $table) {
+            $table->dropColumn('Leido');
+            $table->dropColumn('Estatus');
+        });
     }
 };
