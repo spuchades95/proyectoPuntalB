@@ -3,7 +3,7 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
-
+use App\Http\Controllers\Api\V1\BaseBerthController;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -30,8 +30,8 @@ Route::group([
 });
 
 
-// Route::post('v1/plazaBase{id}/administrativoyAmarre', App\Http\Controllers\Api\V1\BaseBerthController::class);
-// Route::put('v1/plazaBase{id}/updateCausa',App\Http\Controllers\Api\V1\BaseBerthController::class);
+Route::post('v1/plazaBase/{id}/administrativoyAmarre', [BaseBerthController::class]);
+Route::put('v1/plazaBase/{id}/updateCausa',[BaseBerthController::class , 'updateCausa']);
 
 
 

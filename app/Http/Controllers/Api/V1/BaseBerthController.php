@@ -104,7 +104,7 @@ class BaseBerthController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    protected function updateCausa(Request $request, string $id)
+    public function updateCausa(Request $request, string $id)
     {
 
         $baseBerth = BaseBerth::findOrFail($id);
