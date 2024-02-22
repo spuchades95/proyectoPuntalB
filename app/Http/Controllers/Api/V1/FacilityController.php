@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api\V1;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\V1\FacilityResource;
 use App\Models\Facility;
+use App\Models\Dock;
 use Illuminate\Http\Request;
 
 class FacilityController extends Controller
@@ -12,6 +13,18 @@ class FacilityController extends Controller
     /**
      * Display a listing of the resource.
      */
+
+
+     public function pantalanes($id)
+     {
+  
+         $pantalanes = Dock::where('Instalacion_id', $id)->get();
+         
+    
+         return response()->json($pantalanes);
+     }
+
+
     public function index()
     {
         return Facility::all();

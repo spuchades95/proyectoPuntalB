@@ -8,6 +8,10 @@ use App\Models\Berth;
 use App\Models\Administrative;
 use Illuminate\Http\Request;
 use App\Http\Resources\V1\BaseBerthResource;
+use App\Models\Facility;
+use App\Models\Dock;
+use App\Models\Rental;
+use App\Models\Boat;
 use Illuminate\Support\Facades\Log;
 
 class BaseBerthController extends Controller
@@ -42,11 +46,26 @@ class BaseBerthController extends Controller
             return ['años' => $años, 'meses' => $meses, 'días' => $dias];
         }
     }
-public function paratabla(){
+    public function paratabla()
+    {
+        $plazasBase = BaseBerth::join('berths', 'berths.id', '=', 'base_berths.amarre_id')
+        ->join('docks', 'docks.id', '=', 'berths.pantalan_id')
+        ->join('facilities', 'facilities.id', '=', 'docks.instalacion_id')
+        ->join('rentals', 'rentals.PlazaBase_id', '=', 'berths.id')
+        ->join('boats', 'boats.id', '=', 'rentals.embarcacion_id')
+        ->select(
+            'base_berths.FechaEntrada', 
+            'base_berths.FinContrato', 
+            'berths.Numero', 
+            'docks.Nombre AS nombre', 
+            'facilities.Ubicacion AS ubicacion', 
+            'boats.Matricula', 
+            'boats.Titular'
+        )
+        ->get();
 
-
-    
-}
+        return response()->json($plazasBase, 200);
+    }
 
     public function index()
     {
@@ -55,7 +74,7 @@ public function paratabla(){
         $cositas = BaseBerth::with(['plaza.pantalan.instalacion'])
             ->whereHas('plaza', function ($query) {
                 $query->where('Estado', 'Disponible');
-           })
+            })
             ->get();
         $plazasBaseAll = [
 

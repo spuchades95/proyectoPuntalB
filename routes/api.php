@@ -11,11 +11,7 @@ use App\Http\Controllers\Api\V1\IncidentController;
 use App\Http\Controllers\Api\V1\RoleController;
 use App\Http\Controllers\Api\V1\TransitController;
 use App\Http\Controllers\Api\V1\BerthController;
-
-
-
-
-
+use App\Http\Controllers\Api\V1\DockController;
 
 /*
 |--------------------------------------------------------------------------
@@ -46,11 +42,17 @@ Route::group([
 Route::post('v1/plazaBase/{id}/administrativoyAmarre', [BaseBerthController::class, 'administrativoyAmarre']);
 Route::put('v1/plazaBase/{id}/updateCausa',[BaseBerthController::class , 'updateCausa']);
 
+Route::get('v1/instalacion/{id}/pantalanes',[FacilityController::class , 'pantalanes']);
+Route::get('v1/pantalan/{id}/amarres',[DockController::class , 'amarres']);
 
 
 //Rutas personalizadas que se van a usar en el dashboard, por ahora solo ahi
 Route::get('v1/plazaBase/cantidad',[BaseBerthController::class , 'cantidadpb']);
 Route::get('v1/plazaBase/estancia',[BaseBerthController::class , 'estancia']);
+Route::get('v1/plazaBase/paratabla',[BaseBerthController::class , 'paratabla']);
+
+
+
 Route::get('v1/transito/cantidad',[TransitController::class , 'cantidadtr']);
 Route::get('v1/plaza/porcentaje',[BerthController::class , 'porcentaje']);
 Route::get('v1/plaza/pbdisponibles',[BerthController::class , 'plazasbdisponibles']);
@@ -61,13 +63,9 @@ Route::get('v1/plaza/trmantenimiento',[BerthController::class , 'plazastrmanteni
 
 
 
-
-
 Route::get('v1/embarcacion/cantidad',[BoatController::class , 'cantidadem']);
 Route::get('v1/embarcacion/pais',[BoatController::class , 'pais']);
 Route::get('v1/embarcacion/tipocomun',[BoatController::class , 'tipocomun']);
-
-
 
 
 
