@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Resources\V1\BoatResource;
 use App\Models\Boat;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Storage;
 
 class BoatController extends Controller
@@ -25,6 +26,7 @@ class BoatController extends Controller
     {
     
         $boat = Boat::create($request->all());
+        Log::info('Boat created: ' . $boat->all());
         // if ($request->hasFile('Imagen')) {
         //     // $file = $request->file('Imagen');
         //     // $name = time().$file->getClientOriginalName();
