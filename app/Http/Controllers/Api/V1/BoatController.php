@@ -25,14 +25,21 @@ class BoatController extends Controller
     {
     
         $boat = Boat::create($request->all());
+        // if ($request->hasFile('Imagen')) {
+        //     // $file = $request->file('Imagen');
+        //     // $name = time().$file->getClientOriginalName();
+        //     // $file->move(public_path().'/image/', $name);
+        //     // // $request->Imagen = $name;
+        //     $imagenPath = $request->file('Imagen')->store('public/image');
+        //     $boat->Imagen = str_replace('public', 'storage', $imagenPath);
+        //     // $boat->Imagen = Storage::url($imagenPath);
+        // }
         if ($request->hasFile('Imagen')) {
-            // $file = $request->file('Imagen');
-            // $name = time().$file->getClientOriginalName();
-            // $file->move(public_path().'/image/', $name);
-            // // $request->Imagen = $name;
             $imagenPath = $request->file('Imagen')->store('public/image');
-            $boat->Imagen = str_replace('public', 'storage', $imagenPath);
-            // $boat->Imagen = Storage::url($imagenPath);
+            // Obtén la URL pública de la imagen almacenada
+            $url = Storage::url($imagenPath);
+            // Asigna la URL al atributo Imagen del modelo Boat
+            $boat->Imagen = $url;
         }
         $boat->save();
         return response()->json($boat, 201);
