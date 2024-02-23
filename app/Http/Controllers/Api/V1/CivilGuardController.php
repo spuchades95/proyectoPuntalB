@@ -18,9 +18,26 @@ class CivilGuardController extends Controller
     }
     public function leido(Request $request)
     {
-        $civilGuard = CivilGuardTransit::create($request->all());
-        $civilGuard->save();
-        return response()->json($civilGuard, 201);
+        dd($request->all());
+
+        $idGuardia = $request->input('Amarre_id'); // Suponiendo que estás enviando la ID como 'id' desde Angular
+
+        // Buscar el guardia civil por su ID
+        $civilGuard = CivilGuard::find($idGuardia);
+    
+        // Verificar si se encontró el guardia civil
+        if ($civilGuard) {
+            // Actualizar la propiedad 'leido' del guardia civil
+            $civilGuard->Leido = true;
+            
+            // Guardar los cambios en la base de datos
+            $civilGuard->save();
+    
+            return response()->json($civilGuard, 200);
+        } else {
+            // Si no se encontró el guardia civil, retornar un error
+            return response()->json(['message' => 'Guardia civil no encontrado'], 404);
+        }
     }
 
     /**
