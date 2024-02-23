@@ -30,16 +30,10 @@ class BaseBerthController extends Controller
      */
     public function store(Request $request)
     {
-        $request->validate([
-            'DatosEstancia' => 'nullable|string|max:255 ',
-            'FechaEntrada' => 'required',
-            'FinContrato' => 'required',
+        $request->validate([        
             'Amarre_id' => 'required',
         ]);
         $plazabase = new BaseBerth();
-        $plazabase->DatosEstancia = $request->DatosEstancia;
-        $plazabase->FechaEntrada = $request->FechaEntrada;
-        $plazabase->FinContrato = $request->FinContrato;
         $plazabase->Amarre_id = $request->Amarre_id;
         $plazabase->save();
         return redirect()->route('plazasbase.index')

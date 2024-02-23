@@ -54,12 +54,12 @@ class BaseBerthController extends Controller
         ->join('rentals', 'rentals.PlazaBase_id', '=', 'berths.id')
         ->join('boats', 'boats.id', '=', 'rentals.embarcacion_id')
         ->select(
-            'base_berths.FechaEntrada', 
-            'base_berths.FinContrato', 
-            'berths.Numero', 
-            'docks.Nombre AS nombre', 
-            'facilities.Ubicacion AS ubicacion', 
-            'boats.Matricula', 
+            'rentals.FechaInicio',
+            'rentals.FechaFinalizacion',
+            'berths.Numero',
+            'docks.Nombre AS nombre',
+            'facilities.Ubicacion AS ubicacion',
+            'boats.Matricula',
             'boats.Titular'
         )
         ->get();
@@ -113,6 +113,52 @@ class BaseBerthController extends Controller
     /**
      * Update the specified resource in storage.
      */
+    public function alquiler(Request $request, string $id)
+    {
+
+        try {
+
+            $baseBerth = BaseBerth::findOrFail($id);
+            $request->validate([
+                'Embarcacion_id' => 'required|exists:boats,id',
+                'FechaInicio' => 'required|date',
+                'FechaFinalizacion' => 'required|date|after_or_equal:start_date'
+            ]);
+
+            // Obtener los datos de la solicitud
+            $embarcacion = $request->input('Embarcacion_id');
+            $FechaInicio = $request->input('FechaInicio');
+            $FechaFinalizacion = $request->input('FechaFinalizacion');
+
+            // Asociar el barco a la BaseBerth
+            $baseBerth->embarcacion()->attach($embarcacion);
+
+            // Crear un nuevo registro en la tabla Rentals
+            Rental::create([
+                'PlazaBase_id' => $baseBerth,
+                'Embarcacion_id' => $embarcacion,
+                'FechaInicio' => $FechaInicio,
+                'FechaFinalizacion' => $FechaFinalizacion,
+            ]);
+
+
+            return response()->json($baseBerth, 200);
+        } catch (\Exception $e) {
+
+            return response()->json([
+                Log::info($e->getMessage()),
+                'message' => 'Error al actualizar el amarre base',
+                'code' => 500
+            ], 500);
+        }
+
+
+
+
+
+    }
+
+
     public function update(Request $request, string $id)
     {
         try {

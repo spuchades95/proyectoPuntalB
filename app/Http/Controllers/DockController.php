@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Dock;
+use App\Models\Facility;
 use Illuminate\Http\Request;
 
 class DockController extends Controller
@@ -19,9 +20,14 @@ class DockController extends Controller
     /**
      * Show the form for creating a new resource.
      */
-    public function create()
+    public function create(Request $request)
     {
-        return view('pantalanes.create');
+        $Instalacion_id = $request->input('facility');
+        $InstalacionUbicacion = Facility::find($Instalacion_id)->Ubicacion;
+        return view('pantalanes.create', [
+            'Instalacion_id' => $Instalacion_id,
+            'instalacion_ubicacion' => $InstalacionUbicacion
+        ]);
     }
 
     /**
@@ -49,7 +55,7 @@ class DockController extends Controller
        
 
         $plaza->save();
-        return redirect()->route('pantalanes.index')
+        return redirect()->route('instalaciones.index')
             ->with('success', 'pantalán creado correctamente.');
     }
 
@@ -59,7 +65,9 @@ class DockController extends Controller
     public function show(string $id)
     {
         $pantalan = Dock::find($id);
-        return view('pantalanes.show', compact('pantalan'));
+        $Instalacion_id = $pantalan->Instalacion_id;
+        $InstalacionUbicacion = Dock::find($Instalacion_id)->Ubicacion;
+        return view('pantalanes.show', compact('pantalan', 'InstalacionUbicacion'));
     }
 
     /**
@@ -67,8 +75,10 @@ class DockController extends Controller
      */
     public function edit(string $id)
     {
-       $pantalan = Dock::find($id);
-        return view('pantalanes.edit', compact('pantalan'));
+        $pantalan = Dock::find($id);
+       $Instalacion_id = $pantalan->Pantalan_id;
+        $InstalacionUbicacion = Dock::find($Instalacion_id)->Ubicacion;
+        return view('pantalanes.edit', compact('pantalan', 'InstalacionUbicacion'));
     }
 
     /**
@@ -88,11 +98,13 @@ class DockController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(Request $request, string $id)
     {
         $pantalan = Dock::find($id);
+        $pantalan->Causa = $request->input('Causa');
+        $pantalan->save();
         $pantalan->delete();
-        return redirect()->route('pantalanes.index')
+        return redirect()->route('instalaciones.index')
             ->with('success', 'pantalán eliminado correctamente.');
     }
 }

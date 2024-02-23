@@ -163,7 +163,6 @@ class BerthController extends Controller
             if (!$transit) {
                 $baseBerth = BaseBerth::where('Amarre_id', $id)->first();
               
-
                 if ($baseBerth) {
                     $baseBerth->delete();
                 }
@@ -198,7 +197,7 @@ class BerthController extends Controller
     {
         $amarre = Berth::find($id);
         $amarre->Causa = $request->input('Causa');
-  //      Log::info('Llamada a en destroycon $amarre:', [$amarre]);
+    //      Log::info('Llamada a en destroycon $amarre:', [$amarre]);
    //     Log::info('Llamada a causa:', [$amarre->Causa = $request->input('Causa')]);
         $amarre->save();
         $amarre->delete();
