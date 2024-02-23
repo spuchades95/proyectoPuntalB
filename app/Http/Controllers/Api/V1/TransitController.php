@@ -45,6 +45,11 @@ $plazasBaseAll=[
     {
         $transit = Transit::create($request->all());
         $transit->save();
+
+         // Añadir ID de la embarcación seleccionada en la tabla intermedia transit_boats
+         $boatId = $request->input('boat_id');
+         $transit->boats()->sync([$boatId]);
+         
         return response()->json($transit, 201);
     }
 
@@ -109,9 +114,7 @@ $plazasBaseAll=[
         $transit->amarre = $request->input('amarre');
         $transit->save();
 
-        // Añadir ID de la embarcación seleccionada en la tabla intermedia transit_boats
-        $boatId = $request->input('boat_id');
-        $transit->boats()->sync([$boatId]);
+       
 
         return response()->json([
             'data' => $transit,
