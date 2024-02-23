@@ -6,7 +6,8 @@ use App\Http\Controllers\Controller;
 use App\Http\Resources\V1\BoatResource;
 use App\Models\Boat;
 use Illuminate\Http\Request;
- 
+use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Storage;
 
 class BoatController extends Controller
 {
@@ -23,7 +24,25 @@ class BoatController extends Controller
      */
     public function store(Request $request)
     {
+    
         $boat = Boat::create($request->all());
+        Log::info('Boat created: ' . $boat->all());
+        // if ($request->hasFile('Imagen')) {
+        //     // $file = $request->file('Imagen');
+        //     // $name = time().$file->getClientOriginalName();
+        //     // $file->move(public_path().'/image/', $name);
+        //     // // $request->Imagen = $name;
+        //     $imagenPath = $request->file('Imagen')->store('public/image');
+        //     $boat->Imagen = str_replace('public', 'storage', $imagenPath);
+        //     // $boat->Imagen = Storage::url($imagenPath);
+        // }
+        if ($request->hasFile('Imagen')) {
+            $imagenPath = $request->file('Imagen')->store('public/image');
+            // Obtén la URL pública de la imagen almacenada
+            $url = Storage::url($imagenPath);
+            // Asigna la URL al atributo Imagen del modelo Boat
+            $boat->Imagen = $url;
+        }
         $boat->save();
         return response()->json($boat, 201);
     }
@@ -60,9 +79,21 @@ class BoatController extends Controller
 
             // Obtiene los datos actuales antes de la actualización
             $oldData = $boat->toArray();
-       
+            
             $updateResult = Boat::where('id', $request->id)->update($request->except(['id', 'created_at', 'updated_at']));
 
+            if ($request->hasFile('Imagen')) {
+                // Elimina la imagen anterior
+                Storage::delete(str_replace('storage', 'public', 'image', $oldData['Imagen']));
+                // Almacena la nueva imagen
+                $imagenPath = $request->file('Imagen')->store('public/image');
+                // Obtén la URL pública de la imagen almacenada
+                $url = Storage::url($imagenPath);
+                // Asigna la URL al atributo Imagen del modelo Boat
+                $boat->Imagen = $url;
+                $boat->save();
+            }
+            
           
             if ($updateResult) {
                 // Obtiene los datos después de la actualización
