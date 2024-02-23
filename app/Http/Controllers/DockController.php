@@ -14,7 +14,7 @@ class DockController extends Controller
     public function index()
     {
         $pantalanes = Dock::all();
-        return view('pantalanes.index', compact('pantalanes'));
+        return view('amarres.createdos', compact('pantalanes'));
     }
 
     /**
@@ -55,7 +55,7 @@ class DockController extends Controller
        
 
         $plaza->save();
-        return redirect()->route('instalaciones.index')
+        return redirect()->route('pantalanes.index')
             ->with('success', 'pantalán creado correctamente.');
     }
 
@@ -66,7 +66,7 @@ class DockController extends Controller
     {
         $pantalan = Dock::find($id);
         $Instalacion_id = $pantalan->Instalacion_id;
-        $InstalacionUbicacion = Dock::find($Instalacion_id)->Ubicacion;
+        $InstalacionUbicacion = Facility::find($Instalacion_id)->Ubicacion;
         return view('pantalanes.show', compact('pantalan', 'InstalacionUbicacion'));
     }
 
@@ -76,8 +76,8 @@ class DockController extends Controller
     public function edit(string $id)
     {
         $pantalan = Dock::find($id);
-       $Instalacion_id = $pantalan->Pantalan_id;
-        $InstalacionUbicacion = Dock::find($Instalacion_id)->Ubicacion;
+       $Instalacion_id = $pantalan->Instalacion_id;
+        $InstalacionUbicacion = Facility::find($Instalacion_id)->Ubicacion;
         return view('pantalanes.edit', compact('pantalan', 'InstalacionUbicacion'));
     }
 
@@ -91,7 +91,7 @@ class DockController extends Controller
         $pantalan->update($request->all());
 
         $pantalan->save();
-        return redirect()->route('pantalanes.index')
+        return redirect()->route('instalaciones.index')
             ->with('success', 'pantalán actualizado correctamente.');
     }
 
