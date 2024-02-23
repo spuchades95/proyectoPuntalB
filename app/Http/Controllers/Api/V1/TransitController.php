@@ -48,23 +48,23 @@ class TransitController extends Controller
 
 
 
-public function index(){
+// public function index(){
 
 
     
-$cositas = Transit::with(['plaza.pantalan.instalacion'])
-->whereHas('plaza', function($query) {
-    $query->where('Estado', 'Disponible');
-})
-->get();
-$plazasBaseAll=[
+// $cositas = Transit::with(['plaza.pantalan.instalacion'])
+// ->whereHas('plaza', function($query) {
+//     $query->where('Estado', 'Disponible');
+// })
+// ->get();
+// $plazasBaseAll=[
 
-    'plazabasedetalles' => TransitResource::collection($cositas)
+//     'plazabasedetalles' => TransitResource::collection($cositas)
 
 
-] ;
-        return response()->json($plazasBaseAll, 201);
-}
+// ] ;
+//         return response()->json($plazasBaseAll, 201);
+// }
 
 
 

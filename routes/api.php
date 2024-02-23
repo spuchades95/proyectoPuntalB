@@ -12,6 +12,8 @@ use App\Http\Controllers\Api\V1\RoleController;
 use App\Http\Controllers\Api\V1\TransitController;
 use App\Http\Controllers\Api\V1\BerthController;
 use App\Http\Controllers\Api\V1\DockController;
+use App\Http\Controllers\Api\V1\CivilGuardController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -51,6 +53,9 @@ Route::get('v1/plazaBase/cantidad',[BaseBerthController::class , 'cantidadpb']);
 Route::get('v1/plazaBase/estancia',[BaseBerthController::class , 'estancia']);
 Route::get('v1/plazaBase/paratabla',[BaseBerthController::class , 'paratabla']);
 
+Route::get('v1/guardiaCivil/leido',[CivilGuardController::class , 'leido']);
+
+
 
 
 Route::get('v1/transito/cantidad',[TransitController::class , 'cantidadtr']);
@@ -59,6 +64,7 @@ Route::get('v1/plaza/pbdisponibles',[BerthController::class , 'plazasbdisponible
 Route::get('v1/plaza/pbmantenimiento',[BerthController::class , 'plazasbmantenimiento']);
 Route::get('v1/plaza/trdisponibles',[BerthController::class , 'plazastrdisponibles']);
 Route::get('v1/plaza/trmantenimiento',[BerthController::class , 'plazastrmantenimiento']);
+Route::get('v1/plaza/disponibles',[BerthController::class , 'plazasdisponibles']);
 
 
 
@@ -86,6 +92,8 @@ Route::apiResource('v1/instalacion', App\Http\Controllers\Api\V1\FacilityControl
 Route::apiResource('v1/incidencia', App\Http\Controllers\Api\V1\IncidentController::class);
 Route::apiResource('v1/embarcacion', App\Http\Controllers\Api\V1\BoatController::class);
 Route::apiResource('v1/pantalan', App\Http\Controllers\Api\V1\DockController::class);
+
+
 
 
 

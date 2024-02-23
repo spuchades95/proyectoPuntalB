@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Api\V1;
 
 use App\Http\Controllers\Controller;
 use App\Models\CivilGuard;
+use App\Models\CivilGuardTransit;
 use Illuminate\Http\Request;
 
 class CivilGuardController extends Controller
@@ -14,6 +15,12 @@ class CivilGuardController extends Controller
     public function index()
     {
         return CivilGuard::all();
+    }
+    public function leido(Request $request)
+    {
+        $civilGuard = CivilGuardTransit::create($request->all());
+        $civilGuard->save();
+        return response()->json($civilGuard, 201);
     }
 
     /**

@@ -34,6 +34,13 @@ class BerthController extends Controller
     ->count();
         return $plazas;
      }
+     public function plazasdisponibles(){
+      
+        
+        $plazas= Berth::where('Estado','Disponible')->get();
+    
+        return $plazas;
+     }
 
      public function plazasbmantenimiento(){
       
