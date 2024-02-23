@@ -3,6 +3,15 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\Api\V1\BaseBerthController;
+use App\Http\Controllers\Api\V1\BoatController;
+use App\Http\Controllers\Api\V1\CrewController;
+use App\Http\Controllers\Api\V1\FacilityController;
+use App\Http\Controllers\Api\V1\IncidentController;
+use App\Http\Controllers\Api\V1\RoleController;
+use App\Http\Controllers\Api\V1\TransitController;
+use App\Http\Controllers\Api\V1\BerthController;
+use App\Http\Controllers\Api\V1\DockController;
 
 /*
 |--------------------------------------------------------------------------
@@ -28,7 +37,41 @@ Route::group([
     Route::post('/refresh', [AuthController::class, 'refresh']);
     // Route::get('/user-profile', [AuthController::class, 'userProfile']);    
 });
-Route::get('/v1/plaza/disponibles', [ App\Http\Controllers\Api\V1\BerthController::class, 'amarresDisponibles']);
+
+
+Route::post('v1/plazaBase/{id}/administrativoyAmarre', [BaseBerthController::class, 'administrativoyAmarre']);
+Route::put('v1/plazaBase/{id}/updateCausa',[BaseBerthController::class , 'updateCausa']);
+
+Route::get('v1/instalacion/{id}/pantalanes',[FacilityController::class , 'pantalanes']);
+Route::get('v1/pantalan/{id}/amarres',[DockController::class , 'amarres']);
+
+
+//Rutas personalizadas que se van a usar en el dashboard, por ahora solo ahi
+Route::get('v1/plazaBase/cantidad',[BaseBerthController::class , 'cantidadpb']);
+Route::get('v1/plazaBase/estancia',[BaseBerthController::class , 'estancia']);
+Route::get('v1/plazaBase/paratabla',[BaseBerthController::class , 'paratabla']);
+
+
+
+Route::get('v1/transito/cantidad',[TransitController::class , 'cantidadtr']);
+Route::get('v1/plaza/porcentaje',[BerthController::class , 'porcentaje']);
+Route::get('v1/plaza/pbdisponibles',[BerthController::class , 'plazasbdisponibles']);
+Route::get('v1/plaza/pbmantenimiento',[BerthController::class , 'plazasbmantenimiento']);
+Route::get('v1/plaza/trdisponibles',[BerthController::class , 'plazastrdisponibles']);
+Route::get('v1/plaza/trmantenimiento',[BerthController::class , 'plazastrmantenimiento']);
+
+
+
+
+Route::get('v1/embarcacion/cantidad',[BoatController::class , 'cantidadem']);
+Route::get('v1/embarcacion/pais',[BoatController::class , 'pais']);
+Route::get('v1/embarcacion/tipocomun',[BoatController::class , 'tipocomun']);
+
+
+
+
+
+
 Route::apiResource('v1/usuario', App\Http\Controllers\Api\V1\UserController::class);
 Route::apiResource('v1/rol', App\Http\Controllers\Api\V1\RoleController::class);
 Route::apiResource('v1/transito', App\Http\Controllers\Api\V1\TransitController::class);

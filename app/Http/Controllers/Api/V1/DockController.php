@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api\V1;
 
 use App\Http\Controllers\Controller;
+use App\Models\Berth;
 use App\Models\Dock;
 use Illuminate\Http\Request;
 
@@ -11,6 +12,20 @@ class DockController extends Controller
     /**
      * Display a listing of the resource.
      */
+
+     public function amarres($id)
+     {
+  
+         $pantalanes = Berth::where('Pantalan_id', $id)
+         ->where('Estado', 'Disponible')
+         ->where('TipoPlaza', 'Plaza Base')
+         ->get();
+         
+    
+         return response()->json($pantalanes);
+     }
+
+
     public function index()
     {
         return Dock::all();

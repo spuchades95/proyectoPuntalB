@@ -24,7 +24,7 @@ class Administrative extends User
 
     public function amarres()
     {
-        return $this->belongsToMany(Berth::class, 'administrative_berths', 'Admnistrativo_id', 'Amarre_id');
+        return $this->belongsToMany(Berth::class, 'administrative_berths', 'Administrativo_id', 'Amarre_id');
     }
     
     public function incidencia()

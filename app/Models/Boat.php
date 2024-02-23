@@ -28,4 +28,12 @@ class Boat extends Model
     {
         return $this->belongsToMany(Transit::class, 'transit_boats', 'Embarcacion_id', 'Transito_id');
     }
+
+
+    public function embarcacion()
+    {
+        return $this->belongsToMany(BaseBerth::class, 'Rentals', 'PlazaBase_id', 'Embarcacion_id');
+    }
+
+
 }

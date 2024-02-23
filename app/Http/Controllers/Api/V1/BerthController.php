@@ -11,6 +11,65 @@ class BerthController extends Controller
     /**
      * Display a listing of the resource.
      */
+
+    
+     public function porcentaje(){
+      
+        
+        $cantidad= Berth::count();
+
+        $ocupadas=Berth::where('Estado',' Ocupada')->count();
+        $porcentaje= ($ocupadas/$cantidad)*100;
+
+        return $porcentaje;
+     }
+
+
+
+     public function plazasbdisponibles(){
+      
+        
+        $plazas= Berth::where('Estado','Disponible')
+    ->where('TipoPlaza','Plaza Base')
+    ->count();
+        return $plazas;
+     }
+
+     public function plazasbmantenimiento(){
+      
+        
+        $plazas= Berth::where('Estado','Mantenimiento')
+    ->where('TipoPlaza','Plaza Base')
+    ->count();
+        return $plazas;
+     }
+
+
+     public function plazastrdisponibles(){
+      
+        
+        $plazas= Berth::where('Estado','Disponible')
+    ->where('TipoPlaza','Transito')
+    ->count();
+        return $plazas;
+     }
+
+     public function plazastrmantenimiento(){
+      
+        
+        $plazas= Berth::where('Estado','Mantenimiento')
+    ->where('TipoPlaza','Transito')
+    ->count();
+        return $plazas;
+     }
+
+
+
+
+
+
+
+
     public function index()
     {
         return Berth::all();

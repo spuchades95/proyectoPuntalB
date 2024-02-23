@@ -49,14 +49,14 @@
 
     .boton {
         /* estilo de la caja*/
-        border-radius: 2px;
+        border-radius: 5px;
         border: 1px solid var(--wedgewood50);
         background: var(--wedgewood50);
         color: #36536e;
         width: 160px;
         height: 40px;
         display: flex;
-        text-align: center;
+    
         margin-top: 40px;
         filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
 
@@ -68,12 +68,15 @@
         font-style: normal;
         font-weight: 400;
         line-height: normal;
+        display: flex;
+        justify-content: space-between;
+        padding: 0 1em;
         text-transform: uppercase;
-        padding-left: 10px;
+        padding: 30px ;
         background-repeat: no-repeat;
         background-size: 24px 24px;
         background-position: 5px center;
-        padding-left: 30px;
+        padding-left: 40px;
         text-decoration: none;
         padding-top: 5px;
     }
@@ -81,29 +84,35 @@
     .boton:hover,
     .boton:focus,
     .boton:active {
-        border-radius: 2px;
+        border-radius: 5px;
         width: 160px;
         height: 40px;
         display: flex;
-        text-align: left;
         margin-top: 40px;
         border: 1px solid var(--wedgewood700);
         background: var(--wedgewood700);
         background-color: #36536e;
         color: #eaeff4;
-        text-align: center;
         cursor: not-allowed;
         /* texto del boton*/
         color: var(--wedgewood50);
         -webkit-text-stroke: 1.5px var(--wedgewood50);
-        padding-left: 10px;
-        padding-top: 5px;
         font-family: "Questrial", sans-serif;
+        font-size: 13px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: normal;
+        display: flex;
+        justify-content: space-between;
+        padding: 0 1em;
+        text-transform: uppercase;
+        padding: 30px ;
         background-repeat: no-repeat;
         background-size: 24px 24px;
         background-position: 5px center;
-        padding-left: 30px;
+        padding-left: 45px;
         text-decoration: none;
+        padding-top: 5px;
 
     }
 

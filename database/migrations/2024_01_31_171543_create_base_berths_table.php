@@ -13,8 +13,8 @@ return new class extends Migration
     {
         Schema::create('base_berths', function (Blueprint $table) {
             $table->id();
-            $table->date('FechaEntrada')->nullable();
-            $table->date('FinContrato')->nullable();
+          //  $table->date('FechaEntrada')->nullable();
+       //     $table->date('FinContrato')->nullable();
        //     $table->string('Causa');
             $table->softDeletes();
             $table->timestamps();

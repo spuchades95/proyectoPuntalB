@@ -162,17 +162,23 @@ class BerthController extends Controller
             $transit = Transit::where('Amarre_id', $id)->first();
             if (!$transit) {
                 $baseBerth = BaseBerth::where('Amarre_id', $id)->first();
-                $baseBerth->delete();
+              
+                if ($baseBerth) {
+                    $baseBerth->delete();
+                }
+
                 $transit = new Transit();
                 $transit->Amarre_id = $amarre->id;
                 $transit->save();
             }
     
-        } if ($request->TipoPlaza === 'Plaza Base') {
+        } elseif ($request->TipoPlaza === 'Plaza Base') {
             $baseBerth = BaseBerth::where('Amarre_id', $id)->first();
             if (!$baseBerth) {
                 $transit = Transit::where('Amarre_id', $id)->first();
-                $transit->delete();
+                if ($transit) {
+                    $transit->delete();
+                }
                 $baseBerth = new BaseBerth();
                 $baseBerth->Amarre_id = $amarre->id;
 
@@ -191,7 +197,7 @@ class BerthController extends Controller
     {
         $amarre = Berth::find($id);
         $amarre->Causa = $request->input('Causa');
-  //      Log::info('Llamada a en destroycon $amarre:', [$amarre]);
+    //      Log::info('Llamada a en destroycon $amarre:', [$amarre]);
    //     Log::info('Llamada a causa:', [$amarre->Causa = $request->input('Causa')]);
         $amarre->save();
         $amarre->delete();
