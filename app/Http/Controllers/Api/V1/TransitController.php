@@ -65,29 +65,65 @@ $plazasBaseAll=[
     /**
      * Update the specified resource in storage.
      */
+    // public function update(Request $request, Transit $transit)
+    // {
+    //     try {
+    //         // Verifica si el tránsito existe
+    //         $transit = Transit::find($transit);
+    //         if ($transit == null) {
+    //             return response()->json([
+    //                 'message' => 'No se encuentra el tránsito',
+    //                 'code' => 404
+    //             ], 404);
+    //         }
+    //         $transit->update($request->all());
+    //         return response()->json([
+    //             'data' => $transit,
+    //             'code' => 200
+    //         ], 200);
+    //     } catch (\Exception $e) {
+    //         return response()->json([
+    //             'message' => 'Error al actualizar el tránsito',
+    //             'code' => 500
+    //         ], 500);
+    //     }
+    // }
+
     public function update(Request $request, Transit $transit)
-    {
-        try {
-            // Verifica si el tránsito existe
-            $transit = Transit::find($transit);
-            if ($transit == null) {
-                return response()->json([
-                    'message' => 'No se encuentra el tránsito',
-                    'code' => 404
-                ], 404);
-            }
-            $transit->update($request->all());
+{
+    try {
+        // Verifica si el tránsito existe
+        $transit = Transit::find($transit);
+        if ($transit == null) {
             return response()->json([
-                'data' => $transit,
-                'code' => 200
-            ], 200);
-        } catch (\Exception $e) {
-            return response()->json([
-                'message' => 'Error al actualizar el tránsito',
-                'code' => 500
-            ], 500);
+                'message' => 'No se encuentra el tránsito',
+                'code' => 404
+            ], 404);
         }
+
+        // Actualizar campos de la tabla transits
+        $transit->fecha_entrada = $request->input('fecha_entrada');
+        $transit->fecha_salida = $request->input('fecha_salida');
+        $transit->instalacion = $request->input('instalacion');
+        $transit->pantalan = $request->input('pantalan');
+        $transit->amarre = $request->input('amarre');
+        $transit->save();
+
+        // Añadir ID de la embarcación seleccionada en la tabla intermedia transit_boats
+        $boatId = $request->input('boat_id');
+        $transit->boats()->sync([$boatId]);
+
+        return response()->json([
+            'data' => $transit,
+            'code' => 200
+        ], 200);
+    } catch (\Exception $e) {
+        return response()->json([
+            'message' => 'Error al actualizar el tránsito',
+            'code' => 500
+        ], 500);
     }
+}
 
     /**
      * Remove the specified resource from storage.
