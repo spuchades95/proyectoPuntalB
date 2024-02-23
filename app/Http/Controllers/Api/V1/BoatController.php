@@ -66,7 +66,9 @@ class BoatController extends Controller
     {
     
         $boat = Boat::create($request->all());
-        Log::info('Boat created: ' . $boat->all());
+        // Log::info('Boat created: ' . $boat->all());
+        Log::info('Request: ' . json_encode($request->all()));
+        Log::info('Request Headers: ' . json_encode($request->header()));
         // if ($request->hasFile('Imagen')) {
         //     // $file = $request->file('Imagen');
         //     // $name = time().$file->getClientOriginalName();
@@ -159,7 +161,8 @@ class BoatController extends Controller
 
         $boat = Boat::find($id);
         Log::info('Request: ' . json_encode($request->all()));
-        Log::info('Boat updated: ' . $boat->Imagen);
+        // Log::info('Boat updated: ' . $boat->Imagen);
+        Log::info('Request Headers: ' . json_encode($request->header()));
         
         if ($boat) {
             $boat->update($request->all());
