@@ -28,6 +28,7 @@ Route::group([
     Route::post('/refresh', [AuthController::class, 'refresh']);
     // Route::get('/user-profile', [AuthController::class, 'userProfile']);    
 });
+Route::get('/v1/plaza/disponibles', [ App\Http\Controllers\Api\V1\BerthController::class, 'amarresDisponibles']);
 Route::apiResource('v1/usuario', App\Http\Controllers\Api\V1\UserController::class);
 Route::apiResource('v1/rol', App\Http\Controllers\Api\V1\RoleController::class);
 Route::apiResource('v1/transito', App\Http\Controllers\Api\V1\TransitController::class);
@@ -42,6 +43,7 @@ Route::apiResource('v1/instalacion', App\Http\Controllers\Api\V1\FacilityControl
 Route::apiResource('v1/incidencia', App\Http\Controllers\Api\V1\IncidentController::class);
 Route::apiResource('v1/embarcacion', App\Http\Controllers\Api\V1\BoatController::class);
 Route::apiResource('v1/pantalan', App\Http\Controllers\Api\V1\DockController::class);
+
 
 
 

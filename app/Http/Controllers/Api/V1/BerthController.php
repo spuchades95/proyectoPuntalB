@@ -15,6 +15,13 @@ class BerthController extends Controller
     {
         return Berth::all();
     }
+    public function amarresDisponibles()
+    {
+        $amarre = Berth::where('Estado', 'Disponible')->get();
+        if ($amarre->isEmpty()) {
+            return response()->json(['message' => 'No se encontraron amarres disponibles'], 404);
+        }
+        return response()->json($amarre, 200);    }
 
     /**
      * Store a newly created resource in storage.
