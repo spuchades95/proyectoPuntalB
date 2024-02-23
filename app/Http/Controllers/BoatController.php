@@ -95,7 +95,7 @@ class BoatController extends Controller
         if ($request->hasFile('Imagen')) {
             $embarcacion->Imagen = $request->file('Imagen')->store('public');
         }
-        $embarcacion->save();
+        // $embarcacion->save(); // No es necesario
         return redirect()->route('embarcaciones.index')
             ->with('success', 'Barco actualizado correctamente.');
 
