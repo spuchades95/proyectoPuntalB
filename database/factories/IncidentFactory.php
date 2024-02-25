@@ -41,7 +41,7 @@ class IncidentFactory extends Factory
         return [
             'Titulo' => $this->faker->sentence(),
             'Imagen' => $this->faker->imageUrl(),
-            'Leido' => $this->faker->boolean(),
+            'Leido' => false,
             'Guardamuelle_id' => $this->faker->randomElement($guardamuellesIds),
             'Descripcion' => $this->faker->sentence(),
             'Administrativo_id' => $this->faker->randomElement($administrativosIds),

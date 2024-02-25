@@ -8,6 +8,8 @@ use Illuminate\Http\Request;
 use App\Http\Resources\V1\IncidentsResource;
 use App\Models\User;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Auth;
+use Tymon\JWTAuth\Facades\JWTAuth;
 
 class IncidentController extends Controller
 {
@@ -78,7 +80,8 @@ class IncidentController extends Controller
                 ], 404);
             }
             Log::info('Incident updated: ' . json_encode($request->all()));
-            // $incident->Administrativo_id = auth()->user()->id; 
+            // Log::info('Incident updated: ' . Auth::user()); // null
+            
             $incident->update($request->all());
             return response()->json([
                 'data' => $incident,
