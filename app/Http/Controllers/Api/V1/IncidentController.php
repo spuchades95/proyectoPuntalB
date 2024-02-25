@@ -35,8 +35,8 @@ class IncidentController extends Controller
         $incident = Incident::find($id);
 
         if ($incident) {
-            return new IncidentController($incident);
-            // return response()->json($incident, 200);
+            // return new IncidentController($incident);
+            return response()->json($incident, 200);
         } else {
             return response()->json('Incidente no encontrado', 404);
         }
