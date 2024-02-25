@@ -23,4 +23,12 @@ class DockWorkerFactory extends Factory
 
         ];
     }
+    public function withRoleThree(): Factory
+    {
+        return $this->state(function (array $attributes) {
+            return [
+                'Usuario_id' => User::where('Rol_id', 3)->inRandomOrder()->value('id'),
+            ];
+        });
+    }
 }
