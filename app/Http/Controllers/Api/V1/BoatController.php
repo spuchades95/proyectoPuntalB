@@ -39,7 +39,30 @@ class BoatController extends Controller
         return $cantidad;
     }
 
+    public function tipos()
+    {
 
+        $tiposComunes = Boat::select('Tipo')
+        ->groupBy('Tipo')
+        ->orderByRaw('COUNT(*) DESC')
+        ->limit(5)
+        ->pluck('Tipo');
+    
+        $conteoPorTipo = Boat::select('Tipo',Boat::raw('COUNT(*) as total'))
+        ->groupBy('Tipo')
+        ->orderByRaw('COUNT(*) DESC')
+        ->limit(5)
+        ->pluck('total', 'Tipo');
+
+
+        $tipos = $tiposComunes->toArray();
+        $conteos = array_values($conteoPorTipo->toArray());
+    
+        return [
+            'tipos' => $tipos,
+            'conteos' => $conteos,
+        ];
+    }
     
     public function tipocomun()
     {

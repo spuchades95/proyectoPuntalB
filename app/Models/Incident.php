@@ -28,8 +28,9 @@ class Incident extends Model
     public function administrativo()
     {
         return $this->belongsTo(Administrative::class, 'Administrativo_id');
+       
     }
-
+ 
     public function guardamuelles()
     {
         return $this->belongsTo(DockWorker::class, 'Guardamuelle_id');
