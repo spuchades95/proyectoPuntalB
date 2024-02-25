@@ -14,7 +14,24 @@ class IncidentController extends Controller
      */
     public function index()
     {
-        return Incident::all();
+        // return Incident::all();
+        $incidentes = Incident::with('administrativo', 'guardamuelles')->get();
+        $incidentesConNombres = $incidentes->map(function ($incidente) {
+            return [
+                'id' => $incidente->id,
+                'Titulo' => $incidente->Titulo,
+                'Imagen' => $incidente->Imagen,
+                'Leido' => $incidente->Leido,
+                'Guardamuelle_id' => $incidente->Guardamuelle_id, // ID del dock worker
+                'Guardamuelle_nombre' => $incidente->guardamuelles->NombreUsuario, // Nombre del dock worker
+                'Administrativo_id' => $incidente->Administrativo_id, // ID del administrador
+                'Administrativo_nombre' => $incidente->administrativo->NombreUsuario, // Nombre del administrador
+                'Descripcion' => $incidente->Descripcion,
+                // 'created_at' => $incidente->created_at,
+                // 'updated_at' => $incidente->updated_at,
+            ];
+        });
+        return response()->json($incidentesConNombres);
     }
 
     /**

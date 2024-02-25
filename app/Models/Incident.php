@@ -17,15 +17,23 @@ class Incident extends Model
         'Administrativo_id',
 
     ];
+    // public function administrativo()
+    // {
+    //     return $this->hasOne(Administrative::class);
+    // }
+    // public function guardamuelles()
+    // {
+    //     return $this->hasOne(DockWorker::class);
+    // }
     public function administrativo()
     {
-        return $this->hasOne(Administrative::class);
-    }
-    public function guardamuelles()
-    {
-        return $this->hasOne(DockWorker::class);
+        return $this->belongsTo(Administrative::class, 'Administrativo_id');
     }
 
+    public function guardamuelles()
+    {
+        return $this->belongsTo(DockWorker::class, 'Guardamuelle_id');
+    }
 
 }
 

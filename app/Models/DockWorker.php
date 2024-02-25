@@ -17,12 +17,12 @@ class DockWorker extends User
 
     public function user()
     {
-        return $this->belongsTo(User::class, 'Usuario_id');
+        return $this->belongsTo(User::class, 'id');
     }
 
 
     public function notificacion()
     {
-        return $this->belongsTo(Incident::class);
+        return $this->belongsTo(Incident::class, 'Guardamuelle_id');
     }
 }
