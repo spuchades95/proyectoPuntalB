@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Incident;
 use Illuminate\Http\Request;
 use App\Http\Resources\V1\IncidentsResource;
+use App\Models\User;
 
 class IncidentController extends Controller
 {
@@ -17,15 +18,17 @@ class IncidentController extends Controller
         // return Incident::all();
         $incidentes = Incident::with('administrativo', 'guardamuelles')->get();
         $incidentesConNombres = $incidentes->map(function ($incidente) {
+            $guardamuellesNombre = User::find($incidente->Guardamuelle_id)->NombreUsuario;
+            $administrativoNombre = User::find($incidente->Administrativo_id)->NombreUsuario;
             return [
                 'id' => $incidente->id,
                 'Titulo' => $incidente->Titulo,
                 'Imagen' => $incidente->Imagen,
                 'Leido' => $incidente->Leido,
                 'Guardamuelle_id' => $incidente->Guardamuelle_id, // ID del dock worker
-                'Guardamuelle_nombre' => $incidente->guardamuelles ? $incidente->guardamuelles->NombreUsuario : null, // Nombre del dock worker
+                'Guardamuelle_nombre' => $guardamuellesNombre,
                 'Administrativo_id' => $incidente->Administrativo_id, // ID del administrador
-                'Administrativo_nombre' => $incidente->administrativo && $incidente->administrativo->user ? $incidente->administrativo->user->NombreUsuario : null, // Nombre del administrador
+                'Administrativo_nombre' => $administrativoNombre,
                 'Descripcion' => $incidente->Descripcion,
                 // 'created_at' => $incidente->created_at,
                 // 'updated_at' => $incidente->updated_at,
