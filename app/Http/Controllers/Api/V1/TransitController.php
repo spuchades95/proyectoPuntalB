@@ -55,7 +55,7 @@ $cositas = Transit::with(['plaza.pantalan.instalacion'])
 ->get();
 $plazasBaseAll=[
 
-    'plazabasedetalles' => TransitResource::collection($cositas)
+    'transitodetalles' => TransitResource::collection($cositas)
 
 
 ] ;
