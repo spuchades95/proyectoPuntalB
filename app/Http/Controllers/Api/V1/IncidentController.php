@@ -79,8 +79,7 @@ class IncidentController extends Controller
                     'code' => 404
                 ], 404);
             }
-            Log::info('Incident updated: ' . json_encode($request->all()));
-            // Log::info('Incident updated: ' . Auth::user()); // null
+          
             
             $incident->update($request->all());
             return response()->json([
