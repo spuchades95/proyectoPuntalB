@@ -15,6 +15,7 @@ class Incident extends Model
         'Guardamuelle_id',
         'Descripcion',
         'Administrativo_id',
+        'Leido',
 
     ];
     // public function administrativo()

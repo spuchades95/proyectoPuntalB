@@ -7,6 +7,7 @@ use App\Models\Incident;
 use Illuminate\Http\Request;
 use App\Http\Resources\V1\IncidentsResource;
 use App\Models\User;
+use Illuminate\Support\Facades\Log;
 
 class IncidentController extends Controller
 {
@@ -65,17 +66,19 @@ class IncidentController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Incident $incident)
+    public function update(Request $request, $id)
     {
         try {
             // Verifica si el incidente existe
-            $incident = Incident::find($incident);
+            $incident = Incident::find($id);
             if ($incident == null) {
                 return response()->json([
                     'message' => 'No se encuentra el incidente',
                     'code' => 404
                 ], 404);
             }
+            Log::info('Incident updated: ' . json_encode($request->all()));
+            // $incident->Administrativo_id = auth()->user()->id; 
             $incident->update($request->all());
             return response()->json([
                 'data' => $incident,
