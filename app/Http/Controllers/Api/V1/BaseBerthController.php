@@ -32,18 +32,18 @@ class BaseBerthController extends Controller
     {
 
 
-        $cantidad = BaseBerth::query()
-            ->selectRaw('SUM(DATEDIFF(FinContrato, FechaEntrada)) AS estancia')
+        $cantidad = Rental::query()
+            ->selectRaw('SUM(DATEDIFF(FechaFinalizacion, FechaInicio)) AS estancia')
             ->value('estancia');
-        $cantidadEstancias = BaseBerth::count();
+        $cantidadEstancias = Rental::count();
 
         if ($cantidadEstancias > 0) {
             $duracionMedia = $cantidad / $cantidadEstancias;
 
-            $años = floor($duracionMedia / 365);
+            $anyosb = floor($duracionMedia / 365);
             $meses = floor(($duracionMedia % 365) / 30);
             $dias = $duracionMedia % 30;
-            return ['años' => $años, 'meses' => $meses, 'días' => $dias];
+            return ['anyos' => $anyosb, 'meses' => $meses, 'dias' => $dias];
         }
     }
     public function paratabla()
