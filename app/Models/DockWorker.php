@@ -21,7 +21,7 @@ class DockWorker extends User
     }
 
 
-    public function notificacion()
+    public function incidencia()
     {
         return $this->belongsTo(Incident::class, 'Guardamuelle_id');
     }

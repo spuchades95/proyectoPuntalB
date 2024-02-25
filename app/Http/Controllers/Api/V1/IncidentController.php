@@ -23,9 +23,9 @@ class IncidentController extends Controller
                 'Imagen' => $incidente->Imagen,
                 'Leido' => $incidente->Leido,
                 'Guardamuelle_id' => $incidente->Guardamuelle_id, // ID del dock worker
-                'Guardamuelle_nombre' => $incidente->guardamuelles->NombreUsuario, // Nombre del dock worker
+                'Guardamuelle_nombre' => $incidente->guardamuelles ? $incidente->guardamuelles->NombreUsuario : null, // Nombre del dock worker
                 'Administrativo_id' => $incidente->Administrativo_id, // ID del administrador
-                'Administrativo_nombre' => $incidente->administrativo->NombreUsuario, // Nombre del administrador
+                'Administrativo_nombre' => $incidente->administrativo && $incidente->administrativo->user ? $incidente->administrativo->user->NombreUsuario : null, // Nombre del administrador
                 'Descripcion' => $incidente->Descripcion,
                 // 'created_at' => $incidente->created_at,
                 // 'updated_at' => $incidente->updated_at,
