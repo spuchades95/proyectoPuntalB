@@ -48,17 +48,16 @@ class BaseBerthController extends Controller
     }
     public function paratabla()
     {
-        $plazasBase = BaseBerth::join('berths', 'berths.id', '=', 'base_berths.amarre_id')
+        $plazasBase = Rental::join('berths', 'berths.id', '=', 'rentals.PlazaBase_id')
         ->join('docks', 'docks.id', '=', 'berths.pantalan_id')
         ->join('facilities', 'facilities.id', '=', 'docks.instalacion_id')
-        ->join('rentals', 'rentals.PlazaBase_id', '=', 'berths.id')
         ->join('boats', 'boats.id', '=', 'rentals.embarcacion_id')
         ->select(
             'rentals.FechaInicio',
             'rentals.FechaFinalizacion',
-            'berths.Numero',
-            'docks.Nombre AS nombre',
-            'facilities.Ubicacion AS ubicacion',
+            'berths.Numero AS Amarre',
+            'docks.Nombre AS Pantalan',
+            'facilities.Ubicacion AS Instalacion',
             'boats.Matricula',
             'boats.Titular'
         )

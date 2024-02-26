@@ -8,6 +8,7 @@ use App\Models\Transit;
 use App\Models\Dock;
 use App\Models\Boat;
 use App\Models\Facility;
+use App\Models\TransitBoat;
 use Illuminate\Http\Request;
 use App\Http\Resources\V1\TransitResource;
 class TransitController extends Controller
@@ -35,10 +36,10 @@ class TransitController extends Controller
      {
  
  
-             $cantidad = Transit::query()
+             $cantidad = TransitBoat::query()
         ->selectRaw('SUM(DATEDIFF(FechaSalida, FechaEntrada)) AS estancia')
         ->value('estancia');
-    $cantidadEstancias = Transit::count();
+    $cantidadEstancias = TransitBoat::count();
 
     if ($cantidadEstancias > 0) {
       
