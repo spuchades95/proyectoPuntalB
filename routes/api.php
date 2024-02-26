@@ -10,7 +10,7 @@ use App\Http\Controllers\Api\V1\FacilityController;
 use App\Http\Controllers\Api\V1\IncidentController;
 use App\Http\Controllers\Api\V1\RoleController;
 use App\Http\Controllers\Api\V1\TransitController;
-use App\Http\Controllers\Api\V1\BerthController;
+ use App\Http\Controllers\Api\V1\BerthController;
 use App\Http\Controllers\Api\V1\DockController;
 use App\Http\Controllers\Api\V1\CivilGuardController;
 
@@ -55,6 +55,8 @@ Route::get('v1/plazaBase/estancia',[BaseBerthController::class , 'estancia']);
 Route::get('v1/transito/estancia',[TransitController::class , 'estancia']);
 Route::get('v1/plazaBase/paratabla',[BaseBerthController::class , 'paratabla']);
 
+Route::get('v1/transito/indexguardamuelles',[TransitController::class , 'indexguardamuelles']);
+
 Route::get('v1/guardiaCivil/leido',[CivilGuardController::class , 'leido']);
 
 
@@ -67,7 +69,6 @@ Route::get('v1/plaza/pbmantenimiento',[BerthController::class , 'plazasbmantenim
 Route::get('v1/plaza/trdisponibles',[BerthController::class , 'plazastrdisponibles']);
 Route::get('v1/plaza/trmantenimiento',[BerthController::class , 'plazastrmantenimiento']);
 Route::get('v1/plaza/disponibles',[BerthController::class , 'plazasdisponibles']);
-
 Route::get('v1/plaza/datosOcu',[BerthController::class , 'datosOcupacion']);
 
 

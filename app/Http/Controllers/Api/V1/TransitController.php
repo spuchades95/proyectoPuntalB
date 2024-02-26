@@ -64,7 +64,7 @@ class TransitController extends Controller
 // ->get();
 // $plazasBaseAll=[
 
-    'transitodetalles' => TransitResource::collection($cositas)
+    // 'transitodetalles' => TransitResource::collection($cositas)
 
 
 // ] ;
@@ -74,7 +74,7 @@ class TransitController extends Controller
 
 
      
-    public function index()
+    public function indexguardamuelles()
     {
         $transitsAll = DB::table('Transits AS T')
         ->join('Berths AS B', 'B.id', '=', 'T.amarre_id')
@@ -90,7 +90,9 @@ class TransitController extends Controller
             'F.ubicacion', 
             'B.Estado', 
             'B.Numero', 
+            'BT.id AS embarcacion_id',
             'BT.Matricula', 
+            'BT.Imagen', 
             'BT.Tipo', 
             'BT.Titular', 
             'BT.Origen'

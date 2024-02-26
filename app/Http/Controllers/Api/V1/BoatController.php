@@ -131,7 +131,11 @@ class BoatController extends Controller
     public function update(Request $request, Boat $boat)
     {
 
+        $boat = Boat::find($request->id);
+
+
         try {
+            Log::info($request);
             // Verifica si la embarcación existe
             if (!$boat) {
                 return response()->json(['error' => 'Embarcación no encontrada'], 404);
@@ -140,10 +144,10 @@ class BoatController extends Controller
 
 
             // Obtiene los datos actuales antes de la actualización
-            $oldData = $boat->toArray();
+             $oldData = $boat->toArray();
             
-            $updateResult = Boat::where('id', $request->id)->update($request->except(['id', 'created_at', 'updated_at']));
-
+            $updateResult = $boat->update($request->except(['id', 'created_at', 'updated_at']));
+           
             if ($request->hasFile('Imagen')) {
                 // Elimina la imagen anterior
                 Storage::delete(str_replace('storage', 'public', 'image', $oldData['Imagen']));
