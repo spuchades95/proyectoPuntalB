@@ -28,8 +28,8 @@ use App\Http\Controllers\PanelController;
 |
 */
 // Route::put('/roles/{role}', 'RoleController@update')->name('roles.update');
-Route::put('/amarres/{amarre}', 'BerthController@update')->name('amarres.update');
-Route::put('/usuario/{id}', 'UserController@update')->name('usuarios.update');
+Route::put('/amarres/{amarre}', [BerthController::class, 'update'])->name('amarres.update');
+Route::put('/usuario/{id}', [UserController::class, 'update'])->name('usuarios.update');
 // Route::put('/amarres/{amarre}', 'BerthController@update')->name('amarres.update');
 Route::get('amarres/createdos', [BerthController::class, 'createdos'])->name('amarres.createdos');
 Route::post('amarres/createdos', [BerthController::class, 'storedos'])->name('amarres.storedos');
