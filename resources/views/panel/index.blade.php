@@ -14,10 +14,12 @@
 <p>Instalaciones registradas: {{ $totalfacilities }}</p>
 <div class="cardsContainerUp d-flex">
 <div class="card">
+<h5>USUARIOS REGISTRADOS</h5>
         <canvas id="barChart"></canvas>
         
     </div>
     <div class="card">
+     
         <canvas id="barChart2"></canvas>
     </div>
     <div class="card">
