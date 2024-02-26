@@ -43,6 +43,13 @@ $amarre->update([
     ->count();
         return $plazas;
      }
+     public function plazasdisponibles(){
+      
+        
+        $plazas= Berth::where('Estado','Disponible')->get();
+    
+        return $plazas;
+     }
 
      public function plazasbmantenimiento(){
       
@@ -133,6 +140,13 @@ $amarre->update([
     {
         return Berth::all();
     }
+    public function amarresDisponibles()
+    {
+        $amarre = Berth::where('Estado', 'Disponible')->get();
+        if ($amarre->isEmpty()) {
+            return response()->json(['message' => 'No se encontraron amarres disponibles'], 404);
+        }
+        return response()->json($amarre, 200);    }
 
     /**
      * Store a newly created resource in storage.

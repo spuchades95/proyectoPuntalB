@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Api\V1;
 
 use App\Http\Controllers\Controller;
 use App\Models\CivilGuard;
+use App\Models\CivilGuardTransit;
 use Illuminate\Http\Request;
 
 class CivilGuardController extends Controller
@@ -14,6 +15,29 @@ class CivilGuardController extends Controller
     public function index()
     {
         return CivilGuard::all();
+    }
+    public function leido(Request $request)
+    {
+        dd($request->all());
+
+        $idGuardia = $request->input('Amarre_id'); // Suponiendo que estás enviando la ID como 'id' desde Angular
+
+        // Buscar el guardia civil por su ID
+        $civilGuard = CivilGuard::find($idGuardia);
+    
+        // Verificar si se encontró el guardia civil
+        if ($civilGuard) {
+            // Actualizar la propiedad 'leido' del guardia civil
+            $civilGuard->Leido = true;
+            
+            // Guardar los cambios en la base de datos
+            $civilGuard->save();
+    
+            return response()->json($civilGuard, 200);
+        } else {
+            // Si no se encontró el guardia civil, retornar un error
+            return response()->json(['message' => 'Guardia civil no encontrado'], 404);
+        }
     }
 
     /**
