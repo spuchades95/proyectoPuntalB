@@ -12,7 +12,16 @@ class BerthController extends Controller
      * Display a listing of the resource.
      */
 
-    
+    public function actualizaEstadoOcupado(string $id){
+
+$amarre= Berth::findOrFail($id);
+
+$amarre->update([
+    'Estado' => 'Ocupado',
+]);
+    }
+
+
      public function porcentaje(){
       
         
@@ -60,6 +69,56 @@ class BerthController extends Controller
     ->count();
         return $plazas;
      }
+
+
+     public function datosOcupacion()
+     {
+         // Obtener el estado de ocupación de las plazas base
+         $plazasBaseOcupadas = Berth::where('TipoPlaza', 'Plaza Base')
+                                     ->where('Estado', 'Ocupada')
+                                     ->count();
+         $plazasBaseLibres = Berth::where('TipoPlaza', 'Plaza Base')
+                                  ->where('Estado', 'Disponible')
+                                  ->count();
+         $plazasBaseEnMantenimiento = Berth::where('TipoPlaza', 'Plaza Base')
+                                           ->where('Estado', 'En mantenimiento')
+                                           ->count();
+     
+       
+         $transitosOcupados = Berth::where('TipoPlaza', 'Transito')
+                                   ->where('Estado', 'Ocupada')
+                                   ->count();
+         $transitosLibres = Berth::where('TipoPlaza', 'Transito')
+                                ->where('Estado', 'Disponible')
+                                ->count();
+         $transitosEnMantenimiento = Berth::where('TipoPlaza', 'Transito')
+                                         ->where('Estado', 'En mantenimiento')
+                                         ->count();
+     
+         return [
+             'plazas_base' => [
+                 'ocupadas' => $plazasBaseOcupadas,
+                 'disponible' => $plazasBaseLibres,
+                 'mantenimiento' => $plazasBaseEnMantenimiento
+             ],
+             'transitos' => [
+                 'ocupados' => $transitosOcupados,
+                 'disponible' => $transitosLibres,
+                 'mantenimiento' => $transitosEnMantenimiento
+             ]
+         ];
+     }
+
+
+
+
+
+
+
+
+
+
+
 
      public function plazastrmantenimiento(){
       

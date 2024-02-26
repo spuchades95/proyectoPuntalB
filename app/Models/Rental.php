@@ -24,6 +24,6 @@ class Rental extends Model
     }
     public function plazaBase()
     {
-        return $this->belongsTo(BaseBerth::class,'PlazaBaseId');
+        return $this->belongsTo(BaseBerth::class,'PlazaBase_Id');
     }
 }

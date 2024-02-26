@@ -17,6 +17,12 @@ class TransitController extends Controller
      */
 
 
+
+
+
+
+
+     
      public function cantidadtr(){
       
         
@@ -29,18 +35,17 @@ class TransitController extends Controller
      {
  
  
-         $cantidad = Transit::query()
-             ->selectRaw('SUM(DATEDIFF(FinSalida, FechaEntrada)) AS estancia')
-             ->value('estancia');
-         $cantidadEstancias = Transit::count();
- 
-         if ($cantidadEstancias > 0) {
-             $duracionMedia = $cantidad / $cantidadEstancias;
- 
-             $años = floor($duracionMedia / 365);
-             $meses = floor(($duracionMedia % 365) / 30);
-             $dias = $duracionMedia % 30;
-             return ['años' => $años, 'meses' => $meses, 'días' => $dias];
+             $cantidad = Transit::query()
+        ->selectRaw('SUM(DATEDIFF(FechaSalida, FechaEntrada)) AS estancia')
+        ->value('estancia');
+    $cantidadEstancias = Transit::count();
+
+    if ($cantidadEstancias > 0) {
+      
+        $meses = floor($cantidad / 30);
+        $dias = $cantidad % 30;
+
+        return ['meses' => $meses, 'dias' => $dias];
          }
      }
  

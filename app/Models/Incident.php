@@ -23,7 +23,7 @@ class Incident extends Model
     }
     public function guardamuelles()
     {
-        return $this->hasOne(DockWorker::class);
+        return $this->hasOne(DockWorker::class, 'Guardamuelle_id');
     }
 
 
