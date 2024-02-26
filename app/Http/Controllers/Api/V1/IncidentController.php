@@ -91,6 +91,7 @@ class IncidentController extends Controller
                 'code' => 200
             ], 200);
         } catch (\Exception $e) {
+            Log::info($e);
             return response()->json([
                 'message' => 'Error al actualizar el incidente',
                 'code' => 500

@@ -42,9 +42,10 @@ class IncidentFactory extends Factory
             'Titulo' => $this->faker->sentence(),
             'Imagen' => $this->faker->imageUrl(),
             'Leido' => false,
-            'Guardamuelle_id' => $this->faker->randomElement($guardamuellesIds),
+            'Guardamuelle_id' => DockWorker::inRandomOrder()->first()->Usuario_id,
+            // 'Guardamuelle_id' => $this->faker->randomElement($guardamuellesIds),
             'Descripcion' => $this->faker->sentence(),
-            'Administrativo_id' => $this->faker->randomElement($administrativosIds),
+            'Administrativo_id' => Administrative::inRandomOrder()->first()->Usuario_id,
         ];
     }
 }
