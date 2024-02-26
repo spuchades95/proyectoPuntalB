@@ -16,9 +16,9 @@ class Transit extends Berth
     
     protected $fillable = [
         'Proposito',
-        'FechaEntrada',
+       
         'Guardamuelles_id',
-        'FechaSalida',
+       
         'Causa',
         'Administrativo_id',
         'Autorizacion',

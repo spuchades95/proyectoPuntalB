@@ -11,15 +11,9 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('transits', function (Blueprint $table) {
-            $table->id();
+        Schema::table('transit_boats', function (Blueprint $table) {
             $table->date('FechaEntrada')->nullable();
             $table->date('FechaSalida')->nullable();
-      
-    //        $table->string('Causa')->nullable();;
-          
-            $table->softDeletes();
-            $table->timestamps();
         });
     }
 
@@ -28,6 +22,9 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('transits');
+        Schema::table('transit_boats', function (Blueprint $table) {
+            $table->dropColumn('FechaEntrada');
+            $table->dropColumn('FechaSalida');
+        });
     }
 };
