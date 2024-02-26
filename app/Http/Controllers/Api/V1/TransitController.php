@@ -53,23 +53,7 @@ class TransitController extends Controller
 
 
 
-// public function index(){
 
-
-    
-// $cositas = Transit::with(['plaza.pantalan.instalacion'])
-// ->whereHas('plaza', function($query) {
-//     $query->where('Estado', 'Disponible');
-// })
-// ->get();
-// $plazasBaseAll=[
-
-//     'plazabasedetalles' => TransitResource::collection($cositas)
-
-
-// ] ;
-//         return response()->json($plazasBaseAll, 201);
-// }
 
 
 
@@ -85,6 +69,7 @@ class TransitController extends Controller
                  ->whereNull('BT.deleted_at'); // Si Boats tiene una columna "deleted_at" para marcar registros eliminados
         })
         ->select(
+        
             'T.*', // Selecciona todos los campos de la tabla Transits
             'D.nombre', 
             'F.ubicacion', 
@@ -95,18 +80,9 @@ class TransitController extends Controller
             'BT.Titular', 
             'BT.Origen'
         )
+        ->where('B.Estado', '=', 'Disponible')
         ->get();
-        // $transits= Transit::all();
-        // $details = DB::table('Docks As D')
-        // ->join('Facilities AS F', 'D.instalacion_id', '=', 'F.id')
-        // ->join('Berths AS B', 'D.id', '=', 'B.pantalan_id')
-        // ->join('Transits AS T', 'B.id', '=', 'T.amarre_id')
-        // ->select('D.nombre', 'F.ubicacion', 'B.Numero')
-        // ->get();
-        // $transitsAll = [
-        //     'transits' => $transits,
-        //     'transit_details' => $details
-        // ];
+       
 
     return response()->json($transitsAll, 200);
     }
