@@ -47,6 +47,8 @@ Route::put('v1/plazaBase/{id}/updateCausa',[BaseBerthController::class , 'update
 
 Route::get('v1/instalacion/{id}/pantalanes',[FacilityController::class , 'pantalanes']);
 Route::get('v1/pantalan/{id}/amarres',[DockController::class , 'amarres']);
+Route::get('v1/pantalan/{id}/amarrestr',[DockController::class , 'amarresTransito']);
+
 
 
 //Rutas personalizadas que se van a usar en el dashboard, por ahora solo ahi
@@ -75,8 +77,8 @@ Route::get('v1/embarcacion/tipos',[BoatController::class , 'tipos']);
 Route::get('v1/embarcacion/cantidad',[BoatController::class , 'cantidadem']);
 Route::get('v1/embarcacion/pais',[BoatController::class , 'pais']);
 Route::get('v1/embarcacion/tipocomun',[BoatController::class , 'tipocomun']);
-
-
+Route::get('v1/transito/guardia',[TransitController::class , 'guardiaCivil']);
+Route::get('v1/tripulante/transito/{id}',[CrewController::class , 'tripulanteTransito']);
 
 
 
@@ -95,6 +97,7 @@ Route::apiResource('v1/instalacion', App\Http\Controllers\Api\V1\FacilityControl
 Route::apiResource('v1/incidencia', App\Http\Controllers\Api\V1\IncidentController::class);
 Route::apiResource('v1/embarcacion', App\Http\Controllers\Api\V1\BoatController::class);
 Route::apiResource('v1/pantalan', App\Http\Controllers\Api\V1\DockController::class);
+
 
 
 

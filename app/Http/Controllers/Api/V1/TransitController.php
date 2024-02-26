@@ -111,9 +111,33 @@ class TransitController extends Controller
     return response()->json($transitsAll, 200);
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
+    public function guardiaCivil()
+    {
+        $transitsAll = DB::table('Transits AS T')
+        ->join('Berths AS B', 'B.id', '=', 'T.amarre_id')
+        ->join('Docks AS D', 'D.id', '=', 'B.pantalan_id')
+        ->join('Facilities AS F', 'F.id', '=', 'D.instalacion_id')
+        ->join('Boats AS BT', function ($join) {
+            $join->on('BT.id', '=', 'T.id')
+                 ->whereNull('BT.deleted_at'); // Si Boats tiene una columna "deleted_at" para marcar registros eliminados
+        })
+        ->select(
+            'T.*', // Selecciona todos los campos de la tabla Transits
+            'D.nombre', 
+            'F.ubicacion', 
+            'B.Estado', 
+            'B.Numero', 
+            'BT.Matricula', 
+            'BT.Tipo', 
+            'BT.Titular', 
+            'BT.Origen'
+        )
+        ->get();
+        
+    return response()->json($transitsAll, 200);
+    }
+   
+
     public function store(Request $request)
     {
         $transit = Transit::create($request->all());

@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Api\V1;
 
 use App\Http\Controllers\Controller;
 use App\Models\Crew;
+use App\Models\TransitCrew;
 use Illuminate\Http\Request;
 
 class CrewController extends Controller
@@ -29,6 +30,27 @@ class CrewController extends Controller
     /**
      * Display the specified resource.
      */
+    public function tripulanteTransito($id)
+    {
+        $crew = TransitCrew::where("Transito_id", $id)->get(); // Corrección: Agrega get() para ejecutar la consulta
+        $tripulanteIds = [];
+    
+        foreach($crew as $c) {
+            $tripulanteIds[] = $c->Tripulante_id;
+        }
+    
+        if (!empty($tripulanteIds)) {
+            $tripulantes = Crew::whereIn("id", $tripulanteIds)->get(); // Corrección: Usa whereIn para buscar IDs en una lista
+            if ($tripulantes->isNotEmpty()) {
+                return response()->json($tripulantes, 200);
+            } else {
+                return response()->json('No se encontraron tripulantes para este tránsito', 404);
+            }
+        } else {
+            return response()->json('No se encontraron tripulantes para este tránsito', 404);
+        }
+    }
+    
     public function show($id)
     {
         $crew = Crew::find($id);
