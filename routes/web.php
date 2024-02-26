@@ -16,6 +16,7 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\BaseBerthController;
 use App\Http\Controllers\BerthController;
 use App\Http\Controllers\RoleController;
+use App\Http\Controllers\PanelController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -47,7 +48,7 @@ Route::resource('roles',RoleController::class);
 Route::resource('transitos',TransitController::class);
 Route::resource('tripulantes',CrewController::class);
 Route::resource('usuarios',UserController::class);
-// Route::get('/panel', PanelController::class)->name('panel');
+Route::get('/panel', PanelController::class)->name('panel');
 
 
 
