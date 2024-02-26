@@ -27,7 +27,8 @@ class FacilityController extends Controller
 
     public function index()
     {
-        return Facility::all();
+        $instalaciones = Facility::all();
+        return response()->json($instalaciones);
     }
 
     /**

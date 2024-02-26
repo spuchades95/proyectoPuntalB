@@ -16,7 +16,20 @@ class BoatController extends Controller
      */
 
 
-     
+     public function obtenerTitular( $id)
+    {
+        
+        $Titular = Boat::where('id', $id)->select('titular')->first();
+
+      
+        return response()->json( $Titular);
+
+
+
+
+    }
+
+
 
     public function cantidadem()
     {
