@@ -46,6 +46,13 @@ Route::put('v1/plazaBase/{id}/updateCausa',[BaseBerthController::class , 'update
 Route::get('v1/instalacion/{id}/pantalanes',[FacilityController::class , 'pantalanes']);
 Route::get('v1/pantalan/{id}/amarres',[DockController::class , 'amarres']);
 
+Route::get('v1/pantalan/{id}/amarres',[DockController::class , 'amarres']);
+
+Route::get('v1/embarcacion/{id}/titular', [BoatController::class , 'obtenerTitular']);
+
+
+
+
 
 //Rutas personalizadas que se van a usar en el dashboard, por ahora solo ahi
 Route::get('v1/plazaBase/cantidad',[BaseBerthController::class , 'cantidadpb']);
