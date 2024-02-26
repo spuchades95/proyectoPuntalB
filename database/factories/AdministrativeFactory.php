@@ -17,7 +17,7 @@ class AdministrativeFactory extends Factory
      */
     public function definition(): array
     {
-        $userId = User::where('Rol_id', 1)->inRandomOrder()->value('id');
+        $userId = User::where('Rol_id', 2)->inRandomOrder()->value('id');
 
         return [
             // Define tus atributos aquí

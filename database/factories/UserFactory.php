@@ -34,7 +34,7 @@ class UserFactory extends Factory
             'Direccion' => fake()->address(),
             'Imagen' => fake()->imageUrl(),
             'Descripcion' => fake()->sentence(),
-            'Rol_id' => Role::inRandomOrder()->value('id'),
+            'Rol_id' => "2",
             'email' => fake()->unique()->safeEmail(),
             'email_verified_at' => now(),
             'password' => static::$password ??= Hash::make('password'),
