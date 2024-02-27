@@ -49,7 +49,7 @@ class DatabaseSeeder extends Seeder
     // \App\Models\DockWorker::factory(5)->create();
     //  \App\Models\Incident::factory(3)->create();
       // \App\Models\DockWorker::factory(3)->create();
-    // \App\Models\Transit::factory(2)->create();
+    \App\Models\Transit::factory(2)->create();
     // \App\Models\DockWorker::factory()->count(10)->withRoleThree()->create();
     // $usersWithRoleTwo = \App\Models\User::where('Rol_id', 2)->get();
     // $usersWithRoleThree = \App\Models\User::where('Rol_id', 3)->get();
@@ -59,8 +59,8 @@ class DatabaseSeeder extends Seeder
     // foreach ($usersWithRoleThree as $user) {
     //   \App\Models\DockWorker::factory()->create(['Usuario_id' => $user->id]);
     // }
-  \App\Models\TransitBoat::factory(3)->create();
-  \App\Models\TransitBoat::factory(1)->create();
+  // \App\Models\TransitBoat::factory(3)->create();
+  // \App\Models\TransitBoat::factory(1)->create();
 
     }
 }
