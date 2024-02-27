@@ -38,10 +38,7 @@
             <label for="direccion" class="form-label">Dirección:</label>
             <input name="direccion" type="text"  class="form-control mt-4" placeholder="Dirección" value="{{ $usuario->Direccion }}" readonly/>
         </div>
-        <div class="mb-3 d-flex">
-            <label for="contraseña" class="form-label">Contraseña:</label>
-            <input name="contraseña" type="text"  class="form-control mt-4" placeholder="Contraseña " value="{{ $usuario->password }}" readonly/>
-        </div>
+       
         
         </div>
    <div class=form-right >

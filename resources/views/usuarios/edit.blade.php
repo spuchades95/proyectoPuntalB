@@ -55,6 +55,7 @@
                         <label for="password" class="form-label">Contraseña:</label>
                         <input name="password" type="text" class="form-control mt-4" placeholder="Contraseña" value="{{ $usuario->password }}" />
                     </div>
+                   
                     <div class="mb-3 d-flex">
                         <label for="Descripcion" class="form-label">Descripción:</label>
                         <input name="Descripcion" type="text" class="form-control mt-4" placeholder="Descripción" value="{{ $usuario->Descripcion }}" />

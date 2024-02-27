@@ -78,7 +78,7 @@ class DockController extends Controller
      */
     public function edit(string $id)
     {
-       $pantalan = Dock::find($id);
+        $pantalan = Dock::find($id);
        $Instalacion_id = $pantalan->Pantalan_id;
         $InstalacionUbicacion = Dock::find($Instalacion_id)->Ubicacion;
         return view('pantalanes.edit', compact('pantalan', 'InstalacionUbicacion'));
@@ -102,9 +102,11 @@ class DockController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(Request $request, string $id)
     {
         $pantalan = Dock::find($id);
+        $pantalan->Causa = $request->input('Causa');
+        $pantalan->save();
         $pantalan->delete();
         return redirect()->route('instalaciones.index')
             ->with('success', 'pantalán eliminado correctamente.');

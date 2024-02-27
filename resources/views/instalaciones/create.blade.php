@@ -108,4 +108,8 @@ label {
     width: 200px;
     font-weight: bold;
 }
+<<<<<<< HEAD
 </style>
+=======
+</style>
+>>>>>>> ed3193805e53c0d91880ec4a81b49af18b3f7e89

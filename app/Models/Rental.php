@@ -15,7 +15,7 @@ class Rental extends Model
     protected $fillable = [
         'FechaInicio',
         'PlazaBase_id',
-        'FechoFinalizacion',
+        'FechaFinalizacion',
         'Embarcacion_id ',
     ];
     public function embarcacion()
@@ -24,6 +24,6 @@ class Rental extends Model
     }
     public function plazaBase()
     {
-        return $this->belongsTo(BaseBerth::class,'PlazaBaseId');
+        return $this->belongsTo(BaseBerth::class,'PlazaBase_Id');
     }
 }

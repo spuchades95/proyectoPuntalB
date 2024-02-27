@@ -46,8 +46,7 @@
 
 <script type="text/javascript">
     $(document).ready(function() {
-      
-            $('h2').on('click', function() {
+        $('h2').on('click', function() {
             var Instalacion_id = $(this).data('id');
             window.location.href = "{{ route('instalaciones.show', ['instalacione' => ':id']) }}".replace(':id', Instalacion_id);
         });
@@ -56,11 +55,15 @@
             var Pantalan_id = $(this).data('id');
             window.location.href = "{{ route('pantalanes.show', ['pantalane' => ':id']) }}".replace(':id', Pantalan_id);
         });
+        
         $('tbody').on('click', 'tr', function() {
+
             var Amarre_id = $(this).data('id');
             window.location.href = "{{ route('amarres.show', ['amarre' => ':id']) }}".replace(':id', Amarre_id);
         });
         new DataTable('.table');
+
+
 
 
     });

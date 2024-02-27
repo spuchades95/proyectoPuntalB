@@ -119,11 +119,10 @@ class BerthController extends Controller
 
     private function generarNumeroAmarre($pantalanId)
     {
-        //  Log::info('Llamada a generarNumeroAmarre con $pantalanId:', [$pantalanId]);
-        // Obtener el último número de amarre para el pantalán dado
+     //   Log::info('Llamada a generarNumeroAmarre con $pantalanId:', [$pantalanId]);
+
         $ultimoAmarre = Berth::where('Pantalan_id', $pantalanId)->orderByDesc('Numero')->first();
 
-        // Incrementar el número del amarre en 1 o iniciar en 1 si no hay amarres previos en el pantalán
         $numeroAmarre = $ultimoAmarre ? $ultimoAmarre->Numero + 1 : 1;
 
         return $numeroAmarre;
@@ -172,17 +171,23 @@ class BerthController extends Controller
             $transit = Transit::where('Amarre_id', $id)->first();
             if (!$transit) {
                 $baseBerth = BaseBerth::where('Amarre_id', $id)->first();
-                $baseBerth->delete();
+              
+                if ($baseBerth) {
+                    $baseBerth->delete();
+                }
+
                 $transit = new Transit();
                 $transit->Amarre_id = $amarre->id;
                 $transit->save();
             }
     
-        } if ($request->TipoPlaza === 'Plaza Base') {
+        } elseif ($request->TipoPlaza === 'Plaza Base') {
             $baseBerth = BaseBerth::where('Amarre_id', $id)->first();
             if (!$baseBerth) {
                 $transit = Transit::where('Amarre_id', $id)->first();
-                $transit->delete();
+                if ($transit) {
+                    $transit->delete();
+                }
                 $baseBerth = new BaseBerth();
                 $baseBerth->Amarre_id = $amarre->id;
 
@@ -201,8 +206,8 @@ class BerthController extends Controller
     {
         $amarre = Berth::find($id);
         $amarre->Causa = $request->input('Causa');
-        Log::info('Llamada a en destroycon $amarre:', [$amarre]);
-        Log::info('Llamada a causa:', [$amarre->Causa = $request->input('Causa')]);
+    //      Log::info('Llamada a en destroycon $amarre:', [$amarre]);
+   //     Log::info('Llamada a causa:', [$amarre->Causa = $request->input('Causa')]);
         $amarre->save();
         $amarre->delete();
         return redirect()->route('instalaciones.index')

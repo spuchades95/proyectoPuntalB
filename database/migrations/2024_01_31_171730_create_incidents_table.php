@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('incidents', function (Blueprint $table) {
             $table->id();
             $table->string('Titulo')->nullable();
-            $table->string('Imagen');
+            $table->string('Imagen')->nullable();;
             $table->string('Descripcion')->nullable();
      
             $table->softDeletes();

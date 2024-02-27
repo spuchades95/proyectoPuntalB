@@ -13,9 +13,9 @@ return new class extends Migration
     {
         Schema::create('transits', function (Blueprint $table) {
             $table->id();
-            
             $table->date('FechaEntrada')->nullable();
             $table->date('FechaSalida')->nullable();
+      
     //        $table->string('Causa')->nullable();;
           
             $table->softDeletes();

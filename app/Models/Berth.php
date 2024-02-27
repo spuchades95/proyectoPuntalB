@@ -35,4 +35,8 @@ class Berth extends Model
     {
         return $this->belongsToMany(Administrative::class, 'administrative_berths', 'Amarre_id', 'Administrativo_id');
     }
+    public function pantalan()
+    {
+        return $this->belongsTo(Dock::class,'Pantalan_id');
+    }
 }

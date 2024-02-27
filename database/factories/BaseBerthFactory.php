@@ -18,9 +18,7 @@ class BaseBerthFactory extends Factory
     {
         return [
             'Amarre_Id' =>Berth::inRandomOrder()->value('id'),
-            'DatosEstancia' => fake()->sentence(),
-            'FechaEntrada' => fake()->dateTimeBetween('-1 year', '+1 year'),
-            'FinContrato' => fake()->dateTimeBetween('FechaEntrada', '+1 year'),
+           
         ];
     }
 }

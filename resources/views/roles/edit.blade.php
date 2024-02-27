@@ -44,8 +44,7 @@
             <button type="submit" class="btn btnAdd">EDITAR</button>
         </div>
    
-
-    <div class="modal" id="myModal">
+                <div class="modal" id="myModal">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
@@ -80,7 +79,6 @@
         background-color: #3f2d85 !important;
         color: #f5f6fd !important;
         margin-left: 10px;
-
 
 
 

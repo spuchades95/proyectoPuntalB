@@ -11,13 +11,9 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('base_berths', function (Blueprint $table) {
-            $table->id();
-          //  $table->date('FechaEntrada')->nullable();
-       //     $table->date('FinContrato')->nullable();
-       //     $table->string('Causa');
-            $table->softDeletes();
-            $table->timestamps();
+        Schema::table('transit_boats', function (Blueprint $table) {
+            $table->date('FechaEntrada')->nullable();
+            $table->date('FechaSalida')->nullable();
         });
     }
 
@@ -26,6 +22,9 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('base_berths');
+        Schema::table('transit_boats', function (Blueprint $table) {
+            $table->dropColumn('FechaEntrada');
+            $table->dropColumn('FechaSalida');
+        });
     }
 };

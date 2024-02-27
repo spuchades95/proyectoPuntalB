@@ -41,6 +41,9 @@ class TransitResource extends JsonResource
             'Embarcacion' => $embarcacion ? $embarcacion->Matricula : null,
             'Ubicacion' => $ubicacion,
             'Patron' => $embarcacion ? $embarcacion->Titular : null,
+            'Amarre ' => $this->plaza->Numero,
+            'Nombre ' => $this->plaza->pantalan->Nombre,
+            'Ubicacion' => $this->plaza->pantalan->instalacion->Ubicacion,
         ];
     }
 }

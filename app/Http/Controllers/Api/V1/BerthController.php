@@ -11,10 +11,149 @@ class BerthController extends Controller
     /**
      * Display a listing of the resource.
      */
+
+    public function actualizaEstadoOcupado(string $id){
+
+$amarre= Berth::findOrFail($id);
+
+$amarre->update([
+    'Estado' => 'Ocupado',
+]);
+    }
+    public function actualizaEstadoDisponible(string $id){
+
+        $amarre= Berth::findOrFail($id);
+        
+        $amarre->update([
+            'Estado' => 'Disponible',
+        ]);
+            }
+
+     public function porcentaje(){
+      
+        
+        $cantidad= Berth::count();
+
+        $ocupadas=Berth::where('Estado',' Ocupada')->count();
+        $porcentaje= ($ocupadas/$cantidad)*100;
+
+        return $porcentaje;
+     }
+
+
+
+     public function plazasbdisponibles(){
+      
+        
+        $plazas= Berth::where('Estado','Disponible')
+    ->where('TipoPlaza','Plaza Base')
+    ->count();
+        return $plazas;
+     }
+     public function plazasdisponibles(){
+      
+        
+        $plazas= Berth::where('Estado','Disponible')->get();
+    
+        return $plazas;
+     }
+
+     public function plazasbmantenimiento(){
+      
+        
+        $plazas= Berth::where('Estado','Mantenimiento')
+    ->where('TipoPlaza','Plaza Base')
+    ->count();
+        return $plazas;
+     }
+
+
+     public function plazastrdisponibles(){
+      
+        
+        $plazas= Berth::where('Estado','Disponible')
+    ->where('TipoPlaza','Transito')
+    ->count();
+        return $plazas;
+     }
+
+
+     public function datosOcupacion()
+     {
+         // Obtener el estado de ocupación de las plazas base
+         $plazasBaseOcupadas = Berth::where('TipoPlaza', 'Plaza Base')
+                                     ->where('Estado', 'Ocupada')
+                                     ->count();
+         $plazasBaseLibres = Berth::where('TipoPlaza', 'Plaza Base')
+                                  ->where('Estado', 'Disponible')
+                                  ->count();
+         $plazasBaseEnMantenimiento = Berth::where('TipoPlaza', 'Plaza Base')
+                                           ->where('Estado', 'En mantenimiento')
+                                           ->count();
+     
+       
+         $transitosOcupados = Berth::where('TipoPlaza', 'Transito')
+                                   ->where('Estado', 'Ocupada')
+                                   ->count();
+         $transitosLibres = Berth::where('TipoPlaza', 'Transito')
+                                ->where('Estado', 'Disponible')
+                                ->count();
+         $transitosEnMantenimiento = Berth::where('TipoPlaza', 'Transito')
+                                         ->where('Estado', 'En mantenimiento')
+                                         ->count();
+     
+         return [
+             'plazas_base' => [
+                 'ocupadas' => $plazasBaseOcupadas,
+                 'disponible' => $plazasBaseLibres,
+                 'mantenimiento' => $plazasBaseEnMantenimiento
+             ],
+             'transitos' => [
+                 'ocupados' => $transitosOcupados,
+                 'disponible' => $transitosLibres,
+                 'mantenimiento' => $transitosEnMantenimiento
+             ]
+         ];
+     }
+
+
+
+
+
+
+
+
+
+
+
+
+     public function plazastrmantenimiento(){
+      
+        
+        $plazas= Berth::where('Estado','Mantenimiento')
+    ->where('TipoPlaza','Transito')
+    ->count();
+        return $plazas;
+     }
+
+
+
+
+
+
+
+
     public function index()
     {
         return Berth::all();
     }
+    public function amarresDisponibles()
+    {
+        $amarre = Berth::where('Estado', 'Disponible')->get();
+        if ($amarre->isEmpty()) {
+            return response()->json(['message' => 'No se encontraron amarres disponibles'], 404);
+        }
+        return response()->json($amarre, 200);    }
 
     /**
      * Store a newly created resource in storage.

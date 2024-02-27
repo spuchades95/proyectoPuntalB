@@ -27,8 +27,8 @@ use App\Http\Controllers\RoleController;
 |
 */
 // Route::put('/roles/{role}', 'RoleController@update')->name('roles.update');
-Route::put('/amarres/{amarre}', 'BerthController@update')->name('amarres.update');
-Route::put('/usuario/{id}', 'UserController@update')->name('usuarios.update');
+Route::put('/amarres/{amarre}', [BerthController::class, 'update'])->name('amarres.update');
+Route::put('/usuario/{id}', [UserController::class, 'update'])->name('usuarios.update');
 // Route::put('/amarres/{amarre}', 'BerthController@update')->name('amarres.update');
 Route::get('amarres/createdos', [BerthController::class, 'createdos'])->name('amarres.createdos');
 Route::post('amarres/createdos', [BerthController::class, 'storedos'])->name('amarres.storedos');
@@ -47,7 +47,7 @@ Route::resource('roles',RoleController::class);
 Route::resource('transitos',TransitController::class);
 Route::resource('tripulantes',CrewController::class);
 Route::resource('usuarios',UserController::class);
-
+// Route::get('/panel', PanelController::class)->name('panel');
 
 
 
@@ -59,7 +59,7 @@ Route::resource('usuarios',UserController::class);
 Route::get('/', function () {
     return view('welcome');
 });
-/*
+
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
@@ -71,4 +71,3 @@ Route::middleware('auth')->group(function () {
 });
 
 require __DIR__.'/auth.php';
-*/
