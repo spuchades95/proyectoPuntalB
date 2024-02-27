@@ -22,8 +22,29 @@ class IncidentController extends Controller
      */
     public function store(Request $request)
     {
-        $incident = Incident::create($request->all());
+
+        // dd($request->all());
+
+
+        // Crea una nueva instancia de Incidencia con los datos del request
+        $incident = new Incident([
+            'Titulo' => $request->Titulo,
+            'Descripcion' => $request->Descripcion,
+        ]);
+    
+        // Verifica si se envió una imagen y la almacena si es así
+        if ($request->hasFile('Imagen')) {
+            $imagenPath = $request->file('Imagen')->store('public/image');
+            // Obtén la URL pública de la imagen almacenada
+            $url = Storage::url($imagenPath);
+            // Asigna la URL al atributo Imagen del modelo Incident
+            $incident->Imagen = $url;
+        }
+    
+        // Guarda la incidencia en la base de datos
         $incident->save();
+    
+        // Retorna la incidencia como JSON con código de estado 201 (Created)
         return response()->json($incident, 201);
     }
 

@@ -71,7 +71,9 @@ Route::get('v1/plazaBase/estancia',[BaseBerthController::class , 'estancia']);
 Route::get('v1/transito/estancia',[TransitController::class , 'estancia']);
 Route::get('v1/plazaBase/paratabla',[BaseBerthController::class , 'paratabla']);
 
+//rutas personalizadas guardamuelles
 Route::get('v1/transito/indexguardamuelles',[TransitController::class , 'indexguardamuelles']);
+Route::put('v1/transito/{id}/cambiar-estado', [TransitController::class, 'cambiarEstado']);
 
 Route::get('v1/guardiaCivil/leido',[CivilGuardController::class , 'leido']);
 
