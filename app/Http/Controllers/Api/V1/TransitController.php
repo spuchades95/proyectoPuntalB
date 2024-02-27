@@ -74,7 +74,6 @@ class TransitController extends Controller
 
 
 
-     
     public function index()
     {
         $transitsAll = DB::table('Transits AS T','TransitBoats AS TB')

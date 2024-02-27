@@ -94,6 +94,7 @@ Route::get('v1/embarcacion/tipocomun',[BoatController::class , 'tipocomun']);
 
 
 
+Route::post('v1/transtito/crear/{id}',[BaseBerthController::class , 'crear']);
 
 
 

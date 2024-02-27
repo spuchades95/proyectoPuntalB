@@ -153,6 +153,32 @@ public function actuFin(Request $request, string $id){
         }
     }
 
+    public function crear(Request $request, string $id)
+{
+
+    try {
+        Log::info($request);
+        Log::info($id);
+    $baseBerth = BaseBerth::where('Amarre_id', $id)->firstOrFail();
+    $embarcacion = $request->input('Embarcacion');
+    $FechaInicio = $request->input('FechaInicio');
+    $FechaFinalizacion = $request->input('FechaFinalizacion');
+
+    $baseBerth->embarcacion()->attach($embarcacion, [
+        'FechaInicio' => $FechaInicio,
+        'FechaFinalizacion' => $FechaFinalizacion
+    ]);
+        return response()->json($baseBerth, 200);
+    } catch (\Exception $e) {
+
+        return response()->json([
+            Log::info($e->getMessage()),
+            'message' => 'Error al actualizar el amarre base',
+            'code' => 500
+        ], 500);
+    }
+}
+
 
     public function update(Request $request, string $id)
     {
