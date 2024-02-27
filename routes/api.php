@@ -62,6 +62,7 @@ Route::put('v1/plaza/{id}/actualizaEstadoOcupado',[BerthController::class , 'act
 Route::put('v1/plaza/{id}/actualizaEstadoDisponible',[BerthController::class , 'actualizaEstadoDisponible']);
 
 
+Route::post('v1/transito/crear/{id}',[BaseBerthController::class ,'crear']);
 
 
 //Rutas personalizadas que se van a usar en el dashboard, por ahora solo ahi
@@ -94,7 +95,6 @@ Route::get('v1/embarcacion/tipocomun',[BoatController::class , 'tipocomun']);
 
 
 
-Route::post('v1/transtito/crear/{id}',[BaseBerthController::class , 'crear']);
 
 
 

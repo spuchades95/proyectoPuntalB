@@ -6,6 +6,8 @@ use App\Http\Controllers\Controller;
 use App\Models\BaseBerth;
 use App\Models\Berth;
 use App\Models\Administrative;
+use App\Models\TransitBoat;
+
 use Illuminate\Http\Request;
 use App\Http\Resources\V1\BaseBerthResource;
 use App\Models\Facility;
@@ -159,16 +161,17 @@ public function actuFin(Request $request, string $id){
     try {
         Log::info($request);
         Log::info($id);
-    $baseBerth = BaseBerth::where('Amarre_id', $id)->firstOrFail();
-    $embarcacion = $request->input('Embarcacion');
-    $FechaInicio = $request->input('FechaInicio');
-    $FechaFinalizacion = $request->input('FechaFinalizacion');
+    $transitBoat = TransitBoat::where('Amarre_id', $id)->firstOrFail();
+    $fechaEntrada = $request->input('FechaEntrada');
+    $fechaSalida = $request->input('FechaSalida');
+    $titular = $request->input('Titular');
+    $transitoId = $request->input('Amarre_id');
 
-    $baseBerth->embarcacion()->attach($embarcacion, [
-        'FechaInicio' => $FechaInicio,
-        'FechaFinalizacion' => $FechaFinalizacion
+    $transitBoat->transito()->attach($transitoId, [
+        'FechaInicio' => $fechaEntrada,
+        'FechaFinalizacion' => $fechaSalida,
     ]);
-        return response()->json($baseBerth, 200);
+        return response()->json($transitBoat, 200);
     } catch (\Exception $e) {
 
         return response()->json([
