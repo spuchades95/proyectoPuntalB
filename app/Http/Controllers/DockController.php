@@ -20,15 +20,55 @@ class DockController extends Controller
     /**
      * Show the form for creating a new resource.
      */
-    public function create(Request $request)
-    {
-        $Instalacion_id = $request->input('facility');
-        $InstalacionUbicacion = Facility::find($Instalacion_id)->Ubicacion;
-        return view('pantalanes.create', [
-            'Instalacion_id' => $Instalacion_id,
-            'instalacion_ubicacion' => $InstalacionUbicacion
-        ]);
+//    public function create(Request $request)
+// {
+//      
+//        return view('pantalanes.create', [
+//             'Instalacion_id' => $Instalacion_id,
+//         'instalacion_ubicacion' => $InstalacionUbicacion
+//         ]);
+//      }
+
+public function create(Request $request)
+{
+    $Instalacion_id = $request->input('facility');
+
+    if ($Instalacion_id) {
+        // Intentar encontrar la instalación por el ID proporcionado
+        $instalacion = Facility::find($Instalacion_id);
+
+        if (!$instalacion) {
+            return redirect()->back()->with('error', 'La instalación no existe.');
+        }
+    } else {
+        // Si no se proporciona un ID, o si no se encuentra ninguna instalación con ese ID, obtener la última instalación creada
+        $instalacion = Facility::latest()->first();
     }
+
+    // Si no hay instalación disponible, regresa con un mensaje de error
+    if (!$instalacion) {
+        return redirect()->back()->with('error', 'No hay instalaciones creadas.');
+    }
+
+    $InstalacionUbicacion = $instalacion->Ubicacion;
+    
+    return view('pantalanes.create', [
+        'Instalacion_id' => $instalacion->id,
+        'instalacion_ubicacion' => $InstalacionUbicacion
+    ]);
+}
+
+//     public function create(Request $request, $id_instalacion)
+// {
+//     $instalacion = Facility::findOrFail($id_instalacion);
+//     $instalacionUbicacion = $instalacion->ubicacion;
+    
+//     return view('pantalanes.create', [
+//         'instalacion_id' => $id_instalacion,
+//         'instalacion_ubicacion' => $instalacionUbicacion
+//     ]);
+// }
+
 
     /**
      * Store a newly created resource in storage.
