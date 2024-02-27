@@ -57,6 +57,12 @@ Route::group([
 
 Route::post('v1/plazaBase/{id}/administrativoyAmarre', [BaseBerthController::class, 'administrativoyAmarre']);
 Route::put('v1/plazaBase/{id}/updateCausa',[BaseBerthController::class , 'updateCausa']);
+Route::put('v1/plazaBase/{id}/actuFin',[BaseBerthController::class , 'actuFin']);
+
+
+
+
+
 
 Route::get('v1/instalacion/{id}/pantalanes',[FacilityController::class , 'pantalanes']);
 Route::get('v1/pantalan/{id}/amarres',[DockController::class , 'amarres']);
@@ -65,6 +71,12 @@ Route::get('v1/pantalan/{id}/amarres',[DockController::class , 'amarres']);
 
 Route::get('v1/embarcacion/{id}/titular', [BoatController::class , 'obtenerTitular']);
 
+Route::post('v1/plazaBase/alquiler/{id}',[BaseBerthController::class , 'alquiler']);
+
+Route::post('v1/plaza/{id}/actualizaEstadoOcupado',[BerthController::class , 'actualizaEstadoOcupado']);
+Route::post('v1/plaza/{id}/actualizaEstadoDisponible',[BerthController::class , 'actualizaEstadoDisponible']);
+
+
 
 
 
@@ -72,6 +84,7 @@ Route::get('v1/embarcacion/{id}/titular', [BoatController::class , 'obtenerTitul
 //Rutas personalizadas que se van a usar en el dashboard, por ahora solo ahi
 Route::get('v1/plazaBase/cantidad',[BaseBerthController::class , 'cantidadpb']);
 Route::get('v1/plazaBase/estancia',[BaseBerthController::class , 'estancia']);
+
 Route::get('v1/transito/estancia',[TransitController::class , 'estancia']);
 Route::get('v1/plazaBase/paratabla',[BaseBerthController::class , 'paratabla']);
 

@@ -20,7 +20,14 @@ $amarre->update([
     'Estado' => 'Ocupado',
 ]);
     }
+    public function actualizaEstadoDisponible(string $id){
 
+        $amarre= Berth::findOrFail($id);
+        
+        $amarre->update([
+            'Estado' => 'Disponible',
+        ]);
+            }
 
      public function porcentaje(){
       

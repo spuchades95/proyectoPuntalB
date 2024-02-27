@@ -61,6 +61,7 @@ class DatabaseSeeder extends Seeder
     // }
   // \App\Models\TransitBoat::factory(3)->create();
   // \App\Models\TransitBoat::factory(1)->create();
+ // \App\Models\TransitBoat::factory(3)->create();
 
     }
 }
