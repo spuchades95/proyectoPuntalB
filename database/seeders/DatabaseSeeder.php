@@ -47,7 +47,7 @@ class DatabaseSeeder extends Seeder
     //  \App\Models\Berth::factory(2)->create();
     //    \App\Models\BaseBerth::factory(3)->create();
     // \App\Models\DockWorker::factory(5)->create();
-     \App\Models\Incident::factory(1)->create();
+    //  \App\Models\Incident::factory(3)->create();
       // \App\Models\DockWorker::factory(3)->create();
     // \App\Models\Transit::factory(2)->create();
     // \App\Models\DockWorker::factory()->count(10)->withRoleThree()->create();
@@ -60,6 +60,7 @@ class DatabaseSeeder extends Seeder
     //   \App\Models\DockWorker::factory()->create(['Usuario_id' => $user->id]);
     // }
   \App\Models\TransitBoat::factory(3)->create();
+  \App\Models\TransitBoat::factory(1)->create();
 
     }
 }
