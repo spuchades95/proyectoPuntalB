@@ -18,16 +18,16 @@ class DatabaseSeeder extends Seeder
         //     'name' => 'Test User',
         //     'email' => 'test@example.com',
         // ]);
-// \App\Models\Facility::factory(3)->create();
-// \App\Models\Role::factory(3)->create();
+// \App\Models\Facility::factory(1)->create();
+// \App\Models\Role::factory(1)->create();
 // \App\Models\User::factory(3)->create();
 // \App\Models\Crew::factory(3)->create();
- //\App\Models\Boat::factory(3)->create();
- //App\Models\Rental::factory(3)->create();
+//  \App\Models\Boat::factory(3)->create();
+//  App\Models\Rental::factory(3)->create();
 // \App\Models\Administrative::factory(3)->create();
 //  \App\Models\Dock::factory(2)->create();
 // \App\Models\Berth::factory(2)->create();
-//    \App\Models\BaseBerth::factory(3)->create();
+  //  \App\Models\BaseBerth::factory(3)->create();
 // \App\Models\DockWorker::factory(3)->create();
 //  \App\Models\Incident::factory(3)->create();
 //   \App\Models\DockWorker::factory(3)->create();
@@ -49,7 +49,7 @@ class DatabaseSeeder extends Seeder
     // \App\Models\DockWorker::factory(5)->create();
     //  \App\Models\Incident::factory(3)->create();
       // \App\Models\DockWorker::factory(3)->create();
-    \App\Models\Transit::factory(2)->create();
+    // \App\Models\Transit::factory(2)->create();
     // \App\Models\DockWorker::factory()->count(10)->withRoleThree()->create();
     // $usersWithRoleTwo = \App\Models\User::where('Rol_id', 2)->get();
     // $usersWithRoleThree = \App\Models\User::where('Rol_id', 3)->get();

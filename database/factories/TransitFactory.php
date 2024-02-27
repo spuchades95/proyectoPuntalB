@@ -23,9 +23,9 @@ class TransitFactory extends Factory
             // 'Proposito' => fake()->randomElement(['turismo', 'pesca deportiva', 'navegacion recreativa','evento']),
             'Amarre_id' => Berth::inRandomOrder()->value('id'),
             'Leido' => $this->faker->boolean(),
-            'FechaEntrada' => $this->faker->dateTimeBetween('-1 year', 'now'),
+            // 'FechaEntrada' => $this->faker->dateTimeBetween('-1 year', 'now'),
             'Guardamuelles_id' => DockWorker::inRandomOrder()->value('Usuario_id'),
-            'FechaSalida' => $this->faker->dateTimeBetween('-1 year', 'now'),
+            // 'FechaSalida' => $this->faker->dateTimeBetween('-1 year', 'now'),
             'Administrativo_id' => Administrative::inRandomOrder()->value('Usuario_id'),
             
            
