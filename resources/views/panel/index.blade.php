@@ -12,14 +12,22 @@
 <p>Usuarios registrados: {{ $totalUsers }}</p>
 <p>Roles registrados: {{ $totalroles }}</p>
 <p>Instalaciones registradas: {{ $totalfacilities }}</p>
+<p>Administrativos registrados: {{ $totalAdmnistratives }}</p>
+<p>Trabajadores de muelle registrados: {{ $totalDockWorkers }}</p>
+<p>Pantalanes registrados: {{ $totalPantalanes }}</p>
+<p>Amarres registrados: {{ $totalAmarres }}</p>
 <div class="cardsContainerUp d-flex">
 <div class="card">
-<h5>USUARIOS REGISTRADOS</h5>
+<div class="card-header">
+USUARIOS REGISTRADOS
+</div>
         <canvas id="barChart"></canvas>
         
     </div>
     <div class="card">
-     
+    <div class="card-header">
+ROLES REGISTRADOS
+</div>
         <canvas id="barChart2"></canvas>
     </div>
     <div class="card">
@@ -169,11 +177,36 @@
 
     </script>
     <style>
-        .card {
-            width: 20%;
-            margin: auto;
-            border: 2px solid black;
-        }
+        @import url("https://fonts.googleapis.com/css?family=Questrial&display=swap");
+@import url('https://fonts.googleapis.com/css?family=Inter:400,700&display=swap');
+     .card {
+  width: 310px;
+  height: 130px;
+  flex-shrink: 0;
+  border-radius: 20px;
+  background: #fff;
+  box-shadow: 4px 4px 4px 0px rgba(0, 0, 0, 0.25);
+  color: #000;
+  font-family: Inter;
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+ justify-content: space-around;
+ margin: 10px;
+
+}
+        .card-header {
+  border-radius: 20px 20px 0px 0px;
+  background: var(--Wedgewood-600, #426787);
+  color: #fff;
+  font-family: Questrial;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+}
+
         .cardDown{
             margin-top: 20px;
         }
