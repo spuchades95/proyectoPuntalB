@@ -47,7 +47,7 @@ Route::put('v1/plazaBase/{id}/updateCausa',[BaseBerthController::class , 'update
 Route::put('v1/plazaBase/{id}/actuFin',[BaseBerthController::class , 'actuFin']);
 
 
-
+Route::get('v1/transito/cambiar/{id}',[BerthController::class , 'actualizaEstadoOcupado']);
 
 
 

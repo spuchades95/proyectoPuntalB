@@ -23,6 +23,7 @@ class CrewController extends Controller
      */
     public function store(Request $request)
     {
+        Log::info(json_decode($request->all()));
         $crew = Crew::create($request->all());
         
         $crew->save();

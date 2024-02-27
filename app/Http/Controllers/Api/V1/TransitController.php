@@ -77,7 +77,7 @@ class TransitController extends Controller
      
     public function index()
     {
-        $transitsAll = DB::table('Transits AS T')
+        $transitsAll = DB::table('Transits AS T','TransitBoats AS TB')
         ->join('Berths AS B', 'B.id', '=', 'T.amarre_id')
         ->join('Docks AS D', 'D.id', '=', 'B.pantalan_id')
         ->join('Facilities AS F', 'F.id', '=', 'D.instalacion_id')
@@ -87,6 +87,8 @@ class TransitController extends Controller
         })
         ->select(
             'T.*', // Selecciona todos los campos de la tabla Transits
+            'TB.FechaEntrada',
+            'TB.FechaSalida',
             'D.nombre', 
             'F.ubicacion', 
             'B.Estado', 

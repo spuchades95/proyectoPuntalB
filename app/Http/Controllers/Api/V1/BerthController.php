@@ -19,6 +19,11 @@ $amarre= Berth::findOrFail($id);
 $amarre->update([
     'Estado' => 'Ocupado',
 ]);
+
+
+
+
+
     }
     public function actualizaEstadoDisponible(string $id){
 

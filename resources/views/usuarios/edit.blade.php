@@ -98,6 +98,7 @@
             <!-- Modal de eliminación -->
             <div class="modal" id="myModal">
                 <!-- Contenido del modal -->
+                
             </div>
             <button type="submit" class="btn btnAdd">EDITAR</button>
         </div>
