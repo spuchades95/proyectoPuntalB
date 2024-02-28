@@ -49,10 +49,10 @@ $amarre->update([
     $transitId = Transit::where('Amarre_id', $request->input('Amarre'))->firstOrFail();
     $fechaEntrada = $request->input('FechaEntrada');
     $fechaSalida = $request->input('FechaSalida');
-    $titular = $request->input('Embarcacion');
+    $matricula = $request->input('Embarcacion');
     
 
-    $transitId->embarcaciones()->attach($titular, [
+    $transitId->embarcaciones()->attach($matricula, [
         'FechaEntrada' => $fechaEntrada,
         'FechaSalida' => $fechaSalida,
     ]);
