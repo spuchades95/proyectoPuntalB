@@ -15,13 +15,16 @@
         <div class="card-header">
             ESTADÍSTICAS GENERALES
         </div>
-        <!-- <p>Usuarios registrados: {{ $totalUsers }}</p>
-        <p>Roles registrados: {{ $totalroles }}</p>
+       <div>
+         <!-- <p>Usuarios registrados: {{ $totalUsers }}</p>
+        <p>Roles registrados: {{ $totalroles }}</p> -->
+        <p>Usuarios registrados: {{ $totalUsers }}</p>
         <p>Instalaciones registradas: {{ $totalfacilities }}</p>
         <p>Administrativos registrados: {{ $totalAdmnistratives }}</p>
         <p>Trabajadores de muelle registrados: {{ $totalDockWorkers }}</p>
-        <p>Pantalanes registrados: {{ $totalPantalanes }}</p> -->
+        <p>Pantalanes registrados: {{ $totalPantalanes }}</p>
         <p>Número total de Plazas Base: {{ $totalPlazasBase }}</p>
+       </div>
 
     </div>
     <div class="card">
@@ -177,7 +180,7 @@
     }
 
     .card-header {
-        border-radius: 20px 20px 0px 0px;
+        border-radius: 30px 30px 0px 0px;
         background: var(--Wedgewood-600, #426787);
         color: #fff;
         font-family: Questrial;
