@@ -2,14 +2,10 @@
 
 namespace App\Http\Controllers\Api\V1;
 
-use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 use App\Models\Transit;
-use App\Models\Dock;
-use App\Models\Boat;
-use App\Models\Facility;
-use App\Models\TransitBoat;
 use Illuminate\Http\Request;
+use App\Models\User;
 use App\Http\Resources\V1\TransitResource;
 class TransitController extends Controller
 {
@@ -18,12 +14,6 @@ class TransitController extends Controller
      */
 
 
-
-
-
-
-
-     
      public function cantidadtr(){
       
         
@@ -36,17 +26,18 @@ class TransitController extends Controller
      {
  
  
-             $cantidad = TransitBoat::query()
-        ->selectRaw('SUM(DATEDIFF(FechaSalida, FechaEntrada)) AS estancia')
-        ->value('estancia');
-    $cantidadEstancias = TransitBoat::count();
-
-    if ($cantidadEstancias > 0) {
-      
-        $meses = floor($cantidad / 30);
-        $dias = $cantidad % 30;
-
-        return ['meses' => $meses, 'dias' => $dias];
+         $cantidad = Transit::query()
+             ->selectRaw('SUM(DATEDIFF(FinSalida, FechaEntrada)) AS estancia')
+             ->value('estancia');
+         $cantidadEstancias = Transit::count();
+ 
+         if ($cantidadEstancias > 0) {
+             $duracionMedia = $cantidad / $cantidadEstancias;
+ 
+             $años = floor($duracionMedia / 365);
+             $meses = floor(($duracionMedia % 365) / 30);
+             $dias = $duracionMedia % 30;
+             return ['años' => $años, 'meses' => $meses, 'días' => $dias];
          }
      }
  
@@ -77,39 +68,28 @@ class TransitController extends Controller
      
     public function index()
     {
-        $transitsAll = DB::table('Transits AS T')
-        ->join('Berths AS B', 'B.id', '=', 'T.amarre_id')
-        ->join('Docks AS D', 'D.id', '=', 'B.pantalan_id')
-        ->join('Facilities AS F', 'F.id', '=', 'D.instalacion_id')
-        ->join('Boats AS BT', function ($join) {
-            $join->on('BT.id', '=', 'T.id')
-                 ->whereNull('BT.deleted_at'); // Si Boats tiene una columna "deleted_at" para marcar registros eliminados
-        })
-        ->select(
-            'T.*', // Selecciona todos los campos de la tabla Transits
-            'D.nombre', 
-            'F.ubicacion', 
-            'B.Estado', 
-            'B.Numero', 
-            'BT.Matricula', 
-            'BT.Tipo', 
-            'BT.Titular', 
-            'BT.Origen'
-        )
-        ->get();
-        // $transits= Transit::all();
-        // $details = DB::table('Docks As D')
-        // ->join('Facilities AS F', 'D.instalacion_id', '=', 'F.id')
-        // ->join('Berths AS B', 'D.id', '=', 'B.pantalan_id')
-        // ->join('Transits AS T', 'B.id', '=', 'T.amarre_id')
-        // ->select('D.nombre', 'F.ubicacion', 'B.Numero')
-        // ->get();
-        // $transitsAll = [
-        //     'transits' => $transits,
-        //     'transit_details' => $details
-        // ];
-
-    return response()->json($transitsAll, 200);
+        // $transitos = Transit::with('administrativo', 'guardamuelles')->get();
+        // $transitosConNombres = $transitos->map(function ($transito) {
+        //     $guardamuellesNombre = User::find($transito->Guardamuelle_id)->NombreUsuario;
+        //     $administrativoNombre = User::find($transito->Administrativo_id)->NombreUsuario;
+        //     return [
+                
+        //         'Proposito' => $transito->Proposito,
+        //         'Guardamuelle_id' => $transito->Guardamuelle_id, // ID del dock worker
+        //         'Guardamuelle_nombre' => $guardamuellesNombre,
+        //         'Autorizacion' => $transito->autorizacion,
+        //         'AMarre_id' => $transito->Amarre_id,
+        //         'Leido' => $transito->Leido,
+        //         'Administrativo_id' => $transito->Administrativo_id, // ID del administrador
+        //         'Administrativo_nombre' => $administrativoNombre,
+         
+        //         // 'created_at' => $transito->created_at,
+        //         // 'updated_at' => $transito->updated_at,
+        //     ];
+        // });
+        // return response()->json($transitosConNombres);
+       
+        return Transit::all();
     }
 
     /**
@@ -122,7 +102,6 @@ class TransitController extends Controller
         return response()->json($transit, 201);
     }
 
-
     /**
      * Display the specified resource.
      */
@@ -130,14 +109,12 @@ class TransitController extends Controller
     {
         $transit = Transit::find($id);
 
-
         if ($transit) {
             return response()->json($transit, 200);
         } else {
             return response()->json('Tránsito no encontrado', 404);
         }
     }
-
 
     /**
      * Update the specified resource in storage.
@@ -166,14 +143,12 @@ class TransitController extends Controller
         }
     }
 
-
     /**
      * Remove the specified resource from storage.
      */
     public function destroy($id)
     {
         $transit = Transit::find($id);
-
 
         if ($transit) {
             $transit->delete();

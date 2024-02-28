@@ -48,4 +48,13 @@ class Transit extends Berth
     {
         return $this->belongsToMany(CivilGuard::class, 'civil_guard_transits', 'Usuario_id', 'Transito_id');
     }
+    public function administrativo()
+    {
+        return $this->belongsTo(Administrative::class, 'Administrativo_id');
+    }
+
+    public function guardamuelles()
+    {
+        return $this->belongsTo(DockWorker::class, 'Guardamuelles_id');
+    }
 }

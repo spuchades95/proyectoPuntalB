@@ -27,7 +27,7 @@ class DatabaseSeeder extends Seeder
 // \App\Models\Administrative::factory(1)->create();
 //  \App\Models\Dock::factory(2)->create();
 // \App\Models\Berth::factory(2)->create();
-  //  \App\Models\BaseBerth::factory(3)->create();
+   \App\Models\BaseBerth::factory(3)->create();
 // \App\Models\DockWorker::factory(3)->create();
 //  \App\Models\Incident::factory(3)->create();
   // \App\Models\DockWorker::factory(3)->create();
