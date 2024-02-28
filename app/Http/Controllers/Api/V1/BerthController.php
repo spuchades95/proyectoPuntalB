@@ -41,6 +41,31 @@ $amarre->update([
      }
 
 
+     public function crear(Request $request)
+{
+    return $request;
+    try {
+        Log::info($request);
+    $transitId = Transit::where('Amarre_id', $request->input('Amarre'))->firstOrFail();
+    $fechaEntrada = $request->input('FechaEntrada');
+    $fechaSalida = $request->input('FechaSalida');
+    $titular = $request->input('Embarcacion');
+    
+
+    $transitId->embarcaciones()->attach($titular, [
+        'FechaEntrada' => $fechaEntrada,
+        'FechaSalida' => $fechaSalida,
+    ]);
+        return response()->json($transitBoat, 200);
+    } catch (\Exception $e) {
+
+        return response()->json([
+            Log::info($e->getMessage()),
+            'message' => 'Error al actualizar el amarre base',
+            'code' => 500
+        ], 500);
+    }
+}
 
      public function plazasbdisponibles(){
       
