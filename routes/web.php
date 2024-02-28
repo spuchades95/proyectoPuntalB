@@ -40,17 +40,21 @@ Route::resource('concesionarios',ConcessionaireController::class);
 Route::resource('embarcaciones',BoatController::class); 
 Route::resource('guardiasciviles',CivilGuardController::class);
 Route::resource('incidencias',IncidentController::class);
-Route::resource('instalaciones',FacilityController::class);
-Route::resource('pantalanes',DockController::class);
-Route::resource('plazasbase',BaseBerthController::class);
-Route::resource('roles',RoleController::class);
+
 Route::resource('transitos',TransitController::class);
 Route::resource('tripulantes',CrewController::class);
 Route::resource('usuarios',UserController::class);
 // Route::get('/panel', PanelController::class)->name('panel');
 
 
+Route::group(['middleware' => 'Concesionario'], function(){
 
+    Route::resource('instalaciones',FacilityController::class);
+    Route::resource('pantalanes',DockController::class);
+    Route::resource('plazasbase',BaseBerthController::class);
+    Route::resource('roles',RoleController::class);
+
+});
 
 
 
@@ -61,13 +65,31 @@ Route::get('/', function () {
 });
 
 Route::get('/dashboard', function () {
-    return view('dashboard');
+    return view('roles');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+
+    Route::get('/', function () {
+        // Lógica para redirigir a tus partes específicas basadas en el rol del usuario
+        if (auth()->user()->Rol_id == 1) {
+            return redirect()->route('instalaciones.index');
+        } else {
+            // Redirigir a otra parte para otros roles o usuarios
+            return redirect()->route('welcome');
+        }
+    })->name('dashboard');
+
+
+
+
+
+
+
+
 });
 
 require __DIR__.'/auth.php';

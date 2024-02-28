@@ -15,6 +15,13 @@ class AuthController extends Controller
      *
      * @return void
      */
+
+     public function Concesionario(){
+        return view('roles.index');
+    }
+
+
+
     public function __construct() {
         $this->middleware('auth:api', ['except' => ['login', 'register']]);
     }
