@@ -100,6 +100,7 @@ Route::get('v1/embarcacion/tipocomun',[BoatController::class , 'tipocomun']);
 Route::post('v1/transito/crear',[BerthController::class ,'crear']);
 Route::get('v1/guardiaCivil/leido',[CivilGuardController::class , 'leido']);
 Route::get('v1/transito/cambiar/{id}',[BerthController::class , 'actualizaEstadoOcupado']);
+Route::get('v1/guardiaCivil/leido',[CivilGuardController::class , 'leido']);
 
 
 

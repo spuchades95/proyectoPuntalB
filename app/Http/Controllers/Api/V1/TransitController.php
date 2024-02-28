@@ -75,21 +75,22 @@ class TransitController extends Controller
 
 
      
-    public function index()
-    {
-        $transitsAll = DB::table('Transits AS T','TransitBoats AS TB')
+public function index()
+{
+    $transitsAll = DB::table('Transits AS T',)
+        ->join('Transit_Boats AS TB', 'TB.Transito_id', '=', 'T.id')
         ->join('Berths AS B', 'B.id', '=', 'T.amarre_id')
         ->join('Docks AS D', 'D.id', '=', 'B.pantalan_id')
         ->join('Facilities AS F', 'F.id', '=', 'D.instalacion_id')
         ->join('Boats AS BT', function ($join) {
-            $join->on('BT.id', '=', 'T.id')
-                 ->whereNull('BT.deleted_at'); // Si Boats tiene una columna "deleted_at" para marcar registros eliminados
+            $join->on('BT.id', '=', 'TB.Embarcacion_id')
+                 ->whereNull('BT.deleted_at');
         })
         ->select(
-            'T.*', // Selecciona todos los campos de la tabla Transits
-            'D.nombre', 
+            'T.*', // Select all fields from the Transits table
             'TB.FechaEntrada',
             'TB.FechaSalida',
+            'D.nombre', 
             'F.ubicacion', 
             'B.Estado', 
             'B.Numero', 
@@ -99,20 +100,10 @@ class TransitController extends Controller
             'BT.Origen'
         )
         ->get();
-        // $transits= Transit::all();
-        // $details = DB::table('Docks As D')
-        // ->join('Facilities AS F', 'D.instalacion_id', '=', 'F.id')
-        // ->join('Berths AS B', 'D.id', '=', 'B.pantalan_id')
-        // ->join('Transits AS T', 'B.id', '=', 'T.amarre_id')
-        // ->select('D.nombre', 'F.ubicacion', 'B.Numero')
-        // ->get();
-        // $transitsAll = [
-        //     'transits' => $transits,
-        //     'transit_details' => $details
-        // ];
 
     return response()->json($transitsAll, 200);
-    }
+}
+
 
     /**
      * Store a newly created resource in storage.
