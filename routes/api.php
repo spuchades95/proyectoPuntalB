@@ -49,6 +49,9 @@ Route::put('v1/plazaBase/{id}/actuFin',[BaseBerthController::class , 'actuFin'])
 
 
 
+
+
+
 Route::get('v1/instalacion/{id}/pantalanes',[FacilityController::class , 'pantalanes']);
 Route::get('v1/pantalan/{id}/amarres',[DockController::class , 'amarres']);
 
