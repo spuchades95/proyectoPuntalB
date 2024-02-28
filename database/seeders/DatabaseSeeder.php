@@ -32,7 +32,7 @@ class DatabaseSeeder extends Seeder
 //  \App\Models\Incident::factory(3)->create();
 //   \App\Models\DockWorker::factory(3)->create();
   // \App\Models\Transit::factory(2)->create();
-  \App\Models\TransitBoat::factory(3)->create();
+ // \App\Models\TransitBoat::factory(3)->create();
 
     }
 }

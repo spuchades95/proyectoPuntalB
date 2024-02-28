@@ -28,6 +28,21 @@ class BaseBerthController extends Controller
         return $cantidad;
     }
 
+
+public function actuFin(Request $request, string $id){
+
+    $baseBerth = Rental::where('PlazaBase_id', $id)->firstOrFail();
+    $FechaFinalizacion = $request->input('FechaFinalizacion');
+    $baseBerth->update([
+        'FechaFinalizacion' => $FechaFinalizacion,
+    ]);
+    return response()->json($baseBerth, 200);
+
+}
+
+
+
+
     public function estancia()
     {
 
@@ -49,19 +64,19 @@ class BaseBerthController extends Controller
     public function paratabla()
     {
         $plazasBase = Rental::join('berths', 'berths.id', '=', 'rentals.PlazaBase_id')
-        ->join('docks', 'docks.id', '=', 'berths.pantalan_id')
-        ->join('facilities', 'facilities.id', '=', 'docks.instalacion_id')
-        ->join('boats', 'boats.id', '=', 'rentals.embarcacion_id')
-        ->select(
-            'rentals.FechaInicio',
-            'rentals.FechaFinalizacion',
-            'berths.Numero AS Amarre',
-            'docks.Nombre AS Pantalan',
-            'facilities.Ubicacion AS Instalacion',
-            'boats.Matricula',
-            'boats.Titular'
-        )
-        ->get();
+            ->join('docks', 'docks.id', '=', 'berths.pantalan_id')
+            ->join('facilities', 'facilities.id', '=', 'docks.instalacion_id')
+            ->join('boats', 'boats.id', '=', 'rentals.embarcacion_id')
+            ->select(
+                'rentals.FechaInicio',
+                'rentals.FechaFinalizacion',
+                'berths.Numero AS Amarre',
+                'docks.Nombre AS Pantalan',
+                'facilities.Ubicacion AS Instalacion',
+                'boats.Matricula',
+                'boats.Titular'
+            )
+            ->get();
 
         return response()->json($plazasBase, 200);
     }
@@ -116,31 +131,17 @@ class BaseBerthController extends Controller
     {
 
         try {
+            Log::info($request);
+            Log::info($id);
+        $baseBerth = BaseBerth::where('Amarre_id', $id)->firstOrFail();
+        $embarcacion = $request->input('Embarcacion');
+        $FechaInicio = $request->input('FechaInicio');
+        $FechaFinalizacion = $request->input('FechaFinalizacion');
 
-            $baseBerth = BaseBerth::findOrFail($id);
-            $request->validate([
-                'Embarcacion_id' => 'required|exists:boats,id',
-                'FechaInicio' => 'required|date',
-                'FechaFinalizacion' => 'required|date|after_or_equal:start_date'
-            ]);
-
-            // Obtener los datos de la solicitud
-            $embarcacion = $request->input('Embarcacion_id');
-            $FechaInicio = $request->input('FechaInicio');
-            $FechaFinalizacion = $request->input('FechaFinalizacion');
-
-            // Asociar el barco a la BaseBerth
-            $baseBerth->embarcacion()->attach($embarcacion);
-
-            // Crear un nuevo registro en la tabla Rentals
-            Rental::create([
-                'PlazaBase_id' => $baseBerth,
-                'Embarcacion_id' => $embarcacion,
-                'FechaInicio' => $FechaInicio,
-                'FechaFinalizacion' => $FechaFinalizacion,
-            ]);
-
-
+        $baseBerth->embarcacion()->attach($embarcacion, [
+            'FechaInicio' => $FechaInicio,
+            'FechaFinalizacion' => $FechaFinalizacion
+        ]);
             return response()->json($baseBerth, 200);
         } catch (\Exception $e) {
 
@@ -150,11 +151,6 @@ class BaseBerthController extends Controller
                 'code' => 500
             ], 500);
         }
-
-
-
-
-
     }
 
 
@@ -163,8 +159,6 @@ class BaseBerthController extends Controller
         try {
 
             $baseBerth = BaseBerth::findOrFail($id);
-            $baseBerth->FechaEntrada = $request->FechaEntrada;
-            $baseBerth->FinContrato = $request->FinContrato;
             $baseBerth->save();
 
             return response()->json($baseBerth, 200);
@@ -181,13 +175,16 @@ class BaseBerthController extends Controller
     public function administrativoyAmarre(Request $request, string $id)
     {
         try {
+            Log::info($request);
+            Log::info($id);
             $berth = Berth::findOrFail($id);
-            $administrative = Administrative::findOrFail($request->Administrativo_id);
-            $berth->administrativeamarre()->attach($administrative->id);
+            $administrativo = $request->input('Administrativo_id');
+            $berth->administrativoamarre()->attach($administrativo);
 
             return response()->json(['message' => 'Administrativo asociado correctamente al amarre'], 200);
         } catch (\Exception $e) {
             return response()->json([
+                Log::info($e->getMessage()),
                 'message' => 'Error al asociar el administrativo al amarre',
                 'error' => $e->getMessage(),
                 'code' => 500

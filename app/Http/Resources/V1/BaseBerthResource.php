@@ -15,11 +15,7 @@ class BaseBerthResource extends JsonResource
     public function toArray(Request $request): array
     {
         return [
-            // 'id' => $this->id,
-           
-            //'Fecha entrada' => $this->FechaEntrada,
-            //'Fin contrato' => $this->FinContrato,
-          //  'Fecha de creacion' => $this->FechaCreacion,
+          
             'Amarre ' => $this->plaza->Numero,
             'Nombre ' => $this->plaza->pantalan->Nombre,
             'Ubicacion' => $this->plaza->pantalan->instalacion->Ubicacion,
