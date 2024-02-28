@@ -46,7 +46,7 @@ Route::post('v1/plazaBase/{id}/administrativoyAmarre', [BaseBerthController::cla
 Route::put('v1/plazaBase/{id}/updateCausa',[BaseBerthController::class , 'updateCausa']);
 Route::put('v1/plazaBase/{id}/actuFin',[BaseBerthController::class , 'actuFin']);
 
-
+Route::put('v1/plazaBase/{id}/eli',[BaseBerthController::class , 'eli']);
 
 
 Route::get('v1/instalacion/{id}/pantalanes',[FacilityController::class , 'pantalanes']);

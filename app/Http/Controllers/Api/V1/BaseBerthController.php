@@ -30,13 +30,22 @@ class BaseBerthController extends Controller
 
 
 public function actuFin(Request $request, string $id){
+    Log::info($request);
+    Log::info($id);
+    
+    $fechaFinalizacion = $request->input('FechaFinalizacion');
 
-    $baseBerth = Rental::where('PlazaBase_id', $id)->firstOrFail();
-    $FechaFinalizacion = $request->input('FechaFinalizacion');
-    $baseBerth->update([
-        'FechaFinalizacion' => $FechaFinalizacion,
-    ]);
-    return response()->json($baseBerth, 200);
+    try {
+       
+        $rental = Rental::findOrFail($id);
+        $rental->FechaFinalizacion = $fechaFinalizacion;
+        $rental->save();
+
+        return response()->json($rental, 200);
+    } catch (\Exception $e) {
+       
+        return response()->json(['error' => 'Hubo un problema al actualizar el contrato de alquiler.'], 500);
+    }
 
 }
 
@@ -63,23 +72,70 @@ public function actuFin(Request $request, string $id){
     }
     public function paratabla()
     {
-        $plazasBase = Rental::join('berths', 'berths.id', '=', 'rentals.PlazaBase_id')
-            ->join('docks', 'docks.id', '=', 'berths.pantalan_id')
-            ->join('facilities', 'facilities.id', '=', 'docks.instalacion_id')
-            ->join('boats', 'boats.id', '=', 'rentals.embarcacion_id')
+        $plazasBase = Rental::
+        join('base_berths', 'base_berths.id', '=', 'rentals.PlazaBase_id')
+        ->join('berths', 'berths.id', '=', 'base_berths.Amarre_id')
+        ->join('docks', 'docks.id', '=', 'berths.pantalan_id')
+        ->join('facilities', 'facilities.id', '=', 'docks.instalacion_id')
+        ->join('boats', 'boats.id', '=', 'rentals.embarcacion_id')
+         
             ->select(
                 'rentals.FechaInicio',
                 'rentals.FechaFinalizacion',
-                'berths.Numero AS Amarre',
+                'rentals.id As IdAlquiler',
+                'berths.Numero AS Numero',
+                'berths.Estado AS Estado',
                 'docks.Nombre AS Pantalan',
+                'berths.TipoPlaza AS tipo',
                 'facilities.Ubicacion AS Instalacion',
+                'base_berths.Amarre_id AS Plaza',
                 'boats.Matricula',
                 'boats.Titular'
             )
+       
+            
             ->get();
+
+     
+
 
         return response()->json($plazasBase, 200);
     }
+
+public function eli(Request $request, string $id){
+
+    Log::info($request);
+    Log::info($id);
+   
+ 
+    $Causa = $request->input('Causa');
+
+    try {
+        Log::info($request);
+        Log::info($id);
+       
+        $rental = Rental::findOrFail($id);
+        $baseberth = $rental->PlazaBase_id;
+        $berth = Berth::findOrFail($baseberth);
+        $rental->Causa = $Causa;
+        $rental->save();
+        $berth->Estado = 'Ocupado'; 
+        $berth->save();
+        return response()->json($rental, 200);
+
+    } catch (\Exception $e) {
+
+        return response()->json([
+            Log::info($e->getMessage()),
+            'message' => 'Error al actualizar el amarre base',
+            'code' => 500
+        ], 500);
+    }
+
+}
+
+
+
 
     public function index()
     {
@@ -142,7 +198,10 @@ public function actuFin(Request $request, string $id){
             'FechaInicio' => $FechaInicio,
             'FechaFinalizacion' => $FechaFinalizacion
         ]);
-            return response()->json($baseBerth, 200);
+
+
+        $alquiler= Rental::all();
+            return response()->json($alquiler, 200);
         } catch (\Exception $e) {
 
             return response()->json([
@@ -200,9 +259,9 @@ public function actuFin(Request $request, string $id){
     public function updateCausa(Request $request, string $id)
     {
 
-        $baseBerth = BaseBerth::findOrFail($id);
-        $berth = Berth::findOrFail($baseBerth->Amarre_id);
-        $berth->update([
+        $baseBerth = Rental::findOrFail($id);
+       
+        $baseBerth->update([
             'Causa' => $request->Causa,
         ]);
     }
