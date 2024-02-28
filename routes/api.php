@@ -62,8 +62,6 @@ Route::put('v1/plazaBase/{id}/actuFin',[BaseBerthController::class , 'actuFin'])
 
 
 
-
-
 Route::get('v1/instalacion/{id}/pantalanes',[FacilityController::class , 'pantalanes']);
 Route::get('v1/pantalan/{id}/amarres',[DockController::class , 'amarres']);
 
@@ -73,10 +71,8 @@ Route::get('v1/embarcacion/{id}/titular', [BoatController::class , 'obtenerTitul
 
 Route::post('v1/plazaBase/alquiler/{id}',[BaseBerthController::class , 'alquiler']);
 
-Route::post('v1/plaza/{id}/actualizaEstadoOcupado',[BerthController::class , 'actualizaEstadoOcupado']);
-Route::post('v1/plaza/{id}/actualizaEstadoDisponible',[BerthController::class , 'actualizaEstadoDisponible']);
-
-
+Route::put('v1/plaza/{id}/actualizaEstadoOcupado',[BerthController::class , 'actualizaEstadoOcupado']);
+Route::put('v1/plaza/{id}/actualizaEstadoDisponible',[BerthController::class , 'actualizaEstadoDisponible']);
 
 
 

@@ -131,9 +131,10 @@ public function actuFin(Request $request, string $id){
     {
 
         try {
-              
-        $baseBerth = BaseBerth::findOrFail($id);
-        $embarcacion = $request->input('Embarcacion_id');
+            Log::info($request);
+            Log::info($id);
+        $baseBerth = BaseBerth::where('Amarre_id', $id)->firstOrFail();
+        $embarcacion = $request->input('Embarcacion');
         $FechaInicio = $request->input('FechaInicio');
         $FechaFinalizacion = $request->input('FechaFinalizacion');
 
@@ -174,6 +175,8 @@ public function actuFin(Request $request, string $id){
     public function administrativoyAmarre(Request $request, string $id)
     {
         try {
+            Log::info($request);
+            Log::info($id);
             $berth = Berth::findOrFail($id);
             $administrativo = $request->input('Administrativo_id');
             $berth->administrativoamarre()->attach($administrativo);
