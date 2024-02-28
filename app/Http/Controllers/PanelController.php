@@ -21,13 +21,13 @@ class PanelController extends Controller
         $totalAdmnistratives = Administrative::count();
         $totalDockWorkers = DockWorker::count();
         $totalPantalanes = Berth::count();
-        $totalAmarres = BaseBerth::count();
+        $totalPlazasBase = BaseBerth::count();
       
 
         $data = [
             'labels' => ['January', 'February', 'March', 'April', 'May'],
             'data' => [65, 59, 80, 81, 56],
         ];
-        return view('panel.index', compact('totalUsers', 'totalroles', 'totalfacilities', 'data', 'totalAdmnistratives', 'totalDockWorkers', 'totalPantalanes', 'totalAmarres'));
+        return view('panel.index', compact('totalUsers', 'totalroles', 'totalfacilities', 'data', 'totalAdmnistratives', 'totalDockWorkers', 'totalPantalanes', 'totalPlazasBase'));
     }
 }
