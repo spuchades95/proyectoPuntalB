@@ -34,20 +34,20 @@ Route::put('/usuario/{id}', [UserController::class, 'update'])->name('usuarios.u
 Route::get('amarres/createdos', [BerthController::class, 'createdos'])->name('amarres.createdos');
 Route::post('amarres/createdos', [BerthController::class, 'storedos'])->name('amarres.storedos');
 
-Route::resource('administrativos',AdministrativeController::class);
-Route::resource('alquileres',RentalController::class);
-Route::resource('amarres',BerthController::class);
-Route::resource('concesionarios',ConcessionaireController::class);
-Route::resource('embarcaciones',BoatController::class); 
-Route::resource('guardiasciviles',CivilGuardController::class);
-Route::resource('incidencias',IncidentController::class);
-Route::resource('instalaciones',FacilityController::class);
-Route::resource('pantalanes',DockController::class);
-Route::resource('plazasbase',BaseBerthController::class);
-Route::resource('roles',RoleController::class);
-Route::resource('transitos',TransitController::class);
-Route::resource('tripulantes',CrewController::class);
-Route::resource('usuarios',UserController::class);
+Route::resource('administrativos', AdministrativeController::class);
+Route::resource('alquileres', RentalController::class);
+Route::resource('amarres', BerthController::class);
+Route::resource('concesionarios', ConcessionaireController::class);
+Route::resource('embarcaciones', BoatController::class);
+Route::resource('guardiasciviles', CivilGuardController::class);
+Route::resource('incidencias', IncidentController::class);
+Route::resource('instalaciones', FacilityController::class);
+Route::resource('pantalanes', DockController::class);
+Route::resource('plazasbase', BaseBerthController::class);
+Route::resource('roles', RoleController::class);
+Route::resource('transitos', TransitController::class);
+Route::resource('tripulantes', CrewController::class);
+Route::resource('usuarios', UserController::class);
 Route::get('panel', PanelController::class)->name('panel.index');
 
 
@@ -55,7 +55,7 @@ Route::get('panel', PanelController::class)->name('panel.index');
 
 
 
-  
+
 
 Route::get('/', function () {
     return view('welcome');
@@ -71,4 +71,4 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-require __DIR__.'/auth.php';
+require __DIR__ . '/auth.php';
