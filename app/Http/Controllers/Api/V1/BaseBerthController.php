@@ -155,32 +155,7 @@ public function actuFin(Request $request, string $id){
         }
     }
 
-    public function crear(Request $request, string $id)
-{
-
-    try {
-        Log::info($request);
-        Log::info($id);
-    $transitBoat = TransitBoat::where('Amarre_id', $id)->firstOrFail();
-    $fechaEntrada = $request->input('FechaEntrada');
-    $fechaSalida = $request->input('FechaSalida');
-    $titular = $request->input('Titular');
-    $transitoId = $request->input('Amarre_id');
-
-    $transitBoat->transito()->attach($transitoId, [
-        'FechaInicio' => $fechaEntrada,
-        'FechaFinalizacion' => $fechaSalida,
-    ]);
-        return response()->json($transitBoat, 200);
-    } catch (\Exception $e) {
-
-        return response()->json([
-            Log::info($e->getMessage()),
-            'message' => 'Error al actualizar el amarre base',
-            'code' => 500
-        ], 500);
-    }
-}
+    
 
 
     public function update(Request $request, string $id)

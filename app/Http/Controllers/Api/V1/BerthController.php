@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Api\V1;
 
 use App\Http\Controllers\Controller;
 use App\Models\Berth;
+use App\Models\Transit;
 use Illuminate\Http\Request;
 
 class BerthController extends Controller
@@ -25,6 +26,33 @@ $amarre->update([
 
 
     }
+
+
+    public function crear(Request $request, string $id)
+{
+    try {
+        Log::info($request);
+        Log::info($id);
+    $transitId = Transit::where('Amarre_id', $id)->firstOrFail();
+    $fechaEntrada = $request->input('FechaEntrada');
+    $fechaSalida = $request->input('FechaSalida');
+    $titular = $request->input('Titular');
+    
+
+    $transitId->embarcaciones()->attach($transitoId, [
+        'FechaInicio' => $fechaEntrada,
+        'FechaFinalizacion' => $fechaSalida,
+    ]);
+        return response()->json($transitBoat, 200);
+    } catch (\Exception $e) {
+
+        return response()->json([
+            Log::info($e->getMessage()),
+            'message' => 'Error al actualizar el amarre base',
+            'code' => 500
+        ], 500);
+    }
+}
     public function actualizaEstadoDisponible(string $id){
 
         $amarre= Berth::findOrFail($id);
