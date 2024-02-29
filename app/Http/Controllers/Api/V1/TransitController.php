@@ -11,6 +11,7 @@ use App\Models\Facility;
 use App\Models\TransitBoat;
 use Illuminate\Http\Request;
 use App\Http\Resources\V1\TransitResource;
+
 class TransitController extends Controller
 {
     /**
@@ -23,80 +24,106 @@ class TransitController extends Controller
 
 
 
-     
-     public function cantidadtr(){
-      
-        
-        $cantidad= Transit::count();
+
+    public function cantidadtr()
+    {
+
+
+        $cantidad = Transit::count();
         return $cantidad;
-     }
+    }
 
 
-     public function estancia()
-     {
- 
- 
-             $cantidad = TransitBoat::query()
-        ->selectRaw('SUM(DATEDIFF(FechaSalida, FechaEntrada)) AS estancia')
-        ->value('estancia');
-    $cantidadEstancias = TransitBoat::count();
-
-    if ($cantidadEstancias > 0) {
-      
-        $meses = floor($cantidad / 30);
-        $dias = $cantidad % 30;
-
-        return ['meses' => $meses, 'dias' => $dias];
-         }
-     }
- 
+    public function estancia()
+    {
 
 
+        $cantidad = TransitBoat::query()
+            ->selectRaw('SUM(DATEDIFF(FechaSalida, FechaEntrada)) AS estancia')
+            ->value('estancia');
+        $cantidadEstancias = TransitBoat::count();
 
+        if ($cantidadEstancias > 0) {
 
-// public function index(){
+            $meses = floor($cantidad / 30);
+            $dias = $cantidad % 30;
 
-
-    
-// $cositas = Transit::with(['plaza.pantalan.instalacion'])
-// ->whereHas('plaza', function($query) {
-//     $query->where('Estado', 'Disponible');
-// })
-// ->get();
-// $plazasBaseAll=[
-
-//     'plazabasedetalles' => TransitResource::collection($cositas)
-
-
-// ] ;
-//         return response()->json($plazasBaseAll, 201);
-// }
+            return ['meses' => $meses, 'dias' => $dias];
+        }
+    }
 
 
 
-     
-    public function index()
+
+
+    // public function index(){
+
+
+
+    // $cositas = Transit::with(['plaza.pantalan.instalacion'])
+    // ->whereHas('plaza', function($query) {
+    //     $query->where('Estado', 'Disponible');
+    // })
+    // ->get();
+    // $plazasBaseAll=[
+
+    // 'transitodetalles' => TransitResource::collection($cositas)
+
+
+    // ] ;
+    //         return response()->json($plazasBaseAll, 201);
+    // }
+
+
+
+    public function cambiarEstado(Request $request, $id)
+    {
+        // Validar la solicitud
+        $request->validate([
+            'estatus' => 'required|string|in:llegada,salida',
+        ]);
+
+        // Buscar el tránsito por su ID
+        $transito = Transit::findOrFail($id);
+
+        // Actualizar el estado del tránsito
+        $transito->update([
+            'Estatus' => $request->estatus,
+        ]);
+
+        // Devolver una respuesta
+        return response()->json(['message' => 'Estado del tránsito actualizado correctamente'], 200);
+    }
+
+
+
+    public function indexguardamuelles()
     {
         $transitsAll = DB::table('Transits AS T')
-        ->join('Berths AS B', 'B.id', '=', 'T.amarre_id')
-        ->join('Docks AS D', 'D.id', '=', 'B.pantalan_id')
-        ->join('Facilities AS F', 'F.id', '=', 'D.instalacion_id')
-        ->join('Boats AS BT', function ($join) {
-            $join->on('BT.id', '=', 'T.id')
-                 ->whereNull('BT.deleted_at'); // Si Boats tiene una columna "deleted_at" para marcar registros eliminados
-        })
-        ->select(
-            'T.*', // Selecciona todos los campos de la tabla Transits
-            'D.nombre', 
-            'F.ubicacion', 
-            'B.Estado', 
-            'B.Numero', 
-            'BT.Matricula', 
-            'BT.Tipo', 
-            'BT.Titular', 
-            'BT.Origen'
-        )
-        ->get();
+            ->join('Berths AS B', 'B.id', '=', 'T.amarre_id')
+            ->join('Docks AS D', 'D.id', '=', 'B.pantalan_id')
+            ->join('Facilities AS F', 'F.id', '=', 'D.instalacion_id')
+            ->join('Transit_Boats AS TB', 'TB.transito_id', '=', 'T.id')
+            ->join('Boats AS BT', function ($join) {
+                $join->on('BT.id', '=', 'T.id')
+                    ->whereNull('BT.deleted_at'); // Si Boats tiene una columna "deleted_at" para marcar registros eliminados
+            })
+            ->select(
+                'T.*', // Selecciona todos los campos de la tabla Transits
+                'D.nombre',
+                'F.ubicacion',
+                'B.Estado',
+                'B.Numero',
+                'BT.id AS embarcacion_id',
+                'BT.Matricula',
+                'BT.Imagen',
+                'BT.Tipo',
+                'BT.Titular',
+                'BT.Origen',
+                'TB.FechaSalida',
+                'TB.FechaEntrada'
+            )
+            ->get();
         // $transits= Transit::all();
         // $details = DB::table('Docks As D')
         // ->join('Facilities AS F', 'D.instalacion_id', '=', 'F.id')
@@ -109,7 +136,7 @@ class TransitController extends Controller
         //     'transit_details' => $details
         // ];
 
-    return response()->json($transitsAll, 200);
+        return response()->json($transitsAll, 200);
     }
 
     /**

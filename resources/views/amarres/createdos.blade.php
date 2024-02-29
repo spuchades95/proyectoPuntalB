@@ -10,7 +10,7 @@
     <div class="formHeader">
         <h5>ALTA AMARRE</h5>
     </div>
-    <form class="form-container" method="POST" action="{{ route('amarres.storedos', ['dock' => $pantalan->id])) }}">
+    <form class="form-container" method="POST" action="{{ route('amarres.storedos', ['dock' => $pantalan->id]) }}">
         @csrf
         <label for="cantidad_amarres">Cantidad de amarres a crear:</label>
     <input type="number" id="cantidad_amarres" name="cantidad_amarres" required min="1">

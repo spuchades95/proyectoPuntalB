@@ -28,8 +28,13 @@
             <textarea name="Descripcion" class="form-control mt-4" required>{{ $instalacion->Descripcion }}</textarea>
         </div>
         <div class="mb-3 d-flex">
-            <label for="Estado" class="form-label">Estado:</label>
-            <input name="Estado" type="text" class="form-control mt-4" placeholder="Estado" value="{{ $instalacion->Estado }}" required />
+            <label for="Estado">Estado</label>
+            <select name="Estado" id="Estado" class="form-control" required>
+                <option value="">Selecciona un estado</option>
+                <option value="Disponible">Disponible</option>
+                <option value="Mantenimiento">En mantenimiento</option>
+                <option value="Ocupada">Ocupada</option>
+            </select>
         </div>
         <div class="mb-3 d-flex">
             <label for="FechaCreacion" class="form-label">Fecha de creación:</label>
