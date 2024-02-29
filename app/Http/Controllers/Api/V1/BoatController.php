@@ -196,6 +196,7 @@ class BoatController extends Controller
     {
 
         $boat = Boat::find($id);
+        Log::info('Boat updated: ' . $boat);
         Log::info('Request: ' . json_encode($request->all()));
         // Log::info('Boat updated: ' . $boat->Imagen);
         Log::info('Request Headers: ' . json_encode($request->header()));

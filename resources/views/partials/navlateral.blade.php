@@ -1,6 +1,6 @@
 <div class="azul500 col-md-2 d-flex flex-column align-items-center">
     <img alt="Bootstrap Image Preview" src="/image/Group.svg" class="logo" />
-    <a href="" class=" mt-5 boton dashboard">DASHBOARD</a>
+    <a href="{{ route('panel.index') }}" class=" mt-5 boton dashboard">DASHBOARD</a>
     <a href="{{ route('roles.index') }}" class=" mt-5 boton rol">GESTIÓN ROLES</a>
     <a href="{{ route('usuarios.index') }}" class=" mt-5 boton user">GESTIÓN USUARIOS</a>
     <a href="{{ route('instalaciones.index') }}" class=" mt-5 boton ins">GESTIÓN INSTALACIONES</a>
@@ -56,7 +56,7 @@
         width: 160px;
         height: 40px;
         display: flex;
-    
+
         margin-top: 40px;
         filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
 
@@ -72,7 +72,7 @@
         justify-content: space-between;
         padding: 0 1em;
         text-transform: uppercase;
-        padding: 30px ;
+        padding: 30px;
         background-repeat: no-repeat;
         background-size: 24px 24px;
         background-position: 5px center;
@@ -106,7 +106,7 @@
         justify-content: space-between;
         padding: 0 1em;
         text-transform: uppercase;
-        padding: 30px ;
+        padding: 30px;
         background-repeat: no-repeat;
         background-size: 24px 24px;
         background-position: 5px center;
