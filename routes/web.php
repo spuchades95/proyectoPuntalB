@@ -17,6 +17,7 @@ use App\Http\Controllers\BaseBerthController;
 use App\Http\Controllers\BerthController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\PanelController;
+use Illuminate\Support\Facades\Auth;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -61,7 +62,16 @@ Route::group(['middleware' => 'Concesionario'], function(){
 
 });
 
-
+Route::get('/', function () {
+    // Verificar si el usuario está autenticado y tiene el Rol_id igual a 1 (administrador)
+    if (Auth::check() && auth()->user()->Rol_id == 1) {
+        // Si cumple las condiciones, puedes redirigirlo a la página deseada, por ejemplo, el dashboard
+        return redirect('/panel');
+    }
+    
+    // Si el usuario no cumple las condiciones, redirigirlo al inicio de sesión
+    return redirect()->route('login');
+});
 
 
 Route::get('/', function () {
@@ -72,7 +82,7 @@ Route::get('/dashboard', function () {
     return view('roles');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
-Route::middleware('auth')->group(function () {
+Route::middleware('auth', '')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');

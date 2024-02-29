@@ -17,12 +17,13 @@ class AuthController extends Controller
      */
 
      public function Concesionario(){
-        return view('roles.index');
+        return view('auth.login');
     }
 
 
 
     public function __construct() {
+        $this->middleware('auth')->except(['login', 'register']);
         $this->middleware('auth:api', ['except' => ['login', 'register']]);
     }
     /**
@@ -31,6 +32,7 @@ class AuthController extends Controller
      * @return \Illuminate\Http\JsonResponse
      */
     public function login(Request $request){
+        dd($request);
     	$validator = Validator::make($request->all(), [
             'email' => 'required|email',
             'password' => 'required|string|min:6',

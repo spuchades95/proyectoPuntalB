@@ -174,7 +174,7 @@ button {
       <div>
         <h1 class="textHeaderLogin"><strong>Login</strong></h1>
 
-        <form method="POST" action="{{ route('login') }}">
+        <form method="POST" action="{{ url('/login') }}">
           @csrf
 
           <div class="mb-5">
@@ -184,6 +184,9 @@ button {
               name="email"
               placeholder="EMAIL"
             />
+            @if ($errors->has('email'))
+                                <span class="text-danger">{{ $errors->first('email') }}</span>
+                                @endif
           </div>
 
           <div class="mb-5">
@@ -193,6 +196,9 @@ button {
               name="password"
               placeholder="CONTRASEÑA"
             />
+            @if ($errors->has('password'))
+                                <span class="text-danger">{{ $errors->first('password') }}</span>
+                                @endif
           </div>
 
           <div class="mb-5 d-flex justify-content-between align-items-center">

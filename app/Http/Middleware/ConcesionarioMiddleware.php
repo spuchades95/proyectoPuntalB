@@ -22,6 +22,6 @@ class ConcesionarioMiddleware
                 return $next($request);    //significa continua
             }
         }
-        return redirect()->route('logear');  //en caso contrario va al login
+        return $next($request);  //en caso contrario va al login
     }
 }
