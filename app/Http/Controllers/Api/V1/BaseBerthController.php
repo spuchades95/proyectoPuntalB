@@ -91,8 +91,12 @@ public function actuFin(Request $request, string $id){
                 'base_berths.Amarre_id AS Plaza',
                 'boats.Matricula',
                 'boats.Titular'
-            )
-       
+            )     ->whereIn('rentals.id', function($query) {
+                $query->selectRaw('MAX(id)')
+                      ->from('rentals')
+                      ->groupBy('PlazaBase_id');
+            })
+            ->where('berths.Estado', '=', 'Ocupado')
             
             ->get();
 
@@ -238,9 +242,15 @@ public function eli(Request $request, string $id){
             Log::info($id);
             $berth = Berth::findOrFail($id);
             $administrativo = $request->input('Administrativo_id');
-            $berth->administrativoamarre()->attach($administrativo);
+            // Verificar si ya existe la asociación en la tabla pivot
+        if ($berth->administrativoamarre()->where('administrativo_id', $administrativo)->exists()) {
+            return response()->json(['message' => 'La asociación entre el administrativo y el amarre ya existe'], 200);
+        }
 
-            return response()->json(['message' => 'Administrativo asociado correctamente al amarre'], 200);
+        // Si no existe, proceder a crear la asociación
+        $berth->administrativoamarre()->attach($administrativo);
+
+        return response()->json(['message' => 'Administrativo asociado correctamente al amarre'], 200);
         } catch (\Exception $e) {
             return response()->json([
                 Log::info($e->getMessage()),
