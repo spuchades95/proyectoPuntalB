@@ -91,12 +91,13 @@ public function actuFin(Request $request, string $id){
                 'base_berths.Amarre_id AS Plaza',
                 'boats.Matricula',
                 'boats.Titular'
-            )     ->whereIn('rentals.id', function($query) {
-                $query->selectRaw('MIN(id)')
-                      ->from('rentals')
-                      ->groupBy('PlazaBase_id');
-            })
-            ->where('berths.Estado', '=', 'Ocupado')
+            )     
+            // ->whereIn('rentals.id', function($query) {
+            //     $query->selectRaw('MIN(id)')
+            //           ->from('rentals')
+            //           ->groupBy('PlazaBase_id');
+            // })
+            // ->where('berths.Estado', '=', 'Ocupado')
             
             ->get();
 
