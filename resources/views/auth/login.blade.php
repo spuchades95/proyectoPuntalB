@@ -5,7 +5,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Título de la Página</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/5.1.3/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSGFpoO/ufreqqF6MVu4JdG7PhIxZlW8sSJv43gkdSHluaInJd/X7" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js" integrity="sha384-eMNCOe7tC1doHpGoJtKh7z7lGz7fuP4F8nfdFvAOA6Gg/z6Y5J6XqqyGXYM2ntX5" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
   
 </head>
 <style>
@@ -52,10 +55,10 @@ h3 {
 }
 
 .background-left {
-    background-image: url(/public/image/loginBRImage.svg);
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-position: center;
+    background-image: url(/image/loginBRImage.svg);
+    background-size: cover!important;
+    background-repeat: no-repeat!important;
+    background-position: center!important;
 }
 
 
@@ -114,7 +117,6 @@ input[type="password"]:focus {
 a {
     color: var(--Titan-White-600);
     text-align: center;
-
     text-decoration: none;
     font-family: Questrial;
     font-size: 12.8px;
@@ -122,13 +124,17 @@ a {
     font-weight: 400;
     line-height: normal;
 }
-
+#container-fluid{
+    max-width: 100%;
+    margin-right: auto;
+    margin-left: auto;
+}
 button {
     display: flex;
     width: 108px;
     padding: 10px 15px;
     flex-direction: column;
-    justify-content: center;
+   
     align-items: center;
     border-radius: 5px;
     border: 1px solid #EFF8FF;
@@ -146,16 +152,15 @@ button {
 
 
 </style>
-<body>
-<div class="container-fluid">
+<body><div class="container-fluid">
   <div
     class="row h-75 w-75 postal position-absolute top-50 start-50 translate-middle shadow p-4"
   >
     <div
-      class="col-md-6 h-100 d-flex flex-column justify-content-center background-left position-relative"
+    <div class="col-md-6 h-100 d-flex flex-column justify-content-center mx-auto float-start background-left position-relative">
     >
-      <div class="welcomeLogin w-100">
-        <h2 class="w-100">BIENVENDIDA.</h2>
+      <div class="welcomeLogin text-center w-100">
+        <h2>BIENVENDIDA. </h2>
       </div>
 
       <img
@@ -165,7 +170,7 @@ button {
       />
     </div>
 
-    <div class="col-md-6 h-100 d-flex flex-column justify-content-center">
+    <div class="col-md-6 h-100 d-flex flex-column justify-content-center float-end">
       <div>
         <h1 class="textHeaderLogin"><strong>Login</strong></h1>
 
@@ -203,7 +208,7 @@ button {
               >
             </div>
 
-            <a href="#">¿Olvidaste tu contraseña?</a>
+           
           </div>
 
           <button type="submit" class="mt-4 float-end">ENVIAR</button>
