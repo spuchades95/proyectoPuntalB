@@ -29,6 +29,7 @@ class BoatController extends Controller
      */
     public function store(Request $request)
     {
+        Log::info('Creating a new boat', json_decode($request->all()));
         $request->validate([
             'Matricula' => 'required',
             'Manga' => 'required',
