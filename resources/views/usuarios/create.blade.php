@@ -40,12 +40,9 @@
         </div>
         <div class="mb-3 d-flex">
             <label for="contraseña" class="form-label">Contraseña:</label>
-            <input name="password" type="text"  class="form-control mt-4" placeholder="Contraseña"required> </input>
+            <input name="password" type="password"  class="form-control mt-4" placeholder="Contraseña"required> </input>
         </div>
-        <div class="mb-3 d-flex">
-            <label for="confirmarContraseña" class="form-label">Confirmar contraseña:</label>
-            <input name="confirmarContraseña" type="text"  class="form-control mt-4" placeholder="Confirmar contraseña"required> </input>
-        </div>
+      
         </div>
        
    <div class=form-right >

@@ -4,6 +4,9 @@ namespace App\Http\Controllers\Api\V1;
 
 use App\Http\Controllers\Controller;
 use App\Models\Berth;
+use App\Models\Transit;
+use Illuminate\Support\Facades\Log;
+
 use Illuminate\Http\Request;
 
 class BerthController extends Controller
@@ -43,20 +46,21 @@ $amarre->update([
 
      public function crear(Request $request)
 {
-    return $request;
+   
     try {
         Log::info($request);
+
     $transitId = Transit::where('Amarre_id', $request->input('Amarre'))->firstOrFail();
     $fechaEntrada = $request->input('FechaEntrada');
     $fechaSalida = $request->input('FechaSalida');
     $matricula = $request->input('Embarcacion');
+    Log::info($transitId);
     
-
-    $transitId->embarcaciones()->attach($matricula, [
+    $transitId->embarcacion()->attach($matricula, [
         'FechaEntrada' => $fechaEntrada,
         'FechaSalida' => $fechaSalida,
     ]);
-        return response()->json($transitBoat, 200);
+        return response()->json($transitId, 200);
     } catch (\Exception $e) {
 
         return response()->json([

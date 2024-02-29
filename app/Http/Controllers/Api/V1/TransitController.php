@@ -77,29 +77,37 @@ class TransitController extends Controller
      
 public function index()
 {
-    $transitsAll = DB::table('Transits AS T',)
-        ->join('Transit_Boats AS TB', 'TB.Transito_id', '=', 'T.id')
-        ->join('Berths AS B', 'B.id', '=', 'T.amarre_id')
-        ->join('Docks AS D', 'D.id', '=', 'B.pantalan_id')
-        ->join('Facilities AS F', 'F.id', '=', 'D.instalacion_id')
-        ->join('Boats AS BT', function ($join) {
-            $join->on('BT.id', '=', 'TB.Embarcacion_id')
-                 ->whereNull('BT.deleted_at');
-        })
-        ->select(
-            'T.*', // Select all fields from the Transits table
-            'TB.FechaEntrada',
-            'TB.FechaSalida',
-            'D.nombre', 
-            'F.ubicacion', 
-            'B.Estado', 
-            'B.Numero', 
-            'BT.Matricula', 
-            'BT.Tipo', 
-            'BT.Titular', 
-            'BT.Origen'
-        )
-        ->get();
+    $transitsAll = DB::table('Transits AS T')
+    ->join('Transit_Boats AS TB', 'TB.Transito_id', '=', 'T.id')
+    ->join('Berths AS B', 'B.id', '=', 'T.amarre_id')
+    ->join('docks AS D', 'D.id', '=', 'B.pantalan_id')
+    ->join('Facilities AS F', 'F.id', '=', 'D.instalacion_id')
+    ->join('Boats AS BT', function ($join) {
+        $join->on('BT.id', '=', 'TB.Embarcacion_id')
+             ->whereNull('BT.deleted_at');
+    })
+    ->whereIn('TB.Transito_id', function($query) {
+        $query->selectRaw('MAX(Transito_id)')
+              ->from('Transit_Boats')
+              ->groupBy('Transito_id');
+    })
+   
+    ->select(
+        'T.*', // Select all fields from the Transits table
+        'TB.FechaEntrada',
+        'TB.FechaSalida',
+        'D.nombre', 
+        'F.ubicacion', 
+        'B.Estado', 
+        'B.Numero', 
+        'BT.Matricula', 
+        'BT.Tipo', 
+        'BT.Titular', 
+        'BT.Origen'
+    )
+    ->where('B.Estado', '=', 'Ocupado') 
+    ->get();
+
 
     return response()->json($transitsAll, 200);
 }

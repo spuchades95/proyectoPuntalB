@@ -4,10 +4,23 @@ namespace App\Http\Controllers\Api\V1;
 
 use App\Http\Controllers\Controller;
 use App\Models\Crew;
+use App\Models\TransitCrew;
 use Illuminate\Http\Request;
 
 class CrewController extends Controller
 {
+
+    public function mostrar($id)
+{
+    // Realiza la consulta para recuperar los registros donde idtripulante y idtransito sean iguales a $id
+    $idTripulantes = TransitCrew::where('Transito_id', $id)->pluck('Tripulante_id');
+
+    // Realiza la consulta para recuperar los registros de la tabla crew utilizando los IDs de tripulantes obtenidos anteriormente
+    $crew = Crew::whereIn('id', $idTripulantes)->get();
+
+    // Devuelve los resultados como una respuesta JSON
+    return response()->json($crew, 200);
+}
     /**
      * Display a listing of the resource.
      */

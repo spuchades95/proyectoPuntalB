@@ -80,14 +80,15 @@
         
         <!-- Botones -->
         <div class="mt-3 d-flex">
-            <button type="button" class="btn btnCancelar" data-toggle="modal" data-target="#myModal">ELIMINAR</button>
-            <!-- Modal de eliminación -->
-            <div class="modal" id="myModal">
-                <!-- Contenido del modal -->
-            </div>
+        <form id="delete-form" action="{{ route('usuarios.destroy', ['usuario' => $usuario->id]) }}" method="POST">
+    @csrf
+    @method('DELETE')
+    <button type="submit" class="btn btnDelete">ELIMINAR</button>
+</form>           
             <button type="submit" class="btn btnAdd">EDITAR</button>
         </div>
     </form>
+   
 </div>
 
 <style>
