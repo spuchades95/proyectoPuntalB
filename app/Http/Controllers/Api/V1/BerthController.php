@@ -142,16 +142,6 @@ $amarre->update([
      }
 
 
-
-
-
-
-
-
-
-
-
-
      public function plazastrmantenimiento(){
       
         
@@ -160,11 +150,6 @@ $amarre->update([
     ->count();
         return $plazas;
      }
-
-
-
-
-
 
 
 
