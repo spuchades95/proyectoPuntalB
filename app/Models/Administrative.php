@@ -4,7 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\softDeletes;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Administrative extends User
 {
@@ -17,11 +17,14 @@ class Administrative extends User
         'Usuario_id',
     ];
 
-    public function usuario()
+    // public function usuario()
+    // {
+    //     return $this->belongsTo(User::class, 'id');
+    // }
+    public function user()
     {
-        return $this->belongsTo(User::class, 'Usuario_id');
+        return $this->belongsTo(User::class, 'id');
     }
-
     public function amarres()
     {
         return $this->belongsToMany(Berth::class, 'administrative_berths', 'Administrativo_id', 'Amarre_id');
@@ -29,7 +32,7 @@ class Administrative extends User
     
     public function incidencia()
     {
-        return $this->hasMany(Incident::class);
+        return $this->hasMany(Incident::class, 'Administrativo_id');
     }
     
 

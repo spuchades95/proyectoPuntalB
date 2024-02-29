@@ -102,7 +102,9 @@ class BoatController extends Controller
     {
     
         $boat = Boat::create($request->all());
-        Log::info('Boat created: ' . $boat->all());
+        // Log::info('Boat created: ' . $boat->all());
+        Log::info('Request: ' . json_encode($request->all()));
+        Log::info('Request Headers: ' . json_encode($request->header()));
         // if ($request->hasFile('Imagen')) {
         //     // $file = $request->file('Imagen');
         //     // $name = time().$file->getClientOriginalName();
@@ -116,6 +118,7 @@ class BoatController extends Controller
             $imagenPath = $request->file('Imagen')->store('public/image');
             // Obtén la URL pública de la imagen almacenada
             $url = Storage::url($imagenPath);
+            Log::info('URL CREATE: ' . $url);
             // Asigna la URL al atributo Imagen del modelo Boat
             $boat->Imagen = $url;
         }
@@ -141,7 +144,55 @@ class BoatController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Boat $boat)
+    // public function update(Request $request, Boat $boat)
+    // {
+    //     Log::info('Boat updated: ' . $boat->all());
+    //     Log::info('Request: ' . $request);
+    //     Log::info('Request: ' . json_encode($request->all()));
+    //     try {
+    //         // Verifica si la embarcación existe
+    //         if (!$boat) {
+    //             return response()->json(['error' => 'Embarcación no encontrada'], 404);
+    //         }
+
+
+
+    //         // Obtiene los datos actuales antes de la actualización
+    //         $oldData = $boat->toArray();
+
+    //         $updateResult = Boat::where('id', $request->id)->update($request->except(['id', 'created_at', 'updated_at']));
+
+    //         if ($request->hasFile('Imagen')) {
+    //             // Elimina la imagen anterior
+    //             Storage::delete(str_replace('storage', 'public', 'image', $oldData['Imagen']));
+    //             // Almacena la nueva imagen
+    //             $imagenPath = $request->file('Imagen')->store('public/image');
+    //             // Obtén la URL pública de la imagen almacenada
+    //             $url = Storage::url($imagenPath);
+    //             Log::info('URL UPDATE: ' . $url);
+    //             // Asigna la URL al atributo Imagen del modelo Boat
+    //             $boat->Imagen = $url;
+    //             $boat->save();
+    //         }
+
+
+    //         if ($updateResult) {
+    //             // Obtiene los datos después de la actualización
+    //             $boat = Boat::find($request->id);
+    //             $newData = $boat->toArray();
+
+
+    //             return response()->json($boat, 200);
+    //         } else {
+    //             return response()->json(['error' => 'Error al actualizar la embarcación'], 500);
+    //         }
+    //     }  catch (\Exception $e) {
+    //         // Manejo de otros errores
+
+    //         return response()->json(['error' => 'Error interno del servidor'], 500);
+    //     }
+    // }
+    public function update(Request $request, $id)
     {
 
         $boat = Boat::find($request->id);
@@ -161,36 +212,31 @@ class BoatController extends Controller
             
             $updateResult = $boat->update($request->except(['id', 'created_at', 'updated_at']));
            
+        $boat = Boat::find($id);
+        Log::info('Boat updated: ' . $boat);
+        Log::info('Request: ' . json_encode($request->all()));
+        // Log::info('Boat updated: ' . $boat->Imagen);
+        Log::info('Request Headers: ' . json_encode($request->header()));
+        
+        if ($boat) {
+            $boat->update($request->all());
             if ($request->hasFile('Imagen')) {
                 // Elimina la imagen anterior
-                Storage::delete(str_replace('storage', 'public', 'image', $oldData['Imagen']));
+                Storage::delete(str_replace('storage', 'public', 'image', $boat->Imagen));
                 // Almacena la nueva imagen
                 $imagenPath = $request->file('Imagen')->store('public/image');
                 // Obtén la URL pública de la imagen almacenada
                 $url = Storage::url($imagenPath);
+                Log::info('URL UPDATE: ' . $url);
                 // Asigna la URL al atributo Imagen del modelo Boat
                 $boat->Imagen = $url;
                 $boat->save();
             }
-            
-          
-            if ($updateResult) {
-                // Obtiene los datos después de la actualización
-                $boat = Boat::find($request->id);
-                $newData = $boat->toArray();
-
-
-                return response()->json($boat, 200);
-            } else {
-                return response()->json(['error' => 'Error al actualizar la embarcación'], 500);
-            }
-        } catch (\Exception $e) {
-            // Manejo de otros errores
-
-            return response()->json(['error' => 'Error interno del servidor'], 500);
+            return response()->json($boat, 200);
+        } else {
+            return response()->json('Boat not found', 404);
         }
     }
-
     /**
      * Remove the specified resource from storage.
      */

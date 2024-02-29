@@ -4,7 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\softDeletes;
+use Illuminate\Database\Eloquent\SoftDeletes;
 class DockWorker extends User
 {
     use HasFactory;
@@ -17,12 +17,12 @@ class DockWorker extends User
 
     public function user()
     {
-        return $this->belongsTo(User::class, 'Usuario_id');
+        return $this->belongsTo(User::class, 'id');
     }
 
 
-    public function notificacion()
+    public function incidencia()
     {
-        return $this->belongsTo(Incident::class);
+        return $this->belongsTo(Incident::class, 'Guardamuelle_id');
     }
 }
