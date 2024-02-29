@@ -137,6 +137,8 @@ public function index()
      */
     public function update(Request $request, Transit $transit)
     {
+        Log::info($request);
+        Log::info($transit);
         try {
             // Verifica si el tránsito existe
             $transit = Transit::find($transit);
