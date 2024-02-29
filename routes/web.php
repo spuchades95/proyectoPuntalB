@@ -52,6 +52,7 @@ Route::middleware(['auth', 'verified', 'checkUserRole'])->group(function () {
     Route::resource('roles', RoleController::class);
     Route::resource('transitos', TransitController::class);
     Route::resource('usuarios', UserController::class);
+    Route::get('/panel', PanelController::class)->name('panel.index');
 });
 
 require __DIR__.'/auth.php';
