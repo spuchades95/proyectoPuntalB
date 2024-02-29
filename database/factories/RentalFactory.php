@@ -23,7 +23,7 @@ class RentalFactory extends Factory
         return [
             'FechaInicio' => $this->faker->dateTimeBetween('-1 year', 'now'),
             'FechaFinalizacion' => $this->faker->dateTimeBetween('now', '+1 year'),
-            'PlazaBase_id' => BaseBerth::inRandomOrder()->first()->id,
+            'PlazaBase_id' =>'1',
             'Embarcacion_id' => Boat::inRandomOrder()->first()->id,
         ];
     }

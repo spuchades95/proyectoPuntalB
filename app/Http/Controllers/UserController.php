@@ -27,8 +27,8 @@ class UserController extends Controller
         $usuarios = User::all();
         $Roles = [];
         $Instalacion = [];
-        $rol;
-        $instalacion;
+        // $rol;
+        // $instalacion;
     
         // Iterar sobre cada usuario para obtener el rol y la instalación
         foreach ($usuarios as $usuario) {
