@@ -46,7 +46,7 @@
         <div class="form-right">
             <div class="mb-3 d-flex">
                 <label for="Descripcion" class="form-label">Descripción:</label>
-                <input name="Descripcion" type="text" class="form-control mt-4" placeholder="Descripción">
+                <textarea name="Descripcion" type="text" class="form-control mt-4" placeholder="Descripción"></textarea>
             </div>
             <div class="mb-3 d-flex">
                 <label for="Rol_id" class="form-label">Perfil:</label>
@@ -64,8 +64,17 @@
                     @endforeach
                 </select>
             </div>
+            <div class="mb-3 d-flex">
+            <label for="habilitado" class="form-label">Habilitado:</label>
+            <select name="Habilitado" class="form-control mt-4" required>
+            <option value="1">Habilitado</option>
+            <option value="0">Deshabilitado</option>
+          
+        </select>      
+
+        </div>
             <div style='text-align:right' class=' botones mt-4'>
-                <a href="{{ route('usuarios.index') }}" class="btn btnCancelar">CANCELAR</a>
+            <a href="{{ route('usuarios.index') }}" class="btn btnCancelar">CANCELAR</a>
                 <button type="submit" class="btn btnAdd">AÑADIR</button>
             </div>
         </div>
@@ -73,26 +82,22 @@
 </div>
 @endsection
     <style>
-
+/*
 .botones
     {
         text-align: right;
         position: relative;   
-        
-        right:100px;
+                right:100px;
         top:200px;
-     }
+     }*/
     .form-container
     {
-
         width:100%;
         height: 100%;
     }
   .form-left {
     float: left;
     margin-top:10px;
-   
-  
     
 }
 
