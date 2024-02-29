@@ -175,12 +175,12 @@
                             <input type="password" class="form-control" name="password" placeholder="CONTRASEÑA" />
                         </div>
 
-                        <div class="mb-5 d-flex justify-content-between align-items-center">
+                        <!-- <div class="mb-5 d-flex justify-content-between align-items-center">
                             <div class="form-check">
                                 <input type="checkbox" class="form-check-input" id="recordarContrasena" name="recordarContrasena" />
                                 <label class="rememberPassword" for="recordarContrasena">Recordar contraseña</label>
                             </div>
-                        </div>
+                        </div> -->
 
                         <button type="submit" class="mt-4 float-end">ENVIAR</button>
                     </form>
