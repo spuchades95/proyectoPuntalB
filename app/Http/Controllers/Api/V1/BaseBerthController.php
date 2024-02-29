@@ -92,7 +92,7 @@ public function actuFin(Request $request, string $id){
                 'boats.Matricula',
                 'boats.Titular'
             )     ->whereIn('rentals.id', function($query) {
-                $query->selectRaw('MAX(id)')
+                $query->selectRaw('MIN(id)')
                       ->from('rentals')
                       ->groupBy('PlazaBase_id');
             })
