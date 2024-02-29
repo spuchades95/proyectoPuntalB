@@ -17,6 +17,9 @@ class BaseBerthFactory extends Factory
     public function definition(): array
     {
         return [
+            'DatosEstancia' => $this->faker->text(),
+            'FechaEntrada' => $this->faker->dateTimeBetween('-1 year', 'now'),
+            'FinContrato' => $this->faker->dateTimeBetween('-1 year', 'now'),
             'Amarre_Id' =>Berth::inRandomOrder()->value('id'),
            
         ];

@@ -34,6 +34,11 @@ class Administrative extends User
     {
         return $this->hasMany(Incident::class, 'Administrativo_id');
     }
+    public function transito()
+    {
+        return $this->hasMany(Transit::class, 'Administrativo_id');
+
+    }
     
 
 
