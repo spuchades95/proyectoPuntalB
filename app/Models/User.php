@@ -78,12 +78,12 @@ class User extends Authenticatable implements JWTSubject
 
     public function role()
     {
-        return $this->belongsTo(Role::class);
+        return $this->belongsTo(Role::class,'Rol_id');
     }
 
     public function facility(){
 
-        return $this->belongsTo(Facility::class);
+        return $this->belongsTo(Facility::class, 'Instalacion_id');
     }
 
     public function getJWTIdentifier() {

@@ -22,7 +22,7 @@ class UserController extends Controller
      */
     public function index()
     {
-
+/*
 
         $usuarios = User::all();
         $Roles = [];
@@ -40,10 +40,14 @@ class UserController extends Controller
             $Instalacion[$usuario->id] = $instalacion;
         }
 
-        Log::info('Llamada a generarNumeroAmarre con $pantalanId:', [$Instalacion,$Roles,]);
+       */
         
+       $usuarios = User::with('role', 'facility')->get();
 
-        return view('usuarios.index', compact('usuarios', 'Roles', 'Instalacion'));
+
+
+       
+        return view('usuarios.index', compact('usuarios'));
 
 
     }
@@ -54,7 +58,6 @@ class UserController extends Controller
     public function create()
     {
        
-
         $Roles = Role::all();
         $Instalacion = Facility::all();
         $usuario = User::all();
@@ -118,7 +121,7 @@ class UserController extends Controller
                 break;
         }
         $usuario->email = $request->email;
-        $usuario->password = $request->password;
+        $usuario->password = bcrypt($request->password);
 
 
 
