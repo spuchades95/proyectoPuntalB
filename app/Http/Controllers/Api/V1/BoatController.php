@@ -195,23 +195,6 @@ class BoatController extends Controller
     public function update(Request $request, $id)
     {
 
-        $boat = Boat::find($request->id);
-
-
-        try {
-            Log::info($request);
-            // Verifica si la embarcación existe
-            if (!$boat) {
-                return response()->json(['error' => 'Embarcación no encontrada'], 404);
-            }
-
-
-
-            // Obtiene los datos actuales antes de la actualización
-             $oldData = $boat->toArray();
-            
-            $updateResult = $boat->update($request->except(['id', 'created_at', 'updated_at']));
-           
         $boat = Boat::find($id);
         Log::info('Boat updated: ' . $boat);
         Log::info('Request: ' . json_encode($request->all()));
