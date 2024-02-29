@@ -25,4 +25,10 @@ class DockWorker extends User
     {
         return $this->belongsTo(Incident::class, 'Guardamuelle_id');
     }
+
+    public function transito()
+    {
+        return $this->hasMany(Transit::class, 'Guardamuelle_id');
+
+    }
 }

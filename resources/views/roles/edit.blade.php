@@ -42,6 +42,7 @@
                 ELIMINAR
             </button>
             <button type="submit" class="btn btnAdd">EDITAR</button>
+            </form>
         </div>
    
                 <div class="modal" id="myModal">
@@ -72,7 +73,7 @@
             </div>
         </div>
     </div>
-    </form>
+   
 </div>
 <style>
     .btnAdd {

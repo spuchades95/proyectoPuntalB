@@ -51,6 +51,7 @@ Route::resource('usuarios', UserController::class);
 Route::get('panel', PanelController::class)->name('panel.index');
 
 
+// Route::get('pantalan/create/{id_instalacion}', 'DockController@create')->name('pantalan.create');
 
 
 

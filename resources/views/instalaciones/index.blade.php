@@ -178,5 +178,14 @@
         background-color: #f5f7fa !important;
         margin-top: 0px;
     }
+
+    a{
+        width: 30px;
+        height: 30px;
+        float: right;
+        margin: 10px;
+
+
+    }
 </style>
 <link rel="stylesheet" type="text/css" href="{{ asset('css/styles.css') }}">
