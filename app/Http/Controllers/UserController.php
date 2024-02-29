@@ -64,14 +64,75 @@ class UserController extends Controller
     /**
      * Store a newly created resource in storage.
      */
+    // public function store(Request $request)
+    // {
+
+    //     $request->validate([
+    //         'NombreCompleto' => 'required',
+    //         'NombreUsuario' => 'required',
+    //         'Instalacion_id' => 'required',
+    //         'Habilitado' =>'required',
+    //         'DNI' => 'required',
+    //         'Telefono' => 'required',
+    //         'Direccion' => 'required',
+    //         'Descripcion' => 'nullable|string|max:255',
+    //         'Rol_id' => 'required',
+    //         'email' => 'required|email|unique:users',
+    //         'password' => 'required',
+    //     ]);
+    //     $usuario = new User();
+    //     $usuario->NombreCompleto = $request->NombreCompleto;
+    //     $usuario->NombreUsuario = $request->NombreUsuario;
+    //     $usuario->Instalacion_id = $request->Instalacion_id;
+    //     $usuario->DNI = $request->DNI;
+    //     $usuario->Telefono = $request->Telefono;
+    //     $usuario->Direccion = $request->Direccion;
+    //     $usuario->Habilitado = $request->Habilitado;
+    //     $usuario->Descripcion = $request->Descripcion;
+    //     $usuario->Rol_id = $request->Rol_id;
+    //     switch ($usuario->Rol_id) {
+    //         case "1":
+    //             $concessionaire = new Concessionaire();
+    //             $concessionaire->Usuario_id = $usuario->id;
+    //             $concessionaire->save();
+
+    //             break;
+    //         case "2":
+    //             $administrative = new Administrative();
+    //             $administrative->Usuario_id = $usuario->id;
+    //             $administrative->save();
+    //             break;
+    //         case "3":
+    //             $dockWorker = new DockWorker();
+    //             $dockWorker->Usuario_id = $usuario->id;
+    //             $dockWorker->save();
+
+    //             break;
+    //         case "4":
+    //             $civil = new CivilGuard();
+    //             $civil->Usuario_id = $usuario->id;
+    //             $civil->save();
+    //             break;
+    //         default:
+
+    //             break;
+    //     }
+    //     $usuario->email = $request->email;
+    //     $usuario->password = $request->password;
+
+
+
+    //     $usuario->save();
+    //     return redirect()->route('usuarios.index')
+    //         ->with('success', 'Usuario creado correctamente.');
+    // }
     public function store(Request $request)
     {
-
         $request->validate([
             'NombreCompleto' => 'required',
             'NombreUsuario' => 'required',
             'Instalacion_id' => 'required',
-            'Habilitado' =>'required',
+            'Habilitado' => 'required',
             'DNI' => 'required',
             'Telefono' => 'required',
             'Direccion' => 'required',
@@ -80,6 +141,7 @@ class UserController extends Controller
             'email' => 'required|email|unique:users',
             'password' => 'required',
         ]);
+
         $usuario = new User();
         $usuario->NombreCompleto = $request->NombreCompleto;
         $usuario->NombreUsuario = $request->NombreUsuario;
@@ -90,41 +152,40 @@ class UserController extends Controller
         $usuario->Habilitado = $request->Habilitado;
         $usuario->Descripcion = $request->Descripcion;
         $usuario->Rol_id = $request->Rol_id;
+        $usuario->email = $request->email;
+        $usuario->password = $request->password;
+
+       
+        $usuario->save();
+        $usuario_id = $usuario->id;
+
+        // Crear el tipo de usuario correspondiente
         switch ($usuario->Rol_id) {
             case "1":
                 $concessionaire = new Concessionaire();
-                $concessionaire->Usuario_id = $usuario->Rol_id;
+                $concessionaire->Usuario_id = $usuario_id;
                 $concessionaire->save();
-
                 break;
             case "2":
                 $administrative = new Administrative();
-                $administrative->Usuario_id = $usuario->Rol_id;
+                $administrative->Usuario_id = $usuario_id;
                 $administrative->save();
                 break;
             case "3":
                 $dockWorker = new DockWorker();
-                $dockWorker->Usuario_id = $usuario->Rol_id;
+                $dockWorker->Usuario_id = $usuario_id;
                 $dockWorker->save();
-
                 break;
             case "4":
                 $civil = new CivilGuard();
-                $civil->Usuario_id = $usuario->Rol_id;
+                $civil->Usuario_id = $usuario_id;
                 $civil->save();
                 break;
             default:
-                
                 break;
         }
-        $usuario->email = $request->email;
-        $usuario->password = $request->password;
 
-
-
-        $usuario->save();
-        return redirect()->route('usuarios.index')
-            ->with('success', 'Usuario creado correctamente.');
+        return redirect()->route('usuarios.index')->with('success', 'Usuario creado correctamente.');
     }
 
     /**

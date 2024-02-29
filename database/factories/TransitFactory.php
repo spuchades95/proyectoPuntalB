@@ -30,7 +30,7 @@ class TransitFactory extends Factory
             'Amarre_id' => Berth::inRandomOrder()->value('id'),
             'Leido' => $this->faker->boolean(),
             // 'FechaEntrada' => $this->faker->dateTimeBetween('-1 year', 'now'),
-            'Guardamuelles_id' => DockWorker::inRandomOrder()->value('Usuario_id'),
+            // 'Guardamuelles_id' => DockWorker::inRandomOrder()->value('Usuario_id'),
             // 'FechaSalida' => $this->faker->dateTimeBetween('-1 year', 'now'),
             'Administrativo_id' => Administrative::inRandomOrder()->value('Usuario_id'),
             
