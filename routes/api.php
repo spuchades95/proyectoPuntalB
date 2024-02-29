@@ -40,6 +40,19 @@ Route::group([
     Route::post('/refresh', [AuthController::class, 'refresh']);
     // Route::get('/user-profile', [AuthController::class, 'userProfile']);    
 });
+// Route::group([
+//     'middleware' => 'api',
+//     'prefix' => 'auth'
+// ], function ($router) {
+//     Route::post('/login', [AuthController::class, 'login']);
+//     // Rutas protegidas por JWT
+//     Route::group(['middleware' => 'jwt.auth'], function () {
+//         Route::post('/logout', [AuthController::class, 'logout']);
+//         Route::post('/refresh', [AuthController::class, 'refresh']);
+//         // Ruta para obtener el perfil del usuario
+//         Route::get('/user-profile', [AuthController::class, 'userProfile']);
+//     });
+// });
 
 
 Route::post('v1/plazaBase/{id}/administrativoyAmarre', [BaseBerthController::class, 'administrativoyAmarre']);
