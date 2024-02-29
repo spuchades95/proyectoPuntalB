@@ -38,28 +38,6 @@ Route::get('/', function () {
 Route::get('/panel', function () {
     return view('instalaciones.index');
 })->middleware(['auth', 'verified'])->name('panel');
-/*
-Route::middleware('auth')->group(function () {
-
-    
-// Route::put('/roles/{role}', 'RoleController@update')->name('roles.update');
-Route::put('/amarres/{amarre}', [BerthController::class, 'update'])->name('amarres.update');
-Route::put('/usuario/{id}', [UserController::class, 'update'])->name('usuarios.update');
-// Route::put('/amarres/{amarre}', 'BerthController@update')->name('amarres.update');
-Route::get('amarres/createdos', [BerthController::class, 'createdos'])->name('amarres.createdos');
-Route::post('amarres/createdos', [BerthController::class, 'storedos'])->name('amarres.storedos');
-Route::resource('amarres',BerthController::class);
-Route::resource('instalaciones',FacilityController::class);
-Route::resource('pantalanes',DockController::class);
-Route::resource('plazasbase',BaseBerthController::class);
-Route::resource('roles',RoleController::class);
-Route::resource('transitos',TransitController::class);
-Route::resource('usuarios',UserController::class);
- //Route::get('/panel', PanelController::class)->name('panel.index');
-
-
-
-});*/
 
 
 Route::middleware(['auth', 'verified', 'checkUserRole'])->group(function () {

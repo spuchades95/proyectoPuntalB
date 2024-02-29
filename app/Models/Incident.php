@@ -15,17 +15,27 @@ class Incident extends Model
         'Guardamuelle_id',
         'Descripcion',
         'Administrativo_id',
+        'Leido',
 
     ];
+    // public function administrativo()
+    // {
+    //     return $this->hasOne(Administrative::class);
+    // }
+    // public function guardamuelles()
+    // {
+    //     return $this->hasOne(DockWorker::class);
+    // }
     public function administrativo()
     {
-        return $this->hasOne(Administrative::class);
+        return $this->belongsTo(Administrative::class, 'Administrativo_id');
+       
     }
+ 
     public function guardamuelles()
     {
-        return $this->hasOne(DockWorker::class, 'Guardamuelle_id');
+        return $this->belongsTo(DockWorker::class, 'Guardamuelle_id');
     }
-
 
 }
 

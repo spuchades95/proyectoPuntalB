@@ -17,7 +17,8 @@ class TransitCrewFactory extends Factory
     public function definition(): array
     {
         return [
-            //
+            'Tripulante_id' => '3',
+            'Transito_id' => '2',
         ];
     }
 }
