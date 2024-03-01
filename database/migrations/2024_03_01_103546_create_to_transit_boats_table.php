@@ -12,12 +12,12 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('transit_boats', function (Blueprint $table) {
+            Schema::dropIfExists('transit_boats');
            $table->id();
            $table->unsignedBigInteger('Embarcacion_id');
            $table->foreign('Embarcacion_id')->references('id')->on('boats')->onDelete('cascade')->onUpdate('cascade');
            $table->unsignedBigInteger('Transito_id');
            $table->foreign('Transito_id')->references('id')->on('transits')->onDelete('cascade')->onUpdate('cascade');
-         
            $table->date('FechaEntrada')->nullable();
            $table->date('FechaSalida')->nullable();
            $table->string('Causa')->nullable();
