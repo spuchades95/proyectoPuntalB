@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Api\V1;
 use App\Http\Controllers\Controller;
 use App\Models\Berth;
 use App\Models\Transit;
+use App\Models\TransitBoat;
+
 use Illuminate\Support\Facades\Log;
 
 use Illuminate\Http\Request;
@@ -24,7 +26,7 @@ $amarre->update([
 ]);
     }
     public function actualizaEstadoDisponible(string $id){
-
+        
         $amarre= Berth::findOrFail($id);
         
         $amarre->update([
@@ -44,13 +46,13 @@ $amarre->update([
      }
 
 
-     public function crear(Request $request)
+     public function crear(Request $request,string $id)
 {
    
     try {
         Log::info($request);
-
-    $transitId = Transit::where('Amarre_id', $request->input('Amarre'))->firstOrFail();
+        Log::info($id);
+    $transitId = Transit::where('Amarre_id', $id)->firstOrFail();
     $fechaEntrada = $request->input('FechaEntrada');
     $fechaSalida = $request->input('FechaSalida');
     $matricula = $request->input('Embarcacion');
@@ -60,7 +62,9 @@ $amarre->update([
         'FechaEntrada' => $fechaEntrada,
         'FechaSalida' => $fechaSalida,
     ]);
-        return response()->json($transitId, 200);
+    $transitboat= TransitBoat::all();
+
+        return response()->json($transitboat, 200);
     } catch (\Exception $e) {
 
         return response()->json([

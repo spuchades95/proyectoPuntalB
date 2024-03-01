@@ -210,7 +210,7 @@ public function eli(Request $request, string $id){
 
             return response()->json([
                 Log::info($e->getMessage()),
-                'message' => 'Error al actualizar el amarre base',
+                'message' => 'Error al actualizar el amarre transito',
                 'code' => 500
             ], 500);
         }

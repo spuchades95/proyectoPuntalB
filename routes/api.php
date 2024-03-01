@@ -91,7 +91,6 @@ Route::get('v1/plazaBase/paratabla',[BaseBerthController::class , 'paratabla']);
 Route::get('v1/transito/indexguardamuelles',[TransitController::class , 'indexguardamuelles']);
 Route::put('v1/transito/{id}/cambiar-estado', [TransitController::class, 'cambiarEstado']);
 
-Route::get('v1/guardiaCivil/leido',[CivilGuardController::class , 'leido']);
 
 
 
@@ -116,9 +115,13 @@ Route::get('v1/embarcacion/tipocomun',[BoatController::class , 'tipocomun']);
 Route::post('v1/transito/crear',[BerthController::class ,'crear']);
 Route::get('v1/guardiaCivil/leido',[CivilGuardController::class , 'leido']);
 Route::get('v1/transito/cambiar/{id}',[BerthController::class , 'actualizaEstadoOcupado']);
-Route::get('v1/guardiaCivil/leido',[CivilGuardController::class , 'leido']);
 Route::get('v1/tripulante/transito/{id}',[CrewController::class , 'mostrar']);
 Route::get('v1/pantalan/{id}/amarrestr',[DockController::class , 'amarresTransito']);
+Route::get('v1/transito/paratabla',[TransitController::class , 'paratablaTransito']);
+Route::get('v1/transito/paratablaGuardia',[TransitController::class , 'paratablaTransitoGuardia']);
+Route::put('v1/transito/update/{id}',[TransitController::class , 'updateTransito']);
+
+
 
 
 Route::apiResource('v1/usuario', App\Http\Controllers\Api\V1\UserController::class);

@@ -18,10 +18,114 @@ class TransitController extends Controller
      * Display a listing of the resource.
      */
 
+     public function paratablaTransito()
+     {
+         $transitoBoat = TransitBoat::
+         join('transits', 'transits.id', '=', 'transit_boats.Transito_id')
+         ->join('berths', 'berths.id', '=', 'transits.Amarre_id')
+         ->join('docks', 'docks.id', '=', 'berths.pantalan_id')
+         ->join('facilities', 'facilities.id', '=', 'docks.instalacion_id')
+         ->join('boats', 'boats.id', '=', 'transit_boats.Embarcacion_id')
+     
+             ->select(
+                 'transit_boats.FechaEntrada',
+                 'transit_boats.FechaSalida',
+                 'transit_boats.id As IdAlquiler',
+                 'berths.Numero AS Numero',
+                 'berths.Estado AS Estado',
+                 'docks.Nombre AS Pantalan',
+                 'berths.TipoPlaza AS tipo',
+                 'facilities.Ubicacion AS Instalacion',
+                 'transits.Amarre_id AS Transito',
+                 'boats.Matricula',
+                 'boats.Titular'
+             )     
+             ->whereIn('transit_boats.id', function($query) {
+                 $query->selectRaw('MIN(id)')
+                       ->from('transit_boats')
+                       ->groupBy('Transito_id');
+             })
+             ->where('berths.Estado', '=', 'Ocupado')
+     
+             ->get();
+     
+     
+     
+     
+         return response()->json($transitoBoat, 200);
+     }
 
 
+     public function paratablaTransitoGuardia()
+     {
+         $transitoBoat = TransitBoat::
+         join('transits', 'transits.id', '=', 'transit_boats.Transito_id')
+         ->join('berths', 'berths.id', '=', 'transits.Amarre_id')
+         ->join('docks', 'docks.id', '=', 'berths.pantalan_id')
+         ->join('facilities', 'facilities.id', '=', 'docks.instalacion_id')
+         ->join('boats', 'boats.id', '=', 'transit_boats.Embarcacion_id')
+     
+             ->select(
+                 'transit_boats.FechaEntrada',
+                 'transit_boats.FechaSalida',
+                 'transit_boats.id As IdAlquiler',
+                 'berths.Numero AS Numero',
+                 'berths.Estado AS Estado',
+                 'docks.Nombre AS Pantalan',
+                 'berths.TipoPlaza AS tipo',
+                 'facilities.Ubicacion AS Instalacion',
+                 'transits.Amarre_id AS Transito',
+                 'boats.Matricula',
+                 'boats.Titular',
+                 'boats.Tipo',
+                 'boats.Origen',
+                 'transits.Estatus',
+                 'facilities.Ubicacion',
 
+             )     
+             ->whereIn('transit_boats.id', function($query) {
+                 $query->selectRaw('MIN(id)')
+                       ->from('transit_boats')
+                       ->groupBy('Transito_id');
+             })
+             ->where('berths.Estado', '=', 'Ocupado')
+     
+             ->get();
+     
+     
+     
+     
+         return response()->json($transitoBoat, 200);
+     }
 
+     public function updateTransito($id, Request $request)
+     {
+         try {
+             // Encuentra el registro de TransitBoat por su ID
+             $transitBoat = TransitBoat::find($id);
+             
+             // Actualiza las fechas de entrada y salida con los valores proporcionados en la solicitud
+             $transitBoat->update([
+                 'FechaEntrada' => $request->input('FechaEntrada'),
+                 'FechaSalida' => $request->input('FechaSalida'),
+             ]);
+             
+             // Guarda los cambios
+             $transitBoat->save();
+     
+             // Retorna una respuesta adecuada si la actualización se realizó con éxito
+             return response()->json([
+                 'message' => 'TransitBoat actualizado correctamente.',
+                 'transitBoat' => $transitBoat
+             ], 200);
+         } catch (\Exception $e) {
+             // Maneja cualquier excepción que pueda ocurrir durante el proceso de actualización
+             return response()->json([
+                 'message' => 'Error al actualizar el TransitBoat.',
+                 'error' => $e->getMessage()
+             ], 500);
+         }
+     }
 
 
 
