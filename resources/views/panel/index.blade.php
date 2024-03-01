@@ -24,6 +24,9 @@
         <p>Trabajadores de muelle registrados: {{ $totalDockWorkers }}</p>
         <p>Pantalanes registrados: {{ $totalPantalanes }}</p>
         <p>Número total de Plazas Base: {{ $totalPlazasBase }}</p>
+        <p>amarres Operativos: {{$amarresOperativos}}</p>
+        <p>amarres No Operativos: {{$amarresNoOperativos}}</p>
+        <p>Plazas Base que expiran en 1 mes: {{$plazasBaseExpiran1mes}}</p>
        </div>
 
     </div>

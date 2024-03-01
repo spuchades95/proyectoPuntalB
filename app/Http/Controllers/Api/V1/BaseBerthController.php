@@ -70,42 +70,74 @@ public function actuFin(Request $request, string $id){
             return ['anyos' => $anyosb, 'meses' => $meses, 'dias' => $dias];
         }
     }
+    // public function paratabla()
+    // {
+    //     $plazasBase = Rental::
+    //     join('base_berths', 'base_berths.id', '=', 'rentals.PlazaBase_id')
+    //     ->join('berths', 'berths.id', '=', 'base_berths.Amarre_id')
+    //     ->join('docks', 'docks.id', '=', 'berths.pantalan_id')
+    //     ->join('facilities', 'facilities.id', '=', 'docks.instalacion_id')
+    //     ->join('boats', 'boats.id', '=', 'rentals.embarcacion_id')
+
+    //         ->select(
+    //             'rentals.FechaInicio',
+    //             'rentals.FechaFinalizacion',
+    //             'rentals.id As IdAlquiler',
+    //             'berths.Numero AS Numero',
+    //             'berths.Estado AS Estado',
+    //             'docks.Nombre AS Pantalan',
+    //             'berths.TipoPlaza AS tipo',
+    //             'facilities.Ubicacion AS Instalacion',
+    //             'base_berths.Amarre_id AS Plaza',
+    //             'boats.Matricula',
+    //             'boats.Titular'
+    //         )     
+    //         // ->whereIn('rentals.id', function($query) {
+    //         //     $query->selectRaw('MIN(id)')
+    //         //           ->from('rentals')
+    //         //           ->groupBy('PlazaBase_id');
+    //         // })
+    //         // ->where('berths.Estado', '=', 'Ocupado')
+
+    //         ->get();
+
+
+
+
+    //     return response()->json($plazasBase, 200);
+    // }
     public function paratabla()
     {
-        $plazasBase = Rental::
-        join('base_berths', 'base_berths.id', '=', 'rentals.PlazaBase_id')
+        $plazasBase = Rental::join('base_berths', 'base_berths.PlazaBase_id', '=', 'rentals.PlazaBase_id')
         ->join('berths', 'berths.id', '=', 'base_berths.Amarre_id')
         ->join('docks', 'docks.id', '=', 'berths.pantalan_id')
         ->join('facilities', 'facilities.id', '=', 'docks.instalacion_id')
         ->join('boats', 'boats.id', '=', 'rentals.embarcacion_id')
-         
-            ->select(
-                'rentals.FechaInicio',
-                'rentals.FechaFinalizacion',
-                'rentals.id As IdAlquiler',
-                'berths.Numero AS Numero',
-                'berths.Estado AS Estado',
-                'docks.Nombre AS Pantalan',
-                'berths.TipoPlaza AS tipo',
-                'facilities.Ubicacion AS Instalacion',
-                'base_berths.Amarre_id AS Plaza',
-                'boats.Matricula',
-                'boats.Titular'
-            )     ->whereIn('rentals.id', function($query) {
-                $query->selectRaw('MAX(id)')
+
+        ->select(
+            'rentals.FechaInicio',
+            'rentals.FechaFinalizacion',
+            'rentals.id As IdAlquiler',
+            'berths.Numero AS Numero',
+            'berths.Estado AS Estado',
+            'docks.Nombre AS Pantalan',
+            'berths.TipoPlaza AS tipo',
+            'facilities.Ubicacion AS Instalacion',
+            'base_berths.Amarre_id AS Plaza',
+            'boats.Matricula',
+            'boats.Titular'
+        )
+            ->whereIn('rentals.id', function($query) {
+                $query->selectRaw('MIN(id)')
                       ->from('rentals')
                       ->groupBy('PlazaBase_id');
             })
             ->where('berths.Estado', '=', 'Ocupado')
-            
+
             ->get();
-
-     
-
 
         return response()->json($plazasBase, 200);
     }
-
 public function eli(Request $request, string $id){
 
     Log::info($request);

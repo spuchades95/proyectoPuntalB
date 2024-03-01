@@ -10,56 +10,61 @@
     <div class="formHeader">
         <h5>ALTA USUARIO</h5>
     </div>
-    <form class="form-container" method="POST"  action="{{ route('usuarios.store') }}" >
-        <div class="form-left" >
+    <form class="form-container" method="POST" action="{{ route('usuarios.store') }}">
         @csrf
-        <div class="mb-3 d-flex">
-            <label for="Usuario" class="form-label">Usuario:</label>
-            <input name="NombreUsuario" type="text" class="form-control mt-4" placeholder="Nombre Usuario "required />
-        </div>
-        <div class="mb-3 d-flex">
-            <label for="NombreCompleto" class="form-label">Nombre Completo:</label>
-            <input type="text" name="NombreCompleto" class="form-control mt-4" placeholder="Nombre Completo"required> </input>
-        </div>
-        
-        <div class="mb-3 d-flex">
-            <label for="Dni" class="form-label">Dni:</label>
-            <input name="DNI" type="text"  class="form-control mt-4" placeholder="Dni"required> </input>
-        </div>
-        <div class="mb-3 d-flex">
-            <label for="telefono" class="form-label">Teléfono:</label>
-            <input name="Telefono" type="text"  class="form-control mt-4" placeholder="Telefono"required> </input>
-        </div>
-        <div class="mb-3 d-flex">
-            <label for="email" class="form-label">Email:</label>
-            <input name="email" type="text"  class="form-control mt-4" placeholder="Email"required> </input>
-        </div>
-        <div class="mb-3 d-flex">
-            <label for="direccion" class="form-label">Dirección:</label>
-            <input name="Direccion" type="text"  class="form-control mt-4" placeholder="Direccion"required> </input>
-        </div>
-        <div class="mb-3 d-flex">
-            <label for="contraseña" class="form-label">Contraseña:</label>
-            <input name="password" type="password"  class="form-control mt-4" placeholder="Contraseña"required> </input>
-        </div>
-      
-        </div>
-       
-   <div class=form-right >
-        <div class="mb-3 d-flex">
-            <label for="descripcion" class="form-label">Descripción:</label>
-            <input name="Descripcion" type="text"  class="form-control mt-4" placeholder="Descripcion"required> </input>
+        <div class="form-left">
+            <div class="mb-3 d-flex">
+                <label for="NombreUsuario" class="form-label">Usuario:</label>
+                <input name="NombreUsuario" type="text" class="form-control mt-4" placeholder="Nombre Usuario" required />
+            </div>
+            <div class="mb-3 d-flex">
+                <label for="NombreCompleto" class="form-label">Nombre Completo:</label>
+                <input type="text" name="NombreCompleto" class="form-control mt-4" placeholder="Nombre Completo" required>
+            </div>
+            <div class="mb-3 d-flex">
+                <label for="DNI" class="form-label">DNI:</label>
+                <input name="DNI" type="text" class="form-control mt-4" placeholder="DNI" required>
+            </div>
+            <div class="mb-3 d-flex">
+                <label for="Telefono" class="form-label">Teléfono:</label>
+                <input name="Telefono" type="text" class="form-control mt-4" placeholder="Teléfono" required>
+            </div>
+            <div class="mb-3 d-flex">
+                <label for="email" class="form-label">Email:</label>
+                <input name="email" type="text" class="form-control mt-4" placeholder="Email" required>
+            </div>
+            <div class="mb-3 d-flex">
+                <label for="Direccion" class="form-label">Dirección:</label>
+                <input name="Direccion" type="text" class="form-control mt-4" placeholder="Dirección" required>
+            </div>
+            <div class="mb-3 d-flex">
+                <label for="password" class="form-label">Contraseña:</label>
+                <input name="password" type="password" class="form-control mt-4" placeholder="Contraseña" required>
+            </div>
         </div>
 
-        <div class="mb-3 d-flex">
-            <label for="perfil" class="form-label">Perfil:</label>
-            <select name="Rol_id" class="form-control mt-4" required>
-        @foreach($Roles as $roles)
-            <option value="{{ $roles->id }}">{{ $roles->NombreRol }}</option>
-        @endforeach  
-        </select>      
-    </div>
-    <div class="mb-3 d-flex">
+        <div class="form-right">
+            <div class="mb-3 d-flex">
+                <label for="Descripcion" class="form-label">Descripción:</label>
+                <textarea name="Descripcion" type="text" class="form-control mt-4" placeholder="Descripción"></textarea>
+            </div>
+            <div class="mb-3 d-flex">
+                <label for="Rol_id" class="form-label">Perfil:</label>
+                <select name="Rol_id" class="form-control mt-4" required>
+                    @foreach($Roles as $rol)
+                    <option value="{{ $rol->id }}">{{ $rol->NombreRol }}</option>
+                    @endforeach
+                </select>
+            </div>
+            <div class="mb-3 d-flex">
+                <label for="Instalacion_id" class="form-label">Instalaciones:</label>
+                <select name="Instalacion_id" class="form-control mt-4" required>
+                    @foreach($Instalacion as $instalacion)
+                    <option value="{{ $instalacion->id }}">{{ $instalacion->Ubicacion }}</option>
+                    @endforeach
+                </select>
+            </div>
+            <div class="mb-3 d-flex">
             <label for="habilitado" class="form-label">Habilitado:</label>
             <select name="Habilitado" class="form-control mt-4" required>
             <option value="1">Habilitado</option>
@@ -68,50 +73,31 @@
         </select>      
 
         </div>
-    
-
-
-        <div class="mb-3 d-flex">
-            <label for="instalacion" class="form-label">Instalaciones:</label>
-            <select name="Instalacion_id" class="form-control mt-4" required>
-        @foreach($Instalacion as $instalacion)
-            <option value="{{ $instalacion->id }}">{{ $instalacion->Ubicacion }}</option>
-        @endforeach
-    </select>
-        </div>
-        
             <div style='text-align:right' class=' botones mt-4'>
             <a href="{{ route('usuarios.index') }}" class="btn btnCancelar">CANCELAR</a>
-        <button type="submit" class="btn btnAdd">AÑADIR</button>
+                <button type="submit" class="btn btnAdd">AÑADIR</button>
             </div>
-       
-    </div>
-    
-    </div>
+        </div>
     </form>
 </div>
-    @endsection
+@endsection
     <style>
-
+/*
 .botones
     {
         text-align: right;
         position: relative;   
-        
-        right:100px;
+                right:100px;
         top:200px;
-     }
+     }*/
     .form-container
     {
-
         width:100%;
         height: 100%;
     }
   .form-left {
     float: left;
     margin-top:10px;
-   
-  
     
 }
 

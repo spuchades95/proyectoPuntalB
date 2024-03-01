@@ -24,13 +24,19 @@
             <input name="Descripcion" type="text" class="form-control mt-4" placeholder="Descripción" required />
         </div>
         <div class="mb-3 d-flex">
-            <label for="Estado" class="form-label">Estado:</label>
-            <input name="Estado" type="text" class="form-control mt-4" placeholder="Estado" required />
+            <label for="Estado">Estado</label>
+            <select name="Estado" id="Estado" class="form-control" required>
+                <option value="">Selecciona un estado</option>
+                <option value="Disponible">Disponible</option>
+                <option value="Mantenimiento">En mantenimiento</option>
+                <option value="Ocupada">Ocupada</option>
+            </select>
         </div>
         <div class="mb-3 d-flex">
             <label for="FechaCreacion" class="form-label">Fecha de creación:</label>
             <input name="FechaCreacion" type="date" class="form-control mt-4" value="{{ now()->format('Y-m-d') }}" required />
         </div>
+        <!-- <input type="hidden" name="Instalacion_id" value=" $id " required> -->
         <div style='text-align:right' class='mt-4'>
             <button class="btn btnCancelar">CANCELAR</button>
             <button type="submit" class="btn btnAdd">CREAR</button>
