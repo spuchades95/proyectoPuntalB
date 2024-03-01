@@ -46,17 +46,16 @@ $amarre->update([
      }
 
 
-     public function crear(Request $request,string $id)
+     public function crear(Request $request)
 {
-   
+    
     try {
-        Log::info($request);
-        Log::info($id);
-    $transitId = Transit::where('Amarre_id', $id)->firstOrFail();
+        
+    $transitId = Transit::where('Amarre_id', $request->input('Amarre'))->firstOrFail();
     $fechaEntrada = $request->input('FechaEntrada');
     $fechaSalida = $request->input('FechaSalida');
     $matricula = $request->input('Embarcacion');
-    Log::info($transitId);
+    
     
     $transitId->embarcacion()->attach($matricula, [
         'FechaEntrada' => $fechaEntrada,

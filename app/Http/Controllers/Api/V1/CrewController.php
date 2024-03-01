@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Crew;
 use App\Models\TransitCrew;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
 
 class CrewController extends Controller
 {
@@ -36,6 +37,13 @@ class CrewController extends Controller
     {
         $crew = Crew::create($request->all());
         $crew->save();
+        foreach ($crew as $tripulante) {
+            // Aquí asumimos que tienes una tabla intermedia llamada "transito_tripulante" con campos "transito_id" y "tripulante_id"
+            DB::table('TransitBoat')->insert([
+                'Transito_id' => $transitoId,
+                'Embarcacion_id' => $tripulante->id
+            ]);
+        }
         return response()->json($crew, 201);
     }
 
@@ -56,11 +64,12 @@ class CrewController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Crew $crew)
+    public function update(Request $request, Crew $crew, $id)
     {
+       
         try {
             // Verifica si la tripulación existe
-            $crew = Crew::find($crew);
+            $crew = Crew::find($id);
             if ($crew == null) {
                 return response()->json([
                     'message' => 'No se encuentra la tripulación',
