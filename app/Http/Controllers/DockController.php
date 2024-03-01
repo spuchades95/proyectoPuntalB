@@ -58,6 +58,36 @@ public function create(Request $request)
     ]);
 }
 
+
+public function createdos(Request $request)
+{
+    $Instalacion_id = $request->input('facility');
+
+    if ($Instalacion_id) {
+        // Intentar encontrar la instalación por el ID proporcionado
+        $instalacion = Facility::find($Instalacion_id);
+
+        if (!$instalacion) {
+            return redirect()->back()->with('error', 'La instalación no existe.');
+        }
+    } else {
+        // Si no se proporciona un ID, o si no se encuentra ninguna instalación con ese ID, obtener la última instalación creada
+        $instalacion = Facility::latest()->first();
+    }
+
+    // Si no hay instalación disponible, regresa con un mensaje de error
+    if (!$instalacion) {
+        return redirect()->back()->with('error', 'No hay instalaciones creadas.');
+    }
+
+    $InstalacionUbicacion = $instalacion->Ubicacion;
+    
+    return view('pantalanes.createdos', [
+        'Instalacion_id' => $instalacion->id,
+        'instalacion_ubicacion' => $InstalacionUbicacion
+    ]);
+}
+
 //     public function create(Request $request, $id_instalacion)
 // {
 //     $instalacion = Facility::findOrFail($id_instalacion);
@@ -70,10 +100,38 @@ public function create(Request $request)
 // }
 
 
+public function store(Request $request)
+{
+    $request->validate([
+        'Nombre' => 'required',
+        'Ubicacion' => 'required',
+        'Descripcion' => 'required',
+        'Capacidad' => 'required',
+        'FechaCreacion' => 'required',
+        'Causa' => 'nullable|string|max:255',
+        'Instalacion_id' => 'required',
+    ]);
+    $plaza = new Dock();
+    $plaza->Nombre = $request->Nombre;
+    $plaza->Ubicacion = $request->Ubicacion;
+    $plaza->Descripcion = $request->Descripcion;
+    $plaza->Capacidad = $request->Capacidad;
+    $plaza->FechaCreacion = $request->FechaCreacion;
+    $plaza->Causa = $request->Causa;
+    $plaza->Instalacion_id = $request->Instalacion_id;
+   
+
+    $plaza->save();
+    return redirect()->route('instalacion.index')
+        ->with('success', 'pantalán creado correctamente.');
+}
+
+
+
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function storedos(Request $request)
     {
         $request->validate([
             'Nombre' => 'required',
@@ -95,7 +153,7 @@ public function create(Request $request)
        
 
         $plaza->save();
-        return redirect()->route('pantalanes.index')
+        return redirect()->route('amarre.createdos', ['id_amarre' => $idAmarre])
             ->with('success', 'pantalán creado correctamente.');
     }
 
