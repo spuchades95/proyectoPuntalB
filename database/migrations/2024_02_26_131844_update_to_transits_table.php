@@ -12,8 +12,8 @@ return new class extends Migration
     public function up(): void
     {
         Schema::table('transits', function (Blueprint $table) {
-            $table->dropColumn('FechaEntrada');
-            $table->dropColumn('FechaSalida');
+       //     $table->dropColumn('FechaEntrada');
+           // $table->dropColumn('FechaSalida');
         });
     }
 
