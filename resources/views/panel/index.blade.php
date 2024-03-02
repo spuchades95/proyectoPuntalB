@@ -1,5 +1,5 @@
 @extends('layouts.plantilla')
-
+@section('title', 'Panel de control')
 @section('content')
 <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/css/bootstrap.min.css">
 <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.13.7/css/dataTables.bootstrap5.min.css">
@@ -8,48 +8,62 @@
 <script type="text/javascript" language="javascript" src="https://cdn.datatables.net/1.13.7/js/dataTables.bootstrap5.min.js"></script>
 <link rel="stylesheet" type="text/css" href="{{ asset('css/app.css') }}">
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-<h1>PANEL</h1>
+<!-- <h1>PANEL</h1> -->
 
-<div class="cardsContainerUp d-flex">
-    <div class="card">
-        <div class="card-header">
-            ESTADÍSTICAS GENERALES
+<div class="d-flex flex-column align-items-center cardsContainer">
+    <div class="cardsContainerUp d-flex">
+        <div class="card">
+            <div class="card-header">
+                ESTADÍSTICAS GENERALES
+            </div>
+            <div class="card-content overflow-auto d-flex justify-content-around">
+
+                <div>
+                    <p>Usuarios registrados: {{ $totalUsers }}</p>
+                    <p>Instalaciones registradas: {{ $totalfacilities }}</p>
+                    <p>Administrativos registrados: {{ $totalAdmnistratives }}</p>
+                    <p>Trabajadores de muelle registrados: {{ $totalDockWorkers }}</p>
+                    <p>Pantalanes registrados: {{ $totalPantalanes }}</p>
+                    <p>Número total de Plazas Base: {{ $totalPlazasBase }}</p>
+                    <p>amarres Operativos: {{$amarresOperativos}}</p>
+                    <p>amarres No Operativos: {{$amarresNoOperativos}}</p>
+                    <p>Plazas Base que expiran en 1 mes: {{$plazasBaseExpiran1mes}}</p>
+                </div>
+                <img alt="scroll icon" src="/image/scroll-up-down.svg" class="scrollIcon" />
+            </div>
+
         </div>
-       <div>
-         <!-- <p>Usuarios registrados: {{ $totalUsers }}</p>
-        <p>Roles registrados: {{ $totalroles }}</p> -->
-        <p>Usuarios registrados: {{ $totalUsers }}</p>
-        <p>Instalaciones registradas: {{ $totalfacilities }}</p>
-        <p>Administrativos registrados: {{ $totalAdmnistratives }}</p>
-        <p>Trabajadores de muelle registrados: {{ $totalDockWorkers }}</p>
-        <p>Pantalanes registrados: {{ $totalPantalanes }}</p>
-        <p>Número total de Plazas Base: {{ $totalPlazasBase }}</p>
-        <p>amarres Operativos: {{$amarresOperativos}}</p>
-        <p>amarres No Operativos: {{$amarresNoOperativos}}</p>
-        <p>Plazas Base que expiran en 1 mes: {{$plazasBaseExpiran1mes}}</p>
-       </div>
-
-    </div>
-    <div class="card">
-        <div class="card-header">
-            ROLES REGISTRADOS
+        <div class="card">
+            <div class="card-header">
+                ROLES REGISTRADOS
+            </div>
+            <div class="card-content overflow-auto">
+                <canvas id="barChart2"></canvas>
+            </div>
         </div>
-        <canvas id="barChart2"></canvas>
+        <div class="card">
+            <div class="card-content">
+                <canvas id="barChart3"></canvas>
+            </div>
+        </div>
     </div>
-    <div class="card">
-        <canvas id="barChart3"></canvas>
-    </div>
-</div>
-<div class="cardsContainerDown d-flex">
-    <div class="card">
-        <canvas id="barChart4"></canvas>
+    <div class="cardsContainerDown d-flex">
+        <div class="card">
+            <div class="card-content">
+                <canvas id="barChart4"></canvas>
+            </div>
 
-    </div>
-    <div class="card">
-        <canvas id="barChart5"></canvas>
-    </div>
-    <div class="card">
-        <canvas id="barChart6"></canvas>
+        </div>
+        <div class="card">
+            <div class="card-content">
+                <canvas id="barChart5"></canvas>
+            </div>
+        </div>
+        <div class="card">
+            <div class="card-content">
+                <canvas id="barChart6"></canvas>
+            </div>
+        </div>
     </div>
 </div>
 
@@ -164,6 +178,17 @@
     @import url("https://fonts.googleapis.com/css?family=Questrial&display=swap");
     @import url('https://fonts.googleapis.com/css?family=Inter:400,700&display=swap');
 
+    .cardsContainer {
+        max-width: 1200px;
+        /* Ajusta el valor según tus necesidades */
+        margin: 0 auto;
+        /* Esto centrará horizontalmente el contenedor */
+        height: 100%;
+        /* O ajusta la altura según sea necesario */
+        justify-content: center;
+        /* Esto centrará verticalmente el contenedor */
+    }
+
     .card {
         width: 310px;
         height: 230px;
@@ -180,10 +205,18 @@
         justify-content: space-around;
         margin: 10px;
 
+        /* Agrega desplazamiento vertical */
+        /* position: relative; */
+        /* Establece la posición relativa para los elementos internos */
     }
 
     .card-header {
-        border-radius: 30px 30px 0px 0px;
+        position: sticky;
+        /* Establece la posición fija */
+        top: 0;
+        /* Fija la posición en la parte superior */
+        z-index: 1;
+        /* Asegura que el encabezado esté por encima del contenido */
         background: var(--Wedgewood-600, #426787);
         color: #fff;
         font-family: Questrial;
@@ -191,10 +224,57 @@
         font-style: normal;
         font-weight: 400;
         line-height: normal;
+        border-radius: 20px 20px 0px 0px;
+        /* Ajusta según sea necesario */
+        padding: 10px;
+        /* Ajusta el relleno según sea necesario */
     }
+
+    .card-content {
+        padding: 10px;
+        /* overflow-y: auto; */
+        /* Ajusta el relleno según sea necesario */
+    }
+
 
     .cardDown {
         margin-top: 20px;
+    }
+
+    .card-content.overflow-auto::-webkit-scrollbar {
+        width: 0px;
+
+
+        /* Ancho de la barra de desplazamiento */
+    }
+
+    .card-content.overflow-auto::-webkit-scrollbar-track {
+        background: #f1f1f1;
+        border-radius: 6px;
+
+        /* Color de fondo de la pista de la barra de desplazamiento */
+    }
+
+    .card-content.overflow-auto::-webkit-scrollbar-thumb {
+        background: #888;
+        /* Color del pulgar de la barra de desplazamiento */
+        border-radius: 6px;
+        /* Radio de borde del pulgar */
+    }
+
+    .card-content.overflow-auto::-webkit-scrollbar-thumb:hover {
+        background: #555;
+        /* Color del pulgar de la barra de desplazamiento al pasar el mouse sobre él */
+    }
+
+    .card .scrollIcon {
+        position: absolute;
+        right: 10px;
+        /* Ajusta la posición del icono según sea necesario */
+        bottom: 10px;
+        /* Ajusta la posición del icono según sea necesario */
+        z-index: 2;
+        /* Asegura que el icono esté por encima del contenido */
     }
 </style>
 
