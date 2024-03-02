@@ -10,7 +10,7 @@
 
 <div class="formularioRoles">
     <div class="formHeader">
-        <h5>EDITAR INSTALACION {{ $instalacion->Ubicacion }} </h5>
+        <h5>INSTALACION {{ $instalacion->Ubicacion }} </h5>
     </div>
     <form class="form-container" method="POST" action="{{ route('instalaciones.update', ['instalacione' => $instalacion->id]) }}">
         @csrf

@@ -5,7 +5,7 @@
 
 <div class="formulario">
     <div class="formHeader">
-        <h5>VISTA INSTALACIÓN {{ $instalacion->Ubicacion }} </h5>
+        <h5>INSTALACIÓN {{ $instalacion->Ubicacion }} </h5>
     </div>
     <form class="form-container">
         <div class="mb-3 d-flex">

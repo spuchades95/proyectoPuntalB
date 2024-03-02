@@ -10,7 +10,7 @@
 <div class="formularioRoles">
 
     <div class="formHeader">
-        <h5>VISTA AMARRE {{ $amarre->Numero }} </h5>
+        <h5>AMARRE {{ $amarre->Numero }} </h5>
     </div>
     <form class="form-container" method="POST" action="{{ route('amarres.update', ['amarre' => $amarre->id]) }}">
         @csrf

@@ -7,7 +7,7 @@
 
 <div class="formulario">
     <div class="formHeader">
-        <h5>VISTA PANTALÁN {{ $pantalan->Nombre }} </h5>
+        <h5>PANTALÁN {{ $pantalan->Nombre }} </h5>
     </div>
     <form class="form-container">
         <div class="mb-3 d-flex">

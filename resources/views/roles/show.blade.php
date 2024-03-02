@@ -9,7 +9,7 @@
 <link rel="stylesheet" type="text/css" href="{{ asset('styles.css') }}">
 <div class="formularioRoles">
     <div class="formHeader">
-        <h5>VISTA ROL {{ $rol->NombreRol }} </h5>
+        <h5>ROL {{ $rol->NombreRol }} </h5>
     </div>
     <form class="form-container">
         @csrf
