@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Título de la Página</title>
+    <title>Login</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSGFpoO/ufreqqF6MVu4JdG7PhIxZlW8sSJv43gkdSHluaInJd/X7" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js" integrity="sha384-eMNCOe7tC1doHpGoJtKh7z7lGz7fuP4F8nfdFvAOA6Gg/z6Y5J6XqqyGXYM2ntX5" crossorigin="anonymous"></script>
@@ -154,7 +154,7 @@
             <div class="col-md-6 h-100 d-flex flex-column justify-content-center mx-auto background-left position-relative">
 
                 <div class="welcomeLogin text-center w-100">
-                    <h2>BIENVENIDA.</h2>
+                    <h2>BIENVENIDA</h2>
                 </div>
 
                 <img src="{{ asset('image/Group.svg') }}" alt="Logo Portos de Galicia" class="img-fluid position-absolute bottom-0 start-0 mb-4 ms-3" />
