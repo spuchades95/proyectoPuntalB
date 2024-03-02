@@ -22,35 +22,29 @@ class BaseBerthController extends Controller
 
     public function cantidadpb()
     {
-
-
         $cantidad = BaseBerth::count();
         return $cantidad;
     }
 
+    public function actuFin(Request $request, string $id)
+    {
+        Log::info($request);
+        Log::info($id);
 
-public function actuFin(Request $request, string $id){
-    Log::info($request);
-    Log::info($id);
-    
-    $fechaFinalizacion = $request->input('FechaFinalizacion');
+        $fechaFinalizacion = $request->input('FechaFinalizacion');
 
-    try {
-       
-        $rental = Rental::findOrFail($id);
-        $rental->FechaFinalizacion = $fechaFinalizacion;
-        $rental->save();
+        try {
 
-        return response()->json($rental, 200);
-    } catch (\Exception $e) {
-       
-        return response()->json(['error' => 'Hubo un problema al actualizar el contrato de alquiler.'], 500);
+            $rental = Rental::findOrFail($id);
+            $rental->FechaFinalizacion = $fechaFinalizacion;
+            $rental->save();
+
+            return response()->json($rental, 200);
+        } catch (\Exception $e) {
+
+            return response()->json(['error' => 'Hubo un problema al actualizar el contrato de alquiler.'], 500);
+        }
     }
-
-}
-
-
-
 
     public function estancia()
     {
@@ -72,12 +66,11 @@ public function actuFin(Request $request, string $id){
     }
     public function paratabla()
     {
-        $plazasBase = Rental::
-        join('base_berths', 'base_berths.id', '=', 'rentals.PlazaBase_id')
-        ->join('berths', 'berths.id', '=', 'base_berths.Amarre_id')
-        ->join('docks', 'docks.id', '=', 'berths.pantalan_id')
-        ->join('facilities', 'facilities.id', '=', 'docks.instalacion_id')
-        ->join('boats', 'boats.id', '=', 'rentals.embarcacion_id')
+        $plazasBase = Rental::join('base_berths', 'base_berths.id', '=', 'rentals.PlazaBase_id')
+            ->join('berths', 'berths.id', '=', 'base_berths.Amarre_id')
+            ->join('docks', 'docks.id', '=', 'berths.pantalan_id')
+            ->join('facilities', 'facilities.id', '=', 'docks.instalacion_id')
+            ->join('boats', 'boats.id', '=', 'rentals.embarcacion_id')
 
             ->select(
                 'rentals.FechaInicio',
@@ -91,59 +84,51 @@ public function actuFin(Request $request, string $id){
                 'base_berths.Amarre_id AS Plaza',
                 'boats.Matricula',
                 'boats.Titular'
-            )     
-            ->whereIn('rentals.id', function($query) {
+            )
+            ->whereIn('rentals.id', function ($query) {
                 $query->selectRaw('MIN(id)')
-                      ->from('rentals')
-                      ->groupBy('PlazaBase_id');
+                    ->from('rentals')
+                    ->groupBy('PlazaBase_id');
             })
             ->where('berths.Estado', '=', 'Ocupado')
 
             ->get();
 
-
-
-
         return response()->json($plazasBase, 200);
     }
-public function eli(Request $request, string $id){
 
-    Log::info($request);
-    Log::info($id);
-   
- 
-    $Causa = $request->input('Causa');
+    public function eli(Request $request, string $id)
+    {
 
-    try {
         Log::info($request);
         Log::info($id);
-       
-        $rental = Rental::findOrFail($id);
-        $baseberth = $rental->PlazaBase_id;
-        $berth = Berth::findOrFail($baseberth);
-        $rental->Causa = $Causa;
-        $rental->save();
-        $berth->Estado = 'Ocupado'; 
-        $berth->save();
-        return response()->json($rental, 200);
 
-    } catch (\Exception $e) {
+       $Causa = $request->input('Causa');
 
-        return response()->json([
-            Log::info($e->getMessage()),
-            'message' => 'Error al actualizar el amarre base',
-            'code' => 500
-        ], 500);
+        try {
+            Log::info($request);
+            Log::info($id);
+
+            $rental = Rental::findOrFail($id);
+            $baseberth = $rental->PlazaBase_id;
+            $berth = Berth::findOrFail($baseberth);
+            $rental->Causa = $Causa;
+            $rental->save();
+            $berth->Estado = 'Ocupado';
+            $berth->save();
+            return response()->json($rental, 200);
+        } catch (\Exception $e) {
+
+            return response()->json([
+                Log::info($e->getMessage()),
+                'message' => 'Error al actualizar el amarre base',
+                'code' => 500
+            ], 500);
+        }
     }
-
-}
-
-
-
 
     public function index()
     {
-
 
         $cositas = BaseBerth::with(['plaza.pantalan.instalacion'])
             ->whereHas('plaza', function ($query) {
@@ -193,18 +178,18 @@ public function eli(Request $request, string $id){
         try {
             Log::info($request);
             Log::info($id);
-        $baseBerth = BaseBerth::where('Amarre_id', $id)->firstOrFail();
-        $embarcacion = $request->input('Embarcacion');
-        $FechaInicio = $request->input('FechaInicio');
-        $FechaFinalizacion = $request->input('FechaFinalizacion');
+            $baseBerth = BaseBerth::where('Amarre_id', $id)->firstOrFail();
+            $embarcacion = $request->input('Embarcacion');
+            $FechaInicio = $request->input('FechaInicio');
+            $FechaFinalizacion = $request->input('FechaFinalizacion');
 
-        $baseBerth->embarcacion()->attach($embarcacion, [
-            'FechaInicio' => $FechaInicio,
-            'FechaFinalizacion' => $FechaFinalizacion
-        ]);
+            $baseBerth->embarcacion()->attach($embarcacion, [
+                'FechaInicio' => $FechaInicio,
+                'FechaFinalizacion' => $FechaFinalizacion
+            ]);
 
 
-        $alquiler= Rental::all();
+            $alquiler = Rental::all();
             return response()->json($alquiler, 200);
         } catch (\Exception $e) {
 
@@ -242,15 +227,13 @@ public function eli(Request $request, string $id){
             Log::info($id);
             $berth = Berth::findOrFail($id);
             $administrativo = $request->input('Administrativo_id');
-            // Verificar si ya existe la asociación en la tabla pivot
-        if ($berth->administrativoamarre()->where('administrativo_id', $administrativo)->exists()) {
-            return response()->json(['message' => 'La asociación entre el administrativo y el amarre ya existe'], 200);
-        }
+            if ($berth->administrativoamarre()->where('administrativo_id', $administrativo)->exists()) {
+                return response()->json(['message' => 'La asociación entre el administrativo y el amarre ya existe'], 200);
+            }
 
-        // Si no existe, proceder a crear la asociación
-        $berth->administrativoamarre()->attach($administrativo);
+            $berth->administrativoamarre()->attach($administrativo);
 
-        return response()->json(['message' => 'Administrativo asociado correctamente al amarre'], 200);
+            return response()->json(['message' => 'Administrativo asociado correctamente al amarre'], 200);
         } catch (\Exception $e) {
             return response()->json([
                 Log::info($e->getMessage()),
@@ -261,8 +244,6 @@ public function eli(Request $request, string $id){
         }
     }
 
-
-
     /**
      * Remove the specified resource from storage.
      */
@@ -270,7 +251,7 @@ public function eli(Request $request, string $id){
     {
 
         $baseBerth = Rental::findOrFail($id);
-       
+
         $baseBerth->update([
             'Causa' => $request->Causa,
         ]);
@@ -279,26 +260,19 @@ public function eli(Request $request, string $id){
     {
         try {
 
-            // Buscar el registro de BaseBerth por su ID
             $baseBerth = BaseBerth::findOrFail($id);
-
 
             $berth = Berth::findOrFail($baseBerth->Amarre_id);
             $this->updateCausa($request, $id);
             Log::info('Amarre encontrado: ' . json_encode($this->updateCausa($request, $id)));
 
-            // Guardar los cambios antes de eliminar el registro
             $berth->save();
             Log::info('Amarre encontrado: ' . json_encode($berth));
-            // Eliminar el registro de BaseBerth
-            // $berth->delete();
-            //  $baseBerth->delete();
 
-            // Retornar una respuesta adecuada, por ejemplo, un JSON indicando el éxito de la operación
             return response()->json(['message' => 'BaseBerth eliminado con éxito'], 200);
         } catch (\Exception $e) {
             Log::error('Error al eliminar el amarre base: ' . $e->getMessage());
-            // Manejar la excepción si ocurre un error
+
             return response()->json(['message' => 'Error al eliminar el amarre base', 'code' => 500], 500);
         }
     }

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Facility;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Session;
 
 class FacilityController extends Controller
 {
@@ -59,11 +60,18 @@ class FacilityController extends Controller
         // Facility::create($request->all()); // Posible opción para crear el registro
 
         $idInstalacion = $instalaciones->id;
-        // Session::put('id_instalacion', $idInstalacion);
+       Session::put('id_instalacion', $idInstalacion);
 
-        return redirect()->route('pantalanes.create', ['id_instalacion' => $idInstalacion])
+        return redirect()->route('instalaciones.opcionpantalanes')
             ->with('success', 'Facility created successfully.');
     }
+
+    public function opcionPantalanes()
+    {
+        $id_instalacion = session('id_instalacion');
+        return view('instalaciones.opcionpantalanes', ['id_instalacion' => $id_instalacion]);
+    }
+    
 
     /**
      * Display the specified resource.
