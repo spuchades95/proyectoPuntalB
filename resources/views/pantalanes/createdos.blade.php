@@ -9,7 +9,7 @@
     <div class="formHeader">
         <h5>ALTA PANTALÁN</h5>
     </div>
-    <form class="form-container" method="POST" action="{{ route('pantalanes.store') }}">
+    <form class="form-container" method="POST" action="{{ route('pantalanes.storedos') }}">
         @csrf
         <div class="mb-3 d-flex">
             <label for="Nombre" class="form-label">Nombre:</label>

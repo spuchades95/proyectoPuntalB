@@ -41,6 +41,10 @@
             <button class="btn btnCancelar">CANCELAR</button>
             <button type="submit" class="btn btnAdd">CREAR</button>
         </div>
+
+
+
+        
     </form>
 </div>
 @endsection

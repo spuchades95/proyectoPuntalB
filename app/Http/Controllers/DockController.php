@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Dock;
 use App\Models\Facility;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Session;
 
 class DockController extends Controller
 {
@@ -111,20 +112,26 @@ public function store(Request $request)
         'Causa' => 'nullable|string|max:255',
         'Instalacion_id' => 'required',
     ]);
-    $plaza = new Dock();
-    $plaza->Nombre = $request->Nombre;
-    $plaza->Ubicacion = $request->Ubicacion;
-    $plaza->Descripcion = $request->Descripcion;
-    $plaza->Capacidad = $request->Capacidad;
-    $plaza->FechaCreacion = $request->FechaCreacion;
-    $plaza->Causa = $request->Causa;
-    $plaza->Instalacion_id = $request->Instalacion_id;
+    $pantalanes = new Dock();
+    $pantalanes->Nombre = $request->Nombre;
+    $pantalanes->Ubicacion = $request->Ubicacion;
+    $pantalanes->Descripcion = $request->Descripcion;
+    $pantalanes->Capacidad = $request->Capacidad;
+    $pantalanes->FechaCreacion = $request->FechaCreacion;
+    $pantalanes->Causa = $request->Causa;
+    $pantalanes->Instalacion_id = $request->Instalacion_id;
    
 
-    $plaza->save();
-    return redirect()->route('instalacion.index')
-        ->with('success', 'pantalán creado correctamente.');
-}
+    $pantalanes->save();
+
+    $idPantalan = $pantalanes->id;
+       Session::put('id_pantalan', $idPantalan);
+
+        return redirect()->route('pantalanes.opcionamarres')
+            ->with('success', 'Dock created successfully.');
+    }
+
+
 
 
 
@@ -142,19 +149,31 @@ public function store(Request $request)
             'Causa' => 'nullable|string|max:255',
             'Instalacion_id' => 'required',
         ]);
-        $plaza = new Dock();
-        $plaza->Nombre = $request->Nombre;
-        $plaza->Ubicacion = $request->Ubicacion;
-        $plaza->Descripcion = $request->Descripcion;
-        $plaza->Capacidad = $request->Capacidad;
-        $plaza->FechaCreacion = $request->FechaCreacion;
-        $plaza->Causa = $request->Causa;
-        $plaza->Instalacion_id = $request->Instalacion_id;
+        $pantalanes = new Dock();
+        $pantalanes->Nombre = $request->Nombre;
+        $pantalanes->Ubicacion = $request->Ubicacion;
+        $pantalanes->Descripcion = $request->Descripcion;
+        $pantalanes->Capacidad = $request->Capacidad;
+        $pantalanes->FechaCreacion = $request->FechaCreacion;
+        $pantalanes->Causa = $request->Causa;
+        $pantalanes->Instalacion_id = $request->Instalacion_id;
        
+    
+        $pantalanes->save();
+    
+        $idPantalan = $pantalanes->id;
+           Session::put('id_pantalan', $idPantalan);
+    
+            return redirect()->route('pantalanes.opcionamarres')
+                ->with('success', 'Dock created successfully.');
+        }
+    
 
-        $plaza->save();
-        return redirect()->route('amarre.createdos', ['id_amarre' => $idAmarre])
-            ->with('success', 'pantalán creado correctamente.');
+
+    public function opcionAmarres()
+    {
+        $idPantalan = session('id_pantalan');
+        return view('pantalanes.opcionamarres', ['id_pantalan' => $idPantalan]);
     }
 
     /**

@@ -9,6 +9,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
 use App\Models\Transit;
 use App\Models\BaseBerth;
+use Illuminate\Support\Facades\Session;
 
 class BerthController extends Controller
 {
@@ -26,6 +27,7 @@ class BerthController extends Controller
      */
     public function create(Request $request)
     {
+        
         $Pantalan_id = $request->input('dock');
         $pantalanNombre = Dock::find($Pantalan_id)->Nombre;
         return view('amarres.create', [
@@ -35,7 +37,8 @@ class BerthController extends Controller
     }
     public function createdos(Request $request)
     {
-        $Pantalan_id = $request->input('dock');
+        $Pantalan_id = session('id_pantalan');
+        //$Pantalan_id = $request->input('dock');
         $pantalanNombre = Dock::find($Pantalan_id)->Nombre;
         return view('amarres.createdos', [
             'Pantalan_id' => $Pantalan_id,

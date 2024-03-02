@@ -5,11 +5,13 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 
+
+
 <div class="formularioRoles">
     <div class="formHeader">
         <h5>ALTA PANTALÁN</h5>
     </div>
-    <form class="form-container" method="POST" action="{{ route('pantalanes.store') }}">
+    <form id="createForm" class="form-container" method="POST" action="{{ route('pantalanes.store') }}">
         @csrf
         <div class="mb-3 d-flex">
             <label for="Nombre" class="form-label">Nombre:</label>
@@ -42,8 +44,15 @@
             <button type="submit" class="btn btnAdd">CREAR</button>
         </div>
     </form>
+
+     
+
+
+
 </div>
 @endsection
+
+
 
 <style>
 .btnAdd {
