@@ -220,6 +220,22 @@ class BoatController extends Controller
             return response()->json('Boat not found', 404);
         }
     }
+
+
+    public function updatePhoto(Request $request, $id)
+    {
+        $boat = Boat::findOrFail($id);
+
+        if ($request->hasFile('Imagen')) {
+            $imagenPath = $request->file('Imagen')->store('public/embarcaciones');
+            $url = Storage::url($imagenPath);
+            $boat->Imagen = $url;
+        }
+
+        $boat->save();
+        return response()->json($boat, 200);
+    }
+
     /**
      * Remove the specified resource from storage.
      */
