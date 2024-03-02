@@ -17,6 +17,7 @@ use App\Http\Controllers\BaseBerthController;
 use App\Http\Controllers\BerthController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\PanelController;
+use Illuminate\Support\Facades\Auth;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -27,49 +28,31 @@ use App\Http\Controllers\PanelController;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
-// Route::put('/roles/{role}', 'RoleController@update')->name('roles.update');
-Route::put('/amarres/{amarre}', [BerthController::class, 'update'])->name('amarres.update');
-Route::put('/usuario/{id}', [UserController::class, 'update'])->name('usuarios.update');
-// Route::put('/amarres/{amarre}', 'BerthController@update')->name('amarres.update');
-Route::get('amarres/createdos', [BerthController::class, 'createdos'])->name('amarres.createdos');
-Route::post('amarres/createdos', [BerthController::class, 'storedos'])->name('amarres.storedos');
 
-Route::resource('administrativos', AdministrativeController::class);
-Route::resource('alquileres', RentalController::class);
-Route::resource('amarres', BerthController::class);
-Route::resource('concesionarios', ConcessionaireController::class);
-Route::resource('embarcaciones', BoatController::class);
-Route::resource('guardiasciviles', CivilGuardController::class);
-Route::resource('incidencias', IncidentController::class);
-Route::resource('instalaciones', FacilityController::class);
-Route::resource('pantalanes', DockController::class);
-Route::resource('plazasbase', BaseBerthController::class);
-Route::resource('roles', RoleController::class);
-Route::resource('transitos', TransitController::class);
-Route::resource('tripulantes', CrewController::class);
-Route::resource('usuarios', UserController::class);
-Route::get('panel', PanelController::class)->name('panel.index');
-
-
-// Route::get('pantalan/create/{id_instalacion}', 'DockController@create')->name('pantalan.create');
-
-
-
-
-
+  
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('auth.login');
 });
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
+Route::get('/panel', function () {
+    return view('instalaciones.index');
+})->middleware(['auth', 'verified'])->name('panel');
 
-Route::middleware('auth')->group(function () {
-    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
-    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
-    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+
+Route::middleware(['auth', 'verified', 'checkUserRole'])->group(function () {
+    Route::put('/amarres/{amarre}', [BerthController::class, 'update'])->name('amarres.update');
+    Route::put('/usuario/{id}', [UserController::class, 'update'])->name('usuarios.update');
+    Route::get('amarres/createdos', [BerthController::class, 'createdos'])->name('amarres.createdos');
+    Route::post('amarres/createdos', [BerthController::class, 'storedos'])->name('amarres.storedos');
+    Route::resource('amarres', BerthController::class);
+    Route::resource('instalaciones', FacilityController::class);
+    Route::resource('pantalanes', DockController::class);
+    Route::resource('plazasbase', BaseBerthController::class);
+    Route::resource('roles', RoleController::class);
+    Route::resource('transitos', TransitController::class);
+    Route::resource('usuarios', UserController::class);
+    Route::get('/panel', PanelController::class)->name('panel.index');
 });
 
-require __DIR__ . '/auth.php';
+require __DIR__.'/auth.php';

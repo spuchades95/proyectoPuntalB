@@ -10,6 +10,7 @@ use App\Models\Administrative;
 use App\Models\DockWorker;
 use App\Models\Berth;
 use App\Models\BaseBerth;
+use App\Models\Rental;
 use Carbon\Carbon;
 
 class PanelController extends Controller
@@ -25,7 +26,7 @@ class PanelController extends Controller
         $totalPlazasBase = BaseBerth::count();
         $amarresOperativos = Berth::where('Estado', 'Operativo')->count();
         $amarresNoOperativos = Berth::where('Estado', 'No operativo')->count();
-        $plazasBaseExpiran1mes = BaseBerth::where('FinContrato', '<', Carbon::now()->addMonth())->count();
+        $plazasBaseExpiran1mes = Rental::where('FechaFinalizacion', '<', Carbon::now()->addMonth())->count();
       
 
         $data = [
