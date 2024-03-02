@@ -9,6 +9,7 @@
     <div class="card p-5">
         <h2 class="mb-4 text-center">¿Quieres crear amarres para este pantalán?</h2>
         <div class="d-flex justify-content-center">
+            
             <a href="{{ route('instalaciones.index') }}" class="btn btnCancelar btn-lg mr-3">No</a>
             <a href="{{ route('amarres.createdos') }}" class="btn btnAdd btn-lg">Sí</a>
         </div>
