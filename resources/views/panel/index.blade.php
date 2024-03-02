@@ -29,7 +29,14 @@
                     <p>amarres No Operativos: {{$amarresNoOperativos}}</p>
                     <p>Plazas Base que expiran en 1 mes: {{$plazasBaseExpiran1mes}}</p>
                 </div>
-                <img alt="scroll icon" src="/image/scroll-up-down.svg" class="scrollIcon" />
+                <div class="d-flex flex-column">
+                    <div class="scrollUpContainer">
+                        <img alt="scroll-up" src="/image/scrollUp.svg" class="scrollIcon" id="scrollUp"/>
+                    </div>
+                    <div class="scrollDownContainer">
+                        <img alt="scroll-down" src="/image/scrollDown.svg" class="scrollIcon" id="scrollDown"/>
+                    </div>
+                </div>
             </div>
 
         </div>
@@ -173,6 +180,18 @@
             }
         }
     });
+    const scrollUp = document.getElementById('scrollUp');
+    const scrollDown = document.getElementById('scrollDown');
+
+    scrollUp.addEventListener('click', () => {
+        // Desplaza el contenido hacia arriba
+        document.querySelector('.card-content').scrollTop -= 10; // Ajusta la cantidad de desplazamiento según sea necesario
+    });
+
+    scrollDown.addEventListener('click', () => {
+        // Desplaza el contenido hacia abajo
+        document.querySelector('.card-content').scrollTop += 10; // Ajusta la cantidad de desplazamiento según sea necesario
+    });
 </script>
 <style>
     @import url("https://fonts.googleapis.com/css?family=Questrial&display=swap");
@@ -267,14 +286,33 @@
         /* Color del pulgar de la barra de desplazamiento al pasar el mouse sobre él */
     }
 
-    .card .scrollIcon {
+    .scrollUpContainer {
         position: absolute;
         right: 10px;
-        /* Ajusta la posición del icono según sea necesario */
-        bottom: 10px;
-        /* Ajusta la posición del icono según sea necesario */
+        /* Ajusta la posición del contenedor según sea necesario */
+        top: 40px;
+        /* Ajusta la posición del contenedor según sea necesario */
         z-index: 2;
-        /* Asegura que el icono esté por encima del contenido */
+        /* Asegura que el contenedor esté por encima del contenido */
+    }
+
+    /* Estilo para el contenedor del icono de scroll hacia abajo */
+    .scrollDownContainer {
+        position: absolute;
+        right: 10px;
+        /* Ajusta la posición del contenedor según sea necesario */
+        bottom: 10px;
+        /* Ajusta la posición del contenedor según sea necesario */
+        z-index: 2;
+        /* Asegura que el contenedor esté por encima del contenido */
+    }
+
+    /* Estilo para ambos iconos */
+    .scrollIcon {
+        width: 20px;
+        /* Ajusta el tamaño del icono según sea necesario */
+        cursor: pointer;
+        /* Cambia el cursor al pasar sobre el icono */
     }
 </style>
 
