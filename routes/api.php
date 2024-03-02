@@ -120,6 +120,10 @@ Route::get('v1/pantalan/{id}/amarrestr',[DockController::class , 'amarresTransit
 Route::get('v1/transito/paratabla',[TransitController::class , 'paratablaTransito']);
 Route::get('v1/transito/paratablaGuardia',[TransitController::class , 'paratablaTransitoGuardia']);
 Route::put('v1/transito/update/{id}',[TransitController::class , 'updateTransito']);
+Route::put('v1/transito/update/{id}',[TransitController::class , 'updateTransito']);
+Route::get('v1/transito/traer/{id}',[TransitController::class , 'idTransito']);
+Route::post('v1/tripulante/añadir',[CrewController::class , 'storeConId']);
+
 
 
 
