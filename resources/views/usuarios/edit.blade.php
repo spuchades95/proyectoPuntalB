@@ -58,7 +58,7 @@
                     </div>
                 </div>
             </div>
-        </div>
+        
         
         <!-- Selector de instalaciones -->
         <div class="mb-3 d-flex">
@@ -78,18 +78,44 @@
                 
             </select>        </div>
         
-        <!-- Botones -->
-        <div class="mt-3 d-flex">
-            <button type="button" class="btn btnCancelar" data-toggle="modal" data-target="#myModal">ELIMINAR</button>
-            <!-- Modal de eliminación -->
-            <div class="modal" id="myModal">
-                <!-- Contenido del modal -->
-            </div>
+            <div style='text-align:right' class='mt-4'>
+            <button type="button" class="btn btnCancelar" data-toggle="modal" data-target="#myModal">
+                ELIMINAR
+            </button>
             <button type="submit" class="btn btnAdd">EDITAR</button>
         </div>
-    </form>
-</div>
+        </form>
 
+    <div class="modal" id="myModal">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">BAJA DE AMARRE </h4>
+                </div>
+                <form id="delete-form" action="{{ route('usuarios.destroy', ['usuario' => $usuario->id]) }}" method="POST">
+                <div class="modal-body">
+                    <div class="mb-3 d-flex">
+                        <label for="NombreCompleto"> Nombre del usuario:</label>
+                        <input name="NombreCompleto" type="text" class="form-control mt-4" placeholder="Numero del amarre " value="{{ $usuario->NombreCompleto }}" readonly />
+                    </div>
+                    <div class="mb-3 d-flex">
+                        <label for="Causa" class="form-label">Causa de la baja:</label>
+                        <textarea id="Causa" name="Causa" class="form-control mt-4"> </textarea>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btnCancelar" data-dismiss="modal">CANCELAR</button>
+                   
+                        @csrf
+                        @method('DELETE')
+                        <button type="submit" class="btn btnAdd">ELIMINAR</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+</div>
 <style>
 .botones
     {

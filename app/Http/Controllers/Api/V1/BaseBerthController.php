@@ -78,7 +78,7 @@ public function actuFin(Request $request, string $id){
         ->join('docks', 'docks.id', '=', 'berths.pantalan_id')
         ->join('facilities', 'facilities.id', '=', 'docks.instalacion_id')
         ->join('boats', 'boats.id', '=', 'rentals.embarcacion_id')
-         
+
             ->select(
                 'rentals.FechaInicio',
                 'rentals.FechaFinalizacion',
@@ -92,21 +92,20 @@ public function actuFin(Request $request, string $id){
                 'boats.Matricula',
                 'boats.Titular'
             )     
-            // ->whereIn('rentals.id', function($query) {
-            //     $query->selectRaw('MIN(id)')
-            //           ->from('rentals')
-            //           ->groupBy('PlazaBase_id');
-            // })
-            // ->where('berths.Estado', '=', 'Ocupado')
-            
+            ->whereIn('rentals.id', function($query) {
+                $query->selectRaw('MIN(id)')
+                      ->from('rentals')
+                      ->groupBy('PlazaBase_id');
+            })
+            ->where('berths.Estado', '=', 'Ocupado')
+
             ->get();
 
-     
+
 
 
         return response()->json($plazasBase, 200);
     }
-
 public function eli(Request $request, string $id){
 
     Log::info($request);
