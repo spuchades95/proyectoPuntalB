@@ -13,35 +13,35 @@
 <div class="d-flex flex-column align-items-center cardsContainer">
     <div class="cardsContainerUp d-flex">
         <div class="card">
-            <div class="card-header">
+            <div class="card-header text-center">
                 ESTADÍSTICAS GENERALES
             </div>
             <div class="card-content overflow-auto d-flex justify-content-around">
 
                 <div>
-                    <p>Usuarios registrados: {{ $totalUsers }}</p>
-                    <p>Instalaciones registradas: {{ $totalfacilities }}</p>
-                    <p>Administrativos registrados: {{ $totalAdmnistratives }}</p>
-                    <p>Trabajadores de muelle registrados: {{ $totalDockWorkers }}</p>
-                    <p>Pantalanes registrados: {{ $totalPantalanes }}</p>
-                    <p>Número total de Plazas Base: {{ $totalPlazasBase }}</p>
-                    <p>amarres Operativos: {{$amarresOperativos}}</p>
-                    <p>amarres No Operativos: {{$amarresNoOperativos}}</p>
-                    <p>Plazas Base que expiran en 1 mes: {{$plazasBaseExpiran1mes}}</p>
+                    <p><b>Usuarios registrados:</b> {{ $totalUsers }}</p>
+                    <p><b>Instalaciones registradas:</b> {{ $totalfacilities }}</p>
+                    <p><b>Administrativos registrados:</b> {{ $totalAdmnistratives }}</p>
+                    <p><b>Trabajadores de muelle registrados:</b> {{ $totalDockWorkers }}</p>
+                    <p><b>Pantalanes registrados:</b> {{ $totalPantalanes }}</p>
+                    <p><b>Número total de Plazas Base:</b> {{ $totalPlazasBase }}</p>
+                    <p><b>amarres Operativos:</b> {{$amarresOperativos}}</p>
+                    <p><b>amarres No Operativos:</b> {{$amarresNoOperativos}}</p>
+                    <p><b>Plazas Base que expiran en 1 mes:</b> {{$plazasBaseExpiran1mes}}</p>
                 </div>
                 <div class="d-flex flex-column">
                     <div class="scrollUpContainer">
-                        <img alt="scroll-up" src="/image/scrollUp.svg" class="scrollIcon" id="scrollUp"/>
+                        <img alt="scroll-up" src="/image/scrollUp.svg" class="scrollIcon" id="scrollUp" />
                     </div>
                     <div class="scrollDownContainer">
-                        <img alt="scroll-down" src="/image/scrollDown.svg" class="scrollIcon" id="scrollDown"/>
+                        <img alt="scroll-down" src="/image/scrollDown.svg" class="scrollIcon" id="scrollDown" />
                     </div>
                 </div>
             </div>
 
         </div>
         <div class="card">
-            <div class="card-header">
+            <div class="card-header text-center">
                 ROLES REGISTRADOS
             </div>
             <div class="card-content overflow-auto">
@@ -246,11 +246,13 @@
         border-radius: 20px 20px 0px 0px;
         /* Ajusta según sea necesario */
         padding: 10px;
+
         /* Ajusta el relleno según sea necesario */
     }
 
     .card-content {
         padding: 10px;
+        height: 100%;
         /* overflow-y: auto; */
         /* Ajusta el relleno según sea necesario */
     }
