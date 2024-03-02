@@ -9,7 +9,7 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 <div class="formularioRoles">
     <div class="formHeader">
-        <h5>VISTA ROL {{ $rol->NombreRol }} </h5>
+        <h5>ROL {{ $rol->NombreRol }} </h5>
     </div>
     <form class="form-container" method="POST" action="{{ route('roles.update', ['role' => $rol->id])}}">
         @csrf

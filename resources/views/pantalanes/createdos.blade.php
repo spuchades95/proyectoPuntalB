@@ -7,44 +7,40 @@
 
 <div class="formularioRoles">
     <div class="formHeader">
-        <h5>ALTA INSTALACIÓN</h5>
+        <h5>ALTA PANTALÁN</h5>
     </div>
-    <form class="form-container" method="POST" action="{{ route('instalaciones.store') }}">
+    <form class="form-container" method="POST" action="{{ route('pantalanes.storedos') }}">
         @csrf
+        <div class="mb-3 d-flex">
+            <label for="Nombre" class="form-label">Nombre:</label>
+            <input name="Nombre" type="text" class="form-control mt-4" placeholder="Nombre" required />
+        </div>
         <div class="mb-3 d-flex">
             <label for="Ubicacion" class="form-label">Ubicación:</label>
             <input name="Ubicacion" type="text" class="form-control mt-4" placeholder="Ubicación" required />
-        </div>
-        <div class="mb-3 d-flex">
-            <label for="Dimensiones" class="form-label">Dimensiones:</label>
-            <input name="Dimensiones" type="text" class="form-control mt-4" placeholder="Dimensiones" required />
         </div>
         <div class="mb-3 d-flex">
             <label for="Descripcion" class="form-label">Descripción:</label>
             <input name="Descripcion" type="text" class="form-control mt-4" placeholder="Descripción" required />
         </div>
         <div class="mb-3 d-flex">
-            <label for="Estado">Estado</label>
-            <select name="Estado" id="Estado" class="form-control" required>
-                <option value="">Selecciona un estado</option>
-                <option value="Disponible">Disponible</option>
-                <option value="Mantenimiento">En mantenimiento</option>
-                <option value="Ocupada">Ocupada</option>
-            </select>
+            <label for="Capacidad" class="form-label">Capacidad:</label>
+            <input name="Capacidad" type="text" class="form-control mt-4" placeholder="Capacidad" required />
         </div>
         <div class="mb-3 d-flex">
             <label for="FechaCreacion" class="form-label">Fecha de creación:</label>
-            <input name="FechaCreacion" type="date" class="form-control mt-4" value="{{ now()->format('Y-m-d') }}" required />
+            <input name="FechaCreacion" type="datetime" value="{{ now()->format('Y-m-d') }} " class="form-control mt-4" required />
         </div>
-        <!-- <input type="hidden" name="Instalacion_id" value=" $id " required> -->
+        <div class="mb-3 d-flex">
+    
+            <label for="Instalacion_id/ubicacion">Instalación</label>
+            <input type="hidden" name="Instalacion_id" value="{{ $Instalacion_id }}" required>
+            <input type="text" value="{{ $instalacion_ubicacion }}" class="form-control" readonly >
+        </div>
         <div style='text-align:right' class='mt-4'>
             <button class="btn btnCancelar">CANCELAR</button>
             <button type="submit" class="btn btnAdd">CREAR</button>
         </div>
-
-
-
-        
     </form>
 </div>
 @endsection

@@ -45,6 +45,10 @@ Route::middleware(['auth', 'verified', 'checkUserRole'])->group(function () {
     Route::put('/usuario/{id}', [UserController::class, 'update'])->name('usuarios.update');
     Route::get('amarres/createdos', [BerthController::class, 'createdos'])->name('amarres.createdos');
     Route::post('amarres/createdos', [BerthController::class, 'storedos'])->name('amarres.storedos');
+    Route::get('pantalanes/createdos', [DockController::class, 'createdos'])->name('pantalanes.createdos');
+    Route::post('pantalanes/createdos', [DockController::class, 'storedos'])->name('pantalanes.storedos');
+    Route::get('/instalaciones/opcionpantalanes', [FacilityController::class, 'opcionPantalanes'])->name('instalaciones.opcionpantalanes');
+    Route::get('/pantalanes/opcionamarres', [DockController::class, 'opcionAmarres'])->name('pantalanes.opcionamarres');
     Route::resource('amarres', BerthController::class);
     Route::resource('instalaciones', FacilityController::class);
     Route::resource('pantalanes', DockController::class);

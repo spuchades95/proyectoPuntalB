@@ -9,6 +9,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
 use App\Models\Transit;
 use App\Models\BaseBerth;
+use Illuminate\Support\Facades\Session;
 
 class BerthController extends Controller
 {
@@ -26,6 +27,7 @@ class BerthController extends Controller
      */
     public function create(Request $request)
     {
+        
         $Pantalan_id = $request->input('dock');
         $pantalanNombre = Dock::find($Pantalan_id)->Nombre;
         return view('amarres.create', [
@@ -35,11 +37,11 @@ class BerthController extends Controller
     }
     public function createdos(Request $request)
     {
-        $Pantalan_id = $request->input('dock');
-        $pantalanNombre = Dock::find($Pantalan_id)->Nombre;
+       
+        $ultimo = Dock::latest()->first();
+        $Pantalan_id = $ultimo->id;
         return view('amarres.createdos', [
             'Pantalan_id' => $Pantalan_id,
-            'pantalan_nombre' => $pantalanNombre
         ]);
     }
 
@@ -85,18 +87,19 @@ class BerthController extends Controller
     }
     public function storedos(Request $request)
     {
+        Log::info('Llamada storedos:', [$request]);
         $request->validate([
             'cantidad' => 'required|integer|min:1',
         ]);
         $cantidad = $request->cantidad;
-       
+        $pantalan_id = $request->Pantalan_id; 
 
         for ($i = 0; $i < $cantidad; $i++) {
 
-            $numeroAmarre = $this->generarNumeroAmarre($request->Pantalan_id);
+            $numeroAmarre = $this->generarNumeroAmarre($pantalan_id);
             $amarre = new Berth();
             $amarre->Numero = $numeroAmarre;
-            $amarre->Pantalan_id = $request->Pantalan_id;
+            $amarre->Pantalan_id = $pantalan_id; 
             $amarre->Estado = "Disponible";
             $amarre->TipoPlaza = "Undefined";
             $amarre->Anio= now();

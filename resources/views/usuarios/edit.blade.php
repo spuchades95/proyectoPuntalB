@@ -10,7 +10,7 @@
 
 <div class="formularioUsuario">
     <div class="formHeader">
-        <h5>EDITAR USUARIO</h5>
+        <h5>EDITAR USUARIO {{$usuario->NombreUsuario}}</h5>
     </div>
 
     <form class="form-container" method="POST" action="{{ route('usuarios.update', ['usuario' => $usuario->id]) }}">
@@ -97,7 +97,7 @@
                 <div class="modal-header">
                     <h4 class="modal-title">BAJA DE AMARRE </h4>
                 </div>
-                <form id="delete-form" action="{{ route('usuario.destroy', ['usuario' => $usuario->id]) }}" method="POST">
+                <form id="delete-form" action="{{ route('usuarios.destroy', ['usuario' => $usuario->id]) }}" method="POST">
                 <div class="modal-body">
                     <div class="mb-3 d-flex">
                         <label for="NombreCompleto"> Nombre del usuario:</label>

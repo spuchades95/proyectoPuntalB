@@ -1,11 +1,13 @@
 @extends('layouts.plantilla')
 
 @section('content')
-<link rel="stylesheet" type="text/css" href="{{ asset('styles.css') }}">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 
 <div class="formulario">
     <div class="formHeader">
-        <h5>VISTA PANTALÁN {{ $pantalan->Nombre }} </h5>
+        <h5>PANTALÁN {{ $pantalan->Nombre }} </h5>
     </div>
     <form class="form-container">
         <div class="mb-3 d-flex">
