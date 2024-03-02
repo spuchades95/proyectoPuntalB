@@ -48,14 +48,14 @@
                 <canvas id="barChart2"></canvas>
             </div>
         </div>
-        <!--<div class="card">
+        <div class="card">
             <div class="card-header text-center">
-                PORCENTAJE DE OCUPACIÓN DE TRÁNSITOS Y PB
+                VOLUMÉN DE ALTAS Y BAJAS DE USUARIOS
             </div>
             <div class="card-content overflow-auto">
                 <canvas id="barChart3"></canvas>
             </div>
-        </div> -->
+        </div>
     </div>
     <div class="cardsContainerDown d-flex">
         <div class="card">
@@ -100,6 +100,27 @@
                     'rgb(54, 162, 235)',
                     'rgb(255, 205, 86)'
                 ],
+                borderColor: 'rgba(75, 192, 192, 1)',
+                borderWidth: 1
+            }]
+        },
+        options: {
+            scales: {
+                y: {
+                    beginAtZero: true
+                }
+            }
+        }
+    });
+    var ctx3 = document.getElementById('barChart3').getContext('2d');
+    var myChart3 = new Chart(ctx3, {
+        type: 'bar',
+        data: {
+            labels: @json($dataPorcentajeAltasBajas['labels']),
+            datasets: [{
+                label: 'Altas y Bajas',
+                data: @json($dataPorcentajeAltasBajas['data']),
+                backgroundColor: ['rgba(75, 192, 192, 0.2)', 'rgba(54, 162, 235, 0.2)'],
                 borderColor: 'rgba(75, 192, 192, 1)',
                 borderWidth: 1
             }]

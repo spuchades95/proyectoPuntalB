@@ -31,7 +31,16 @@ class PanelController extends Controller
         $amarresOperativos = Berth::where('Estado', 'Operativo')->count();
         $amarresNoOperativos = Berth::where('Estado', 'No operativo')->count();
         $plazasBaseExpiran1mes = Rental::where('FechaFinalizacion', '<', Carbon::now()->addMonth())->count();
+        $altasUsuarios = User::where('created_at', '>', Carbon::now()->subMonth())->count();
+        $bajasUsuarios = User::onlyTrashed()
+        ->where('deleted_at', '>', Carbon::now()->subMonth())
+        ->count();
 
+
+        $dataPorcentajeAltasBajas = [
+            'labels' => ['Altas', 'Bajas'],
+            'data' => [$altasUsuarios, $bajasUsuarios],
+        ];
 
         $dataPorcentajeTransPb = [
             'labels' => ['Tránsitos', 'Plazas Base'],
@@ -41,6 +50,6 @@ class PanelController extends Controller
             'labels' => ['Administrativos', 'Trabajadores de muelle', 'Concesionarios'],
             'data' => [$totalAdmnistratives, $totalDockWorkers, $totalConcesionarios],
         ];
-        return view('panel.index', compact('totalUsers', 'totalroles', 'totalfacilities', 'dataPorcentajeTransPb', 'dataPorcentajeRoles', 'totalAdmnistratives', 'totalDockWorkers', 'totalPantalanes', 'totalPlazasBase', 'amarresOperativos', 'amarresNoOperativos', 'plazasBaseExpiran1mes'));
+        return view('panel.index', compact('totalUsers', 'totalroles', 'totalfacilities', 'dataPorcentajeTransPb', 'dataPorcentajeRoles', 'dataPorcentajeAltasBajas', 'totalAdmnistratives', 'totalDockWorkers', 'totalPantalanes', 'totalPlazasBase', 'amarresOperativos', 'amarresNoOperativos', 'plazasBaseExpiran1mes'));
     }
 }
