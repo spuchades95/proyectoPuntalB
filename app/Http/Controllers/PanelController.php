@@ -35,6 +35,11 @@ class PanelController extends Controller
         $bajasUsuarios = User::onlyTrashed()
         ->where('deleted_at', '>', Carbon::now()->subMonth())
         ->count();
+        $labels = [];
+        for ($i = 6; $i >= 0; $i--) {
+            $month = date('F', strtotime("-$i month"));
+            $labels[] = $month;
+        }
 
 
         $dataPorcentajeAltasBajas = [
@@ -50,6 +55,6 @@ class PanelController extends Controller
             'labels' => ['Administrativos', 'Trabajadores de muelle', 'Concesionarios'],
             'data' => [$totalAdmnistratives, $totalDockWorkers, $totalConcesionarios],
         ];
-        return view('panel.index', compact('totalUsers', 'totalroles', 'totalfacilities', 'dataPorcentajeTransPb', 'dataPorcentajeRoles', 'dataPorcentajeAltasBajas', 'totalAdmnistratives', 'totalDockWorkers', 'totalPantalanes', 'totalPlazasBase', 'amarresOperativos', 'amarresNoOperativos', 'plazasBaseExpiran1mes'));
+        return view('panel.index', compact('totalUsers', 'totalroles', 'totalfacilities', 'dataPorcentajeTransPb', 'dataPorcentajeRoles', 'dataPorcentajeAltasBajas', 'totalAdmnistratives', 'totalDockWorkers', 'totalPantalanes', 'totalPlazasBase', 'amarresOperativos', 'amarresNoOperativos', 'plazasBaseExpiran1mes', 'labels'));
     }
 }

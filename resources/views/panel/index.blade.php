@@ -67,24 +67,25 @@
             </div>
 
         </div>
-        <!-- <div class="card">
+        <div class="card">
             <div class="card-header text-center">
-                PORCENTAJE DE OCUPACIÓN DE TRÁNSITOS Y PB
+                ALQUILERES DE PLAZAS BASE
             </div>
             <div class="card-content">
                 <canvas id="barChart5"></canvas>
             </div>
-        </div> -->
-        <!-- <div class="card">
+        </div>
+        <div class="card">
             <div class="card-header text-center">
-                PORCENTAJE DE OCUPACIÓN DE TRÁNSITOS Y PB
+                ALQUILERES DE TRÁNSITOS
             </div>
             <div class="card-content">
                 <canvas id="barChart6"></canvas>
             </div>
-        </div> -->
+        </div>
     </div>
 </div>
+
 
 <script>
     var ctx2 = document.getElementById('barChart2').getContext('2d');
@@ -154,6 +155,42 @@
             }
         }
     });
+
+    const labels = <?php echo json_encode($labels); ?>;
+    const data = {
+        labels: labels,
+        datasets: [{
+            label: 'gráfica',
+            data: [65, 59, 80, 81, 56, 55, 140],
+            fill: false,
+            borderColor: 'rgb(75, 192, 192)',
+            tension: 0.1
+        }]
+    };
+
+    const ctx5 = document.getElementById('barChart5').getContext('2d');
+    const myChart5 = new Chart(ctx5, {
+        type: 'line',
+        data: data,
+    });
+   
+    const data2 = {
+        labels: labels,
+        datasets: [{
+            label: 'gráfica',
+            data: [615, 59, 60, 81, 56, 55, 140],
+            fill: false,
+            borderColor: 'rgb(75, 192, 192)',
+            tension: 0.1
+        }]
+    };
+
+    const ctx6 = document.getElementById('barChart6').getContext('2d');
+    const myChart6 = new Chart(ctx6, {
+        type: 'line',
+        data: data2,
+    });
+
 
     const scrollUp = document.getElementById('scrollUp');
     const scrollDown = document.getElementById('scrollDown');
