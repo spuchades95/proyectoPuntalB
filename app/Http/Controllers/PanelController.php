@@ -10,7 +10,9 @@ use App\Models\Administrative;
 use App\Models\DockWorker;
 use App\Models\Berth;
 use App\Models\BaseBerth;
+use App\Models\Concessionaire;
 use App\Models\Rental;
+use App\Models\Transit;
 use Carbon\Carbon;
 
 class PanelController extends Controller
@@ -22,17 +24,23 @@ class PanelController extends Controller
         $totalfacilities = Facility::count();
         $totalAdmnistratives = Administrative::count();
         $totalDockWorkers = DockWorker::count();
+        $totalConcesionarios = Concessionaire::count();
         $totalPantalanes = Berth::count();
         $totalPlazasBase = BaseBerth::count();
+        $totalTransitos = Transit::count();
         $amarresOperativos = Berth::where('Estado', 'Operativo')->count();
         $amarresNoOperativos = Berth::where('Estado', 'No operativo')->count();
         $plazasBaseExpiran1mes = Rental::where('FechaFinalizacion', '<', Carbon::now()->addMonth())->count();
-      
 
-        $data = [
-            'labels' => ['January', 'February', 'March', 'April', 'May'],
-            'data' => [65, 59, 80, 81, 56],
+
+        $dataPorcentajeTransPb = [
+            'labels' => ['Tránsitos', 'Plazas Base'],
+            'data' => [$totalTransitos, $totalPlazasBase],
         ];
-        return view('panel.index', compact('totalUsers', 'totalroles', 'totalfacilities', 'data', 'totalAdmnistratives', 'totalDockWorkers', 'totalPantalanes', 'totalPlazasBase', 'amarresOperativos', 'amarresNoOperativos', 'plazasBaseExpiran1mes'));
+        $dataPorcentajeRoles = [
+            'labels' => ['Administrativos', 'Trabajadores de muelle', 'Concesionarios'],
+            'data' => [$totalAdmnistratives, $totalDockWorkers, $totalConcesionarios],
+        ];
+        return view('panel.index', compact('totalUsers', 'totalroles', 'totalfacilities', 'dataPorcentajeTransPb', 'dataPorcentajeRoles', 'totalAdmnistratives', 'totalDockWorkers', 'totalPantalanes', 'totalPlazasBase', 'amarresOperativos', 'amarresNoOperativos', 'plazasBaseExpiran1mes'));
     }
 }

@@ -64,6 +64,8 @@ class DatabaseSeeder extends Seeder
     // \App\Models\TransitBoat::factory(1)->create();
     // \App\Models\TransitBoat::factory(3)->create();
     // \App\Models\TransitCrew::factory(1)->create();
-    \App\Models\Rental::factory(1)->create();
+    // \App\Models\Rental::factory(1)->create();
+    // \App\Models\Concessionaire::factory(1)->create();
+        // \App\Models\Concessionaire::factory()->count(1)->withRoleOne()->create();
   }
 }
