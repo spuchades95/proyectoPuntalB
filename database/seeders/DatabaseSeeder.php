@@ -21,7 +21,7 @@ class DatabaseSeeder extends Seeder
     // ]);
     // \App\Models\Facility::factory(1)->create();
     // \App\Models\Role::factory(1)->create();
-    // \App\Models\User::factory(3)->create();
+    // \App\Models\User::factory(2)->create();
     // \App\Models\Crew::factory(3)->create();
     //  \App\Models\Boat::factory(3)->create();
     // Rental::factory(3)->create();
@@ -67,5 +67,6 @@ class DatabaseSeeder extends Seeder
     // \App\Models\Rental::factory(1)->create();
     // \App\Models\Concessionaire::factory(1)->create();
         // \App\Models\Concessionaire::factory()->count(1)->withRoleOne()->create();
+        // \App\Models\CivilGuard::factory(2)->create();
   }
 }
