@@ -229,29 +229,21 @@ public function index()
 
     public function cambiarEstado(Request $request, $id)
     {
-        // Agregar registros de depuración para verificar la solicitud y los datos recibidos
-        \Log::info('Solicitud recibida para cambiar el estado del tránsito. ID: ' . $id);
-        \Log::info('Datos recibidos:', $request->all());
+
         
         // Validar la solicitud
         $request->validate([
             'estatus' => 'required|string|in:llegada,salida',
         ]);
     
-        // Buscar el tránsito por su ID
-        \Log::info('Buscando el tránsito por su ID: ' . $id);
         $transito = Transit::findOrFail($id);
-        \Log::info('Tránsito encontrado:', $transito->toArray());
-    
+       
         // Actualizar el estado del tránsito
-        \Log::info('Actualizando el estado del tránsito a: ' . $request->estatus);
+    
         $transito->update([
             'Estatus' => $request->estatus, 
         ]);
-        \Log::info('Estado del tránsito actualizado:', $transito->toArray());
-    
-        // Devolver una respuesta
-        \Log::info('Respuesta enviada: Estado del tránsito actualizado correctamente');
+        
         return response()->json(['message' => 'Estado del tránsito actualizado correctamente'], 200);
     }
     
@@ -264,11 +256,11 @@ public function index()
             ->join('Transit_Boats AS TB', 'TB.transito_id', '=', 'T.id')
             ->join('Boats AS BT', function ($join) {
                 $join->on('BT.id', '=', 'T.id')
-                    ->whereNull('BT.deleted_at'); // Filtra solo embarcaciones que no han sido eliminadas
+                    ->whereNull('BT.deleted_at'); 
             })
-            ->whereNull('T.deleted_at') // Filtra solo tránsitos que no han sido eliminados
+            ->whereNull('T.deleted_at') 
             ->select(
-                'T.*', // Selecciona todos los campos de la tabla Transits
+                'T.*', 
                 'D.nombre',
                 'F.ubicacion',
                 'B.Estado',
