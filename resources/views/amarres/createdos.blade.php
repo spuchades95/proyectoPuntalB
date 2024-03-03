@@ -17,7 +17,7 @@
     <input type="number" id="cantidad" name="cantidad" required min="1">
 
     <button type="submit" class="btn btnAdd">Crear Amarres</button>
-      
+    <a href="{{ route('instalaciones.index') }}" class="btn btnCancelar">Ir a inicio</a>
     </form>
 </div>
 
