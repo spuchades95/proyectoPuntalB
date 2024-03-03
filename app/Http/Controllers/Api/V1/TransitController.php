@@ -139,15 +139,16 @@ class TransitController extends Controller
         return $cantidad;
     }
 
-    public function idTransito($id)
-{
-    $transito = Transit::find($id);
-    if ($transito) {
-        return response()->json(['transito_id' => $transito->Amarre_id], 200);
-    } else {
-        return response()->json(['message' => 'No se encontró ningún tránsito con el ID proporcionado'], 404);
+    public function idTransito($amarre)
+    {
+        $transito = Transit::where('Amarre_id', $amarre)->first();
+        if ($transito) {
+            return response()->json(['transito_id' => $transito->id], 200);
+        } else {
+            return response()->json(['message' => 'No se encontró ningún tránsito con el número de amarre proporcionado'], 404);
+        }
     }
-}
+    
 
     public function estancia()
     {

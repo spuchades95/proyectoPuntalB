@@ -1,5 +1,5 @@
 @extends('layouts.plantilla')
-
+@section('title', 'Crear amarres')
 @section('content')
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 
@@ -14,10 +14,12 @@
         @csrf
         <input type="hidden" name="Pantalan_id" value="{{ $Pantalan_id }}">
         <label for="cantidad">Cantidad de amarres a crear:</label>
-    <input type="number" id="cantidad" name="cantidad" required min="1">
+        <input type="number" id="cantidad" name="cantidad" required min="1">
+
+        <button type="submit" class="btn btnAdd">Crear Amarres</button>
 
     <button type="submit" class="btn btnAdd">Crear Amarres</button>
-      
+    <a href="{{ route('instalaciones.index') }}" class="btn btnCancelar">Ir a inicio</a>
     </form>
 </div>
 

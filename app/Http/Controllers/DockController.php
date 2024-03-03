@@ -127,7 +127,7 @@ public function store(Request $request)
     $idPantalan = $pantalanes->id;
        Session::put('id_pantalan', $idPantalan);
 
-        return redirect()->route('pantalanes.opcionamarres')
+        return redirect()->route('instalaciones.index')
             ->with('success', 'Dock created successfully.');
     }
 

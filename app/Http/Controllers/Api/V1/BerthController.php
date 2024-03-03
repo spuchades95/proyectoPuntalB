@@ -114,7 +114,7 @@ $amarre->update([
      {
          // Obtener el estado de ocupación de las plazas base
          $plazasBaseOcupadas = Berth::where('TipoPlaza', 'Plaza Base')
-                                     ->where('Estado', 'Ocupada')
+                                     ->where('Estado', 'Ocupado')
                                      ->count();
          $plazasBaseLibres = Berth::where('TipoPlaza', 'Plaza Base')
                                   ->where('Estado', 'Disponible')
@@ -125,7 +125,7 @@ $amarre->update([
      
        
          $transitosOcupados = Berth::where('TipoPlaza', 'Transito')
-                                   ->where('Estado', 'Ocupada')
+                                   ->where('Estado', 'Ocupado')
                                    ->count();
          $transitosLibres = Berth::where('TipoPlaza', 'Transito')
                                 ->where('Estado', 'Disponible')

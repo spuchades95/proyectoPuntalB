@@ -114,7 +114,7 @@ Route::get('v1/embarcacion/tipocomun',[BoatController::class , 'tipocomun']);
 
 Route::post('v1/transito/crear',[BerthController::class ,'crear']);
 Route::get('v1/guardiaCivil/leido',[CivilGuardController::class , 'leido']);
-Route::get('v1/transito/cambiar/{id}',[BerthController::class , 'actualizaEstadoOcupado']);
+Route::put('v1/transito/cambiar/{id}',[BerthController::class , 'actualizaEstadoOcupado']);
 Route::get('v1/tripulante/transito/{id}',[CrewController::class , 'mostrar']);
 Route::get('v1/pantalan/{id}/amarrestr',[DockController::class , 'amarresTransito']);
 Route::get('v1/transito/paratabla',[TransitController::class , 'paratablaTransito']);
@@ -123,6 +123,8 @@ Route::put('v1/transito/update/{id}',[TransitController::class , 'updateTransito
 Route::put('v1/transito/update/{id}',[TransitController::class , 'updateTransito']);
 Route::get('v1/transito/traer/{id}',[TransitController::class , 'idTransito']);
 Route::post('v1/tripulante/añadir',[CrewController::class , 'storeConId']);
+Route::delete('v1/borrar/tripulante/{id}',[CrewController::class , 'eliminar']);
+
 
 
 
