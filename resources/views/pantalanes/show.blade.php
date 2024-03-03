@@ -116,5 +116,5 @@
         font-weight: bold;
     }
 </style>
-
+<link rel="stylesheet" type="text/css" href="{{ asset('styles.css') }}">
 @endsection

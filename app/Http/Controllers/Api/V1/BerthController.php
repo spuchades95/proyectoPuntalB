@@ -4,6 +4,11 @@ namespace App\Http\Controllers\Api\V1;
 
 use App\Http\Controllers\Controller;
 use App\Models\Berth;
+use App\Models\Transit;
+use App\Models\TransitBoat;
+
+use Illuminate\Support\Facades\Log;
+
 use Illuminate\Http\Request;
 
 class BerthController extends Controller
@@ -21,7 +26,7 @@ $amarre->update([
 ]);
     }
     public function actualizaEstadoDisponible(string $id){
-
+        
         $amarre= Berth::findOrFail($id);
         
         $amarre->update([
@@ -41,6 +46,33 @@ $amarre->update([
      }
 
 
+     public function crear(Request $request)
+{
+    
+    try {
+        
+    $transitId = Transit::where('Amarre_id', $request->input('Amarre'))->firstOrFail();
+    $fechaEntrada = $request->input('FechaEntrada');
+    $fechaSalida = $request->input('FechaSalida');
+    $matricula = $request->input('Embarcacion');
+    
+    
+    $transitId->embarcacion()->attach($matricula, [
+        'FechaEntrada' => $fechaEntrada,
+        'FechaSalida' => $fechaSalida,
+    ]);
+    $transitboat= TransitBoat::all();
+
+        return response()->json($transitboat, 200);
+    } catch (\Exception $e) {
+
+        return response()->json([
+            Log::info($e->getMessage()),
+            'message' => 'Error al actualizar el amarre base',
+            'code' => 500
+        ], 500);
+    }
+}
 
      public function plazasbdisponibles(){
       
@@ -82,7 +114,7 @@ $amarre->update([
      {
          // Obtener el estado de ocupación de las plazas base
          $plazasBaseOcupadas = Berth::where('TipoPlaza', 'Plaza Base')
-                                     ->where('Estado', 'Ocupada')
+                                     ->where('Estado', 'Ocupado')
                                      ->count();
          $plazasBaseLibres = Berth::where('TipoPlaza', 'Plaza Base')
                                   ->where('Estado', 'Disponible')
@@ -93,7 +125,7 @@ $amarre->update([
      
        
          $transitosOcupados = Berth::where('TipoPlaza', 'Transito')
-                                   ->where('Estado', 'Ocupada')
+                                   ->where('Estado', 'Ocupado')
                                    ->count();
          $transitosLibres = Berth::where('TipoPlaza', 'Transito')
                                 ->where('Estado', 'Disponible')

@@ -24,6 +24,17 @@ class DockController extends Controller
     
          return response()->json($pantalanes);
      }
+     public function amarresTransito($id)
+     {
+  
+         $pantalanes = Berth::where('Pantalan_id', $id)
+         ->where('Estado', 'Disponible')
+         ->where('TipoPlaza', 'Transito')
+         ->get();
+         
+    
+         return response()->json($pantalanes);
+     }
 
 
     public function index()

@@ -78,13 +78,18 @@
                 
             </select>        </div>
         
-            <div style='text-align:right' class='mt-4'>
-            <button type="button" class="btn btnCancelar" data-toggle="modal" data-target="#myModal">
-                ELIMINAR
-            </button>
+        <!-- Botones -->
+        <div class="mt-3 d-flex">
+        <form id="delete-form" action="{{ route('usuarios.destroy', ['usuario' => $usuario->id]) }}" method="POST">
+    @csrf
+    @method('DELETE')
+    <button type="submit" class="btn btnDelete">ELIMINAR</button>
+</form>           
             <button type="submit" class="btn btnAdd">EDITAR</button>
         </div>
-        </form>
+    </form>
+   
+</div>
 
     <div class="modal" id="myModal">
         <div class="modal-dialog">
