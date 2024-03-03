@@ -65,6 +65,17 @@ class CrewController extends Controller
     // Retorna una respuesta JSON con los datos de la tripulación (crew) y un código de estado 201 (Created)
     return response()->json($crew, 201);
 }
+
+function eliminar($id)
+{
+    Log::info( $id);
+    try {
+        TransitCrew::where('Transito_id', $id)->delete();
+        return response()->json(['message' => 'Los registros en transit_crew relacionados con el ID de tránsito '.$id.' han sido borrados exitosamente.'], 200);
+    } catch (\Exception $e) {
+        return response()->json(['message' => 'Ha ocurrido un error al intentar borrar los registros en transit_crew: '.$e->getMessage()], 500);
+    }
+}
     
 
     /**
