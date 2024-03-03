@@ -10,7 +10,7 @@
 
 <div class="formularioUsuario">
     <div class="formHeader">
-        <h5>EDITAR USUARIO {{$usuario->NombreUsuario}}</h5>
+        <h5>EDITAR USUARIO</h5>
     </div>
 
     <form class="form-container" method="POST" action="{{ route('usuarios.update', ['usuario' => $usuario->id]) }}">
@@ -37,16 +37,17 @@
                         <label for="Telefono" class="form-label">Teléfono:</label>
                         <input name="Telefono" type="text" class="form-control mt-4" placeholder="Teléfono" value="{{ $usuario->Telefono }}" />
                     </div>
+                    <div class="mb-3 d-flex">
+                        <label for="Email" class="form-label">Email:</label>
+                        <input name="email" type="text" class="form-control mt-4" placeholder="Email" value="{{ $usuario->email }}" />
+                    </div>
                 </div>
             </div>
             
             <!-- Formulario derecho -->
             <div class="col-md-6">
                 <div class="form-right">
-                    <div class="mb-3 d-flex">
-                        <label for="Email" class="form-label">Email:</label>
-                        <input name="email" type="text" class="form-control mt-4" placeholder="Email" value="{{ $usuario->email }}" />
-                    </div>
+                    
                     <div class="mb-3 d-flex">
                         <label for="Direccion" class="form-label">Dirección:</label>
                         <input name="Direccion" type="text" class="form-control mt-4" placeholder="Dirección" value="{{ $usuario->Direccion }}" />
@@ -55,20 +56,18 @@
                     <div class="mb-3 d-flex">
                         <label for="Descripcion" class="form-label">Descripción:</label>
                         <input name="Descripcion" type="text" class="form-control mt-4" placeholder="Descripción" value="{{ $usuario->Descripcion }}" />
+                   
                     </div>
-                </div>
-            </div>
+                    
+                    <div class="mb-3 d-flex">
+                        <label for="instalacion" class="form-label">Instalaciones:</label>
+                    <select name="Instalacion_id" class="form-control mt-4" required>
+                            @foreach($Instalacion as $instalacion)
+                                <option value="{{ $instalacion->id }}">{{ $instalacion->Ubicacion }}</option>
+                            @endforeach
+                    </select>
         
-        
-        <!-- Selector de instalaciones -->
-        <div class="mb-3 d-flex">
-            <label for="instalacion" class="form-label">Instalaciones:</label>
-            <select name="Instalacion_id" class="form-control mt-4" required>
-                @foreach($Instalacion as $instalacion)
-                    <option value="{{ $instalacion->id }}">{{ $instalacion->Ubicacion }}</option>
-                @endforeach
-            </select>
-        </div>
+                    </div>
         <div class="mb-3 d-flex">
             <label for="habilitado" class="form-label">Habilitado:</label>
             <select name="Habilitado" class="form-control mt-4" required>
@@ -77,19 +76,33 @@
         <option value="0" {{ $usuario->Habilitado == 0 ? 'selected' : '' }}>Deshabilitado</option>
                 
             </select>        </div>
+                </div>
+            </div>
         
-        <!-- Botones -->
+        
+        <!-- Selector de instalaciones -->
+        
+        
+        <!-- Botones
         <div class="mt-3 d-flex">
         <form id="delete-form" action="{{ route('usuarios.destroy', ['usuario' => $usuario->id]) }}" method="POST">
-    @csrf
-    @method('DELETE')
-    <button type="submit" class="btn btnDelete">ELIMINAR</button>
-</form>           
+            @csrf
+            @method('DELETE')
+            <button type="submit" class="btn btnCancelar">ELIMINAR</button>
+        </form>           
             <button type="submit" class="btn btnAdd">EDITAR</button>
         </div>
-    </form>
+    </form> -->
    
 </div>
+
+<div style='text-align:right' class='mt-4'>
+            <button type="button" class=" bot btn btnCancelar" data-toggle="modal" data-target="#myModal">
+                ELIMINAR
+            </button>
+            <button type="submit" class=" bot btn btnAdd">EDITAR</button>
+        </div>
+        </form>
 
     <div class="modal" id="myModal">
         <div class="modal-dialog">
@@ -126,9 +139,12 @@
     {
         text-align: right;
         position: absolute;   
-        
-        right:100px;
-        top:800px;
+        text-align: right;
+       
+     }
+     .bot {
+        position: relative;   
+        top:50px;
      }
     .form-container
     {
@@ -178,6 +194,7 @@ line-height: normal;
     text-decoration: none;
     background-color:#ffc745!important;
     color: #7a2e0d!important;
+    
 }
 
 

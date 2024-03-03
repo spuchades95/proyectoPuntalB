@@ -9,7 +9,7 @@
 <link rel="stylesheet" type="text/css" href="{{ asset('styles.css') }}">
 <div class="formularioUsuarios">
     <div class="formHeader">
-        <h5>{{ $usuario->Usuario }} </h5>
+        <h5>{{ $usuario->NombreUsuario }}  </h5>
     </div>
     <form class="form-container">
         @csrf
@@ -82,7 +82,13 @@
     </script>
 
     <style>
-      
+        
+       .botones {
+        position: absolute;
+        bottom:80px;
+        right:60px;
+        margin: 20px;
+    }
         .form-container {
 
             width: 100%;
@@ -132,19 +138,19 @@
 
 
         .formHeader {
-            padding: 6px;
-            font-weight: bold;
-            font-family: 'Questrial', sans-serif;
-            color: #ffffff;
-            background-color: #1d2834;
-            border-radius: 5px 5px 0px 0px;
+             padding: 6px;
+        font-weight: bold;
+        font-family: 'Questrial', sans-serif;
+        color: #ffffff;
+        background-color: #1d2834;
+        border-radius: 5px 5px 0px 0px;
         }
 
-        .formularioRoles {
+        .formularioUsuarios {
             padding: 50px;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
 
         }
 
