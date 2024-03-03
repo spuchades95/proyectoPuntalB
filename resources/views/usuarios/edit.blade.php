@@ -10,7 +10,7 @@
 
 <div class="formularioUsuario">
     <div class="formHeader">
-        <h5>EDITAR USUARIO</h5>
+        <h5>EDITAR USUARIO {{ $usuario->NombreUsuario }}</h5>
     </div>
 
     <form class="form-container" method="POST" action="{{ route('usuarios.update', ['usuario' => $usuario->id]) }}">
@@ -135,7 +135,7 @@
 
 </div>
 <style>
-    .botones {
+   /* .botones {
         text-align: right;
         position: absolute;   
         text-align: right;
@@ -144,7 +144,7 @@
      .bot {
         position: relative;   
         top:50px;
-     }
+     }*/
     .form-container
     {
 
@@ -197,20 +197,11 @@
 
     }
 
-<<<<<<< HEAD
-.btnCancelar {
-    text-decoration: none;
-    background-color:#ffc745!important;
-    color: #7a2e0d!important;
-    
-}
-=======
     .btnCancelar {
         text-decoration: none;
         background-color: #ffc745 !important;
         color: #7a2e0d !important;
     }
->>>>>>> e923ca81fae21d9ac1e0fa223a57f674a61b40ed
 
 
 
