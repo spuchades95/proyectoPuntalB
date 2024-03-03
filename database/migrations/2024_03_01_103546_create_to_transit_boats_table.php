@@ -11,7 +11,7 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('transit_boats', function (Blueprint $table) {
+       // Schema::create('transit_boats', function (Blueprint $table) {
          /*   Schema::dropIfExists('transit_boats');
            $table->id();
            $table->unsignedBigInteger('Embarcacion_id');
@@ -23,7 +23,7 @@ return new class extends Migration
            $table->string('Causa')->nullable();
             $table->softDeletes();
             $table->timestamps();*/
-        });
+     //   });
     }
 
     /**
