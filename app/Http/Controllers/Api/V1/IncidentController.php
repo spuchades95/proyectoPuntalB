@@ -27,7 +27,7 @@ class IncidentController extends Controller
         $incidentes = Incident::with('administrativo', 'guardamuelles')->get();
         $incidentesConNombres = $incidentes->map(function ($incidente) {
             $guardamuellesNombre = User::find($incidente->Guardamuelle_id)->NombreUsuario;
-            $administrativoNombre = User::find($incidente->Administrativo_id)->NombreUsuario;
+           // $administrativoNombre = User::find($incidente->Administrativo_id)->NombreUsuario;
             return [
                 'id' => $incidente->id,
                 'Titulo' => $incidente->Titulo,
@@ -35,8 +35,8 @@ class IncidentController extends Controller
                 'Leido' => $incidente->Leido,
                 'Guardamuelle_id' => $incidente->Guardamuelle_id, // ID del dock worker
                 'Guardamuelle_nombre' => $guardamuellesNombre,
-                'Administrativo_id' => $incidente->Administrativo_id, // ID del administrador
-                'Administrativo_nombre' => $administrativoNombre,
+                //'Administrativo_id' => $incidente->Administrativo_id, // ID del administrador
+                //'Administrativo_nombre' => $administrativoNombre,
                 'Descripcion' => $incidente->Descripcion,
                 // 'created_at' => $incidente->created_at,
                 // 'updated_at' => $incidente->updated_at,
@@ -48,23 +48,45 @@ class IncidentController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
-    {
-        $incident = Incident::create($request->all());
+//     public function store(Request $request)
+// {
+//     $incident = new Incident();
+//     $incident->Titulo = $request->input('Titulo');
+//     $incident->Descripcion = $request->input('Descripcion');
+//     $incident->Guardamuelle_id = $request->input('Guardamuelle_id');
 
-        if ($request->hasFile('Imagen')) {
-            $imagenPath = $request->file('Imagen')->store('public/image');
-            // Obtén la URL pública de la imagen almacenada
-            $url = Storage::url($imagenPath);
-            Log::info('URL CREATE: ' . $url);
-            // Asigna la URL al atributo Imagen del modelo Boat
-            // $boat->Imagen = $url;
-        }
+//     if ($request->hasFile('Imagen')) {
+//         $imagenPath = $request->file('Imagen')->store('public/incidencias');
+//         $incident->Imagen = Storage::url($imagenPath);
+//     }
 
-        $incident->save();
-        return response()->json($incident, 201);
+//     $incident->save();
+    
+//     return response()->json($incident, 201);
+// }
+
+public function store(Request $request)
+{
+    // Crear una nueva instancia de Incident
+    $incident = new Incident();
+    
+    // Asignar los valores de los atributos
+    $incident->Titulo = $request->input('Titulo');
+    $incident->Descripcion = $request->input('Descripcion');
+    $incident->Guardamuelle_id = $request->input('Guardamuelle_id');
+
+    // Verificar si se ha subido una imagen y guardarla
+    if ($request->hasFile('Imagen')) {
+        $imagenPath = $request->file('Imagen')->store('public/incidencias');
+        $incident->Imagen = Storage::url($imagenPath);
     }
 
+    // Guardar el incidente en la base de datos
+    $incident->save();
+    
+    // Retornar la respuesta con el incidente y el código de estado 201 (creado)
+    return response()->json($incident, 201);
+}
     /**
      * Display the specified resource.
      */

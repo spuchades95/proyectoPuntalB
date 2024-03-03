@@ -92,7 +92,7 @@ Route::get('v1/transito/indexguardamuelles',[TransitController::class , 'indexgu
 Route::put('v1/transito/{id}/cambiar-estado', [TransitController::class, 'cambiarEstado']);
 
 
-
+Route::put('v1/embarcacion/{id}/update-photo', [BoatController::class, 'updatePhoto']);
 
 
 Route::get('v1/transito/cantidad',[TransitController::class , 'cantidadtr']);

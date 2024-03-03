@@ -34,14 +34,16 @@
                 <label for="email" class="form-label">Email:</label>
                 <input name="email" type="text" class="form-control mt-4" placeholder="Email " value="{{ $usuario->email }}" readonly />
             </div>
-            <div class="mb-3 d-flex">
-                <label for="direccion" class="form-label">Dirección:</label>
-                <input name="direccion" type="text" class="form-control mt-4" placeholder="Dirección" value="{{ $usuario->Direccion }}" readonly />
-            </div>
+         
 
 
         </div>
+      
         <div class=form-right>
+        <div class="mb-3 d-flex">
+                <label for="direccion" class="form-label">Dirección:</label>
+                <input name="direccion" type="text" class="form-control mt-4" placeholder="Dirección" value="{{ $usuario->Direccion }}" readonly />
+            </div>
             <div class="mb-3 d-flex">
                 <label for="descripcion" class="form-label">Descripción:</label>
                 <input name="descripcion" type="text" class="form-control mt-4" placeholder="Descripción " value="{{ $usuario->Descripcion }}" readonly />
@@ -83,12 +85,12 @@
 
     <style>
         
-       .botones {
+       /*.botones {
         position: absolute;
         bottom:90px;
         right:60px;
         margin: 20px;
-    }
+    }*/
         .form-container {
 
             width: 100%;
@@ -137,17 +139,29 @@
         }
 
 
+<<<<<<< HEAD
         .formHeader {
              padding: 6px;
+=======
+    .formHeader {
+        padding: 6px;
+>>>>>>> 658346a8e251b6bccbcb3475b5e6bdee72dffd09
         font-weight: bold;
         font-family: 'Questrial', sans-serif;
         color: #ffffff;
         background-color: #1d2834;
         border-radius: 5px 5px 0px 0px;
+<<<<<<< HEAD
         }
 
         .formularioUsuarios {
             padding: 50px;
+=======
+    }
+
+    .formularioRoles {
+        padding: 50px;
+>>>>>>> 658346a8e251b6bccbcb3475b5e6bdee72dffd09
         flex-direction: column;
         align-items: center;
         justify-content: center;

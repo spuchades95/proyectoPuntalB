@@ -10,7 +10,7 @@
 
 <div class="formularioUsuario">
     <div class="formHeader">
-        <h5>EDITAR USUARIO</h5>
+        <h5>EDITAR USUARIO {{ $usuario->NombreUsuario }}</h5>
     </div>
 
     <form class="form-container" method="POST" action="{{ route('usuarios.update', ['usuario' => $usuario->id]) }}">
@@ -145,7 +145,7 @@
      .bot {
         position: relative;   
         top:50px;
-     }
+     }*/
     .form-container
     {
 
