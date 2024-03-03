@@ -62,6 +62,9 @@ Route::put('v1/plazaBase/{id}/actuFin',[BaseBerthController::class , 'actuFin'])
 Route::put('v1/plazaBase/{id}/eli',[BaseBerthController::class , 'eli']);
 
 
+
+
+
 Route::get('v1/instalacion/{id}/pantalanes',[FacilityController::class , 'pantalanes']);
 Route::get('v1/pantalan/{id}/amarres',[DockController::class , 'amarres']);
 
@@ -88,7 +91,6 @@ Route::get('v1/plazaBase/paratabla',[BaseBerthController::class , 'paratabla']);
 Route::get('v1/transito/indexguardamuelles',[TransitController::class , 'indexguardamuelles']);
 Route::put('v1/transito/{id}/cambiar-estado', [TransitController::class, 'cambiarEstado']);
 
-Route::get('v1/guardiaCivil/leido',[CivilGuardController::class , 'leido']);
 
 
 
@@ -107,6 +109,21 @@ Route::get('v1/embarcacion/tipos',[BoatController::class , 'tipos']);
 Route::get('v1/embarcacion/cantidad',[BoatController::class , 'cantidadem']);
 Route::get('v1/embarcacion/pais',[BoatController::class , 'pais']);
 Route::get('v1/embarcacion/tipocomun',[BoatController::class , 'tipocomun']);
+
+
+
+Route::post('v1/transito/crear',[BerthController::class ,'crear']);
+Route::get('v1/guardiaCivil/leido',[CivilGuardController::class , 'leido']);
+Route::put('v1/transito/cambiar/{id}',[BerthController::class , 'actualizaEstadoOcupado']);
+Route::get('v1/tripulante/transito/{id}',[CrewController::class , 'mostrar']);
+Route::get('v1/pantalan/{id}/amarrestr',[DockController::class , 'amarresTransito']);
+Route::get('v1/transito/paratabla',[TransitController::class , 'paratablaTransito']);
+Route::get('v1/transito/paratablaGuardia',[TransitController::class , 'paratablaTransitoGuardia']);
+Route::put('v1/transito/update/{id}',[TransitController::class , 'updateTransito']);
+Route::put('v1/transito/update/{id}',[TransitController::class , 'updateTransito']);
+Route::get('v1/transito/traer/{id}',[TransitController::class , 'idTransito']);
+Route::post('v1/tripulante/añadir',[CrewController::class , 'storeConId']);
+Route::delete('v1/borrar/tripulante/{id}',[CrewController::class , 'eliminar']);
 
 
 

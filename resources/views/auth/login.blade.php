@@ -166,14 +166,21 @@
 
                     <form method="POST" action="{{ route('login') }}">
                         @csrf
-
+                        @if ($errors->has('email'))
+                        <span class="alert alert-danger mt-3">{{ $errors->first('email') }}</span>
+                        @endif
                         <div class="mb-5">
                             <input type="email" class="form-control" name="email" placeholder="EMAIL" />
                         </div>
 
+                        @if ($errors->has('password'))
+                        <span class="alert alert-danger mt-3">{{ $errors->first('password') }}</span>
+                        @endif
                         <div class="mb-5">
                             <input type="password" class="form-control" name="password" placeholder="CONTRASEÑA" />
+
                         </div>
+
 
                         <!-- <div class="mb-5 d-flex justify-content-between align-items-center">
                             <div class="form-check">

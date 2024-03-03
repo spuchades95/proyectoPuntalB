@@ -28,7 +28,7 @@ class UserFactory extends Factory
             'NombreCompleto' => fake()->name(),
             'Habilitado' => fake()->boolean(),
             'NombreUsuario' => fake()->userName(),
-            'Instalacion_id' => "1",
+            'Instalacion_id' => "9",
             'DNI' => fake()->bothify('########?'),
             'Telefono' => fake()->phoneNumber(),
             'Direccion' => fake()->address(),

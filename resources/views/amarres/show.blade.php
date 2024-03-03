@@ -1,5 +1,5 @@
 @extends('layouts.plantilla')
-
+@section('title', 'Mostrar amarre'. ' ' . ($amarre->Numero ? ' ' . $amarre->Numero : ''))
 @section('content')
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 
@@ -27,20 +27,20 @@
         </div>
         <div class="mb-3">
             <label for="Anio" class="form-label">Año de creacion del amarre:</label>
-            <input name="Anio" type="text" class="form-control mt-4" " value="{{ date('Y', strtotime($amarre->Anio)) }}" readonly />
+            <input name="Anio" type="text" class="form-control mt-4" " value=" {{ date('Y', strtotime($amarre->Anio)) }}" readonly />
         </div>
         <div class="form-group">
             <label for="Pantalan_id/nombre">Pantalán</label>
-            <input type="text" value="{{ $pantalanNombre }}"" class="form-control" readonly >
+            <input type="text" value="{{ $pantalanNombre }}"" class=" form-control" readonly>
         </div>
-    
-            <div style='text-align:right' class='mt-4'>
-                <a href="{{ route('instalaciones.index') }}" class="btn btnDelete">VOLVER</a>
 
-                <a href="{{ route('amarres.edit', $amarre->id) }}" class="btn btnVista">EDITAR</a>
-            </div>
+        <div style='text-align:right' class='mt-4'>
+            <a href="{{ route('instalaciones.index') }}" class="btn btnDelete">VOLVER</a>
+
+            <a href="{{ route('amarres.edit', $amarre->id) }}" class="btn btnVista">EDITAR</a>
         </div>
-    </form>
+</div>
+</form>
 </div>
 @endsection
 

@@ -18,8 +18,9 @@ class DockWorkerFactory extends Factory
      */
     public function definition(): array
     {
+        $userId = User::where('Rol_id', 3)->inRandomOrder()->value('id');
         return [
-            'Usuario_id'=>User::inRandomOrder()->value('id'),
+            'Usuario_id' => $userId,
 
         ];
     }

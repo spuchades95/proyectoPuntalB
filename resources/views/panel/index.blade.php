@@ -173,7 +173,7 @@
         type: 'line',
         data: data,
     });
-   
+
     const data2 = {
         labels: labels,
         datasets: [{
@@ -221,8 +221,8 @@
     }
 
     .card {
-        width: 310px;
-        height: 230px;
+        width: 500px;
+        height: 350px;
         flex-shrink: 0;
         border-radius: 20px;
         background: #fff;
@@ -327,6 +327,14 @@
         /* Ajusta el tamaño del icono según sea necesario */
         cursor: pointer;
         /* Cambia el cursor al pasar sobre el icono */
+    }
+
+    @media screen and (max-width: 1280px) {
+        .card {
+            width: 300px;
+            height: 300px;
+            font-size: 14px;
+        }
     }
 </style>
 
