@@ -39,7 +39,8 @@
             <input type="text" value="{{ $pantalan_nombre }}"" class="form-control" readonly >
         </div>
         <div style='text-align:right' class='mt-4'>
-                <button class="btn btnCancelar"> CANCELAR </button>
+               
+                <a href="{{ route('instalaciones.index') }}" class="btn btnCancelar">VOLVER</a>
                 <button type="submit" class="btn btnAdd">AÑADIR</button>
             </div>
     </form>
