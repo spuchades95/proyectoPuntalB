@@ -227,29 +227,34 @@ public function index()
     //         return response()->json($plazasBaseAll, 201);
     // }
 
-
-
     public function cambiarEstado(Request $request, $id)
     {
+        // Agregar registros de depuración para verificar la solicitud y los datos recibidos
+        \Log::info('Solicitud recibida para cambiar el estado del tránsito. ID: ' . $id);
+        \Log::info('Datos recibidos:', $request->all());
+        
         // Validar la solicitud
         $request->validate([
             'estatus' => 'required|string|in:llegada,salida',
         ]);
-
+    
         // Buscar el tránsito por su ID
+        \Log::info('Buscando el tránsito por su ID: ' . $id);
         $transito = Transit::findOrFail($id);
-
+        \Log::info('Tránsito encontrado:', $transito->toArray());
+    
         // Actualizar el estado del tránsito
+        \Log::info('Actualizando el estado del tránsito a: ' . $request->estatus);
         $transito->update([
-            'Estatus' => $request->estatus,
+            'Estatus' => $request->estatus, 
         ]);
-
+        \Log::info('Estado del tránsito actualizado:', $transito->toArray());
+    
         // Devolver una respuesta
+        \Log::info('Respuesta enviada: Estado del tránsito actualizado correctamente');
         return response()->json(['message' => 'Estado del tránsito actualizado correctamente'], 200);
     }
-
-
-
+    
     public function indexguardamuelles()
     {
         $transitsAll = DB::table('Transits AS T')
@@ -259,8 +264,9 @@ public function index()
             ->join('Transit_Boats AS TB', 'TB.transito_id', '=', 'T.id')
             ->join('Boats AS BT', function ($join) {
                 $join->on('BT.id', '=', 'T.id')
-                    ->whereNull('BT.deleted_at'); // Si Boats tiene una columna "deleted_at" para marcar registros eliminados
+                    ->whereNull('BT.deleted_at'); // Filtra solo embarcaciones que no han sido eliminadas
             })
+            ->whereNull('T.deleted_at') // Filtra solo tránsitos que no han sido eliminados
             ->select(
                 'T.*', // Selecciona todos los campos de la tabla Transits
                 'D.nombre',
@@ -277,21 +283,9 @@ public function index()
                 'TB.FechaEntrada'
             )
             ->get();
-        // $transits= Transit::all();
-        // $details = DB::table('Docks As D')
-        // ->join('Facilities AS F', 'D.instalacion_id', '=', 'F.id')
-        // ->join('Berths AS B', 'D.id', '=', 'B.pantalan_id')
-        // ->join('Transits AS T', 'B.id', '=', 'T.amarre_id')
-        // ->select('D.nombre', 'F.ubicacion', 'B.Numero')
-        // ->get();
-        // $transitsAll = [
-        //     'transits' => $transits,
-        //     'transit_details' => $details
-        // ];
-
+    
         return response()->json($transitsAll, 200);
     }
-
     /**
      * Store a newly created resource in storage.
      */

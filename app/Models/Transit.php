@@ -23,6 +23,7 @@ class Transit extends Berth
         'Administrativo_id',
         'Autorizacion',
         'Amarre_id',
+        'Estatus',
     ];
 
     public function Guardamuelle()
