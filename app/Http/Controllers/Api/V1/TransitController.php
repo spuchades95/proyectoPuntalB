@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api\V1;
 
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Log;
 use App\Http\Controllers\Controller;
 use App\Models\Transit;
 use App\Models\Dock;
@@ -250,33 +251,32 @@ public function index()
     
     public function indexguardamuelles()
     {
+      
         $transitsAll = DB::table('Transits AS T')
-            ->join('Berths AS B', 'B.id', '=', 'T.amarre_id')
-            ->join('Docks AS D', 'D.id', '=', 'B.pantalan_id')
-            ->join('Facilities AS F', 'F.id', '=', 'D.instalacion_id')
-            ->join('Transit_Boats AS TB', 'TB.transito_id', '=', 'T.id')
-            ->join('Boats AS BT', function ($join) {
-                $join->on('BT.id', '=', 'T.id')
-                    ->whereNull('BT.deleted_at'); 
-            })
-            ->whereNull('T.deleted_at') 
-            ->select(
-                'T.*', 
-                'D.nombre',
-                'F.ubicacion',
-                'B.Estado',
-                'B.Numero',
-                'BT.id AS embarcacion_id',
-                'BT.Matricula',
-                'BT.Imagen',
-                'BT.Tipo',
-                'BT.Titular',
-                'BT.Origen',
-                'TB.FechaSalida',
-                'TB.FechaEntrada'
-            )
-            ->get();
-    
+        ->join('Berths AS B', 'B.id', '=', 'T.amarre_id')
+        ->join('Docks AS D', 'D.id', '=', 'B.pantalan_id')
+        ->join('Facilities AS F', 'F.id', '=', 'D.instalacion_id')
+        ->join('Transit_Boats AS TB', 'TB.transito_id', '=', 'T.id')
+        ->join('Boats AS BT', 'BT.id', '=', 'TB.embarcacion_id')
+        ->whereNull('T.deleted_at')
+        ->whereNull('BT.deleted_at')
+        ->select(
+            'T.*',
+            'D.nombre',
+            'F.ubicacion',
+            'B.Estado',
+            'B.Numero',
+            'BT.id AS embarcacion_id',
+            'BT.Matricula',
+            'BT.Imagen',
+            'BT.Tipo',
+            'BT.Titular',
+            'BT.Origen',
+            'TB.FechaSalida',
+            'TB.FechaEntrada'
+        )
+        ->get();
+            Log::info($transitsAll);
         return response()->json($transitsAll, 200);
     }
     /**
