@@ -1,5 +1,5 @@
 @extends('layouts.plantilla')
-@section('title', 'Mostrar usuario' . ' ' . ($usuario->NombreUsuario ? ' ' . $usuario->NombreUsuario : ''))
+
 @section('content')
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 
@@ -67,137 +67,125 @@
             </div>
         </div>
     </form>
-</div>
+    </div>
 
 
-@endsection
-
-
-
-<script type="text/javascript">
+    @endsection
 
 
 
+    <script type="text/javascript">
 
-</script>
+
+
+
+    </script>
 
     <style>
         
        .botones {
         position: absolute;
-        bottom:80px;
+        bottom:90px;
         right:60px;
         margin: 20px;
     }
         .form-container {
 
-        width: 100%;
-        height: 100%;
-    }
+            width: 100%;
+            height: 100%;
+        }
 
-    .form-left {
-        float: left;
-        margin-top: 10px;
-
-
-
-    }
-
-    .form-right {
-        float: right;
-        margin-right: 150px;
-        margin-top: 10px;
+        .form-left {
+            float: left;
+            margin-top: 10px;
 
 
-    }
 
-    .btnVista {
-        background-color: #add8e6 !important;
-        color: #162f3b !important;
-        margin-left: 10px;
+        }
 
-    }
-
-    .btn {
-
-        text-align: center;
-        -webkit-text-stroke: 1.5px;
-        font-family: Questrial;
-        font-size: 16px;
-        font-style: normal;
-        font-weight: 400;
-        line-height: normal;
-
-    }
-
-    .btnDelete {
-        text-decoration: none;
-        background-color: #ffd700 !important;
-        color: #442604 !important;
-    }
+        .form-right {
+            float: right;
+            margin-right: 150px;
+            margin-top: 10px;
 
 
-<<<<<<< HEAD
+        }
+
+        .btnVista {
+            background-color: #add8e6 !important;
+            color: #162f3b !important;
+            margin-left: 10px;
+
+        }
+
+        .btn {
+
+            text-align: center;
+            -webkit-text-stroke: 1.5px;
+            font-family: Questrial;
+            font-size: 16px;
+            font-style: normal;
+            font-weight: 400;
+            line-height: normal;
+
+        }
+
+        .btnDelete {
+            text-decoration: none;
+            background-color: #ffd700 !important;
+            color: #442604 !important;
+        }
+
+
         .formHeader {
              padding: 6px;
-=======
-    .formHeader {
-        padding: 6px;
->>>>>>> e923ca81fae21d9ac1e0fa223a57f674a61b40ed
         font-weight: bold;
         font-family: 'Questrial', sans-serif;
         color: #ffffff;
         background-color: #1d2834;
         border-radius: 5px 5px 0px 0px;
-<<<<<<< HEAD
         }
 
         .formularioUsuarios {
             padding: 50px;
-=======
-    }
-
-    .formularioRoles {
-        padding: 50px;
->>>>>>> e923ca81fae21d9ac1e0fa223a57f674a61b40ed
         flex-direction: column;
         align-items: center;
         justify-content: center;
 
-    }
+        }
 
-    form {
-        background-color: #FFFFFF;
-        padding: 15px;
-        border-radius: 0px 0px 5px 5px;
-        box-shadow: 10px 5px 10px rgba(0, 0, 0, 0.5);
-    }
+        form {
+            background-color: #FFFFFF;
+            padding: 15px;
+            border-radius: 0px 0px 5px 5px;
+            box-shadow: 10px 5px 10px rgba(0, 0, 0, 0.5);
+        }
 
-    .chec div {
-        margin-bottom: 5px;
-    }
+        .chec div {
+            margin-bottom: 5px;
+        }
 
-    input[type="text"],
-    textarea,
-    input[type="checkbox"] {
-        box-sizing: border-box;
-        border: 1px solid #ccc;
-        padding: 3px;
-        font-size: 14px;
-        line-height: 1.5;
-        height: 28px;
-        width: calc(100% - 75px);
-    }
+        input[type="text"],
+        textarea,
+        input[type="checkbox"] {
+            box-sizing: border-box;
+            border: 1px solid #ccc;
+            padding: 3px;
+            font-size: 14px;
+            line-height: 1.5;
+            height: 28px;
+            width: calc(100% - 75px);
+        }
 
-    .label-checkbox {
-        font-weight: bold;
-        display: inline-block;
-        width: 200px;
-        margin-right: 10px;
-    }
+        .label-checkbox {
+            font-weight: bold;
+            display: inline-block;
+            width: 200px;
+            margin-right: 10px;
+        }
 
-    label {
-        width: 200px;
-        font-weight: bold;
-    }
-</style>
+        label {
+            width: 200px;
+            font-weight: bold;
+        }
+    </style>
