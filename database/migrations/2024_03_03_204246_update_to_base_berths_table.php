@@ -11,8 +11,8 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::table('docks', function (Blueprint $table) {
-        //    $table->dateTime('FechaCreacion')->change();
+        Schema::table('base_berths', function (Blueprint $table) {
+            $table->softDeletes();
         });
     }
 
@@ -21,8 +21,8 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::table('docks', function (Blueprint $table) {
-          //  $table->dateTime('FechaCreacion')->change();
+        Schema::table('base_berths', function (Blueprint $table) {
+            //
         });
     }
 };

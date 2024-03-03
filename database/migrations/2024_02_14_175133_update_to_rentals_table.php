@@ -12,8 +12,8 @@ return new class extends Migration
     public function up(): void
     {
         Schema::table('rentals', function (Blueprint $table) {
-            $table->dateTime('FechaInicio')->change();
-            $table->dateTime('FechaFinalizacion')->change();
+       //     $table->dateTime('FechaInicio')->change();
+       //     $table->dateTime('FechaFinalizacion')->change();
         });
     }
 
@@ -23,8 +23,8 @@ return new class extends Migration
     public function down(): void
     {
         Schema::table('rentals', function (Blueprint $table) {
-            $table->dateTime('FechaInicio')->change();
-            $table->dateTime('FechaFinalizacion')->change();
+         //   $table->dateTime('FechaInicio')->change();
+         //   $table->dateTime('FechaFinalizacion')->change();
         });
     }
 };

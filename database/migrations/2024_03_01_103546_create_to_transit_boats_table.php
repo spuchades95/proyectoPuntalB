@@ -11,8 +11,8 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('transit_boats', function (Blueprint $table) {
-            Schema::dropIfExists('transit_boats');
+       // Schema::create('transit_boats', function (Blueprint $table) {
+         /*   Schema::dropIfExists('transit_boats');
            $table->id();
            $table->unsignedBigInteger('Embarcacion_id');
            $table->foreign('Embarcacion_id')->references('id')->on('boats')->onDelete('cascade')->onUpdate('cascade');
@@ -22,8 +22,8 @@ return new class extends Migration
            $table->date('FechaSalida')->nullable();
            $table->string('Causa')->nullable();
             $table->softDeletes();
-            $table->timestamps();
-        });
+            $table->timestamps();*/
+     //   });
     }
 
     /**
@@ -31,6 +31,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('transit_boats');
+      //  Schema::dropIfExists('transit_boats');
     }
 };

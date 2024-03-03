@@ -12,8 +12,8 @@ return new class extends Migration
     public function up(): void
     {
         Schema::table('transits', function (Blueprint $table) {
-            $table->dateTime('FechaEntrada')->change();
-            $table->dateTime('FechaSalida')->change();
+          //  $table->dateTime('FechaEntrada')->change();
+          //  $table->dateTime('FechaSalida')->change();
         });
     }
 
@@ -23,8 +23,8 @@ return new class extends Migration
     public function down(): void
     {
         Schema::table('transits', function (Blueprint $table) {
-            $table->dateTime('FechaEntrada')->change();
-            $table->dateTime('FechaSalida')->change();
+          //  $table->dateTime('FechaEntrada')->change();
+          //  $table->dateTime('FechaSalida')->change();
         });
     }
 };
