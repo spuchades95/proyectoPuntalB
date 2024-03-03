@@ -70,6 +70,14 @@
 </script>
 
 @endsection
+@section('scroll-buttons')
+<div class="scrollUpContainer">
+    <img alt="scroll-up" src="/image/scrollUp.svg" class="scrollIcon" id="scrollUp" />
+</div>
+<div class="scrollDownContainer">
+    <img alt="scroll-down" src="/image/scrollDown.svg" class="scrollIcon" id="scrollDown" />
+</div>
+@endsection
 
 <style>
     .tablaRoles {

@@ -30,11 +30,11 @@
                     <p><b>Plazas Base que expiran en 1 mes:</b> {{$plazasBaseExpiran1mes}}</p>
                 </div>
                 <div class="d-flex flex-column">
-                    <div class="scrollUpContainer">
-                        <img alt="scroll-up" src="/image/scrollUp.svg" class="scrollIcon" id="scrollUp" />
+                    <div class="custom-scroll-up-container">
+                        <img alt="scroll-up" src="/image/scrollUp.svg" class="scrollIcon" id="customScrollUp" />
                     </div>
-                    <div class="scrollDownContainer">
-                        <img alt="scroll-down" src="/image/scrollDown.svg" class="scrollIcon" id="scrollDown" />
+                    <div class="custom-scroll-down-container">
+                        <img alt="scroll-down" src="/image/scrollDown.svg" class="scrollIcon" id="customScrollDown" />
                     </div>
                 </div>
             </div>
@@ -192,15 +192,15 @@
     });
 
 
-    const scrollUp = document.getElementById('scrollUp');
-    const scrollDown = document.getElementById('scrollDown');
+    const customScrollUp = document.getElementById('customScrollUp');
+    const customScrollDown = document.getElementById('customScrollDown');
 
-    scrollUp.addEventListener('click', () => {
+    customScrollUp.addEventListener('click', () => {
         // Desplaza el contenido hacia arriba
         document.querySelector('.card-content').scrollTop -= 10; // Ajusta la cantidad de desplazamiento según sea necesario
     });
 
-    scrollDown.addEventListener('click', () => {
+    customScrollDown.addEventListener('click', () => {
         // Desplaza el contenido hacia abajo
         document.querySelector('.card-content').scrollTop += 10; // Ajusta la cantidad de desplazamiento según sea necesario
     });
@@ -300,7 +300,7 @@
         /* Color del pulgar de la barra de desplazamiento al pasar el mouse sobre él */
     }
 
-    .scrollUpContainer {
+    .custom-scroll-up-container {
         position: absolute;
         right: 10px;
         /* Ajusta la posición del contenedor según sea necesario */
@@ -311,7 +311,7 @@
     }
 
     /* Estilo para el contenedor del icono de scroll hacia abajo */
-    .scrollDownContainer {
+    .custom-scroll-down-container {
         position: absolute;
         right: 10px;
         /* Ajusta la posición del contenedor según sea necesario */
