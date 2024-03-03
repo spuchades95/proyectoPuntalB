@@ -53,7 +53,7 @@ public function create(Request $request)
 
     $InstalacionUbicacion = $instalacion->Ubicacion;
     
-    return view('pantalanes.store', [
+    return view('pantalanes.create', [
         'Instalacion_id' => $instalacion->id,
         'instalacion_ubicacion' => $InstalacionUbicacion
     ]);
