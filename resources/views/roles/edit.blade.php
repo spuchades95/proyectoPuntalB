@@ -1,5 +1,5 @@
 @extends('layouts.plantilla')
-
+@section('title', 'Editar rol' . ' ' . ($rol->NombreRol ? ' ' . $rol->NombreRol : ''))
 @section('content')
 
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
@@ -42,16 +42,16 @@
                 ELIMINAR
             </button>
             <button type="submit" class="btn btnAdd">EDITAR</button>
-            </form>
-        </div>
-   
-                <div class="modal" id="myModal">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h4 class="modal-title">BAJA DE ROL </h4>
-                </div>
-                <div class="modal-body">
+    </form>
+</div>
+
+<div class="modal" id="myModal">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">BAJA DE ROL </h4>
+            </div>
+            <div class="modal-body">
                 <form id="delete-form" action="{{ route('roles.destroy', ['role' => $rol->id]) }}" method="POST">
                     <div class="mb-3 d-flex">
                         <label for="NombreRol">Nombre del rol:</label>
@@ -61,19 +61,19 @@
                         <label for="Causa" class="form-label">Causa de la baja:</label>
                         <textarea name="Causa" class="form-control mt-4"> </textarea>
                     </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btnCancelar" data-dismiss="modal">CANCELAR</button>
-       
-                        @csrf
-                        @method('DELETE')
-                        <button type="submit" class="btn btnAdd">ELIMINAR</button>
-                    </form>
-                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btnCancelar" data-dismiss="modal">CANCELAR</button>
+
+                @csrf
+                @method('DELETE')
+                <button type="submit" class="btn btnAdd">ELIMINAR</button>
+                </form>
             </div>
         </div>
     </div>
-   
+</div>
+
 </div>
 <style>
     .btnAdd {

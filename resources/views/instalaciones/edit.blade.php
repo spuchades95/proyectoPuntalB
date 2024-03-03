@@ -1,5 +1,5 @@
 @extends('layouts.plantilla')
-
+@section('title', 'Editar instalación' . ' ' . ($instalacion->Ubicacion ? ' ' . $instalacion->Ubicacion : ''))
 @section('content')
 
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
@@ -40,15 +40,15 @@
             <label for="FechaCreacion" class="form-label">Fecha de creación:</label>
             <input name="FechaCreacion" type="datetime" class="form-control mt-4" value="{{ $instalacion->FechaCreacion }}" required />
         </div>
-    
-<div style='text-align:right' class='mt-4'>
-        <button type="button" class="btn btnCancelar" data-toggle="modal" data-target="#myModal">
-    ELIMINAR
-</button>
-        <button type="submit" class="btn btnAdd">EDITAR</button>
+
+        <div style='text-align:right' class='mt-4'>
+            <button type="button" class="btn btnCancelar" data-toggle="modal" data-target="#myModal">
+                ELIMINAR
+            </button>
+            <button type="submit" class="btn btnAdd">EDITAR</button>
         </div>
     </form>
-    </div>
+</div>
 
 
 <!-- Botón de eliminación fuera del formulario -->
@@ -89,37 +89,36 @@
 </div>
 
 <style>
-
-.btnAdd {
-    background-color: #3f2d85!important;
-    color: #f5f6fd!important;
-    margin-left: 10px;
-
-
-}
-
-.btn{
-
-    text-align: center;
-    -webkit-text-stroke: 1.5px ;
-font-family: Questrial;
-font-size: 16px;
-font-style: normal;
-font-weight: 400;
-line-height: normal;
+    .btnAdd {
+        background-color: #3f2d85 !important;
+        color: #f5f6fd !important;
+        margin-left: 10px;
 
 
-}
+    }
 
-.btnCancelar {
-    text-decoration: none;
-    background-color:#ffc745!important;
-    color: #7a2e0d!important;
-   
-}
+    .btn {
+
+        text-align: center;
+        -webkit-text-stroke: 1.5px;
+        font-family: Questrial;
+        font-size: 16px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: normal;
 
 
-.formHeader {
+    }
+
+    .btnCancelar {
+        text-decoration: none;
+        background-color: #ffc745 !important;
+        color: #7a2e0d !important;
+
+    }
+
+
+    .formHeader {
         padding: 6px;
         font-weight: bold;
         font-family: 'Questrial', sans-serif;
@@ -200,7 +199,6 @@ line-height: normal;
         font-weight: bold;
         text-align: left;
     }
-
 </style>
 
 @endsection
