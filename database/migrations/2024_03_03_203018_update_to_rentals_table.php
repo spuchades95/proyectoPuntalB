@@ -11,8 +11,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::table('docks', function (Blueprint $table) {
-        //    $table->dateTime('FechaCreacion')->change();
+        Schema::table('rentals', function (Blueprint $table) {
+            $table->unsignedBigInteger('PlazaBase_id')->after('FechaInicio');
+      
+           
+            $table->foreign('PlazaBase_id')->references('id')->on('base_berths')->onDelete('cascade')->onUpdate('cascade');
+    
         });
     }
 
@@ -21,8 +25,8 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::table('docks', function (Blueprint $table) {
-          //  $table->dateTime('FechaCreacion')->change();
+        Schema::table('rentals', function (Blueprint $table) {
+            //
         });
     }
 };

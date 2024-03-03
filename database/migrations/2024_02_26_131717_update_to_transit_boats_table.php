@@ -12,8 +12,8 @@ return new class extends Migration
     public function up(): void
     {
         Schema::table('transit_boats', function (Blueprint $table) {
-            $table->date('FechaEntrada')->nullable();
-            $table->date('FechaSalida')->nullable();
+          /*  $table->date('FechaEntrada')->nullable();
+            $table->date('FechaSalida')->nullable();*/
         });
     }
 
@@ -23,8 +23,8 @@ return new class extends Migration
     public function down(): void
     {
         Schema::table('transit_boats', function (Blueprint $table) {
-            $table->dropColumn('FechaEntrada');
-            $table->dropColumn('FechaSalida');
+       /*     $table->dropColumn('FechaEntrada');
+            $table->dropColumn('FechaSalida');*/
         });
     }
 };
