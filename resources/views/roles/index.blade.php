@@ -1,5 +1,5 @@
 @extends('layouts.plantilla')
-
+@section('title', 'Mostrar roles')
 @section('content')
 <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/css/bootstrap.min.css">
 <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.13.7/css/dataTables.bootstrap5.min.css">
@@ -37,8 +37,8 @@
 <script type="text/javascript">
     $(document).ready(function() {
         $('#example tbody').on('click', 'tr', function() {
-               var roleId = $(this).data('id');
-          
+            var roleId = $(this).data('id');
+
             window.location.href = "{{ route('roles.show', ['role' => ':id']) }}".replace(':id', roleId);
         });
 
@@ -51,24 +51,26 @@
     .tablaRoles {
         padding: 50px;
     }
+
     table {
         box-shadow: 10px 5px 10px rgba(0, 0, 0, 0.5);
     }
-    
+
     th {
-        background-color: #426787!important;
-        color: #f5f7fa!important;
+        background-color: #426787 !important;
+        color: #f5f7fa !important;
         font-family: "Questrial", sans-serif;
 
     }
+
     .cabeceraTabla {
         font-size: 30px;
         font-weight: lighter;
     }
 
     .cabeceraDatos>th {
-        background-color: #a6bed3!important;
-        color: black!important;
+        background-color: #a6bed3 !important;
+        color: black !important;
         font-weight: bold;
     }
 

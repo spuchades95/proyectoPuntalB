@@ -1,5 +1,5 @@
 @extends('layouts.plantilla')
-
+@section('title', 'Mostrar usuarios')
 @section('content')
 <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/css/bootstrap.min.css">
 <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.13.7/css/dataTables.bootstrap5.min.css">
@@ -26,30 +26,30 @@
             </tr>
         </thead>
         <tbody>
-        @foreach ($usuarios as $user)
-    <tr data-id="{{ $user->id }}">
-        <td>{{ $user->NombreUsuario }}</td>
-        <td>{{ $user->NombreCompleto }}</td>
-        <td>
-            @if(isset($Instalacion[$user->id]))
-                {{ $Instalacion[$user->id]->Ubicacion }}
-            @else
-                No se encontró instalación
-            @endif
-        </td>
-        <td>{{ $user->email }}</td>
-        <td> {{ $user->Habilitado == 1 ? 'Habilitado' : 'Deshabilitado' }} </td>
-        <td>{{ $user->Telefono }}</td>
-        <td>{{ $user->Direccion }}</td>
-        <td>
-            @if(isset($Roles[$user->id]))
-                {{ $Roles[$user->id]->NombreRol }}
-            @else
-                No se encontró rol
-            @endif
-        </td>
-    </tr>
-    @endforeach
+            @foreach ($usuarios as $user)
+            <tr data-id="{{ $user->id }}">
+                <td>{{ $user->NombreUsuario }}</td>
+                <td>{{ $user->NombreCompleto }}</td>
+                <td>
+                    @if(isset($Instalacion[$user->id]))
+                    {{ $Instalacion[$user->id]->Ubicacion }}
+                    @else
+                    No se encontró instalación
+                    @endif
+                </td>
+                <td>{{ $user->email }}</td>
+                <td> {{ $user->Habilitado == 1 ? 'Habilitado' : 'Deshabilitado' }} </td>
+                <td>{{ $user->Telefono }}</td>
+                <td>{{ $user->Direccion }}</td>
+                <td>
+                    @if(isset($Roles[$user->id]))
+                    {{ $Roles[$user->id]->NombreRol }}
+                    @else
+                    No se encontró rol
+                    @endif
+                </td>
+            </tr>
+            @endforeach
         </tbody>
     </table>
 </div>
@@ -57,8 +57,8 @@
 <script type="text/javascript">
     $(document).ready(function() {
         $('#example tbody').on('click', 'tr', function() {
-               var userId = $(this).data('id');
-          
+            var userId = $(this).data('id');
+
             window.location.href = "{{ route('usuarios.show', ['usuario' => ':id']) }}".replace(':id', userId);
         });
 
@@ -71,24 +71,26 @@
     .tablaRoles {
         padding: 50px;
     }
+
     table {
         box-shadow: 10px 5px 10px rgba(0, 0, 0, 0.5);
     }
-    
+
     th {
-        background-color: #426787!important;
-        color: #f5f7fa!important;
+        background-color: #426787 !important;
+        color: #f5f7fa !important;
         font-family: "Questrial", sans-serif;
 
     }
+
     .cabeceraTabla {
         font-size: 30px;
         font-weight: lighter;
     }
 
     .cabeceraDatos>th {
-        background-color: #a6bed3!important;
-        color: black!important;
+        background-color: #a6bed3 !important;
+        color: black !important;
         font-weight: bold;
     }
 

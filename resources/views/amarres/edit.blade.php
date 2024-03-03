@@ -1,5 +1,5 @@
 @extends('layouts.plantilla')
-
+@section('title', 'Editar amarre' . ' ' . ($amarre->Numero ? ' ' . $amarre->Numero : ''))
 @section('content')
 
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
@@ -52,7 +52,7 @@
             </button>
             <button type="submit" class="btn btnAdd">EDITAR</button>
         </div>
-        </form>
+    </form>
 
     <div class="modal" id="myModal">
         <div class="modal-dialog">
@@ -61,28 +61,28 @@
                     <h4 class="modal-title">BAJA DE AMARRE </h4>
                 </div>
                 <form id="delete-form" action="{{ route('amarres.destroy', ['amarre' => $amarre->id]) }}" method="POST">
-                <div class="modal-body">
-                    <div class="mb-3 d-flex">
-                        <label for="Numero"> Numero del amarre:</label>
-                        <input name="Numero" type="text" class="form-control mt-4" placeholder="Numero del amarre " value="{{ $amarre->Numero }}" readonly />
+                    <div class="modal-body">
+                        <div class="mb-3 d-flex">
+                            <label for="Numero"> Numero del amarre:</label>
+                            <input name="Numero" type="text" class="form-control mt-4" placeholder="Numero del amarre " value="{{ $amarre->Numero }}" readonly />
+                        </div>
+                        <div class="mb-3 d-flex">
+                            <label for="Causa" class="form-label">Causa de la baja:</label>
+                            <textarea id="Causa" name="Causa" class="form-control mt-4"> </textarea>
+                        </div>
                     </div>
-                    <div class="mb-3 d-flex">
-                        <label for="Causa" class="form-label">Causa de la baja:</label>
-                        <textarea id="Causa" name="Causa" class="form-control mt-4"> </textarea>
-                    </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btnCancelar" data-dismiss="modal">CANCELAR</button>
-                   
+                    <div class="modal-footer">
+                        <button type="button" class="btn btnCancelar" data-dismiss="modal">CANCELAR</button>
+
                         @csrf
                         @method('DELETE')
                         <button type="submit" class="btn btnAdd">ELIMINAR</button>
-                    </form>
-                </div>
+                </form>
             </div>
         </div>
     </div>
-    
+</div>
+
 </div>
 <style>
     .btnAdd {
