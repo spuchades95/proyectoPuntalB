@@ -1,18 +1,21 @@
-<div class="arriba col-md-12 d-flex justify-content-end">
-    <h3 class="mt-3">¡Hola!
-    @if(Auth::check())
-     {{ Auth::user()->NombreUsuario }}
-@endif</h3>
+<div class="arriba col-md-12 d-flex justify-content-end align-items-center">
+    <div class="d-flex align-items-center justify-content-around">
+        <h3 class="mt-3">¡Hola!
+            @if(Auth::check())
+            {{ Auth::user()->NombreUsuario }}
+            @endif
+        </h3>
 
-    <a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();"> <img src="/image/logout.svg" alt="Logout"> </a>
+        <a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();"> <img src="/image/logout.svg" alt="Logout" class="mx-3"> </a>
 
-<form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-  {{ csrf_field() }}
-</form>
+        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+            {{ csrf_field() }}
+        </form>
 
 
 
-</a>
+        </a>
+    </div>
 </div>
 <style>
     .arriba {
