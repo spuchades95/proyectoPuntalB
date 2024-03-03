@@ -46,7 +46,8 @@ class IncidentFactory extends Factory
             'Guardamuelle_id' => DockWorker::inRandomOrder()->first()->Usuario_id,
             // 'Guardamuelle_id' => $this->faker->randomElement($guardamuellesIds),
             'Descripcion' => $this->faker->sentence(),
-            'Administrativo_id' => Administrative::inRandomOrder()->first()->Usuario_id,
+            'Administrativo_id' => 62,
+            // 'Administrativo_id' => Administrative::inRandomOrder()->first()->Usuario_id,
         ];
     }
 }

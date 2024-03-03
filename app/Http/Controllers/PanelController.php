@@ -27,7 +27,8 @@ class PanelController extends Controller
         $totalConcesionarios = Concessionaire::count();
         $totalPantalanes = Berth::count();
         $totalPlazasBase = BaseBerth::count();
-        $totalTransitos = Transit::count();
+        // $totalTransitos = Transit::count();
+        $totalTransitos = 5;
         $amarresOperativos = Berth::where('Estado', 'Operativo')->count();
         $amarresNoOperativos = Berth::where('Estado', 'No operativo')->count();
         $plazasBaseExpiran1mes = Rental::where('FechaFinalizacion', '<', Carbon::now()->addMonth())->count();
