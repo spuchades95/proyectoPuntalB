@@ -18,11 +18,8 @@
 
         <button type="submit" class="btn btnAdd">Crear Amarres</button>
 
-<<<<<<< HEAD
-=======
     <button type="submit" class="btn btnAdd">Crear Amarres</button>
     <a href="{{ route('instalaciones.index') }}" class="btn btnCancelar">Ir a inicio</a>
->>>>>>> 5d73e9a7214597d4bc285f9bfb0d9a49b0710d35
     </form>
 </div>
 
