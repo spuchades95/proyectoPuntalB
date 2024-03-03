@@ -223,11 +223,30 @@ class BoatController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy($id)
+    // public function destroy($id)
+    // {
+    //     try {
+    //         $boat = Boat::find($id);
+    //         if ($boat) {
+    //             $boat->delete();
+    //             return response()->json(['message' => 'Embarcación eliminada'], 200);
+    //         } else {
+    //             return response()->json(['error' => 'Embarcación no encontrada'], 404);
+    //         }
+    //     } catch (\Exception $e) {
+    //         // Manejo de otros errores
+    //         return response()->json(['error' => 'Error interno del servidor'], 500);
+    //     }
+    // }
+    public function destroy($id, Request $request)
     {
         try {
             $boat = Boat::find($id);
             if ($boat) {
+                $causa = $request->input('causa'); // Recuperar la causa del cuerpo de la solicitud
+                $boat->Causa = $causa;
+                $boat->save();
+
                 $boat->delete();
                 return response()->json(['message' => 'Embarcación eliminada'], 200);
             } else {
@@ -238,4 +257,5 @@ class BoatController extends Controller
             return response()->json(['error' => 'Error interno del servidor'], 500);
         }
     }
+
 }

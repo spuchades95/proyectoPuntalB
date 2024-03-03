@@ -1,5 +1,5 @@
 @extends('layouts.plantilla')
-
+@section('title', 'Mostrar instalación' . ' ' . ($instalacion->Ubicacion ? ' ' . $instalacion->Ubicacion : ''))
 @section('content')
 <link rel="stylesheet" type="text/css" href="{{ asset('styles.css') }}">
 
@@ -31,7 +31,7 @@
 
         <div class="mb-3">
             <div style='text-align:right' class='mt-4'>
-    
+
                 <a href="{{ route('instalaciones.index') }}" class="btn btnDelete">VOLVER</a>
 
                 <a href="{{ route('instalaciones.edit', $instalacion->id) }}" class="btn btnVista">EDITAR</a>
@@ -41,30 +41,30 @@
 </div>
 
 <style>
-  .btnVista {
-    background-color: #add8e6 !important;
-    color: #162f3b!important;
-    margin-left: 10px;
+    .btnVista {
+        background-color: #add8e6 !important;
+        color: #162f3b !important;
+        margin-left: 10px;
 
-}
+    }
 
-.btn{
+    .btn {
 
-    text-align: center;
-    -webkit-text-stroke: 1.5px ;
-font-family: Questrial;
-font-size: 16px;
-font-style: normal;
-font-weight: 400;
-line-height: normal;
+        text-align: center;
+        -webkit-text-stroke: 1.5px;
+        font-family: Questrial;
+        font-size: 16px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: normal;
 
-}
+    }
 
-.btnDelete {
-    text-decoration: none;
-    background-color:#ffd700!important;
-    color: #442604!important;
-}
+    .btnDelete {
+        text-decoration: none;
+        background-color: #ffd700 !important;
+        color: #442604 !important;
+    }
 
 
     .formHeader {

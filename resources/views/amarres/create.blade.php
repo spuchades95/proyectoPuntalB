@@ -1,5 +1,5 @@
 @extends('layouts.plantilla')
-
+@section('title', 'Crear amarre')
 @section('content')
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
@@ -31,15 +31,16 @@
         </div>
         <div class="form-group">
             <label for="Anio">Año</label>
-            <input type="datetime" value="{{ now()->format('Y-m-d') }} "name="Anio" id="Anio" class="form-control" required>
+            <input type="datetime" value="{{ now()->format('Y-m-d') }} " name="Anio" id="Anio" class="form-control" required>
         </div>
         <div class="form-group">
             <label for="Pantalan_id/nombre">Pantalán</label>
             <input type="hidden" name="Pantalan_id" value="{{ $Pantalan_id }}" required>
-            <input type="text" value="{{ $pantalan_nombre }}"" class="form-control" readonly >
+            <input type="text" value="{{ $pantalan_nombre }}"" class=" form-control" readonly>
         </div>
         <div style='text-align:right' class='mt-4'>
-                <button class="btn btnCancelar"> CANCELAR </button>
+               
+                <a href="{{ route('instalaciones.index') }}" class="btn btnCancelar">VOLVER</a>
                 <button type="submit" class="btn btnAdd">AÑADIR</button>
             </div>
     </form>

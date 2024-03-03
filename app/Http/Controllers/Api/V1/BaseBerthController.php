@@ -32,16 +32,22 @@ class BaseBerthController extends Controller
         Log::info($id);
 
         $fechaFinalizacion = $request->input('FechaFinalizacion');
-
+$idamarre= $id;
         try {
+            Log::info('dentro del try '.$request);
+            Log::info('dentro del try '.$id);
+            $plazaBase = BaseBerth::where('Amarre_id', $idamarre)->firstOrFail();
 
-            $rental = Rental::findOrFail($id);
+            // Utilizar el ID obtenido para buscar y actualizar el registro correspondiente en rentals
+            $rental = Rental::where('PlazaBase_id', $plazaBase->id)->firstOrFail();
             $rental->FechaFinalizacion = $fechaFinalizacion;
+            Log::info('dentro del try '.$idamarre);
             $rental->save();
-
+            Log::info('dentro del try '.$rental);
+            Log::info('dentro del try '.$fechaFinalizacion);
             return response()->json($rental, 200);
         } catch (\Exception $e) {
-
+            Log::info('dentro del try '.$e);
             return response()->json(['error' => 'Hubo un problema al actualizar el contrato de alquiler.'], 500);
         }
     }

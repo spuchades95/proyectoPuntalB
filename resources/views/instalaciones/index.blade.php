@@ -1,5 +1,5 @@
 @extends('layouts.plantilla')
-
+@section('title', 'Mostrar instalaciones')
 @section('content')
 <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/css/bootstrap.min.css">
 <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.13.7/css/dataTables.bootstrap5.min.css">
@@ -55,7 +55,7 @@
             var Pantalan_id = $(this).data('id');
             window.location.href = "{{ route('pantalanes.show', ['pantalane' => ':id']) }}".replace(':id', Pantalan_id);
         });
-        
+
         $('tbody').on('click', 'tr', function() {
 
             var Amarre_id = $(this).data('id');
@@ -179,7 +179,7 @@
         margin-top: 0px;
     }
 
-    a{
+    a {
         width: 30px;
         height: 30px;
         float: right;
