@@ -21,7 +21,8 @@ class TransitBoatFactory extends Factory
             'FechaEntrada' => $this->faker->dateTimeBetween('-1 month', 'now'),
             'FechaSalida' => $this->faker->dateTimeBetween('now', '+1 month'),
             'Transito_id' => Transit::inRandomOrder()->first()->id,
-            'Embarcacion_id' => Boat::inRandomOrder()->first()->id,
+            'Embarcacion_id' => 78,
+            // 'Embarcacion_id' => Boat::inRandomOrder()->first()->id,
         ];
     }
 }

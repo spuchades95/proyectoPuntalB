@@ -40,7 +40,8 @@ class IncidentFactory extends Factory
 
         return [
             'Titulo' => $this->faker->sentence(),
-            'Imagen' => $this->faker->imageUrl(),
+            // 'Imagen' => $this->faker->imageUrl(),
+            'Imagen' => '/storage/image/yate.jpg',
             'Leido' => false,
             'Guardamuelle_id' => DockWorker::inRandomOrder()->first()->Usuario_id,
             // 'Guardamuelle_id' => $this->faker->randomElement($guardamuellesIds),
