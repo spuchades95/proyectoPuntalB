@@ -32,17 +32,19 @@ class Transit extends Berth
 
     public function tripulantes()
     {
-        return $this->belongsToMany(Crew::class, 'TransitCrew', 'Transito_id','Tripulante_id');
+        return $this->belongsToMany(Crew::class, 'transit_crews', 'Transito_id','Tripulante_id');
     }
 
-    public function embarcaciones()
+   
+    public function embarcacion()
     {
-        return $this->belongsToMany(Boat::class, 'transit_boats', 'Transito_id','Embarcacion_id');
+        return $this->belongsToMany(Boat::class, 'transit_boats', 'Transito_id', 'Embarcacion_id');
     }
+
 
     public function plaza()
     {
-        return $this->belongsTo(Berth::class,'Amarre_id');
+        return $this->belongsTo(Berth::class,'Amarre_id','id');
     }
     public function guardiasciviles()
     {

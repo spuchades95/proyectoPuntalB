@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::table('transits', function (Blueprint $table) {
        //     $table->dropColumn('FechaEntrada');
-           // $table->dropColumn('FechaSalida');
+         //   $table->dropColumn('FechaSalida');
         });
     }
 

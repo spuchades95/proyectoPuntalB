@@ -1,5 +1,5 @@
 @extends('layouts.plantilla')
-
+@section('title', 'Crear pantalanes')
 @section('content')
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
@@ -18,31 +18,30 @@
 @endsection
 
 <style>
-.btn-lg {
-    padding: 10px 20px;
-    font-size: 20px;
-    border-radius: 15px;
-}
+    .btn-lg {
+        padding: 10px 20px;
+        font-size: 20px;
+        border-radius: 15px;
+    }
 
-.btnAdd {
-    background-color: #3f2d85 !important;
-    color: #f5f6fd !important;
-}
+    .btnAdd {
+        background-color: #3f2d85 !important;
+        color: #f5f6fd !important;
+    }
 
-.btnCancelar {
-    background-color: #ffc745 !important;
-    color: #7a2e0d !important;
-}
+    .btnCancelar {
+        background-color: #ffc745 !important;
+        color: #7a2e0d !important;
+    }
 
-.card {
-    background-color: #ffffff;
-    border-radius: 15px;
-    box-shadow: 0px 0px 15px 0px rgba(0,0,0,0.1);
-}
+    .card {
+        background-color: #ffffff;
+        border-radius: 15px;
+        box-shadow: 0px 0px 15px 0px rgba(0, 0, 0, 0.1);
+    }
 
-h2 {
-    font-size: 24px;
-    font-weight: bold;
-}
-
+    h2 {
+        font-size: 24px;
+        font-weight: bold;
+    }
 </style>

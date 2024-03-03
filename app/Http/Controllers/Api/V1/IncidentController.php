@@ -10,6 +10,7 @@ use App\Models\User;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Auth;
 use Tymon\JWTAuth\Facades\JWTAuth;
+use Illuminate\Support\Facades\Storage;
 
 class IncidentController extends Controller
 {
@@ -57,7 +58,7 @@ class IncidentController extends Controller
             $url = Storage::url($imagenPath);
             Log::info('URL CREATE: ' . $url);
             // Asigna la URL al atributo Imagen del modelo Boat
-            $boat->Imagen = $url;
+            // $boat->Imagen = $url;
         }
 
         $incident->save();

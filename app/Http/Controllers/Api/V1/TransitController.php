@@ -18,10 +18,116 @@ class TransitController extends Controller
      * Display a listing of the resource.
      */
 
+     public function paratablaTransito()
+     {
+         $transitoBoat = TransitBoat::
+         join('transits', 'transits.id', '=', 'transit_boats.Transito_id')
+         ->join('berths', 'berths.id', '=', 'transits.Amarre_id')
+         ->join('docks', 'docks.id', '=', 'berths.pantalan_id')
+         ->join('facilities', 'facilities.id', '=', 'docks.instalacion_id')
+         ->join('boats', 'boats.id', '=', 'transit_boats.Embarcacion_id')
+     
+             ->select(
+                 'transit_boats.FechaEntrada',
+                 'transit_boats.FechaSalida',
+                 'transit_boats.id As IdAlquiler',
+                 'transits.id AS id',
+                 'berths.Numero AS Numero',
+                 'berths.Estado AS Estado',
+                 'docks.Nombre AS Pantalan',
+                 'berths.TipoPlaza AS tipo',
+                 'facilities.Ubicacion AS Instalacion',
+                 'transits.Amarre_id AS Transito',
+                 'boats.Matricula',
+                 'boats.Titular'
+             )     
+             ->whereIn('transit_boats.id', function($query) {
+                 $query->selectRaw('MIN(id)')
+                       ->from('transit_boats')
+                       ->groupBy('Transito_id');
+             })
+             ->where('berths.Estado', '=', 'Ocupado')
+     
+             ->get();
+     
+     
+     
+     
+         return response()->json($transitoBoat, 200);
+     }
 
 
+     public function paratablaTransitoGuardia()
+     {
+         $transitoBoat = TransitBoat::
+         join('transits', 'transits.id', '=', 'transit_boats.Transito_id')
+         ->join('berths', 'berths.id', '=', 'transits.Amarre_id')
+         ->join('docks', 'docks.id', '=', 'berths.pantalan_id')
+         ->join('facilities', 'facilities.id', '=', 'docks.instalacion_id')
+         ->join('boats', 'boats.id', '=', 'transit_boats.Embarcacion_id')
+     
+             ->select(
+                 'transit_boats.FechaEntrada',
+                 'transit_boats.FechaSalida',
+                 'transit_boats.id As IdAlquiler',
+                 'berths.Numero AS Numero',
+                 'berths.Estado AS Estado',
+                 'docks.Nombre AS Pantalan',
+                 'berths.TipoPlaza AS tipo',
+                 'facilities.Ubicacion AS Instalacion',
+                 'transits.Amarre_id AS Transito',
+                 'transits.id AS id',
+                 'boats.Matricula',
+                 'boats.Titular',
+                 'boats.Tipo',
+                 'boats.Origen',
+                 'transits.Estatus',
+                 'facilities.Ubicacion',
 
+             )     
+             ->whereIn('transit_boats.id', function($query) {
+                 $query->selectRaw('MIN(id)')
+                       ->from('transit_boats')
+                       ->groupBy('Transito_id');
+             })
+             ->where('berths.Estado', '=', 'Ocupado')
+     
+             ->get();
+     
+     
+     
+     
+         return response()->json($transitoBoat, 200);
+     }
 
+     public function updateTransito($id, Request $request)
+     {
+         try {
+             // Encuentra el registro de TransitBoat por su ID
+             $transitBoat = TransitBoat::find($id);
+             
+             // Actualiza las fechas de entrada y salida con los valores proporcionados en la solicitud
+             $transitBoat->update([
+                 'FechaEntrada' => $request->input('FechaEntrada'),
+                 'FechaSalida' => $request->input('FechaSalida'),
+             ]);
+             
+             // Guarda los cambios
+             $transitBoat->save();
+     
+             // Retorna una respuesta adecuada si la actualización se realizó con éxito
+             return response()->json([
+                 'message' => 'TransitBoat actualizado correctamente.',
+                 'transitBoat' => $transitBoat
+             ], 200);
+         } catch (\Exception $e) {
+             // Maneja cualquier excepción que pueda ocurrir durante el proceso de actualización
+             return response()->json([
+                 'message' => 'Error al actualizar el TransitBoat.',
+                 'error' => $e->getMessage()
+             ], 500);
+         }
+     }
 
 
 
@@ -33,6 +139,16 @@ class TransitController extends Controller
         return $cantidad;
     }
 
+    public function idTransito($amarre)
+    {
+        $transito = Transit::where('Amarre_id', $amarre)->first();
+        if ($transito) {
+            return response()->json(['transito_id' => $transito->id], 200);
+        } else {
+            return response()->json(['message' => 'No se encontró ningún tránsito con el número de amarre proporcionado'], 404);
+        }
+    }
+    
 
     public function estancia()
     {
@@ -59,6 +175,44 @@ class TransitController extends Controller
     // public function index(){
 
 
+
+     
+public function index()
+{
+    $transitsAll = DB::table('Transits AS T')
+    ->join('Transit_Boats AS TB', 'TB.Transito_id', '=', 'T.id')
+    ->join('Berths AS B', 'B.id', '=', 'T.amarre_id')
+    ->join('docks AS D', 'D.id', '=', 'B.pantalan_id')
+    ->join('Facilities AS F', 'F.id', '=', 'D.instalacion_id')
+    ->join('Boats AS BT', function ($join) {
+        $join->on('BT.id', '=', 'TB.Embarcacion_id')
+             ->whereNull('BT.deleted_at');
+    })
+    ->whereIn('TB.Transito_id', function($query) {
+        $query->selectRaw('MAX(Transito_id)')
+              ->from('Transit_Boats')
+              ->groupBy('Transito_id');
+    })
+   
+    ->select(
+        'T.*', // Select all fields from the Transits table
+        'TB.FechaEntrada',
+        'TB.FechaSalida',
+        'D.nombre', 
+        'F.ubicacion', 
+        'B.Estado', 
+        'B.Numero', 
+        'BT.Matricula', 
+        'BT.Tipo', 
+        'BT.Titular', 
+        'BT.Origen'
+    )
+    ->where('B.Estado', '=', 'Ocupado') 
+    ->get();
+
+
+    return response()->json($transitsAll, 200);
+}
 
     // $cositas = Transit::with(['plaza.pantalan.instalacion'])
     // ->whereHas('plaza', function($query) {
@@ -171,6 +325,8 @@ class TransitController extends Controller
      */
     public function update(Request $request, Transit $transit)
     {
+        Log::info($request);
+        Log::info($transit);
         try {
             // Verifica si el tránsito existe
             $transit = Transit::find($transit);

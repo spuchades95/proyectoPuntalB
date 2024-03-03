@@ -252,6 +252,7 @@ class UserController extends Controller
      */
     public function destroy(string $id)
     {
+
         $usuario = User::find($id);
         $usuario->delete();
         return redirect()->route('usuarios.index')
