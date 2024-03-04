@@ -82,13 +82,7 @@
     </script>
 
     <style>
-        
-       .botones {
-        position: absolute;
-        bottom:90px;
-        right:60px;
-        margin: 20px;
-    }
+      
         .form-container {
 
             width: 100%;
