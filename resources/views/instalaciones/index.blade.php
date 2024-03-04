@@ -10,7 +10,7 @@
 
 
 @foreach ($instalaciones as $instalacion)
-<h2 data-id="{{ $instalacion->id }}">{{ $instalacion->Ubicacion }} <a href="{{ route('pantalanes.create', ['facility' => $instalacion->id])  }}" class="cabecera-tabla-link">
+<h2 class="instalacion" data-id="{{ $instalacion->id }}">&nbsp;&nbsp;{{ $instalacion->Ubicacion }} <a href="{{ route('pantalanes.create', ['facility' => $instalacion->id])  }}" class="cabecera-tabla-link ">
         <img src="/Image/add_solid.svg" alt="Icon">
     </a></h2>
 <div class="container">
@@ -18,7 +18,7 @@
     <table class="table table-hover table-custom-hover rounded-3 overflow-hidden table-striped" style="width:100%">
         <thead>
             <tr>
-                <th class="cabeceraTabla" colspan="4" data-id="{{ $pantalan->id }}">{{ $pantalan->Nombre }} <a href="{{ route('amarres.create', ['dock' => $pantalan->id]) }}" class="cabecera-tabla-link">
+                <th class="cabeceraTabla" colspan="4" data-id="{{ $pantalan->id }}">&nbsp;{{ $pantalan->Nombre }} <a href="{{ route('amarres.create', ['dock' => $pantalan->id]) }}" class="cabecera-tabla-link">
                         <img src="/Image/add_solid.svg" alt="Icon">
                     </a></th>
             </tr>
@@ -166,7 +166,11 @@
         text-decoration: none;
         color: #000000;
     }
+.instalacion{
 
+    
+    background-color: #1d2834 !important;
+}
     h2 {
 
         background-color: #426787 !important;

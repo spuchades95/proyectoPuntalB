@@ -235,7 +235,7 @@ public function index()
         
         // Validar la solicitud
         $request->validate([
-            'estatus' => 'required|string|in:llegada,salida',
+            'Estatus' => 'required|string|in:llegada,Salida',
         ]);
     
         $transito = Transit::findOrFail($id);
@@ -243,7 +243,7 @@ public function index()
         // Actualizar el estado del tránsito
     
         $transito->update([
-            'Estatus' => $request->estatus, 
+            'Estatus' => $request->Estatus, 
         ]);
         
         return response()->json(['message' => 'Estado del tránsito actualizado correctamente'], 200);
