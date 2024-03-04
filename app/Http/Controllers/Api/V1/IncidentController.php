@@ -67,6 +67,8 @@ class IncidentController extends Controller
 
 public function store(Request $request)
 {
+
+    Log:info($request);
     // Crear una nueva instancia de Incident
     $incident = new Incident();
     
