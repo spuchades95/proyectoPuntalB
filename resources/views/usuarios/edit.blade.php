@@ -142,10 +142,7 @@
         text-align: right;
        
      }
-     .bot {
-        position: relative;   
-        top:50px;
-     }
+   
     .form-container
     {
 
