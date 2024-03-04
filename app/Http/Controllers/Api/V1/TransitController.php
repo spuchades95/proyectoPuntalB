@@ -235,7 +235,7 @@ public function index()
         
         // Validar la solicitud
         $request->validate([
-            'Estatus' => 'required|string|in:llegada,Salida',
+            'Estatus' => 'required|string|in:Llegada,Salida',
         ]);
     
         $transito = Transit::findOrFail($id);
